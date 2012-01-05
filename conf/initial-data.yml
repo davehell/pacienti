@@ -1,0 +1,105 @@
+# you describe your data using the YAML notation here
+# and then load them using Fixtures.load("data.yml")
+
+AppModul(ov):
+    nazev:          Ostrava
+
+AppModul(br):
+  nazev: Brno
+
+AppModul(ph):
+  nazev: Praha
+
+User(david):
+    username:       davehell
+    passwordHash:   kjjksdnp
+    name:           David Hellebrand
+    modul:          br
+    isAdmin:        true
+
+User(bob):
+  username: bob
+  passwordHash: bob
+  name: Bobík
+  modul: ov
+  isAdmin: false
+
+User(alice):
+  username: alice
+  passwordHash: alice
+  name: Alice
+  modul: br
+
+InsuranceCompany(207):
+  cislo: 207
+  zkratka: ozp
+  nazev: Oborová zdravotní pojišťovna
+
+InsuranceCompany(111):
+  cislo: 111
+  zkratka: vzp
+  nazev: Všeobecná zdravotní pojišťovna
+
+Doctor(mudr1):
+  icz: 012345678
+  titul: MUDr.
+  jmeno: Jan
+  prijmeni: Rokycan
+  pracoviste: Ostrava, poliklinika
+  modul: ov
+
+Doctor(mudr2):
+  icz: 6655332211
+  titul: MUDr.
+  jmeno: Honza
+  prijmeni: Rokytný
+  pracoviste: Praha, nemocnice
+  modul: br
+
+Patient(pat1):
+  modul: ov
+  evCislo: 111
+  evRok: 2012
+  rodneCislo: 850912/5482
+  jmeno: David
+  prijmeni: Hellebrand
+  pojistovna: 207
+  lekar: mudr1
+
+BioMaterial(krev):
+  pacient: pat1
+  typ: krev
+
+Examination(morbus):
+  nazev: Morbus Wilson
+  popis: Morbus Wilson popis
+  aktual: true
+  genotypy:
+            - g1
+            - g2
+
+Genotype(g1):
+  nazev: g1
+  vysetreni: morbus
+
+Genotype(g2):
+  nazev: g2
+  vysetreni: morbus
+
+Report(zprava1):
+  pacient: pat1
+  bioMaterial: krev
+  vysetreni: morbus
+  vysledky:
+            - v1
+            - v2
+
+Result(v1):
+  zavZprava: zprava1
+  genotyp: g1
+  vysledek: jojo
+
+Result(v2):
+  zavZprava: zprava1
+  genotyp: g2
+  vysledek: nene

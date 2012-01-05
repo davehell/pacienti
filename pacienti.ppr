@@ -1,0 +1,124 @@
+[Config]
+Compilator.SaveAll=0
+Compilator.Capture=0
+Compilator.HideOutput=0
+Compilator.LogType=0
+DefaultDir=D:\wamp\www\pacienti
+DefaultCPIndex=7
+LogtoEnd=1
+DontOpen=0
+AbsolutePath=0
+FileFormat=0
+ProjectFilesOnly=0
+Extensions=*.*
+[Project tree]
+pacienti
+	+app
+		+controllers
+			app\controllers\Application.java
+			app\controllers\Users.java
+			app\controllers\InsuranceCompanies.java
+			app\controllers\Patients.java
+			app\controllers\Doctors.java
+			app\controllers\Security.java
+			app\controllers\Admin.java
+			app\controllers\AppModuls.java
+			app\controllers\BioMaterials.java
+			app\controllers\Examinations.java
+			app\controllers\Reports.java
+			app\controllers\Genotypes.java
+			app\controllers\Results.java
+		+models
+			app\models\User.java
+			app\models\Patient.java
+			app\models\InsuranceCompany.java
+			app\models\Doctor.java
+			app\models\AppModul.java
+			app\models\BioMaterial.java
+			app\models\Examination.java
+			app\models\Report.java
+			app\models\Genotype.java
+			app\models\Result.java
+		+views
+			+Patients
+				app\views\Patients\index.html
+			+Application
+				app\views\Application\index.html
+			-errors
+				app\views\errors\404.html
+				app\views\errors\500.html
+			app\views\main.html
+			app\views\admin.html
+		app\Bootstrap.java
+	+conf
+		conf\application.conf
+		conf\dependencies.yml
+		conf\messages
+		conf\routes
+		conf\initial-data.yml
+	+public
+		+javascripts
+			public\javascripts\jquery-1.6.4.min.js
+		+stylesheets
+			public\stylesheets\main.css
+	+test
+		test\Application.test.html
+		test\ApplicationTest.java
+		test\UserTest.java
+		test\PojistovnaTest.java
+[Open project files]
+0=app\controllers\Application.java
+1=app\controllers\Users.java
+2=app\controllers\InsuranceCompanies.java
+3=app\controllers\Patients.java
+4=app\controllers\Doctors.java
+5=app\controllers\Security.java
+6=app\controllers\Admin.java
+7=app\controllers\AppModuls.java
+8=app\controllers\BioMaterials.java
+9=app\controllers\Examinations.java
+10=app\controllers\Reports.java
+11=app\controllers\Genotypes.java
+12=app\controllers\Results.java
+[Selected Project Files]
+Main=
+Selected=app\controllers\Results.java
+[app\controllers\Application.java]
+TopLine=1
+Caret=38,11
+[app\controllers\Users.java]
+TopLine=1
+Caret=39,9
+[app\controllers\InsuranceCompanies.java]
+TopLine=1
+Caret=52,9
+[app\controllers\Patients.java]
+TopLine=1
+Caret=1,1
+[app\controllers\Doctors.java]
+TopLine=1
+Caret=41,8
+[app\controllers\Security.java]
+TopLine=1
+Caret=1,1
+[app\controllers\Admin.java]
+TopLine=1
+Caret=39,11
+[app\controllers\AppModuls.java]
+TopLine=1
+Caret=43,8
+[app\controllers\BioMaterials.java]
+TopLine=1
+Caret=46,9
+[app\controllers\Examinations.java]
+TopLine=1
+Caret=46,8
+[app\controllers\Reports.java]
+TopLine=1
+Caret=41,9
+[app\controllers\Genotypes.java]
+TopLine=1
+Caret=43,9
+[app\controllers\Results.java]
+TopLine=1
+Caret=41,9
