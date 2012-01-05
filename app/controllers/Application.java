@@ -7,10 +7,27 @@ import java.util.*;
 
 import models.*;
 
-public class Application extends Controller {
+@With(Secure.class)
+public class Application extends CRUD {
 
-    public static void index() {
-        render();
+    static User connected = Security.getConnUser();
+
+    @Before
+    static void globals() {
+        renderArgs.put("connected", connected);
     }
 
+    public static void index() {
+        List users = User.findAll();
+        //User user = User.find("byUsername", "davehell").first();
+        List zpravy = Report.findAll();
+
+        render(users, zpravy);
+        Logger.info("Action executed ...");
+    }
+
+
+    static User connectedUser() {
+        return Security.isConnected() ? (User) User.find("byUsername", Security.connected()).first() : null;
+    }
 }

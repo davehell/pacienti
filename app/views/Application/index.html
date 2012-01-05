@@ -1,4 +1,15 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Evidence pacientů' /}
 
-#{welcome /}
+
+#{list users, as:'user'}
+${user.id} ${user.modul} ${user.username} - ${user.passwordHash} <br>
+#{/list}
+
+#{list zpravy, as:'report'}
+  ${report.id} <br>
+  #{list items:report.vysledky, as:'vys'}
+    ${vys.genotyp} ${vys.vysledek} <br>
+  #{/list}
+#{/list}
+
