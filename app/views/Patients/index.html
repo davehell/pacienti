@@ -1,20 +1,26 @@
 #{extends 'main.html' /}
 #{set title:'Pacienti' /}
 
+<p>
+  <a href="@{form()}">Nový pacient</a>
+</p>
+
 #{if pacienti}
   <table>
     <thead>
       <th>Evidenční číslo</th>
       <th>Jméno</th>
       <th>Rodné číslo</th>
+      <th>&nbsp;</th>
     </thead>
     <tbody>
     
     #{list pacienti, as:'pacient'}
     <tr>
       <td>${pacient.evCislo}/${pacient.evRok} </td>
-      <td>${pacient.jmeno} ${pacient.prijmeni}</td>
-      <td>${pacient.rodneCislo}</td>
+      <td><a href="@{form(pacient.id)}">${pacient.jmeno} ${pacient.prijmeni} </a></td>
+      <td>${pacient.rodneCislo} </td>
+      <td><a href="@{delete(pacient.id)}">smazat</a></td>
     </tr>
     #{/list}
     </tbody>

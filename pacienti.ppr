@@ -15,30 +15,30 @@ Extensions=*.*
 pacienti
 	+app
 		+controllers
-			app\controllers\Application.java
-			app\controllers\Users.java
-			app\controllers\InsuranceCompanies.java
-			app\controllers\Patients.java
-			app\controllers\Doctors.java
-			app\controllers\Security.java
 			app\controllers\Admin.java
+			app\controllers\Application.java
 			app\controllers\AppModuls.java
 			app\controllers\BioMaterials.java
+			app\controllers\Doctors.java
 			app\controllers\Examinations.java
-			app\controllers\Reports.java
 			app\controllers\Genotypes.java
+			app\controllers\InsuranceCompanies.java
+			app\controllers\Patients.java
+			app\controllers\Reports.java
 			app\controllers\Results.java
+			app\controllers\Security.java
+			app\controllers\Users.java
 		+models
-			app\models\User.java
-			app\models\Patient.java
-			app\models\InsuranceCompany.java
-			app\models\Doctor.java
 			app\models\AppModul.java
 			app\models\BioMaterial.java
+			app\models\Doctor.java
 			app\models\Examination.java
-			app\models\Report.java
 			app\models\Genotype.java
+			app\models\InsuranceCompany.java
+			app\models\Patient.java
+			app\models\Report.java
 			app\models\Result.java
+			app\models\User.java
 		+views
 			+Patients
 				app\views\Patients\index.html
@@ -53,9 +53,9 @@ pacienti
 	+conf
 		conf\application.conf
 		conf\dependencies.yml
+		conf\initial-data.yml
 		conf\messages
 		conf\routes
-		conf\initial-data.yml
 	+public
 		+javascripts
 			public\javascripts\jquery-1.6.4.min.js
@@ -64,61 +64,55 @@ pacienti
 	+test
 		test\Application.test.html
 		test\ApplicationTest.java
-		test\UserTest.java
 		test\PojistovnaTest.java
+		test\UserTest.java
 [Open project files]
 0=app\controllers\Application.java
-1=app\controllers\Users.java
-2=app\controllers\InsuranceCompanies.java
-3=app\controllers\Patients.java
-4=app\controllers\Doctors.java
-5=app\controllers\Security.java
-6=app\controllers\Admin.java
-7=app\controllers\AppModuls.java
-8=app\controllers\BioMaterials.java
-9=app\controllers\Examinations.java
-10=app\controllers\Reports.java
-11=app\controllers\Genotypes.java
-12=app\controllers\Results.java
+1=app\models\User.java
+2=app\controllers\Security.java
+3=app\models\AppModul.java
+4=app\views\main.html
+5=app\controllers\Patients.java
+6=app\views\Patients\index.html
+7=app\views\Application\index.html
+8=conf\routes
+9=conf\initial-data.yml
+10=conf\application.conf
 [Selected Project Files]
 Main=
-Selected=app\controllers\Results.java
+Selected=conf\application.conf
 [app\controllers\Application.java]
 TopLine=1
-Caret=38,11
-[app\controllers\Users.java]
-TopLine=1
-Caret=39,9
-[app\controllers\InsuranceCompanies.java]
-TopLine=1
-Caret=52,9
-[app\controllers\Patients.java]
-TopLine=1
-Caret=1,1
-[app\controllers\Doctors.java]
-TopLine=1
-Caret=41,8
+Caret=64,31
+[app\models\User.java]
+TopLine=7
+Caret=20,56
 [app\controllers\Security.java]
 TopLine=1
-Caret=1,1
-[app\controllers\Admin.java]
+Caret=1,31
+[app\models\AppModul.java]
 TopLine=1
-Caret=39,11
-[app\controllers\AppModuls.java]
+Caret=1,12
+[app\views\main.html]
 TopLine=1
-Caret=43,8
-[app\controllers\BioMaterials.java]
+Caret=39,23
+[app\controllers\Patients.java]
 TopLine=1
-Caret=46,9
-[app\controllers\Examinations.java]
+Caret=1,24
+[app\views\Patients\index.html]
 TopLine=1
-Caret=46,8
-[app\controllers\Reports.java]
+Caret=1,13
+[app\views\Application\index.html]
 TopLine=1
-Caret=41,9
-[app\controllers\Genotypes.java]
+Caret=8,5
+[conf\routes]
 TopLine=1
-Caret=43,9
-[app\controllers\Results.java]
+Caret=44,21
+[conf\initial-data.yml]
 TopLine=1
-Caret=41,9
+Caret=22,29
+[conf\application.conf]
+TopLine=55
+Caret=2,85
+Mark1=14,32
+Mark2=2,85

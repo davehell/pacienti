@@ -18,6 +18,7 @@ public class Application extends CRUD {
     }
 
     public static void index() {
+    Logger.info("I am an info message");
         List users = User.findAll();
         //User user = User.find("byUsername", "davehell").first();
         List zpravy = Report.findAll();

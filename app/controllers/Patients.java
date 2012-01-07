@@ -21,5 +21,36 @@ public class Patients extends Application  {
     render(pacienti);
   }
 
+  public static void form(Long id) {
+    if(id != null) {
+      Patient pacient = Patient.findById(id);
+      notFoundIfNull(pacient);
+      render(pacient);
+    }
+
+    render();
+  }
+
+
+  public static void save(int evCislo, String jmeno) {
+    AppModul modul = connected.modul;
+    Patient pacient = new Patient(modul, evCislo, jmeno);
+
+    validation.valid(pacient);
+    if(validation.hasErrors()) {
+        render("@form", pacient);
+    }
+    
+    pacient.save();
+    index();
+
+  }
+
+    public static void delete(Long id) {
+        Patient pacient = Patient.findById(id);
+        pacient.delete();
+        flash.success("pacient %s smazán.", pacient.jmeno);
+        index();
+    }
 
 }

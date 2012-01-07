@@ -11,29 +11,29 @@ import java.util.*;
 @Entity
 public class Patient extends Model {
 
-    @Required
+    //@Required
     @ManyToOne
     public AppModul modul;
 
-    @Required
+    //@Required
     public int evCislo;
     
-    @Required
+    //@Required
     public int evRok;
     
-    @Required
+    //@Required
     @MaxSize(30)
     public String rodneCislo;
 
     @Required
-    @MaxSize(30)
+    @MaxSize(100)
     public String jmeno;
 
-    @Required
+    //@Required
     @MaxSize(30)
     public String prijmeni;
 
-    @Required
+    //@Required
     @ManyToOne
     public InsuranceCompany pojistovna;
 
@@ -55,6 +55,12 @@ public class Patient extends Model {
     @OneToMany(mappedBy="pacient", cascade=CascadeType.ALL)
     public List<BioMaterial> bioMaterialy;
 
+
+    public Patient(AppModul modul, int evCislo, String jmeno) {
+        this.modul = modul;
+        this.evCislo = evCislo;
+        this.jmeno = jmeno;
+    }
 
     public Patient addBioMaterial(String typ) {
         BioMaterial novyBioMaterial = new BioMaterial(this, typ);
