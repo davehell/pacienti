@@ -32,12 +32,23 @@ public class Patients extends Application  {
   }
 
 
-  public static void save(int evCislo, String jmeno) {
-    AppModul modul = connected.modul;
-    Patient pacient = new Patient(modul, evCislo, jmeno);
+  public static void save(Long id, int evCislo, String jmeno) {
+    Patient pacient;
+
+    if(id == null) {
+        AppModul modul = connected.modul;
+        pacient = new Patient(modul, evCislo, jmeno);
+    } else {
+        pacient = Patient.findById(id);
+        pacient.evCislo = evCislo;
+        pacient.jmeno = jmeno;
+    }
+    
 
     validation.valid(pacient);
     if(validation.hasErrors()) {
+          params.flash(); // add http parameters to the flash scope
+          validation.keep(); // keep the errors for the next request
         render("@form", pacient);
     }
     
@@ -46,11 +57,12 @@ public class Patients extends Application  {
 
   }
 
-    public static void delete(Long id) {
-        Patient pacient = Patient.findById(id);
-        pacient.delete();
-        flash.success("pacient %s smazán.", pacient.jmeno);
-        index();
-    }
+
+  public static void delete(Long id) {
+      Patient pacient = Patient.findById(id);
+      pacient.delete();
+      flash.success("pacient %s smazán.", pacient.jmeno);
+      index();
+  }
 
 }
