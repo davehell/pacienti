@@ -2,7 +2,7 @@
 #{set title:'Pacienti' /}
 
 <p>
-  <a href="@{form()}">Nový pacient</a>
+  #{a @form()}Nový pacient#{/a}
 </p>
 
 #{if pacienti}
@@ -15,12 +15,12 @@
     </thead>
     <tbody>
     
-    #{list pacienti, as:'pacient'}
+    #{list pacienti}
     <tr>
-      <td>${pacient.evCislo}/${pacient.evRok} </td>
-      <td><a href="@{form(pacient.id)}">${pacient.jmeno} ${pacient.prijmeni} </a></td>
-      <td>${pacient.rodneCislo} </td>
-      <td><a href="@{delete(pacient.id)}">smazat</a></td>
+      <td>${_.evCislo}/${_.evRok} </td>
+      <td>#{a @form(_.id)}${_.jmeno} ${_.prijmeni}#{/a}</td>
+      <td>${_.rodneCislo} </td>
+      <td>#{a @delete(_.id)}smazat#{/a}</td>
     </tr>
     #{/list}
     </tbody>

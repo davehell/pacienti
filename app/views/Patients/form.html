@@ -7,7 +7,7 @@
     #{set title:'Pacient ' + pacient.evCislo + '/' + pacient.evRok /}
 #{/else}
 
-#{form @save(pacient?.id)}
+#{form @save()}
 
     #{ifErrors}
         <p class="error">
@@ -15,26 +15,100 @@
         </p>
     #{/ifErrors}
 
-    <p>
-        #{field 'evCislo'}
-        <label>číslo:</label>
-        <input type="text" name="${field.name}"
-            value="${pacient?.evCislo}" />
-        <span class="error">#{error 'pacient.evCislo' /}</span>
-        #{/field}
-    </p>
 
-    <p>
-        #{field 'jmeno'}
-        <label>Jméno:</label>
-        <input type="text" name="${field.name}"
-            value="${pacient?.jmeno}" />
-        <span class="error">#{error 'pacient.jmeno' /}</span>
-        #{/field}
-    </p>
+#{field 'evCislo'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.evCislo}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'evRok'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.evRok}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'rodneCislo'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rodneCislo}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'jmeno'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.jmeno}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'pojistovna'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.pojistovna}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'lekar'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.lekar}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'infSouhlas'}
+<p>
+  <label>&{field.name}</label>
+  <input type="checkbox" id="${field.id}" name="${field.name}" #{if pacient?.infSouhlas} checked="checked" #{/if} class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'diagnoza'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.diagnoza}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'koncDna'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.koncDna}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'pozn'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.pozn}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'verejnaPozn'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.verejnaPozn}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+
 
     <p>
         <input type="submit" value="Uložit" />
     </p>
 
 #{/form}
+

@@ -1,0 +1,29 @@
+#{extends 'main.html' /}
+#{set title:'Moduly' /}
+
+<p>
+  #{a @form()}Nový modul#{/a}
+</p>
+
+#{if moduly}
+  <table>
+    <thead>
+      <th>Název</th>
+      <th>&nbsp;</th>
+    </thead>
+    <tbody>
+    #{list moduly}
+    <tr>
+      <td>#{a @form(_.id)}${_.nazev}#{/a}</td>
+      <td>#{a @delete(_.id)}smazat#{/a}</td>
+    </tr>
+    #{/list}
+    </tbody>
+  </table>
+#{/if}
+
+#{else}
+    <div class="empty">
+        There is currently nothing to read here.
+    </div>
+#{/else}

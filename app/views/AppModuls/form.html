@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+
+#{ifnot modul?.id}
+    #{set title:'Nový modul' /}
+#{/ifnot}
+#{else}
+    #{set title:'Modul ' + modul.nazev /}
+#{/else}
+
+#{form @saveModul(modul?.id)}
+
+  #{field 'modul.nazev'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${modul?.nazev}" class="${field.errorClass}">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+    <p>
+        <input type="submit" value="Uložit" />
+    </p>
+
+#{/form}
+

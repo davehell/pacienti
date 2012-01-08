@@ -56,10 +56,32 @@ public class Patient extends Model {
     public List<BioMaterial> bioMaterialy;
 
 
-    public Patient(AppModul modul, int evCislo, String jmeno) {
+    public Patient(
+        AppModul modul,
+        int evCislo,
+        int evRok,
+        String rodneCislo,
+        String jmeno,
+        InsuranceCompany pojistovna,
+        Doctor lekar,
+        boolean infSouhlas,
+        String diagnoza,
+        BigDecimal koncDna,
+        String pozn,
+        String verejnaPozn)
+    {
         this.modul = modul;
         this.evCislo = evCislo;
+        this.evRok = evRok;
+        this.rodneCislo = rodneCislo;
         this.jmeno = jmeno;
+        this.pojistovna = pojistovna;
+        this.lekar = lekar;
+        this.infSouhlas = infSouhlas;
+        this.diagnoza = diagnoza;
+        this.koncDna = koncDna;
+        this.pozn = pozn;
+        this.verejnaPozn = verejnaPozn;
     }
 
     public Patient addBioMaterial(String typ) {
@@ -71,6 +93,6 @@ public class Patient extends Model {
 
 
     public String toString() {
-        return jmeno + " " + prijmeni;
+        return jmeno;
     }
 }
