@@ -7,7 +7,13 @@
     #{set title:'Modul ' + modul.nazev /}
 #{/else}
 
-#{form @saveModul(modul?.id)}
+#{ifErrors}
+    <p class="error">
+        máš tu chyby vole
+    </p>
+#{/ifErrors}
+
+#{form @save(modul?.id)}
 
   #{field 'modul.nazev'}
   <p>

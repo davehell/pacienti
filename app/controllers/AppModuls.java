@@ -27,38 +27,14 @@ public class AppModuls extends Application {
   }
 
 
-  public static void save(Long id, String nazev) {
-    AppModul modul;
-
-    if(id == null) {
-        modul = new AppModul(nazev);
-    } else {
-        modul = AppModul.findById(id);
-        modul.nazev = nazev;
-    }
-
-    validation.valid(modul);
-    if(validation.hasErrors()) {
-        params.flash();
-        validation.keep();
-        render("@form", modul);
-    }
-
-    modul.save();
-    flash.success("modul %s uložen.", modul.nazev);
-    index();
-  }
-
-  public static void saveModul(Long id, AppModul modul) {
+  public static void save(Long id, AppModul modul) {
       validation.valid(modul);
       if(validation.hasErrors()) {
           render("@form", modul);
       }
       if(id == null) {
-          Logger.info("ID null -> create");
           modul.create();
       } else {
-        Logger.info("ID je: " + id.toString());
         AppModul modulOld = AppModul.findById(id);
         modulOld.nazev = modul.nazev;
         modulOld.save();

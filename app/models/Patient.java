@@ -55,7 +55,10 @@ public class Patient extends Model {
     @OneToMany(mappedBy="pacient", cascade=CascadeType.ALL)
     public List<BioMaterial> bioMaterialy;
 
-
+    public Patient(String jmeno) {
+        this.jmeno = jmeno;
+    }
+/*
     public Patient(
         AppModul modul,
         int evCislo,
@@ -83,6 +86,7 @@ public class Patient extends Model {
         this.pozn = pozn;
         this.verejnaPozn = verejnaPozn;
     }
+*/
 
     public Patient addBioMaterial(String typ) {
         BioMaterial novyBioMaterial = new BioMaterial(this, typ);

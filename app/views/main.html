@@ -14,7 +14,7 @@
     <div id="header">
       <ul>
         <li><a href="@{Application.index()}">Index</a></li>
-        <li><a href="@{Secure.logout()}">Log out</a> ${connected.username} ${connected.name} ${connected.modul} </li>
+        <li><a href="@{Secure.logout()}">Log out</a> ${connected?.username} ${connected?.name} ${connected?.modul} </li>
       </ul>
 
       <ul>
