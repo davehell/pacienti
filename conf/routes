@@ -6,13 +6,15 @@
 GET     /                                       Application.index
 
 #pacienti
-GET		/pacienti															Patients.index
-GET   /pacient/{id}                             Patients.form
-POST  /pacient/{id}                             Patients.save
-GET   /pacient/novy                             Patients.form
-POST  /pacient/novy                             Patients.save
-
+GET		/pacienti															    Patients.index
+GET   /pacient/{id}/upravit                     Patients.form
+GET   /pacient/pridat                           Patients.form
+POST  /pacient/pridat                           Patients.save
+GET   /pacient/{id}/detail                      Patients.form
+POST  /pacient/{id}/detail                      Patients.save
 GET   /pacient/{id}/smazat                      Patients.delete
+
+*       /admin                                  module:crud
 
 # Import Secure routes
 *       /                                       module:secure
