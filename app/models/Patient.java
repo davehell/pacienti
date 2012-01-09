@@ -15,13 +15,13 @@ public class Patient extends Model {
     @ManyToOne
     public AppModul modul;
 
-    //@Required
-    public int evCislo;
+    @Required
+    public Integer evCislo;
     
-    //@Required
-    public int evRok;
+    @Required
+    public Integer evRok;
     
-    //@Required
+    @Required
     @MaxSize(30)
     public String rodneCislo;
 
@@ -30,10 +30,10 @@ public class Patient extends Model {
     public String jmeno;
 
     //@Required
-    @MaxSize(30)
-    public String prijmeni;
+    //@MaxSize(30)
+    //public String prijmeni;
 
-    //@Required
+    @Required
     @ManyToOne
     public InsuranceCompany pojistovna;
 

@@ -28,6 +28,11 @@ public class Patients extends Application  {
     if(id != null) {
       Patient pacient = Patient.findById(id);
       notFoundIfNull(pacient);
+
+      if(pacient.modul.id != connected.modul.id) {
+        notFound();
+      }
+
       render(pacient, pojistovny, lekari);
     }
 
@@ -71,6 +76,9 @@ public class Patients extends Application  {
 
   public static void delete(Long id) {
       Patient pacient = Patient.findById(id);
+      if(pacient.modul.id != connected.modul.id) {
+        notFound();
+      }
       pacient.delete();
       flash.success("pacient %s smazán.", pacient.jmeno);
       index();

@@ -18,9 +18,9 @@
     #{list pacienti}
     <tr>
       <td>${_.evCislo}/${_.evRok} </td>
-      <td>#{a @form(_.id)}${_.jmeno} ${_.prijmeni}#{/a}</td>
+      <td>#{a @form(_.id)}${_.jmeno}#{/a}</td>
       <td>${_.rodneCislo} </td>
-      <td>#{a @delete(_.id)}smazat#{/a}</td>
+      <td>#{a @form(_.id)}upravit#{/a} #{a @delete(_.id)}smazat#{/a}</td>
     </tr>
     #{/list}
     </tbody>

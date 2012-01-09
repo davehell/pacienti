@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class InsuranceCompany extends Model {
     
     @Required
-    public int cislo;
+    public Integer cislo;
      
     @Required
     @MaxSize(10)
@@ -23,6 +23,6 @@ public class InsuranceCompany extends Model {
     public AppModul modul;
 
     public String toString() {
-        return cislo + " - " + zkratka;
+        return cislo + " - " + nazev;
     }    
 }

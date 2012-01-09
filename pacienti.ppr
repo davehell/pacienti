@@ -40,7 +40,11 @@ pacienti
 			app\models\Result.java
 			app\models\User.java
 		+views
+			+AppModuls
+				app\views\AppModuls\form.html
+				app\views\AppModuls\index.html
 			+Patients
+				app\views\Patients\form.html
 				app\views\Patients\index.html
 			+Application
 				app\views\Application\index.html
@@ -67,52 +71,26 @@ pacienti
 		test\PojistovnaTest.java
 		test\UserTest.java
 [Open project files]
-0=app\controllers\Application.java
-1=app\models\User.java
-2=app\controllers\Security.java
-3=app\models\AppModul.java
-4=app\views\main.html
-5=app\controllers\Patients.java
-6=app\views\Patients\index.html
-7=app\views\Application\index.html
-8=conf\routes
-9=conf\initial-data.yml
-10=conf\application.conf
+0=conf\routes
+1=app\views\Patients\index.html
+2=app\views\Patients\form.html
+3=app\models\Patient.java
+4=app\controllers\Patients.java
 [Selected Project Files]
 Main=
-Selected=conf\application.conf
-[app\controllers\Application.java]
-TopLine=1
-Caret=64,31
-[app\models\User.java]
-TopLine=7
-Caret=20,56
-[app\controllers\Security.java]
-TopLine=1
-Caret=1,31
-[app\models\AppModul.java]
-TopLine=1
-Caret=1,12
-[app\views\main.html]
-TopLine=1
-Caret=39,23
-[app\controllers\Patients.java]
-TopLine=1
-Caret=1,24
-[app\views\Patients\index.html]
-TopLine=1
-Caret=1,13
-[app\views\Application\index.html]
-TopLine=1
-Caret=8,5
+Selected=app\controllers\Patients.java
 [conf\routes]
 TopLine=1
-Caret=44,21
-[conf\initial-data.yml]
+Caret=34,10
+[app\views\Patients\index.html]
 TopLine=1
-Caret=22,29
-[conf\application.conf]
-TopLine=55
-Caret=2,85
-Mark1=14,32
-Mark2=2,85
+Caret=1,1
+[app\views\Patients\form.html]
+TopLine=1
+Caret=4,22
+[app\models\Patient.java]
+TopLine=1
+Caret=1,1
+[app\controllers\Patients.java]
+TopLine=1
+Caret=1,1
