@@ -14,7 +14,7 @@ User(david):
     username:       davehell
     passwordHash:   kjjksdnp
     name:           David Hellebrand
-    modul:          br
+    modul:          ov
     isAdmin:        true
 
 User(bob):
@@ -28,17 +28,19 @@ User(alice):
   username: alice
   passwordHash: alice
   name: Alice
-  modul: br
+  modul: ov
 
 InsuranceCompany(207):
   cislo: 207
   zkratka: ozp
   nazev: Oborová zdravotní pojišťovna
+  modul: ov
 
 InsuranceCompany(111):
   cislo: 111
   zkratka: vzp
   nazev: Všeobecná zdravotní pojišťovna
+  modul: ov
 
 Doctor(mudr1):
   icz: 012345678
@@ -54,7 +56,7 @@ Doctor(mudr2):
   jmeno: Honza
   prijmeni: Rokytný
   pracoviste: Praha, nemocnice
-  modul: br
+  modul: ov
 
 Patient(pat1):
   modul: ov
@@ -62,13 +64,38 @@ Patient(pat1):
   evRok: 2012
   rodneCislo: 850912/5482
   jmeno: David
-  prijmeni: Hellebrand
   pojistovna: 207
+  lekar: mudr1
+
+Patient(pat2):
+  modul: ov
+  evCislo: 222
+  evRok: 2012
+  rodneCislo: 123456/5482
+  jmeno: Marek
+  pojistovna: 111
   lekar: mudr1
 
 BioMaterial(krev):
   pacient: pat1
   typ: krev
+  datumOdberu: 2012-01-03 15:32:00.0
+  datumPrijeti: 2012-02-01 14:21:00.0
+  parafaPrijeti: david
+
+BioMaterial(slina):
+  pacient: pat1
+  typ: slina
+  datumOdberu: 2012-01-01 02:23:00.0
+  datumPrijeti: 2012-02-04 06:16:00.0
+  parafaPrijeti: bob
+
+BioMaterial(vlas):
+  pacient: pat1
+  typ: vlas
+  datumOdberu: 2012-01-02 08:22:00.0
+  datumPrijeti: 2012-02-06 09:33:00.0
+  parafaPrijeti: david
 
 Examination(morbus):
   nazev: Morbus Wilson
@@ -90,6 +117,8 @@ Report(zprava1):
   pacient: pat1
   bioMaterial: krev
   vysetreni: morbus
+  datumVysetreni: 2012-02-06 09:33:00.0
+  parafaVysetreni: david
   vysledky:
             - v1
             - v2

@@ -9,7 +9,7 @@
 
 #{ifErrors}
     <p class="error">
-        máš tu chyby vole
+        oprav chyby
     </p>
 #{/ifErrors}
 <ul>
@@ -98,7 +98,7 @@
 #{field 'pacient.pozn'}
 <p>
   <label>&{field.name}</label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.pozn}" class="${field.errorClass}">
+  <textarea id="${field.id}" name="${field.name}" value="${pacient?.pozn}" class="${field.errorClass}"></textarea>
   <span class="error">${field.error}</span>
 </p>
 #{/}
@@ -106,7 +106,7 @@
 #{field 'pacient.verejnaPozn'}
 <p>
   <label>&{field.name}</label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.verejnaPozn}" class="${field.errorClass}">
+  <textarea id="${field.id}" name="${field.name}" value="${pacient?.verejnaPozn}" class="${field.errorClass}"></textarea>
   <span class="error">${field.error}</span>
 </p>
 #{/}
@@ -119,3 +119,5 @@
 
 #{/form}
 
+
+</script>

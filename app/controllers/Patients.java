@@ -21,6 +21,14 @@ public class Patients extends Application  {
     render(pacienti);
   }
 
+  public static void detail(Long id) {
+    Patient pacient = Patient.findById(id);
+    List<Report> zpravy = Report.findAll();
+    notFoundIfNull(pacient);
+
+    render(pacient, zpravy);
+  }
+
   public static void form(Long id) {
     List<InsuranceCompany> pojistovny = InsuranceCompany.find("byModul", connected.modul).fetch();
     List<Doctor> lekari = Doctor.find("byModul", connected.modul).fetch();

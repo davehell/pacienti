@@ -1,0 +1,76 @@
+#{extends 'main.html' /}
+
+#{set title:'Pacient ' + pacient.evCislo + '/' + pacient.evRok /}
+
+
+<dl>
+  <dt>Evidenční číslo</dt>
+  <dd>${pacient.evCislo}/${pacient.evRok}</dd>
+  <dt>Jméno</dt>
+  <dd>${pacient.jmeno}</dd>
+  <dt>Rodné číslo</dt>
+  <dd>${pacient.rodneCislo}</dd>
+  <dt>Pojišťovna</dt>
+  <dd>${pacient.pojistovna.nazev}</dd>
+  <dt>Lékař</dt>
+  <dd>${pacient?.lekar?.icz}</dd>
+  <dt>Informovaný souhlas</dt>
+  <dd>${ pacient.infSouhlas.yesno('ano', 'ne') }</dd>
+</dl>
+
+<h2>Biologické materiály</h2>
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="biomat">
+  <thead>
+    <th>Typ</th>
+    <th>Datum odběru</th>
+    <th>Datum přijetí</th>
+    <th>Parafa</th>
+    <th>Datum izolace</th>
+    <th>Parafa</th>
+  </thead>
+  <tbody>
+    #{list pacient.bioMaterialy}
+    <tr>
+      <td>${_.typ} </td>
+      <td>${_.datumOdberu.format('dd.MM.yyyy hh:mm')} </td>
+      <td>${_.datumPrijeti.format('dd.MM.yyyy hh:mm')} </td>
+      <td>${_.parafaPrijeti.name} </td>
+      <td></td>
+      <td></td>
+    </tr>
+    #{/list}
+  </tbody>
+</table>
+
+<h2>Závěrečné zprávy</h2>
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="zpravy">
+  <thead>
+    <th>Název</th>
+    <th>Datum vyšetření</th>
+    <th>Parafa</th>
+  </thead>
+  <tbody>
+    #{list zpravy}
+    <tr>
+      <td>${_.vysetreni.nazev} </td>
+      <td>${_.datumVysetreni?.format('dd.MM.yyyy hh:mm')} </td>
+      <td>${_.parafaVysetreni?.name} </td>
+    </tr>
+    #{/list}
+  </tbody>
+</table>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    oTable = $('#biomat').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+    });
+
+    oTable = $('#zpravy').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+    });
+} );
+
+</script>

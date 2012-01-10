@@ -5,8 +5,9 @@
   #{a @form()}Nový pacient#{/a}
 </p>
 
+
 #{if pacienti}
-  <table>
+  <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
     <thead>
       <th>Evidenční číslo</th>
       <th>Jméno</th>
@@ -14,19 +15,29 @@
       <th>&nbsp;</th>
     </thead>
     <tbody>
-    
+
     #{list pacienti}
     <tr>
       <td>${_.evCislo}/${_.evRok} </td>
-      <td>#{a @form(_.id)}${_.jmeno}#{/a}</td>
+      <td>#{a @detail(_.id)}${_.jmeno}#{/a}</td>
       <td>${_.rodneCislo} </td>
       <td>#{a @form(_.id)}upravit#{/a} #{a @delete(_.id)}smazat#{/a}</td>
     </tr>
     #{/list}
     </tbody>
   </table>
-#{/if}
 
+<script type="text/javascript">
+$(document).ready(function() {
+    oTable = $('#example').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+    });
+} );
+ 
+</script>
+
+ #{/if}
 #{else}
     <div class="empty">
         There is currently nothing to read here.

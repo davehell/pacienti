@@ -9,7 +9,7 @@ public class Security extends Secure.Security {
   }
   
   static void onAuthenticated() {
-      Application.index();
+      Patients.index();
   }
 	
   static boolean authenticate(String username, String password) {

@@ -44,6 +44,7 @@ pacienti
 				app\views\AppModuls\form.html
 				app\views\AppModuls\index.html
 			+Patients
+				app\views\Patients\detail.html
 				app\views\Patients\form.html
 				app\views\Patients\index.html
 			+Application
@@ -78,19 +79,19 @@ pacienti
 4=app\controllers\Patients.java
 [Selected Project Files]
 Main=
-Selected=app\controllers\Patients.java
+Selected=app\views\Patients\form.html
 [conf\routes]
 TopLine=1
 Caret=34,10
 [app\views\Patients\index.html]
 TopLine=1
-Caret=1,1
+Caret=1,30
 [app\views\Patients\form.html]
-TopLine=1
+TopLine=22
 Caret=4,22
 [app\models\Patient.java]
-TopLine=1
-Caret=1,1
+TopLine=15
+Caret=39,56
 [app\controllers\Patients.java]
-TopLine=1
-Caret=1,1
+TopLine=9
+Caret=27,29

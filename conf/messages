@@ -1,7 +1,18 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
-evCislo=Evidenční číslo
+pacient.evCislo = evidenční číslo
+pacient.evRok = rok
+pacient.rodneCislo = rodné číslo
+pacient.jmeno = jméno
+pacient.pojistovna.id = pojišťovna
+pacient.lekar.id = lékař
+pacient.infSouhlas = informovaný souhlas
+pacient.diagnoza = diagnóza
+pacient.koncDna = koncentrace DNA
+pacient.pozn = poznámka
+pacient.verejnaPozn = veřejná poznámka
+
 # For use in JavaExtensions.since tag
 since.seconds = %s second%s ago
 since.minutes = %s minute%s ago
