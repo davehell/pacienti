@@ -95,6 +95,9 @@ public class Patient extends Model {
         return this;
     }
 
+    public String getKod() {
+        return "KO " + evCislo.toString() + '/' + evRok.toString();
+    }
 
     public String toString() {
         return jmeno;

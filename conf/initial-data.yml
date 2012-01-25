@@ -79,8 +79,8 @@ Patient(pat2):
 BioMaterial(krev):
   pacient: pat1
   typ: krev
-  datumOdberu: 2012-01-03 15:32:00.0
-  datumPrijeti: 2012-02-01 14:21:00.0
+  datumOdberu: 03.01.2012 15:15
+  datumPrijeti: 04.12.2011 20:20
   parafaPrijeti: david
 
 BioMaterial(slina):

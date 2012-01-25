@@ -15,10 +15,11 @@ GET   /pacient/{id}/detail                      Patients.detail
 GET   /pacient/{id}/smazat                      Patients.delete
 
 GET		/biomaterialy													    BioMaterials.index
-GET   /biomaterial/{id}/upravit                     BioMaterials.form
-GET   /biomaterial/pridat                           BioMaterials.form
-POST  /biomaterial/{id}/ulozit                      BioMaterials.save
-POST  /biomaterial/pridat                           BioMaterials.save
+#GET   /biomaterial/{id}/upravit                     BioMaterials.form
+#GET   /biomaterial/pridat                           BioMaterials.form
+#POST  /biomaterial/{id}/ulozit                      BioMaterials.save
+#POST  /biomaterial/pridat                           BioMaterials.save
+
 #GET   /biomaterial/{id}/detail                      BioMaterials.detail
 #GET   /biomaterial/{id}/smazat                      BioMaterials.delete
 

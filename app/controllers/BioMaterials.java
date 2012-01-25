@@ -34,33 +34,45 @@ public class BioMaterials extends Application {
   }
 
 
-  public static void save(Long id, Long pacientId, BioMaterial bioMaterial) {
+  public static void save(Long bioMatId, BioMaterial bioMaterial, Long pacientId) {
 //post.addComment(author, content);
     List<User> users = User.find("byModul", connected.modul).fetch();
+    Patient pacient = Patient.findById(pacientId);
+    notFoundIfNull(pacient);
+
+bioMaterial.datumIzolace = new Date();
 
     validation.valid(bioMaterial);
     if(validation.hasErrors()) {
-        render("@form", bioMaterial, users);
+        render("@form", bioMaterial, pacient, users);
     }
 
-    if(id == null) {
-        bioMaterial.pacient = Patient.findById(pacientId);
+    if(bioMatId == null) {
+        bioMaterial.pacient = pacient;
         bioMaterial.create();
     } else {
-      BioMaterial _bioMaterial = BioMaterial.findById(id);
-      _bioMaterial.typ = bioMaterial.typ;
-      _bioMaterial.datumOdberu = bioMaterial.datumOdberu;
-      _bioMaterial.datumPrijeti = bioMaterial.datumPrijeti;
-      _bioMaterial.parafaPrijeti = bioMaterial.parafaPrijeti;
-      _bioMaterial.datumIzolace = bioMaterial.datumIzolace;
-      _bioMaterial.parafaIzolace = bioMaterial.parafaIzolace;
+      BioMaterial newBioMat = BioMaterial.findById(bioMatId);
+      newBioMat.typ = bioMaterial.typ;
+      newBioMat.datumOdberu = bioMaterial.datumOdberu;
+      newBioMat.datumPrijeti = bioMaterial.datumPrijeti;
+      newBioMat.parafaPrijeti = bioMaterial.parafaPrijeti;
+      newBioMat.datumIzolace = bioMaterial.datumIzolace;
+      newBioMat.parafaIzolace = bioMaterial.parafaIzolace;
 
-      _bioMaterial.save();
-
+      newBioMat.save();
     }
 
     flash.success("Materiál %s uložen.", bioMaterial.typ);
 
     Patients.detail(pacientId);
+    
+  }
+
+  public static void delete(Long id) {
+      BioMaterial bioMaterial = BioMaterial.findById(id);
+      Patient pacient = bioMaterial.pacient;
+      bioMaterial.delete();
+      flash.success("Materiál %s smazán.", bioMaterial.typ);
+      Patients.detail(pacient.id);
   }
 }

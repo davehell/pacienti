@@ -16,16 +16,16 @@ public class BioMaterial extends Model {
     @Required
     public String typ;
 
-    @As("yyyy-MM-dd")
+    @As("dd.MM.yyyy HH:mm")
     public Date datumOdberu;
 
-    @As("yyyy-MM-dd")
+    @As("dd.MM.yyyy HH:mm")
     public Date datumPrijeti;
 
     @OneToOne
     public User parafaPrijeti;
 
-    @As("yyyy-MM-dd")
+    @As("dd.MM.yyyy")
     public Date datumIzolace;
 
     @OneToOne
