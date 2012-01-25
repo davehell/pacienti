@@ -89,7 +89,7 @@ public class Patient extends Model {
 */
 
     public Patient addBioMaterial(String typ) {
-        BioMaterial novyBioMaterial = new BioMaterial(this, typ);
+        BioMaterial novyBioMaterial = new BioMaterial(typ);
         this.bioMaterialy.add(novyBioMaterial);
         this.save();
         return this;

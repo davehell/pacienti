@@ -25,9 +25,6 @@ public class Security extends Secure.Security {
   }
 
 
-  static User getConnUser() {
-      return User.getByUsername(connected());
-  }
 
     
 }

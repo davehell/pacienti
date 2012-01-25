@@ -10,10 +10,12 @@ import models.*;
 @With(Secure.class)
 public class Application extends CRUD {
 
-    static User connected = Security.getConnUser();
+    static User connected = null;
+
 
     @Before
     static void globals() {
+        connected = User.getByUsername(Security.connected());
         renderArgs.put("connected", connected);
     }
 
@@ -28,7 +30,7 @@ public class Application extends CRUD {
     }
 
 
-    static User connectedUser() {
-        return Security.isConnected() ? (User) User.find("byUsername", Security.connected()).first() : null;
-    }
+//     static User connectedUser() {
+//         return Security.isConnected() ? (User) User.find("byUsername", Security.connected()).first() : null;
+//     }
 }

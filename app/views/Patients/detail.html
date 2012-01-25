@@ -19,6 +19,9 @@
 </dl>
 
 <h2>Biologické materiály</h2>
+<p>
+  #{a @BioMaterials.form(null, pacient.id)}Nový materiál#{/a}
+</p>
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="biomat">
   <thead>
     <th>Typ</th>
@@ -27,16 +30,18 @@
     <th>Parafa</th>
     <th>Datum izolace</th>
     <th>Parafa</th>
+    <th>&nbsp;</th>
   </thead>
   <tbody>
     #{list pacient.bioMaterialy}
     <tr>
       <td>${_.typ} </td>
-      <td>${_.datumOdberu.format('dd.MM.yyyy hh:mm')} </td>
-      <td>${_.datumPrijeti.format('dd.MM.yyyy hh:mm')} </td>
-      <td>${_.parafaPrijeti.name} </td>
-      <td></td>
-      <td></td>
+      <td>${_.datumOdberu?.format('dd.MM.yyyy hh:mm')} </td>
+      <td>${_.datumPrijeti?.format('dd.MM.yyyy hh:mm')} </td>
+      <td>${_.parafaPrijeti?.name} </td>
+      <td>${_.datumIzolace?.format('dd.MM.yyyy hh:mm')} </td>
+      <td>${_.parafaIzolace?.name} </td>
+      <td>#{a @BioMaterials.form(_.id, _.pacient.id)}upravit#{/a} #{a @BioMaterials.delete(_.id)}smazat#{/a}</td>
     </tr>
     #{/list}
   </tbody>

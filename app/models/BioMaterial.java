@@ -11,7 +11,6 @@ import play.data.binding.*;
 public class BioMaterial extends Model {
 
     @ManyToOne
-    @Required
     public Patient pacient;
 
     @Required
@@ -20,20 +19,19 @@ public class BioMaterial extends Model {
     @As("yyyy-MM-dd")
     public Date datumOdberu;
 
-
+    @As("yyyy-MM-dd")
     public Date datumPrijeti;
 
     @OneToOne
     public User parafaPrijeti;
 
-
+    @As("yyyy-MM-dd")
     public Date datumIzolace;
 
     @OneToOne
     public User parafaIzolace;
 
-    public BioMaterial(Patient pacient, String typ) {
-        this.pacient = pacient;
+    public BioMaterial(String typ) {
         this.typ = typ;
     }
 
