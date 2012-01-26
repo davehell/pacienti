@@ -9,19 +9,18 @@ GET     /                                       Application.index
 GET		/pacienti															    Patients.index
 GET   /pacient/{id}/upravit                     Patients.form
 GET   /pacient/pridat                           Patients.form
-POST  /pacient/{id}/ulozit                      Patients.save
+POST  /pacient/{id}/upravit                      Patients.save
 POST  /pacient/pridat                           Patients.save
 GET   /pacient/{id}/detail                      Patients.detail
 GET   /pacient/{id}/smazat                      Patients.delete
 
 GET		/biomaterialy													    BioMaterials.index
-#GET   /biomaterial/{id}/upravit                     BioMaterials.form
-#GET   /biomaterial/pridat                           BioMaterials.form
-#POST  /biomaterial/{id}/ulozit                      BioMaterials.save
-#POST  /biomaterial/pridat                           BioMaterials.save
-
+GET   /pacient/{pacientId}/biomaterial/{id}/upravit BioMaterials.form
+GET   /pacient/{pacientId}/biomaterial/pridat     BioMaterials.form
+POST  /biomaterial/{id}/ulozit                      BioMaterials.save
+POST  /biomaterial/pridat                           BioMaterials.save
 #GET   /biomaterial/{id}/detail                      BioMaterials.detail
-#GET   /biomaterial/{id}/smazat                      BioMaterials.delete
+GET   /biomaterial/{id}/smazat                      BioMaterials.delete
 
 *       /admin                                  module:crud
 

@@ -4,7 +4,7 @@
     #{set title:'Nový pacient' /}
 #{/ifnot}
 #{else}
-    #{set title:'Pacient ' + pacient.evCislo + '/' + pacient.evRok /}
+    #{set title:'Pacient ' + pacient.getKod() /}
 #{/else}
 
 #{ifErrors}
@@ -12,9 +12,7 @@
         oprav chyby
     </p>
 #{/ifErrors}
-<ul>
-#{errors} <li>${error}</li> #{/errors}
-</ul>
+
 
 #{form @save(pacient?.id)}
 
@@ -111,7 +109,7 @@
 </p>
 #{/}
 
-
+<input type="hidden" name="pacient.id" value="${pacient?.id}">
 
     <p>
         <input type="submit" value="Uložit" />

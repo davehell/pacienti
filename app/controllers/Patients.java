@@ -44,7 +44,7 @@ public class Patients extends Application  {
       render(pacient, pojistovny, lekari);
     }
 
-    render(null, pojistovny, lekari);
+    render(pojistovny, lekari);
   }
 
 
@@ -54,12 +54,13 @@ public class Patients extends Application  {
 
     validation.valid(pacient);
     if(validation.hasErrors()) {
-        render("@form", pacient, pojistovny, lekari);
+      render("@form", pacient, lekari);
     }
 
     if(id == null) {
         pacient.modul = connected.modul;
         pacient.create();
+        id = pacient.id;
     } else {
       Patient _pacient = Patient.findById(id);
       _pacient.evCislo = pacient.evCislo;
@@ -78,7 +79,7 @@ public class Patients extends Application  {
     }
 
     flash.success("Pacient %s uložen.", pacient.jmeno);
-    index();
+    detail(id);
   }
 
 

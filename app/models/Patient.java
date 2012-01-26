@@ -29,9 +29,6 @@ public class Patient extends Model {
     @MaxSize(100)
     public String jmeno;
 
-    //@Required
-    //@MaxSize(30)
-    //public String prijmeni;
 
     @Required
     @ManyToOne
@@ -58,35 +55,7 @@ public class Patient extends Model {
     public Patient(String jmeno) {
         this.jmeno = jmeno;
     }
-/*
-    public Patient(
-        AppModul modul,
-        int evCislo,
-        int evRok,
-        String rodneCislo,
-        String jmeno,
-        InsuranceCompany pojistovna,
-        Doctor lekar,
-        boolean infSouhlas,
-        String diagnoza,
-        BigDecimal koncDna,
-        String pozn,
-        String verejnaPozn)
-    {
-        this.modul = modul;
-        this.evCislo = evCislo;
-        this.evRok = evRok;
-        this.rodneCislo = rodneCislo;
-        this.jmeno = jmeno;
-        this.pojistovna = pojistovna;
-        this.lekar = lekar;
-        this.infSouhlas = infSouhlas;
-        this.diagnoza = diagnoza;
-        this.koncDna = koncDna;
-        this.pozn = pozn;
-        this.verejnaPozn = verejnaPozn;
-    }
-*/
+
 
     public Patient addBioMaterial(String typ) {
         BioMaterial novyBioMaterial = new BioMaterial(typ);
@@ -96,7 +65,8 @@ public class Patient extends Model {
     }
 
     public String getKod() {
-        return "KO " + evCislo.toString() + '/' + evRok.toString();
+        if(evCislo == null || evRok == null) return "";
+        return modul.kod + ' ' + String.format("%3s", evCislo.toString()).replace(' ', '0')   + '/' + (evRok.toString().length() > 2 ? evRok.toString().substring(2) : evRok.toString());
     }
 
     public String toString() {

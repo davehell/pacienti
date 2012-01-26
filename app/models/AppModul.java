@@ -10,6 +10,9 @@ public class AppModul extends Model {
     @Required
     public String nazev;
 
+    @MaxSize(10)
+    public String kod;
+
     public AppModul(String nazev) {
         this.nazev = nazev;
     }

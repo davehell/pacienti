@@ -1,11 +1,14 @@
 #{extends 'main.html' /}
 
-#{set title:'Pacient ' + pacient.evCislo + '/' + pacient.evRok /}
+#{set title:'Pacient ' + pacient.getKod() /}
 
+<p>
+  detail #{a @form(pacient.id)}upravit#{/a} #{a @delete(pacient.id)}smazat#{/a} #{a @form()}přidat#{/a}
+</p>
 
 <dl>
   <dt>Evidenční číslo</dt>
-  <dd>${pacient.evCislo}/${pacient.evRok}</dd>
+  <dd>${pacient.getKod()}</dd>
   <dt>Jméno</dt>
   <dd>${pacient.jmeno}</dd>
   <dt>Rodné číslo</dt>
@@ -13,9 +16,16 @@
   <dt>Pojišťovna</dt>
   <dd>${pacient.pojistovna.nazev}</dd>
   <dt>Lékař</dt>
-  <dd>${pacient?.lekar?.icz}</dd>
+  <dd>${pacient.lekar?.icz} &nbsp;</dd>
   <dt>Informovaný souhlas</dt>
   <dd>${ pacient.infSouhlas.yesno('ano', 'ne') }</dd>
+
+  <dt>Koncentrace DNA</dt>
+  <dd>${ pacient.koncDna}&nbsp;</dd>
+  <dt>Poznámka do závěrečné zprávy</dt>
+  <dd>${ pacient.pozn}&nbsp;</dd>
+  <dt>Veřejná poznámka</dt>
+  <dd>${ pacient.verejnaPozn}&nbsp;</dd>
 </dl>
 
 <h2>Biologické materiály</h2>
@@ -36,10 +46,10 @@
     #{list pacient.bioMaterialy}
     <tr>
       <td>${_.typ} </td>
-      <td>${_.datumOdberu?.format('dd.MM.yyyy HH:mm')} </td>
-      <td>${_.datumPrijeti?.format('dd.MM.yyyy HH:mm')} </td>
+      <td>${_.datumOdberu?.format()} </td>
+      <td>${_.datumPrijeti?.format()} </td>
       <td>${_.parafaPrijeti?.name} </td>
-      <td>${_.datumIzolace?.format('dd.MM.yyyy HH:mm')} </td>
+      <td>${_.datumIzolace?.format()} </td>
       <td>${_.parafaIzolace?.name} </td>
       <td>#{a @BioMaterials.form(_.id, _.pacient.id)}upravit#{/a} #{a @BioMaterials.delete(_.id)}smazat#{/a}</td>
     </tr>
@@ -58,7 +68,7 @@
     #{list zpravy}
     <tr>
       <td>${_.vysetreni.nazev} </td>
-      <td>${_.datumVysetreni?.format('dd.MM.yyyy hh:mm')} </td>
+      <td>${_.datumVysetreni?.format()} </td>
       <td>${_.parafaVysetreni?.name} </td>
     </tr>
     #{/list}

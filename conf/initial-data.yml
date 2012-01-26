@@ -3,9 +3,11 @@
 
 AppModul(ov):
     nazev:          Ostrava
+    kod: KO
 
 AppModul(br):
   nazev: Brno
+  kod: BR
 
 AppModul(ph):
   nazev: Praha
