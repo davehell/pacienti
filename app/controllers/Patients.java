@@ -23,10 +23,9 @@ public class Patients extends Application  {
 
   public static void detail(Long id) {
     Patient pacient = Patient.findById(id);
-    List<Report> zpravy = Report.findAll();
     notFoundIfNull(pacient);
 
-    render(pacient, zpravy);
+    render(pacient);
   }
 
   public static void form(Long id) {

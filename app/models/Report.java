@@ -25,7 +25,7 @@ public class Report extends Model {
     public List<Result> vysledky;
 
 
-    @As("yyyy-MM-dd")
+    @As("dd.MM.yyyy")
     public Date datumVysetreni;
 
     @OneToOne
@@ -37,28 +37,30 @@ public class Report extends Model {
     @MaxSize(500)
     public String zavZprava;
 
-    @As("yyyy-MM-dd")
+    public boolean pozitivni;
+
+    @As("dd.MM.yyyy")
     public Date datumPCR1;
 
-    @As("yyyy-MM-dd")
+    @As("dd.MM.yyyy")
     public Date datumPCR2;
 
-    @As("yyyy-MM-dd")
+    @As("dd.MM.yyyy")
     public Date datumElForezy;
 
-    @As("yyyy-MM-dd")
+    @As("dd.MM.yyyy")
     public Date datumRevHybrid;
 
-    @As("yyyy-MM-dd")
+    @As("dd.MM.yyyy")
     public Date datumFragmentAn;
 
-    @As("yyyy-MM-dd")
+    @As("dd.MM.yyyy")
     public Date datumRTAn;
 
-    @As("yyyy-MM-dd")
+    @As("dd.MM.yyyy")
     public Date datumSekv;
 
-    public boolean pozitivni;
+    
 
 
 

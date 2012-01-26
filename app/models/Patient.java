@@ -52,17 +52,13 @@ public class Patient extends Model {
     @OneToMany(mappedBy="pacient", cascade=CascadeType.ALL)
     public List<BioMaterial> bioMaterialy;
 
+    @OneToMany(mappedBy="pacient", cascade=CascadeType.ALL)
+    public List<Report> zpravy;
+
     public Patient(String jmeno) {
         this.jmeno = jmeno;
     }
 
-
-    public Patient addBioMaterial(String typ) {
-        BioMaterial novyBioMaterial = new BioMaterial(typ);
-        this.bioMaterialy.add(novyBioMaterial);
-        this.save();
-        return this;
-    }
 
     public String getKod() {
         if(evCislo == null || evRok == null) return "";

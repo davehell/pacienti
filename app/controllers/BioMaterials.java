@@ -10,14 +10,6 @@ import java.util.*;
 @With(Secure.class) 
 public class BioMaterials extends Application {
 
-  public static void index(Long pacient) {
-    Patient pac = Patient.findById(pacient);
-    notFoundIfNull(pac);
-
-    List<BioMaterial> bioMaterialy = BioMaterial.find("byPacient", pac).fetch();
-    render(bioMaterialy);
-  }
-
   public static void form(Long id, Long pacientId) {
     List<User> users = User.find("byModul", connected.modul).fetch();
     Patient pacient = Patient.findById(pacientId);
@@ -35,12 +27,10 @@ public class BioMaterials extends Application {
 
 
   public static void save(Long bioMatId, BioMaterial bioMaterial, Long pacientId) {
-//post.addComment(author, content);
     List<User> users = User.find("byModul", connected.modul).fetch();
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
 
-bioMaterial.datumIzolace = new Date();
 
     validation.valid(bioMaterial);
     if(validation.hasErrors()) {
@@ -70,6 +60,7 @@ bioMaterial.datumIzolace = new Date();
 
   public static void delete(Long id) {
       BioMaterial bioMaterial = BioMaterial.findById(id);
+      notFoundIfNull(bioMaterial);
       Patient pacient = bioMaterial.pacient;
       bioMaterial.delete();
       flash.success("Materiál %s smazán.", bioMaterial.typ);

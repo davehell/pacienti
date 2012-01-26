@@ -31,10 +31,6 @@ public class BioMaterial extends Model {
     @OneToOne
     public User parafaIzolace;
 
-    public BioMaterial(String typ) {
-        this.typ = typ;
-    }
-
     public String toString() {
         return typ;
     }

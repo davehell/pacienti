@@ -34,6 +34,7 @@
 </p>
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="biomat">
   <thead>
+    <th>id</th>
     <th>Typ</th>
     <th>Datum odběru</th>
     <th>Datum přijetí</th>
@@ -45,6 +46,7 @@
   <tbody>
     #{list pacient.bioMaterialy}
     <tr>
+      <td>${_.id} </td>
       <td>${_.typ} </td>
       <td>${_.datumOdberu?.format()} </td>
       <td>${_.datumPrijeti?.format()} </td>
@@ -57,19 +59,24 @@
   </tbody>
 </table>
 
-<h2>Závěrečné zprávy</h2>
+<h2>Vyšetření</h2>
+<p>
+  #{a @Reports.form(null, pacient.id)}Nové vyšetření#{/a}
+</p>
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="zpravy">
   <thead>
     <th>Název</th>
     <th>Datum vyšetření</th>
     <th>Parafa</th>
+    <th>&nbsp;</th>
   </thead>
   <tbody>
-    #{list zpravy}
+    #{list pacient.zpravy}
     <tr>
       <td>${_.vysetreni.nazev} </td>
       <td>${_.datumVysetreni?.format()} </td>
       <td>${_.parafaVysetreni?.name} </td>
+      <td>#{a @Reports.form(_.id, _.pacient.id)}upravit#{/a} #{a @Reports.delete(_.id)}smazat#{/a}</td>
     </tr>
     #{/list}
   </tbody>
