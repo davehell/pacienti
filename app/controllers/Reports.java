@@ -30,16 +30,20 @@ public class Reports extends Application {
   }
 
 
-  public static void save(Long zpravaId, Report zprava, Long pacientId) {
+  public static void save(Long zpravaId, Report zprava, Long pacientId, List<Result> vysledky) {
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.findAll();
     List<Examination> vysetreni = Examination.find("byAktual", true).fetch();
     List<User> users = User.find("byModul", connected.modul).fetch();
     //List<String> vedLekari = "aa";
+// String sArray[] = new String[] { "Array 1", "Array 2", "Array 3" };
+// // convert array to list
+// List<String> lList = Arrays.asList(sArray);
 
 
     zprava.pacient = pacient;
+
 
     validation.valid(zprava);
     if(validation.hasErrors()) {
@@ -50,6 +54,15 @@ public class Reports extends Application {
         zprava.create();
     } else {
       Report newZprava = Report.findById(zpravaId);
+
+    	for (int i = 0; i < vysledky.size(); i++) {
+        if(vysledky.get(i) == null) continue;
+        System.out.println(vysledky.get(i).id);
+        Result vysl = Result.findById(vysledky.get(i).id);
+        vysl.vysledek = vysledky.get(i).vysledek;
+        vysl.save();
+    	}
+
       newZprava.datumVysetreni = zprava.datumVysetreni;
       newZprava.parafaVysetreni = zprava.parafaVysetreni;
       newZprava.vedouciLekar = zprava.vedouciLekar;

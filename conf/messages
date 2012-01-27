@@ -13,6 +13,19 @@ pacient.koncDna = koncentrace DNA
 pacient.pozn = poznámka
 pacient.verejnaPozn = veřejná poznámka
 
+zprava.datumVysetreni = datum vyšetření
+zprava.parafaVysetreni.id = parafa
+zprava.vedouciLekar = vedoucí lékař
+zprava.zavZprava = závěrečná zpráva
+zprava.pozitivni  = pozitvní
+zprava.datumPCR1  = datum 1. PCR
+zprava.datumPCR2  = datum 2. PCR
+zprava.datumElForezy = datum elektroforézy v agarórovém gelu
+zprava.datumRevHybrid = datum reverzní hybridizace
+zprava.datumFragmentAn = datum fragmentační nalýzy
+zprava.datumRTAn = datum RT analýzy
+zprava.datumSekv = datum sekvenace
+
 # For use in JavaExtensions.since tag
 since.seconds = %s second%s ago
 since.minutes = %s minute%s ago

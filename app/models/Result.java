@@ -20,5 +20,8 @@ public class Result extends Model {
 
     public String vychozi;
 
-    
+
+    public String toString() {
+        return vysledek;
+    }
 }
