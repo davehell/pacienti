@@ -18,8 +18,8 @@ public class Examination extends Model {
 
     public boolean aktual;
 
-//     @OneToMany(mappedBy="vysetreni", cascade=CascadeType.ALL)
-//     public List<Genotype> genotypy;
+     @OneToMany(mappedBy="vysetreni", cascade=CascadeType.ALL)
+     public List<Genotype> genotypy;
 
 
 

@@ -51,6 +51,8 @@ public class Reports extends Application {
     }
 
     if(zpravaId == null) {
+//vysledky = Genotype.find("byVysetreni", zprava.vysetreni).fetch();
+zprava.vysledky = zprava.vysetreni.genotypy;
         zprava.create();
     } else {
       Report newZprava = Report.findById(zpravaId);
