@@ -26,7 +26,7 @@ public class BioMaterials extends Application {
   }
 
 
-  public static void save(Long bioMatId, BioMaterial bioMaterial, Long pacientId) {
+  public static void mySave(Long bioMatId, BioMaterial bioMaterial, Long pacientId) {
     List<User> users = User.find("byModul", connected.modul).fetch();
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);

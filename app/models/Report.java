@@ -22,7 +22,7 @@ public class Report extends Model {
     public Examination vysetreni;
 
     @OneToMany(mappedBy="zavZprava", cascade=CascadeType.ALL)
-    public List<Result> vysledky;
+    public List<Result> vysledky = new ArrayList<Result>();
 
 
     @As("dd.MM.yyyy")
@@ -60,8 +60,9 @@ public class Report extends Model {
     @As("dd.MM.yyyy")
     public Date datumSekv;
 
-    
 
-
-
+    public static List<Report> getNeprovedena(Date datumOd, Date datumDo) {
+        List<Report> result = Report.find("bioMaterial.datumPrijeti >= ? and datumVysetreni is null", datumOd).fetch();
+        return result;
+    }
 }

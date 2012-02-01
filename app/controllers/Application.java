@@ -30,7 +30,4 @@ public class Application extends CRUD {
     }
 
 
-//     static User connectedUser() {
-//         return Security.isConnected() ? (User) User.find("byUsername", Security.connected()).first() : null;
-//     }
 }

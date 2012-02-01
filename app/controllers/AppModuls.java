@@ -27,7 +27,7 @@ public class AppModuls extends Application {
   }
 
 
-  public static void save(Long id, AppModul modul) {
+  public static void mySave(Long id, AppModul modul) {
       validation.valid(modul);
       if(validation.hasErrors()) {
           render("@form", modul);

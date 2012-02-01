@@ -47,7 +47,7 @@ public class Patients extends Application  {
   }
 
 
-  public static void save(Long id, Patient pacient) {
+  public static void mySave(Long id, Patient pacient) {
     List<InsuranceCompany> pojistovny = InsuranceCompany.find("byModul", connected.modul).fetch();
     List<Doctor> lekari = Doctor.find("byModul", connected.modul).fetch();
 

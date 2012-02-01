@@ -22,6 +22,8 @@ POST  /biomaterial/pridat                           BioMaterials.save
 #GET   /biomaterial/{id}/detail                      BioMaterials.detail
 GET   /biomaterial/{id}/smazat                      BioMaterials.delete
 
+GET		/neprovedena													    Reports.neprovedena
+
 *       /admin                                  module:crud
 
 # Import Secure routes

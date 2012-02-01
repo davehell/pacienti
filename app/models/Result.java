@@ -8,7 +8,7 @@ import play.libs.*;
 @Entity
 public class Result extends Model {
 
-    @Required
+    //@Required
     @ManyToOne
     public Report zavZprava;
 
@@ -19,6 +19,14 @@ public class Result extends Model {
     public String vysledek;
 
     public String vychozi;
+
+
+    public Result(Report zprava, Genotype genotyp) {
+        //this.zavZprava = zprava;
+        this.genotyp = genotyp;
+        this.vysledek = "abc";
+        this.zavZprava = zprava;
+    }
 
 
     public String toString() {

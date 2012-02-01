@@ -28,6 +28,30 @@
   <dd>${ pacient.verejnaPozn}&nbsp;</dd>
 </dl>
 
+<h2>Vyšetření</h2>
+<p>
+  #{a @Reports.form(null, pacient.id)}Nové vyšetření#{/a}
+</p>
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="zpravy">
+  <thead>
+    <th>Název</th>
+    <th>Datum vyšetření</th>
+    <th>Parafa</th>
+    <th>&nbsp;</th>
+  </thead>
+  <tbody>
+    #{list pacient.zpravy}
+    <tr>
+      <td>${_.vysetreni.nazev} </td>
+      <td>${_.datumVysetreni?.format()} </td>
+      <td>${_.parafaVysetreni?.name} </td>
+      <td>#{a @Reports.form(_.id, _.pacient.id)}zpráva#{/a} #{a @Reports.form(_.id, _.pacient.id)}upravit#{/a} #{a @Reports.delete(_.id)}smazat#{/a}</td>
+    </tr>
+    #{/list}
+  </tbody>
+</table>
+
+
 <h2>Biologické materiály</h2>
 <p>
   #{a @BioMaterials.form(null, pacient.id)}Nový materiál#{/a}
@@ -59,28 +83,6 @@
   </tbody>
 </table>
 
-<h2>Vyšetření</h2>
-<p>
-  #{a @Reports.form(null, pacient.id)}Nové vyšetření#{/a}
-</p>
-<table cellpadding="0" cellspacing="0" border="0" class="display" id="zpravy">
-  <thead>
-    <th>Název</th>
-    <th>Datum vyšetření</th>
-    <th>Parafa</th>
-    <th>&nbsp;</th>
-  </thead>
-  <tbody>
-    #{list pacient.zpravy}
-    <tr>
-      <td>${_.vysetreni.nazev} </td>
-      <td>${_.datumVysetreni?.format()} </td>
-      <td>${_.parafaVysetreni?.name} </td>
-      <td>#{a @Reports.form(_.id, _.pacient.id)}upravit#{/a} #{a @Reports.delete(_.id)}smazat#{/a}</td>
-    </tr>
-    #{/list}
-  </tbody>
-</table>
 
 <script type="text/javascript">
 $(document).ready(function() {
