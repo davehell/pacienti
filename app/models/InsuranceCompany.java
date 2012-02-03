@@ -11,14 +11,10 @@ public class InsuranceCompany extends Model {
     public Integer cislo;
      
     @Required
-    @MaxSize(10)
-    public String zkratka;
-
-    @Required
     @MaxSize(100)
     public String nazev;
 
-    @Required
+    //@Required
     @ManyToOne
     public AppModul modul;
 

@@ -22,7 +22,10 @@ POST  /biomaterial/pridat                           BioMaterials.save
 #GET   /biomaterial/{id}/detail                      BioMaterials.detail
 GET   /biomaterial/{id}/smazat                      BioMaterials.delete
 
-GET		/neprovedena													    Reports.neprovedena
+GET		/pojistovny													    InsuranceCompanies.index
+
+GET		/neprovedena-vysetreni								    Reports.neprovedena
+GET		/neizolovana-dna											    BioMaterials.neizolovana
 
 *       /admin                                  module:crud
 

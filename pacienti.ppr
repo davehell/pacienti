@@ -40,10 +40,14 @@ pacienti
 			app\models\Result.java
 			app\models\User.java
 		+views
+			+InsCompanies
+				app\views\InsuranceCompanies\form.html
+				app\views\InsuranceCompanies\index.html
 			+Reports
 				app\views\Reports\form.html
 			+BioMaterials
 				app\views\BioMaterials\form.html
+				app\views\BioMaterials\neizolovana.html
 			+AppModuls
 				app\views\AppModuls\form.html
 				app\views\AppModuls\index.html
@@ -79,28 +83,12 @@ pacienti
 [Open project files]
 0=conf\routes
 1=app\views\main.html
-2=app\models\Report.java
-3=app\views\Reports\neprovedena.html
-4=app\controllers\Reports.java
-5=app\models\BioMaterial.java
 [Selected Project Files]
 Main=
-Selected=app\controllers\Reports.java
+Selected=conf\routes
 [conf\routes]
 TopLine=1
-Caret=54,25
+Caret=52,25
 [app\views\main.html]
-TopLine=1
-Caret=11,49
-[app\models\Report.java]
-TopLine=17
-Caret=71,65
-[app\views\Reports\neprovedena.html]
-TopLine=1
-Caret=78,19
-[app\controllers\Reports.java]
-TopLine=62
-Caret=49,68
-[app\models\BioMaterial.java]
-TopLine=1
-Caret=5,19
+TopLine=26
+Caret=47,32

@@ -34,4 +34,9 @@ public class BioMaterial extends Model {
     public String toString() {
         return typ;
     }
+
+    public static List<BioMaterial> getNeizolovana() {
+        List<BioMaterial> result = BioMaterial.find("typ <> ? and datumIzolace is null", "izolovaná DNA").fetch();
+        return result;
+    }
 }

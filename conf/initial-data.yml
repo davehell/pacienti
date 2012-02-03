@@ -35,13 +35,11 @@ User(alice):
 
 InsuranceCompany(207):
   cislo: 207
-  zkratka: ozp
   nazev: Oborová zdravotní pojišťovna
   modul: ov
 
 InsuranceCompany(111):
   cislo: 111
-  zkratka: vzp
   nazev: Všeobecná zdravotní pojišťovna
   modul: ov
 
@@ -135,3 +133,48 @@ Result(v2):
   zavZprava: zprava1
   genotyp: g2
   vysledek: nene
+
+InsuranceCompany(201): 
+  cislo: 201
+  nazev: Vojenská zdravotní pojišťovna
+  modul:  ov
+InsuranceCompany(205): 
+  cislo: 205
+  nazev: Hutnická  zaměstnanecká pojišťovna
+  modul:  ov
+InsuranceCompany(207): 
+  cislo: 207
+  nazev: Oborová zdravotní pojišťovna zaměstanců bank a pojišťoven
+  modul:  ov
+InsuranceCompany(209): 
+  cislo: 209
+  nazev: Zdravotní pojišťovna Škoda
+  modul:  ov
+InsuranceCompany(211): 
+  cislo: 211
+  nazev: Zdravotní pojišťovna Ministerstva Vnitra
+  modul:  ov
+InsuranceCompany(213): 
+  cislo: 213
+  nazev: Revírní bratrská pokladna
+  modul:  ov
+InsuranceCompany(217): 
+  cislo: 217 
+  nazev: Zdravotní pojišťovna METAL-ALIANCE
+  modul:  ov
+InsuranceCompany(209): 
+  cislo: 209
+  nazev: Česká národní zdravotní pojišťovna
+  modul:  ov
+InsuranceCompany(227): 
+  cislo: 227
+  nazev: Agel
+  modul:  ov
+InsuranceCompany(228): 
+  cislo: 228
+  nazev: Média
+  modul:  ov
+InsuranceCompany(400): 
+  cislo: 400
+  nazev: Samoplátce
+  modul:  ov

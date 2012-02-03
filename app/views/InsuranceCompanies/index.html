@@ -1,0 +1,31 @@
+#{extends 'main.html' /}
+#{set title:'Pojišťovny' /}
+
+<p>
+  #{a @form()}Nová pojišťovna#{/a}
+</p>
+
+#{if pojistovny}
+  <table>
+    <thead>
+      <th>Číslo</th>
+      <th>Název</th>
+      <th>&nbsp;</th>
+    </thead>
+    <tbody>
+    #{list pojistovny}
+    <tr>
+      <td>${_.cislo} </td>
+      <td>${_.nazev} </td>
+      <td>#{a @form(_.id)}upravit#{/a} #{a @delete(_.id)}smazat#{/a} </td>
+    </tr>
+    #{/list}
+    </tbody>
+  </table>
+#{/if}
+
+#{else}
+    <div class="empty">
+        There is currently nothing to read here.
+    </div>
+#{/else}

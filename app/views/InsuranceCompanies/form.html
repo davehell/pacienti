@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+
+#{ifnot pojistovna?.id}
+    #{set title:'Nová pojišťovna' /}
+#{/ifnot}
+#{else}
+    #{set title:'Pojišťovna ' + pojistovna.toString() /}
+#{/else}
+
+#{ifErrors}
+    <p class="error">
+        oprav chyby
+    </p>
+#{/ifErrors}
+
+#{form @mySave(pojistovna?.id)}
+
+  #{field 'pojistovna.cislo'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${pojistovna?.cislo}" class="${field.errorClass}">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+  #{field 'pojistovna.nazev'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${pojistovna?.nazev}" class="${field.errorClass}">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+    <p>
+        <input type="submit" value="Uložit" />
+    </p>
+
+#{/form}
+
