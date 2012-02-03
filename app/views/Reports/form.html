@@ -1,0 +1,185 @@
+#{extends 'main.html' /}
+
+#{ifnot zprava?.id}
+    #{set title:'Nové vyšetření' /}
+#{/ifnot}
+#{else}
+    #{set title:'Vyšetření  ' + zprava.vysetreni.nazev /}
+#{/else}
+
+#{ifErrors}
+    <p class="error">
+        oprav chyby
+    </p>
+#{/ifErrors}
+
+<p>
+ Pacient: <em>${pacient?.getKod()} ${pacient?.jmeno} ${pacient?.rodneCislo}</em>
+</p>
+
+#{form @mySave(zprava?.id)}
+
+#{list zprava?.vysledky}
+  <p>
+    <label>${_.genotyp.nazev}</label>
+    <input type="hidden" name="vysledky[${_.id}].id" value="${_.id}">
+    <input type="text" name="vysledky[${_.id}].vysledek" value="${_.vysledek}">
+  </p>
+#{/list}
+
+
+#{if zprava?.bioMaterial?.id}
+  <input type="hidden" name="zprava.bioMaterial.id" value="${zprava.bioMaterial.id}">
+  <p>
+    Biologický materiál: <em>${zprava.bioMaterial.typ}</em>
+  </p>
+#{/if}
+#{else}
+  #{field 'zprava.bioMaterial.id'}
+  <p>
+    <label>&{field.name}</label>
+    #{select "${field.name}", value:"${zprava?.bioMaterial?.id}", id:"${field.name}"}
+    	#{option "0"}vyberte#{/option}
+      #{list bioMaterialy}
+        #{option "${_.id}"}${_.datumOdberu.format()} - ${_.typ}#{/option}
+      #{/list}
+    #{/select}
+    <span class="error">#{error 'zprava.bioMaterial.id' /}</span>
+  </p>
+  #{/}
+#{/else}
+
+#{if zprava?.vysetreni?.id}
+  <input type="hidden" name="zprava.vysetreni.id" value="${zprava.vysetreni.id}">
+  <p>
+    Vyšetření: <em>${zprava.vysetreni.nazev}</em>
+  </p>
+#{/if}
+#{else}
+  #{field 'zprava.vysetreni.id'}
+  <p>
+    <label>&{field.name}</label>
+    #{select "${field.name}", value:"${zprava?.vysetreni?.id}", id:"${field.name}"}
+    	#{option "0"}vyberte#{/option}
+      #{list vysetreni}
+        #{option "${_.id}"}${_.nazev}#{/option}
+      #{/list}
+    #{/select}
+    <span class="error">#{error 'vysetreni.id' /}</span>
+  </p>
+  #{/}
+#{/else}
+
+#{field 'zprava.datumVysetreni'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumVysetreni?.format()}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'zprava.parafaVysetreni.id'}
+<p>
+  <label>&{field.name}</label>
+  #{select "${field.name}", value:"${zprava?.parafaVysetreni?.id}", id:"${field.name}"}
+  	#{option }none#{/option}
+    #{list users}
+      #{option "${_.id}"}${_.name}#{/option}
+    #{/list}
+  #{/select}
+  <span class="error">#{error 'zprava.parafaVysetreni ' /}</span>
+</p>
+#{/}
+
+#{field 'zprava.vedouciLekar'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.vedouciLekar}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'zprava.zavZprava'}
+<p>
+  <label>&{field.name}</label>
+  <textarea id="${field.id}" name="${field.name}" value="${zprava?.zavZprava}" class="${field.errorClass}"></textarea>
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'zprava.pozitivni'}
+<p>
+  <label>&{field.name}</label>
+  <input type="checkbox" id="${field.id}" name="${field.name}" #{if zprava?.pozitivni} checked="checked" #{/if} class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'zprava.datumPCR1'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumPCR1?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'zprava.datumPCR2'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumPCR2?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'zprava.datumElForezy'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumElForezy?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'zprava.datumRevHybrid'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumRevHybrid?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'zprava.datumFragmentAn'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumFragmentAn?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'zprava.datumRTAn'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumRTAn?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'zprava.datumSekv'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumSekv?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+<input type="hidden" name="pacientId" id="pacientId" value="${pacient?.id}">
+
+
+
+    <p>
+        <input type="submit" value="Uložit" />
+    </p>
+
+#{/form}
+
+
+</script>

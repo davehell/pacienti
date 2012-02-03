@@ -1,0 +1,93 @@
+#{extends 'main.html' /}
+
+#{ifnot bioMaterial?.id}
+    #{set title:'Nový materiál' /}
+#{/ifnot}
+#{else}
+    #{set title:'Materiál ' + bioMaterial.typ /}
+#{/else}
+
+#{ifErrors}
+    <p class="error">
+        oprav chyby
+    </p>
+#{/ifErrors}
+
+
+<p>
+ <em>${pacient?.getKod()} ${pacient?.jmeno} ${pacient?.rodneCislo}</em>
+</p>
+
+#{form @mySave(bioMaterial?.id)}
+
+#{field 'bioMaterial.typ'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.typ}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'bioMaterial.datumOdberu'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumOdberu?.format()}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'bioMaterial.datumPrijeti'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumPrijeti?.format()}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+
+#{field 'bioMaterial.parafaPrijeti.id'}
+<p>
+  <label>&{field.name}</label>
+  #{select "${field.name}", value:"${bioMaterial?.parafaPrijeti?.id}", id:"${field.name}"}
+  	#{option }none#{/option}
+    #{list users}
+      #{option "${_.id}"}${_.name}#{/option}
+    #{/list}
+  #{/select}
+  <span class="error">#{error 'bioMaterial.parafaPrijeti' /}</span>
+</p>
+#{/}
+
+#{field 'bioMaterial.datumIzolace'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumIzolace?.format()}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+
+#{field 'bioMaterial.parafaIzolace.id'}
+<p>
+  <label>&{field.name}</label>
+  #{select "${field.name}", value:"${bioMaterial?.parafaIzolace?.id}", id:"${field.name}"}
+  	#{option }none#{/option}
+    #{list users}
+      #{option "${_.id}"}${_.name}#{/option}
+    #{/list}
+  #{/select}
+  <span class="error">#{error 'bioMaterial.parafaIzolace' /}</span>
+</p>
+#{/}
+
+<input type="text" name="pacientId" id="pacientId" value="${pacient?.id}">
+
+
+    <p>
+        <input type="submit" value="Uložit" />
+    </p>
+
+#{/form}
+
+
+</script>

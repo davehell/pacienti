@@ -1,0 +1,61 @@
+#{extends 'main.html' /}
+#{set title:'Neprovedená vyšetření' /}
+
+#{form @neprovedena()}
+<p>
+ 
+</p>
+  #{field 'datumOd'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${datumOd.format('dd.MM.yyyy')}" class="${field.errorClass}">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+  #{field 'datumDo'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${datumDo.format('dd.MM.yyyy')}" class="${field.errorClass}">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+    <p>
+        <input type="submit" value="Zobrazit" />
+    </p>
+#{/form}
+
+
+#{if vysetreni}
+  <table>
+    <thead>
+      <th>Vyšetření</th>
+      <th>Evidenční číslo</th>
+      <th>Jméno</th>
+      <th>Koncentrace DNA</th>
+      <th>Počet bodů</th>
+    </thead>
+    <tbody>
+
+    #{list vysetreni}
+    <tr>
+      <td>${_.vysetreni.nazev} </td>
+      <td>${_.pacient.getKod()} </td>
+      <td>${_.pacient.jmeno} </td>
+      <td>${_.pacient.koncDna} </td>
+      <td>${_.vysetreni.body} </td>
+    </tr>
+    #{/list}
+    </tbody>
+  </table>
+
+<p>
+ IF-71.0  !!!
+</p>
+#{/if}
+#{else}
+    <div class="empty">
+        There is currently nothing to read here.
+    </div>
+#{/else}
