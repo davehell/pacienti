@@ -5,22 +5,26 @@
 # Home page
 GET     /                                       Application.index
 
-#pacienti
 GET		/pacienti															    Patients.index
 GET   /pacient/{id}/upravit                     Patients.form
-GET   /pacient/pridat                           Patients.form
-POST  /pacient/{id}/upravit                      Patients.save
-POST  /pacient/pridat                           Patients.save
+GET   /pacient/novy                             Patients.form
+POST  /pacient/{id}/ulozit                      Patients.mySave
+POST  /pacient/ulozit                           Patients.mySave
 GET   /pacient/{id}/detail                      Patients.detail
-GET   /pacient/{id}/smazat                      Patients.delete
+GET   /pacient/{id}/smazat                      Patients.myDelete
 
-GET		/biomaterialy													    BioMaterials.index
 GET   /pacient/{pacientId}/biomaterial/{id}/upravit BioMaterials.form
-GET   /pacient/{pacientId}/biomaterial/pridat     BioMaterials.form
-POST  /biomaterial/{id}/ulozit                      BioMaterials.save
-POST  /biomaterial/pridat                           BioMaterials.save
-#GET   /biomaterial/{id}/detail                      BioMaterials.detail
-GET   /biomaterial/{id}/smazat                      BioMaterials.delete
+GET   /pacient/{pacientId}/biomaterial/novy         BioMaterials.form
+POST  /biomaterial/{id}/ulozit                      BioMaterials.mySave
+POST  /biomaterial/ulozit                           BioMaterials.mySave
+GET   /biomaterial/{id}/smazat                      BioMaterials.myDelete
+
+GET   /pacient/{pacientId}/vysetreni/{id}/upravit Reports.form
+GET   /pacient/{pacientId}/vysetreni/nove         Reports.form
+POST  /vysetreni/{id}/ulozit                      Reports.mySave
+POST  /vysetreni/ulozit                           Reports.mySave
+GET   /vysetreni/{id}/smazat                      Reports.myDelete
+GET   /vysetreni/{id}/zaverecna-zprava            Reports.report
 
 GET		/pojistovny													    InsuranceCompanies.index
 GET		/lekari   													    Doctors.index

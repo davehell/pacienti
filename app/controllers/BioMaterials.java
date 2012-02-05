@@ -14,15 +14,16 @@ public class BioMaterials extends Application {
     List<User> users = User.find("byModul", connected.modul).fetch();
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
+    String[] typyMaterialu = connected.modul.typyMaterialu.split(",");
 
     if(id != null) {
       BioMaterial bioMaterial = BioMaterial.findById(id);
       notFoundIfNull(bioMaterial);
 
-      render(bioMaterial, pacient, users);
+      render(bioMaterial, pacient, users, typyMaterialu );
     }
 
-    render(pacient, users);
+    render(pacient, users, typyMaterialu);
   }
 
 
@@ -30,11 +31,12 @@ public class BioMaterials extends Application {
     List<User> users = User.find("byModul", connected.modul).fetch();
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
+    String[] typyMaterialu = connected.modul.typyMaterialu.split(",");
 
 
     validation.valid(bioMaterial);
     if(validation.hasErrors()) {
-        render("@form", bioMaterial, pacient, users);
+        render("@form", bioMaterial, pacient, users, typyMaterialu);
     }
 
     if(bioMatId == null) {
@@ -58,12 +60,17 @@ public class BioMaterials extends Application {
     
   }
 
-  public static void delete(Long id) {
+  public static void myDelete(Long id) {
       BioMaterial bioMaterial = BioMaterial.findById(id);
       notFoundIfNull(bioMaterial);
       Patient pacient = bioMaterial.pacient;
-      bioMaterial.delete();
-      flash.success("Materiál %s smazán.", bioMaterial.typ);
+      try {
+        bioMaterial.delete();
+        flash.success("Materiál %s odebrán.", bioMaterial.typ);
+      }
+      catch (Exception e) {
+          flash.error("Materiál %s se nepodařilo odebrat.", bioMaterial.typ);
+      }
       Patients.detail(pacient.id);
   }
 

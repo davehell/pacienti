@@ -22,21 +22,16 @@ Integer updated = q.executeUpdate ();
 Logger.info(updated.toString());
 */
 
-// Doctor lekar;
-// lekar = new Doctor("y","y","y");
-// JPA.em().persist(lekar);
-// lekar = new Doctor("z","z","z");
-// JPA.em().persist(lekar);
-
+/*
 List<Doctor> docs  = new ArrayList<Doctor>();
 docs.add(new Doctor("llllllllllll","y","y"));
-//docs.add(new Doctor("pppppppppppp","df","df"));
+docs.add(new Doctor("pppppppppppp","df","df"));
 
-    	for (int i = 0; i < docs.size(); i++) {
-        if(docs.get(i) == null) continue;
-        JPA.em().persist(docs.get(i));
-    	}
-
+for (int i = 0; i < docs.size(); i++) {
+  if(docs.get(i) == null) continue;
+  JPA.em().persist(docs.get(i));
+}
+*/
 
 
     Query query = JPA.em().createQuery("select d from Doctor d");
@@ -82,8 +77,13 @@ docs.add(new Doctor("llllllllllll","y","y"));
   public static void myDelete(Long id) {
       Doctor lekar = Doctor.findById(id);
       notFoundIfNull(lekar);
-      lekar.delete();
-      flash.success("Lékař %s smazán.", lekar.toString());
+      try {
+        lekar.delete();
+        flash.success("Lékař %s odebrán.", lekar.toString());
+      }
+      catch (Exception e) {
+          flash.error("Lékaře %s se nepodařilo odebrat.",lekar.toString());
+      }
       index();
   }
 }

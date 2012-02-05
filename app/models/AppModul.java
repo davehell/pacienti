@@ -15,7 +15,14 @@ public class AppModul extends Model {
     @MaxSize(10)
     public String kod;
 
+    @MaxSize(200)
     public String vedouciLekari;
+    @MaxSize(200)
+    public String uvolnujiAnalyzu;
+    @MaxSize(200)
+    public String typyMaterialu;
+    
+    
 
     public AppModul(String nazev) {
         this.nazev = nazev;

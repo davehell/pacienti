@@ -6,27 +6,36 @@ import play.*;
 import play.mvc.*;
 import play.data.binding.*;
 import java.util.*;
-
+import static play.modules.pdf.PDF.*;
 
 @With(Secure.class)
 public class Reports extends Application {
 
+  public static void report(Long id) {
+    Report zprava = Report.findById(id);
+    notFoundIfNull(zprava);
+    render(zprava);
+    //renderPDF(zprava);
+  }
+
   public static void form(Long id, Long pacientId) {
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
-    List<BioMaterial> bioMaterialy = BioMaterial.findAll();
+    List<BioMaterial> bioMaterialy = BioMaterial.find("byPacient", pacient).fetch();
     List<Examination> vysetreni = Examination.find("byAktual", true).fetch();
     List<User> users = User.find("byModul", connected.modul).fetch();
-    //List<String> vedLekari = "aa";
+    String[] vedouciLekari = connected.modul.vedouciLekari.split(",");
+    String[] uvolnujiAnalyzu = connected.modul.uvolnujiAnalyzu.split(",");
+
 
 
     if(id != null) {
       Report zprava = Report.findById(id);
       notFoundIfNull(zprava);
-      render(zprava, pacient, bioMaterialy, vysetreni, users);
+      render(zprava, pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu);
     }
 
-    render(pacient, bioMaterialy, vysetreni, users);
+    render(pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu);
   }
 
 
@@ -37,11 +46,6 @@ public class Reports extends Application {
     List<Examination> vysetreni = Examination.find("byAktual", true).fetch();
     List<User> users = User.find("byModul", connected.modul).fetch();
     Result vysledek = null;
-    //List<String> vedLekari = "aa";
-// String sArray[] = new String[] { "Array 1", "Array 2", "Array 3" };
-// // convert array to list
-// List<String> lList = Arrays.asList(sArray);
-
 
     zprava.pacient = pacient;
 
@@ -67,7 +71,6 @@ public class Reports extends Application {
 
     	for (int i = 0; i < vysledky.size(); i++) {
         if(vysledky.get(i) == null) continue;
-        System.out.println(vysledky.get(i).id + " ss " + vysledky.size());
         Result vysl = Result.findById(vysledky.get(i).id);
         vysl.vysledek = vysledky.get(i).vysledek;
         vysl.save();
@@ -95,12 +98,19 @@ public class Reports extends Application {
 
   }
 
-  public static void delete(Long id) {
+  public static void myDelete(Long id) {
       Report report = Report.findById(id);
       notFoundIfNull(report);
       Patient pacient = report.pacient;
-      report.delete();
-      flash.success("Vyšetření %s smazáno.", report.vysetreni);
+
+      try {
+        report.delete();
+        flash.success("Vyšetření %s odebráno.", report.vysetreni);
+      }
+      catch (Exception e) {
+          flash.error("Vyšetření %s se nepodařilo odebrat.",report.vysetreni);
+      }
+
       Patients.detail(pacient.id);
   }
 

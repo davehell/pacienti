@@ -16,6 +16,14 @@
 
 #{form @mySave(pacient?.id)}
 
+#{field 'pacient.evRok'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="#{if pacient}${pacient.evRok}#{/if}#{else}${new Date().format('yyyy')}#{/else}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
 #{field 'pacient.evCislo'}
 <p>
   <label>&{field.name}</label>
@@ -24,13 +32,6 @@
 </p>
 #{/}
 
-#{field 'pacient.evRok'}
-<p>
-  <label>&{field.name}</label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.evRok}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
-</p>
-#{/}
 
 #{field 'pacient.rodneCislo'}
 <p>
@@ -60,9 +61,9 @@
 <p>
   <label>&{field.name}</label>
   #{select "${field.name}", value:"${pacient?.lekar?.id}", id:"${field.name}"}
-  	#{option }none#{/option}
+  	#{option }vyberte#{/option}
     #{list lekari}
-      #{option "${_.id}"}${_.icz}#{/option}
+      #{option "${_.id}"}${_.icz} - ${_.jmeno}#{/option}
     #{/list}
   #{/select}
   <span class="error">#{error 'pacient.lekar' /}</span>

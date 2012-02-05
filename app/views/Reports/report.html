@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Výsledková zpráva molekulárně genetického vyšetření</title>
+    <meta charset="${_response_encoding}">
+  </head>
+  <body>
+<img src="@{'/public/images/lfg_logo.gif'}" width="73px" height="85px">
+
+<p style="font-weight: bold; font-style: italic;">
+Laboratoř forenzní genetiky, spol. s r. o.
+IČO: 255 30 038
+IČZ: 72 862 000
+</p>
+<p style="font-style: italic;">
+ Adresa: Ústav soudního lékařství, Tvrdého 2a, 662 99 Brno
+Tel.: 543 426 511
+</p>
+<p style="font-weight: bold; text-decoration: underline;">
+www.lfg-brno.cz
+</p>
+
+#{if zprava.vysetreni.certif}
+<img src="@{'/public/images/cert_m8141.gif'}" width="40px" height="38px">
+#{/if}
+
+<hr>
+
+<h1>Výsledková zpráva molekulárně genetického vyšetření</h1>
+
+<p>
+Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
+<em>Opavská 39, 708 00 Ostrava – Poruba, tel.: +420 596 973 356</em>
+</p>
+
+<table style="width: 100%;">
+  <tr>
+    <td>Primární vzorek:</td>
+    <td>Datum odběru:</td>
+    <td>${zprava.bioMaterial.datumOdberu?.format()} </td>
+    <td>Čas odběru:</td>
+    <td>${zprava.bioMaterial.casOdberu?.format('HH:mm')} </td>
+  </tr>
+  <tr>
+    <td>${zprava.bioMaterial.typ} </td>
+    <td>Datum přijetí vzorku:</td>
+    <td>${zprava.bioMaterial.datumPrijeti?.format()} </td>
+    <td>Čas přijetí vzorku</td>
+    <td>${zprava.bioMaterial.casPrijeti?.format('HH:mm')} </td>
+  </tr>
+</table>
+
+<h2>${zprava.vysetreni.popis} </h2>
+
+<table style="width: 100%;">
+  <tr>
+    <td>Jméno a příjmení:</td>
+    <td>${zprava.pacient.jmeno} </td>
+    <td>Kód vzorku:</td>
+    <td>${zprava.pacient.getKod()} </td>
+  </tr>
+  <tr>
+    <td>Rodné číslo:</td>
+    <td>${zprava.pacient.rodneCislo} </td>
+    <td>Číslo dokladu:</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Pojišťovna:</td>
+    <td>${zprava.pacient.pojistovna.cislo} </td>
+    <td>Diagnóza:</td>
+    <td>${zprava.pacient.diagnoza} </td>
+  </tr>
+  <tr>
+    <td>Žádající lékař:</td>
+    <td>${zprava.pacient.lekar?.jmeno} </td>
+    <td>IČZ:</td>
+    <td>${zprava.pacient.lekar?.icz} </td>
+  </tr>
+  <tr>
+    <td>Adresa:</td>
+    <td>${zprava.pacient.lekar?.pracoviste} </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+<h3>Zjištěný genotyp:</h3>
+<table>
+  #{list zprava.vysledky}
+  <tr>
+    <td>${_.genotyp.nazev} </td>
+    <td>${_.vysledek} </td>
+  </tr>
+  #{/list}
+</table>
+
+<h3>Závěr:</h3>
+<p>
+ ${zprava.zavZprava}
+</p>
+
+<table>
+  <tr>
+    <td>Analýzu provedl:</td>
+    <td>${zprava.parafaVysetreni?.name} </td>
+  </tr>
+  <tr>
+    <td>Analýzu uvolnil:</td>
+    <td>${zprava.parafaUvolneni} </td>
+  </tr>
+  <tr>
+    <td>Vedoucí lékař:</td>
+    <td>${zprava.vedouciLekar} </td>
+  </tr>
+  <tr>
+    <td>Datum a čas</td>
+    <td>${new Date().format('dd.MM.yyyy HH:mm')} </td>
+  </tr>
+#{if zprava.vysetreni.certif}
+  <tr>
+    <td>Vysvětlivky:</td>
+    <td>* na výsledkové zprávě označuje akreditované vyšetření</td>
+  </tr>
+#{/if}
+</table>
+
+  </body>
+</html>

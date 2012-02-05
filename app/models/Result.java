@@ -22,9 +22,8 @@ public class Result extends Model {
 
 
     public Result(Report zprava, Genotype genotyp) {
-        //this.zavZprava = zprava;
         this.genotyp = genotyp;
-        this.vysledek = "abc";
+        this.vysledek = vychozi;
         this.zavZprava = zprava;
     }
 

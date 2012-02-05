@@ -10,7 +10,7 @@ import java.util.*;
 
 @With(Secure.class)  
 public class AppModuls extends Application {
-
+/*
   public static void form(Long id) {
     if(id != null) {
       AppModul modul = AppModul.findById(id);
@@ -46,5 +46,5 @@ public class AppModuls extends Application {
       flash.success("modul %s smazán.", modul.nazev);
       index();
   }
-
+*/
 }

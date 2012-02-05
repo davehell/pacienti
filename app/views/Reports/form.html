@@ -14,18 +14,15 @@
 #{/ifErrors}
 
 <p>
- Pacient: <em>${pacient?.getKod()} ${pacient?.jmeno} ${pacient?.rodneCislo}</em>
+ Pacient:
 </p>
+<ul>
+ <li>#{a @Patients.detail(pacient?.id)}${pacient?.getKod()}#{/a}</li>
+ <li>${pacient?.jmeno} </li>
+ <li>${pacient?.rodneCislo} </li>
+</ul>
 
 #{form @mySave(zprava?.id)}
-
-#{list zprava?.vysledky}
-  <p>
-    <label>${_.genotyp.nazev}</label>
-    <input type="hidden" name="vysledky[${_.id}].id" value="${_.id}">
-    <input type="text" name="vysledky[${_.id}].vysledek" value="${_.vysledek}">
-  </p>
-#{/list}
 
 
 #{if zprava?.bioMaterial?.id}
@@ -82,7 +79,7 @@
 <p>
   <label>&{field.name}</label>
   #{select "${field.name}", value:"${zprava?.parafaVysetreni?.id}", id:"${field.name}"}
-  	#{option }none#{/option}
+  	#{option }vyberte#{/option}
     #{list users}
       #{option "${_.id}"}${_.name}#{/option}
     #{/list}
@@ -96,6 +93,7 @@
   <label>&{field.name}</label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.parafaUvolneni}" class="${field.errorClass}">
   <span class="error">${field.error}</span>
+  <span><em>${uvolnujiAnalyzu?.join(', ') }</em></span>
 </p>
 #{/}
 
@@ -104,6 +102,7 @@
   <label>&{field.name}</label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.vedouciLekar}" class="${field.errorClass}">
   <span class="error">${field.error}</span>
+  <span><em>${vedouciLekari?.join(', ') }</em></span>
 </p>
 #{/}
 
@@ -181,7 +180,16 @@
 
 <input type="hidden" name="pacientId" id="pacientId" value="${pacient?.id}">
 
-
+#{if zprava?.id}
+  <h2>Zjištěný genotyp</h2>
+  #{list zprava?.vysledky}
+    <p>
+      <label>${_.genotyp.nazev}</label>
+      <input type="hidden" name="vysledky[${_.id}].id" value="${_.id}">
+      <input type="text" name="vysledky[${_.id}].vysledek" value="${_.vysledek}">
+    </p>
+  #{/list}
+#{/if}
 
     <p>
         <input type="submit" value="Uložit" />
@@ -196,4 +204,77 @@
 			buttonImageOnly: true,
       dateFormat: "dd.mm.yy"
 		});
+		$( "#zprava_datumPCR1" ).datepicker({
+			showOn: "button",
+      buttonImage: "@{'/public/images/calendar.gif'}",
+			buttonImageOnly: true,
+      dateFormat: "dd.mm.yy"
+		});
+		$( "#zprava_datumPCR2" ).datepicker({
+			showOn: "button",
+      buttonImage: "@{'/public/images/calendar.gif'}",
+			buttonImageOnly: true,
+      dateFormat: "dd.mm.yy"
+		});
+		$( "#zprava_datumElForezy" ).datepicker({
+			showOn: "button",
+      buttonImage: "@{'/public/images/calendar.gif'}",
+			buttonImageOnly: true,
+      dateFormat: "dd.mm.yy"
+		});
+		$( "#zprava_datumRevHybrid" ).datepicker({
+			showOn: "button",
+      buttonImage: "@{'/public/images/calendar.gif'}",
+			buttonImageOnly: true,
+      dateFormat: "dd.mm.yy"
+		});
+		$( "#zprava_datumFragmentAn" ).datepicker({
+			showOn: "button",
+      buttonImage: "@{'/public/images/calendar.gif'}",
+			buttonImageOnly: true,
+      dateFormat: "dd.mm.yy"
+		});
+		$( "#zprava_datumRTAn" ).datepicker({
+			showOn: "button",
+      buttonImage: "@{'/public/images/calendar.gif'}",
+			buttonImageOnly: true,
+      dateFormat: "dd.mm.yy"
+		});
+		$( "#zprava_datumSekv" ).datepicker({
+			showOn: "button",
+      buttonImage: "@{'/public/images/calendar.gif'}",
+			buttonImageOnly: true,
+      dateFormat: "dd.mm.yy"
+		});
+
+
+
+
+
+
+
+
+	
+		var vedouciLekari = [
+      #{list vedouciLekari}
+        "${_.raw()}" ${_isLast ? '' : ','}
+      #{/list}
+    ];
+
+		$( "#zprava_vedouciLekar" ).autocomplete({
+			source: vedouciLekari
+		});
+
+		var uvolnujiAnalyzu = [
+      #{list uvolnujiAnalyzu}
+        "${_.raw()}" ${_isLast ? '' : ','}
+      #{/list}
+    ];
+
+		$( "#zprava_parafaUvolneni" ).autocomplete({
+			source: uvolnujiAnalyzu
+		});
+	
+
+
 </script>

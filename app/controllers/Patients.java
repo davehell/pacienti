@@ -82,13 +82,20 @@ public class Patients extends Application  {
   }
 
 
-  public static void delete(Long id) {
+  public static void myDelete(Long id) {
       Patient pacient = Patient.findById(id);
       if(pacient.modul.id != connected.modul.id) {
         notFound();
       }
-      pacient.delete();
-      flash.success("pacient %s smazán.", pacient.jmeno);
+      try {
+        pacient.delete();
+        flash.success("Pacient %s odebrán.", pacient.getKod());
+      }
+      catch (Exception e) {
+          Logger.error(e.getMessage());
+          flash.error("Pacienta %s se nepodařilo odebrat.",pacient.getKod());
+          detail(pacient.id);
+      }
       index();
   }
 

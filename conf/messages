@@ -10,9 +10,20 @@ pacient.lekar.id = lékař
 pacient.infSouhlas = informovaný souhlas
 pacient.diagnoza = diagnóza
 pacient.koncDna = koncentrace DNA
-pacient.pozn = poznámka
+pacient.pozn = interní poznámka
 pacient.verejnaPozn = veřejná poznámka
 
+bioMaterial.typ = typ
+bioMaterial.datumOdberu = datum odběru
+bioMaterial.casOdberu = čas odběru
+bioMaterial.datumPrijeti = datum přijetí vzorku
+bioMaterial.casPrijeti = čas přijetí vzorku
+bioMaterial.parafaPrijeti.id  = vzorek přijal
+bioMaterial.datumIzolace  = datum izolace DNA
+bioMaterial.parafaIzolace.id = izolaci provedl
+
+zprava.bioMaterial.id = biologický materiál
+zprava.vysetreni.id = vyšetření
 zprava.datumVysetreni = datum vyšetření
 zprava.parafaVysetreni.id = analýzu provedl
 zprava.parafaUvolneni = analýzu uvolnil
@@ -27,6 +38,9 @@ zprava.datumFragmentAn = datum fragmentační nalýzy
 zprava.datumRTAn = datum RT analýzy
 zprava.datumSekv = datum sekvenace
 
+datumOd = počáteční datum
+datumDo = koncové datum
+
 # For use in JavaExtensions.since tag
 since.seconds = %s second%s ago
 since.minutes = %s minute%s ago
@@ -37,7 +51,7 @@ since.years   = %s year%s ago
 since.format  = MMM d, yyyy
 
 # Validation messages
-validation.required=Required
+validation.required=Povinný údaj
 validation.minSize=Minimum size is %2$d
 validation.maxSize=Maximum size is %2$d
 validation.email=Invalid email address
@@ -47,7 +61,7 @@ validation.max=Cannot be greater than %2$d
 validation.match=Must match %2$s
 validation.isTrue=Must be checked
 validation.equals=Must be equal to &{%2$s}
-validation.invalid=Incorrect value
+validation.invalid=Nesprávná hodnota
 validation.future=Must be in the future
 validation.after=Must be after %2$s
 validation.past=Must be in the past

@@ -15,8 +15,13 @@
 
 
 <p>
- <em>${pacient?.getKod()} ${pacient?.jmeno} ${pacient?.rodneCislo}</em>
+ Pacient:
 </p>
+<ul>
+ <li>#{a @Patients.detail(pacient?.id)}${pacient?.getKod()}#{/a}</li>
+ <li>${pacient?.jmeno} </li>
+ <li>${pacient?.rodneCislo} </li>
+</ul>
 
 #{form @mySave(bioMaterial?.id)}
 
@@ -25,13 +30,22 @@
   <label>&{field.name}</label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.typ}" class="${field.errorClass}">
   <span class="error">${field.error}</span>
+  <span><em>${typyMaterialu?.join(', ') }</em></span>
 </p>
 #{/}
 
 #{field 'bioMaterial.datumOdberu'}
 <p>
   <label>&{field.name}</label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumOdberu?.format()}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumOdberu?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
+#{field 'bioMaterial.casOdberu'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casOdberu?.format('hh:mm')}" class="${field.errorClass}">
   <span class="error">${field.error}</span>
 </p>
 #{/}
@@ -44,12 +58,19 @@
 </p>
 #{/}
 
+#{field 'bioMaterial.casPrijeti'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casPrijeti?.format('hh:mm')}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
 
 #{field 'bioMaterial.parafaPrijeti.id'}
 <p>
   <label>&{field.name}</label>
   #{select "${field.name}", value:"${bioMaterial?.parafaPrijeti?.id}", id:"${field.name}"}
-  	#{option }none#{/option}
+  	#{option }vyberte#{/option}
     #{list users}
       #{option "${_.id}"}${_.name}#{/option}
     #{/list}
@@ -61,7 +82,7 @@
 #{field 'bioMaterial.datumIzolace'}
 <p>
   <label>&{field.name}</label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumIzolace?.format()}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumIzolace?.format('dd.MM.yyyy')}" class="${field.errorClass}">
   <span class="error">${field.error}</span>
 </p>
 #{/}
@@ -71,7 +92,7 @@
 <p>
   <label>&{field.name}</label>
   #{select "${field.name}", value:"${bioMaterial?.parafaIzolace?.id}", id:"${field.name}"}
-  	#{option }none#{/option}
+  	#{option }vyberte#{/option}
     #{list users}
       #{option "${_.id}"}${_.name}#{/option}
     #{/list}
@@ -80,7 +101,8 @@
 </p>
 #{/}
 
-<input type="text" name="pacientId" id="pacientId" value="${pacient?.id}">
+<input type="hidden" name="pacientId" value="${pacient?.id}">
+<input type="hidden" name="bioMaterial.id" value="${bioMaterial?.id}">
 
 
     <p>
@@ -90,3 +112,35 @@
 #{/form}
 
 
+<script type="text/javascript">
+		$( "#bioMaterial_datumOdberu" ).datepicker({
+			showOn: "button",
+      buttonImage: "@{'/public/images/calendar.gif'}",
+			buttonImageOnly: true,
+      dateFormat: "dd.mm.yy"
+		});
+		$( "#bioMaterial_datumPrijeti" ).datepicker({
+			showOn: "button",
+      buttonImage: "@{'/public/images/calendar.gif'}",
+			buttonImageOnly: true,
+      dateFormat: "dd.mm.yy"
+		});
+		$( "#bioMaterial_datumIzolace" ).datepicker({
+			showOn: "button",
+      buttonImage: "@{'/public/images/calendar.gif'}",
+			buttonImageOnly: true,
+      dateFormat: "dd.mm.yy"
+		});
+
+		var typyMaterialu = [
+      #{list typyMaterialu}
+        "${_.raw()}" ${_isLast ? '' : ','}
+      #{/list}
+    ];
+
+		$( "#bioMaterial_typ" ).autocomplete({
+			source: typyMaterialu
+		});
+
+
+</script>

@@ -20,8 +20,8 @@
   <body>
     <div id="header">
       <ul>
-        <li><a href="@{Patients.detail(1)}">Index</a></li>
-        <li><a href="@{Secure.logout()}">Log out</a> ${connected?.username} ${connected?.name} ${connected?.modul} </li>
+<!--         <li><a href="@{Patients.detail(1)}">Index</a></li> -->
+        <li><a href="@{Secure.logout()}">Odhlášení</a> ${connected?.name} ${connected?.modul} </li>
       </ul>
     </div>
     
@@ -30,11 +30,11 @@
        <li><a href="@{Patients.index()}">Pacienti</a></li>
        <li><a href="@{InsuranceCompanies.index()}">Pojišťovny</a></li>
        <li><a href="@{Doctors.index()}">Lékaři</a></li>
-       <li><a href="@{Reports.neprovedena()}">Neprovedená </a></li>
-       <li><a href="@{BioMaterials.neizolovana()}">Neizolovaná </a></li>
+       <li><a href="@{Reports.neprovedena()}">Neprovedená vyš,</a></li>
+       <li><a href="@{BioMaterials.neizolovana()}">Neizolovaná DNA</a></li>
        
       </ul>
-
+<!--
       <ul>
        #{secure.check 'admin'}
         <li><a href="@{Patients.list()}">Pacienti</a></li>
@@ -49,6 +49,7 @@
         <li><a href="@{AppModuls.list()}">Moduly</a></li>
        #{/secure.check}
       </ul>
+-->
     </div>
 
     <div id="container">
@@ -71,7 +72,7 @@
 
     <div id="footer">
       <p>
-       footer
+       
       </p>
     </div>        
     

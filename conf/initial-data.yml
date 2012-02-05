@@ -4,7 +4,9 @@
 AppModul(ov):
     nazev:          Ostrava
     kod: KO
-    vedouciLekari: doktor A,lékař B
+    vedouciLekari: MUDr. Ditta Leznarová,MUDr. Jana Zvolská
+    uvolnujiAnalyzu: RNDr. Hana Kolaříková,MUDr. Jana Zvolská
+    typyMaterialu: Krev nesrážlivá EDTA,izolovaná DNA,FTA karta krev,FTA karta plodová voda
 
 AppModul(br):
   nazev: Brno
@@ -102,18 +104,24 @@ BioMaterial(vlas):
 
 Examination(morbus):
   nazev: Morbus Wilson
-  popis: Morbus Wilson popis
+  popis: Stanovení mutací v exonech 8, 14, 15 genu ATP7B - Morbus Wilson, SOP OV č. 10
   aktual: true
+  certif: false
   genotypy:
             - g1
             - g2
+            - g3
 
 Genotype(g1):
-  nazev: g1
+  nazev: ATP7B (kódující sekvence exonu 8)
   vysetreni: morbus
 
 Genotype(g2):
-  nazev: g2
+  nazev: ATP7B (kódující sekvence exonu 14)
+  vysetreni: morbus
+
+Genotype(g3):
+  nazev: ATP7B (kódující sekvence exonu 15)
   vysetreni: morbus
 
 Report(zprava1):

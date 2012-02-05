@@ -52,11 +52,17 @@ public class InsuranceCompanies extends Application  {
   }
 
 
-  public static void delete(Long id) {
+  public static void myDelete(Long id) {
       InsuranceCompany pojistovna = InsuranceCompany.findById(id);
       notFoundIfNull(pojistovna);
-      pojistovna.delete();
-      flash.success("Pojišťovna %s smazána.", pojistovna.toString());
+      try {
+          pojistovna.delete();
+          flash.success("Pojišťovna %s odebrána.", pojistovna.toString());
+      }
+      catch (Exception e) {
+          flash.error("Pojišťovnu %s se nepodařilo odebrat.", pojistovna.toString());
+      }
+
       index();
   }
 }
