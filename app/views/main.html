@@ -28,24 +28,25 @@
     <div id="menu">
       <ul>
        <li><a href="@{Patients.index()}">Pacienti</a></li>
+       <li><a href="@{InsuranceCompanies.index()}">Pojišťovny</a></li>
+       <li><a href="@{Doctors.index()}">Lékaři</a></li>
        <li><a href="@{Reports.neprovedena()}">Neprovedená </a></li>
        <li><a href="@{BioMaterials.neizolovana()}">Neizolovaná </a></li>
-
+       
       </ul>
 
       <ul>
+       #{secure.check 'admin'}
         <li><a href="@{Patients.list()}">Pacienti</a></li>
         <li><a href="@{Reports.list()}">Závěrečné zprávy</a></li>
         <li><a href="@{BioMaterials.list()}">Biologické materiály</a></li>
         <li><a href="@{Examinations.list()}">Vyšetření</a></li>
         <li><a href="@{Genotypes.list()}">Genotypy</a></li>
         <li><a href="@{Results.list()}">Výsledky</a></li>
-        <li><a href="@{Doctors.list()}">Lékaři</a></li>
         <li><a href="@{InsuranceCompanies.list()}">Pojišťovny</a></li>
-       #{secure.check 'admin'}
+        <li><a href="@{Doctors.list()}">Lékaři</a></li>
         <li><a href="@{Users.list()}">Uživatelé</a></li>
         <li><a href="@{AppModuls.list()}">Moduly</a></li>
-        <li><a href="@{AppModuls.index()}">Moje Moduly</a></li>
        #{/secure.check}
       </ul>
     </div>

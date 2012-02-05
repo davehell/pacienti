@@ -3,7 +3,7 @@
 #{set title:'Pacient ' + pacient.getKod() /}
 
 <p>
-  detail #{a @form(pacient.id)}upravit#{/a} #{a @delete(pacient.id)}smazat#{/a} #{a @form()}přidat#{/a}
+  #{a @form(pacient.id)}upravit#{/a} #{a @delete(pacient.id)}smazat#{/a} #{a @form()}přidat#{/a}
 </p>
 
 <dl>
@@ -14,7 +14,7 @@
   <dt>Rodné číslo</dt>
   <dd>${pacient.rodneCislo}</dd>
   <dt>Pojišťovna</dt>
-  <dd>${pacient.pojistovna.nazev}</dd>
+  <dd>${pacient.pojistovna.toString()}</dd>
   <dt>Lékař</dt>
   <dd>${pacient.lekar?.icz} &nbsp;</dd>
   <dt>Informovaný souhlas</dt>

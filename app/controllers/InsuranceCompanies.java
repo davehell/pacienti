@@ -1,22 +1,25 @@
 package controllers;
- 
+
 import models.*;
+
 import play.*;
 import play.mvc.*;
 import play.db.jpa.*;
 import play.data.validation.*;
 import javax.persistence.*;
-import java.math.*;
 
 import play.data.binding.*;
 import java.util.*;
- 
-@With(Secure.class) 
-public class InsuranceCompanies extends Application {
+
+@With(Secure.class)
+@CRUD.For(InsuranceCompany.class)
+public class InsuranceCompanies extends Application  {
+
   public static void index() {
     List<InsuranceCompany> pojistovny = InsuranceCompany.find("byModul", connected.modul).fetch();
     render(pojistovny);
   }
+
 
   public static void form(Long id) {
     if(id != null) {

@@ -1,23 +1,25 @@
 #{extends 'main.html' /}
-#{set title:'Pojišťovny' /}
+#{set title:'Lékaři' /}
 
 <p>
-  #{a @form()}Nová pojišťovna#{/a}
+  #{a @form()}Nový lékař#{/a}
 </p>
 
-#{if pojistovny}
+#{if lekari}
   <table class="display" id="example">
     <thead>
-      <th>Číslo</th>
-      <th>Název</th>
+      <th>IČZ</th>
+      <th>Jméno</th>
+      <th>Pracoviště</th>
       <th>&nbsp;</th>
     </thead>
     <tbody>
-    #{list pojistovny}
+    #{list lekari}
     <tr>
-      <td>${_.cislo} </td>
-      <td>${_.nazev} </td>
-      <td>#{a @form(_.id)}upravit#{/a} #{a @delete(_.id)}smazat#{/a} </td>
+      <td>${_.icz} </td>
+      <td>${_.jmeno} </td>
+      <td>${_.pracoviste} </td>
+      <td>#{a @form(_.id)}upravit#{/a} #{a @myDelete(_.id)}smazat#{/a} </td>
     </tr>
     #{/list}
     </tbody>
@@ -27,9 +29,7 @@
 $(document).ready(function() {
     oTable = $('#example').dataTable({
         "bJQueryUI": true,
-        "sPaginationType": "full_numbers",
-        "aaSorting": [[ 1, "asc" ]],
-        "bStateSave": true
+        "sPaginationType": "full_numbers"
     });
 } );
 </script>

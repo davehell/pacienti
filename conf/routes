@@ -23,6 +23,7 @@ POST  /biomaterial/pridat                           BioMaterials.save
 GET   /biomaterial/{id}/smazat                      BioMaterials.delete
 
 GET		/pojistovny													    InsuranceCompanies.index
+GET		/lekari   													    Doctors.index
 
 GET		/neprovedena-vysetreni								    Reports.neprovedena
 GET		/neizolovana-dna											    BioMaterials.neizolovana

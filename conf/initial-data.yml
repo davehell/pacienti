@@ -45,18 +45,20 @@ InsuranceCompany(111):
 
 Doctor(mudr1):
   icz: 012345678
-  titul: MUDr.
   jmeno: Jan
-  prijmeni: Rokycan
   pracoviste: Ostrava, poliklinika
   modul: ov
 
 Doctor(mudr2):
   icz: 6655332211
-  titul: MUDr.
   jmeno: Honza
-  prijmeni: Rokytný
   pracoviste: Praha, nemocnice
+  modul: ov
+
+Doctor(mudr3):
+  icz: 87533000
+  jmeno: MUDr. Marek Rozbroj
+  pracoviste: Havířov-Šumbark
   modul: ov
 
 Patient(pat1):

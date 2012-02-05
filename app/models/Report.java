@@ -32,6 +32,9 @@ public class Report extends Model {
     public User parafaVysetreni;
 
     @MaxSize(100)
+    public String parafaUvolneni;
+
+    @MaxSize(100)
     public String vedouciLekar;
 
     @MaxSize(500)

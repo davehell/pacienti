@@ -12,26 +12,23 @@ public class Doctor extends Model {
     public String icz;
         
     @Required
-    @MaxSize(10)
-    public String titul;
-     
-    @Required
-    @MaxSize(30)
+    @MaxSize(100)
     public String jmeno;
 
-    @Required
-    @MaxSize(30)
-    public String prijmeni;
-
-    @Required
-    @MaxSize(100)
+    @MaxSize(200)
     public String pracoviste;
 
-    @Required
+    //@Required
     @ManyToOne
     public AppModul modul;
 
     public String toString() {
-        return icz + " - " + titul + " " + jmeno + " " + prijmeni;
-    }      
+        return icz + " - " + jmeno;
+    }
+
+    public Doctor(String icz, String jmeno, String pracoviste) {
+        this.icz = icz;
+        this.jmeno = jmeno;
+        this.pracoviste = pracoviste;
+    }
 }

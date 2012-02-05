@@ -7,8 +7,10 @@
 
 
 #{if pacienti}
-  <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+  <table class="display" id="example">
     <thead>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
       <th>Evidenční číslo</th>
       <th>Jméno</th>
       <th>Rodné číslo</th>
@@ -18,10 +20,12 @@
 
     #{list pacienti}
     <tr>
+      <td>${_.evCislo} </td>
+      <td>${_.evRok} </td>
       <td>${_.getKod()} </td>
-      <td>#{a @detail(_.id)}${_.jmeno}#{/a}</td>
+      <td>${_.jmeno} </td>
       <td>${_.rodneCislo} </td>
-      <td>#{a @form(_.id)}upravit#{/a} #{a @delete(_.id)}smazat#{/a}</td>
+      <td>#{a @detail(_.id)}detail#{/a}</td>
     </tr>
     #{/list}
     </tbody>
@@ -31,10 +35,15 @@
 $(document).ready(function() {
     oTable = $('#example').dataTable({
         "bJQueryUI": true,
-        "sPaginationType": "full_numbers"
+        "sPaginationType": "full_numbers",
+        "aaSorting": [[ 1, "desc" ],[ 0, "desc" ]],
+        "aoColumnDefs": [
+            { "bVisible": false, "aTargets": [ 0, 1 ] },
+            { "bSearchable": false, "aTargets": [ 0, 1, 5 ] }
+        ]
     });
+
 } );
- 
 </script>
 
  #{/if}

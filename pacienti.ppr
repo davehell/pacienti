@@ -40,6 +40,9 @@ pacienti
 			app\models\Result.java
 			app\models\User.java
 		+views
+			+Doctors
+				app\views\Doctors\form.html
+				app\views\Doctors\index.html
 			+InsCompanies
 				app\views\InsuranceCompanies\form.html
 				app\views\InsuranceCompanies\index.html
@@ -50,7 +53,6 @@ pacienti
 				app\views\BioMaterials\neizolovana.html
 			+AppModuls
 				app\views\AppModuls\form.html
-				app\views\AppModuls\index.html
 			+Patients
 				app\views\Patients\detail.html
 				app\views\Patients\form.html
@@ -83,12 +85,40 @@ pacienti
 [Open project files]
 0=conf\routes
 1=app\views\main.html
+2=app\views\Doctors\index.html
+3=app\views\Patients\index.html
+4=conf\initial-data.yml
+5=app\Bootstrap.java
+6=app\models\Doctor.java
+7=app\controllers\Doctors.java
+8=conf\application.conf
 [Selected Project Files]
 Main=
-Selected=conf\routes
+Selected=conf\application.conf
 [conf\routes]
 TopLine=1
-Caret=52,25
+Caret=40,26
 [app\views\main.html]
-TopLine=26
+TopLine=1
 Caret=47,32
+[app\views\Doctors\index.html]
+TopLine=1
+Caret=10,35
+[app\views\Patients\index.html]
+TopLine=1
+Caret=1,30
+[conf\initial-data.yml]
+TopLine=27
+Caret=1,59
+[app\Bootstrap.java]
+TopLine=1
+Caret=9,14
+[app\models\Doctor.java]
+TopLine=1
+Caret=1,29
+[app\controllers\Doctors.java]
+TopLine=1
+Caret=37,23
+[conf\application.conf]
+TopLine=103
+Caret=14,121

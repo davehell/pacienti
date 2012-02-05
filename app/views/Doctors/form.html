@@ -1,0 +1,46 @@
+#{extends 'main.html' /}
+
+#{ifnot lekar?.id}
+    #{set title:'Nový lékař' /}
+#{/ifnot}
+#{else}
+    #{set title:'Lékař ' + lekar.toString() /}
+#{/else}
+
+#{ifErrors}
+    <p class="error">
+        oprav chyby
+    </p>
+#{/ifErrors}
+
+#{form @mySave(lekar?.id)}
+  #{field 'lekar.icz'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${lekar?.icz}" class="${field.errorClass}">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+  #{field 'lekar.jmeno'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${lekar?.jmeno}" class="${field.errorClass}">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+  #{field 'lekar.pracoviste'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${lekar?.pracoviste}" class="${field.errorClass}">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+    <p>
+        <input type="submit" value="Uložit" />
+    </p>
+
+#{/form}
+

@@ -14,7 +14,8 @@ pacient.pozn = poznámka
 pacient.verejnaPozn = veřejná poznámka
 
 zprava.datumVysetreni = datum vyšetření
-zprava.parafaVysetreni.id = parafa
+zprava.parafaVysetreni.id = analýzu provedl
+zprava.parafaUvolneni = analýzu uvolnil
 zprava.vedouciLekar = vedoucí lékař
 zprava.zavZprava = závěrečná zpráva
 zprava.pozitivni  = pozitivní

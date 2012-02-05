@@ -7,7 +7,6 @@ import play.mvc.*;
 import play.db.jpa.*;
 import play.data.validation.*;
 import javax.persistence.*;
-import java.math.*;
 
 import play.data.binding.*;
 import java.util.*;
@@ -29,8 +28,9 @@ public class Patients extends Application  {
   }
 
   public static void form(Long id) {
-    List<InsuranceCompany> pojistovny = InsuranceCompany.find("byModul", connected.modul).fetch();
-    List<Doctor> lekari = Doctor.find("byModul", connected.modul).fetch();
+    List<InsuranceCompany> pojistovny = InsuranceCompany.find("modul = ? order by cislo asc", connected.modul).fetch();
+    
+    List<Doctor> lekari = Doctor.find("modul = ? order by icz asc", connected.modul).fetch();
 
     if(id != null) {
       Patient pacient = Patient.findById(id);

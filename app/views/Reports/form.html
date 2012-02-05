@@ -91,6 +91,14 @@
 </p>
 #{/}
 
+#{field 'zprava.parafaUvolneni'}
+<p>
+  <label>&{field.name}</label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.parafaUvolneni}" class="${field.errorClass}">
+  <span class="error">${field.error}</span>
+</p>
+#{/}
+
 #{field 'zprava.vedouciLekar'}
 <p>
   <label>&{field.name}</label>
@@ -181,5 +189,11 @@
 
 #{/form}
 
-
+<script type="text/javascript">
+		$( "#zprava_datumVysetreni" ).datepicker({
+			showOn: "button",
+      buttonImage: "@{'/public/images/calendar.gif'}",
+			buttonImageOnly: true,
+      dateFormat: "dd.mm.yy"
+		});
 </script>

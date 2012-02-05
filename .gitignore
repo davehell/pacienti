@@ -5,3 +5,4 @@
 /test-result
 /logs
 server.pid
+*.log

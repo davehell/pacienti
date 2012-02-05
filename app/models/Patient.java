@@ -41,7 +41,7 @@ public class Patient extends Model {
 
     public String diagnoza;
 
-    public BigDecimal koncDna;
+    public String koncDna;
 
     @MaxSize(300)
     public String pozn;
@@ -55,8 +55,15 @@ public class Patient extends Model {
     @OneToMany(mappedBy="pacient", cascade=CascadeType.ALL)
     public List<Report> zpravy;
 
-    public Patient(String jmeno) {
+    public Patient(String evCislo, String evRok, String rodneCislo, String jmeno, String infSouhlas, String diagnoza, String koncDna, String pozn, String verejnaPozn) {
+        this.evCislo = new Integer(evCislo);
+        this.evRok = new Integer(evRok);
+        this.rodneCislo = rodneCislo;
         this.jmeno = jmeno;
+        this.infSouhlas = (infSouhlas == "PRAVDA") ? true : false;
+        this.koncDna = koncDna;
+        this.pozn = pozn;
+        this.verejnaPozn = verejnaPozn;
     }
 
 

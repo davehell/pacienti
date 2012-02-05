@@ -11,11 +11,6 @@ import java.util.*;
 @With(Secure.class)  
 public class AppModuls extends Application {
 
-  public static void index() {
-    List<AppModul> moduly = AppModul.findAll();
-    render(moduly);
-  }
-
   public static void form(Long id) {
     if(id != null) {
       AppModul modul = AppModul.findById(id);
