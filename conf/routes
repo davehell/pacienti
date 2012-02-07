@@ -3,9 +3,10 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+#GET     /                                       Application.index
+GET		/															    Patients.index
 
-GET		/pacienti															    Patients.index
+#GET		/pacienti															    Patients.index
 GET   /pacient/{id}/upravit                     Patients.form
 GET   /pacient/novy                             Patients.form
 POST  /pacient/{id}/ulozit                      Patients.mySave
@@ -15,7 +16,7 @@ GET   /pacient/{id}/smazat                      Patients.myDelete
 
 GET   /pacient/{pacientId}/biomaterial/{id}/upravit BioMaterials.form
 GET   /pacient/{pacientId}/biomaterial/novy         BioMaterials.form
-POST  /biomaterial/{id}/ulozit                      BioMaterials.mySave
+POST  /biomaterial/{bioMatId}/ulozit                      BioMaterials.mySave
 POST  /biomaterial/ulozit                           BioMaterials.mySave
 GET   /biomaterial/{id}/smazat                      BioMaterials.myDelete
 
@@ -39,7 +40,7 @@ GET		/neizolovana-dna											    BioMaterials.neizolovana
 
 
 # Ignore favicon requests
-#GET     /favicon.ico                            404
+GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public

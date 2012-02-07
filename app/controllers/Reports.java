@@ -8,14 +8,30 @@ import play.data.binding.*;
 import java.util.*;
 import static play.modules.pdf.PDF.*;
 
+import org.allcolor.yahp.converter.IHtmlToPdfTransformer;
+import org.allcolor.yahp.converter.IHtmlToPdfTransformer.PageSize;
+import org.allcolor.yahp.*;
+
 @With(Secure.class)
 public class Reports extends Application {
 
   public static void report(Long id) {
     Report zprava = Report.findById(id);
     notFoundIfNull(zprava);
-    render(zprava);
-    //renderPDF(zprava);
+    //render(zprava);
+
+      Options options = new Options();
+      options.FOOTER = "lkjdklsfkjhdkjhgkjhk";
+      options.filename = "pok.pdf";
+
+//ok IHtmlToPdfTransformer.PageSize pok2 = new IHtmlToPdfTransformer.PageSize(21.0, 29.7);
+//not ok options.pageSize = pok2;
+
+// int[] pok = IHtmlToPdfTransformer.A4P.getSize();
+// Logger.info(Integer.toString(pok[0]) + " " + Integer.toString(pok[1]) );
+
+    renderPDF(zprava, options);
+    //writePDF(zprava, options);
   }
 
   public static void form(Long id, Long pacientId) {

@@ -81,7 +81,7 @@
   #{select "${field.name}", value:"${zprava?.parafaVysetreni?.id}", id:"${field.name}"}
   	#{option }vyberte#{/option}
     #{list users}
-      #{option "${_.id}"}${_.name}#{/option}
+      #{option "${_.id}"}${_.jmeno}#{/option}
     #{/list}
   #{/select}
   <span class="error">#{error 'zprava.parafaVysetreni ' /}</span>

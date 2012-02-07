@@ -17,22 +17,23 @@ AppModul(ph):
 
 User(david):
     username:       davehell
-    passwordHash:   kjjksdnp
-    name:           David Hellebrand
+    passwordHash:   83ff63f5ff3518a2cba17bde7238d3087b5a964c
+    jmeno:          David Hellebrand
+    parafa:         DH
     modul:          ov
     isAdmin:        true
 
 User(bob):
   username: bob
   passwordHash: bob
-  name: Bobík
+  jmeno: Bobík
   modul: ov
   isAdmin: false
 
 User(alice):
   username: alice
   passwordHash: alice
-  name: Alice
+  jmeno: Alice
   modul: ov
 
 InsuranceCompany(207):
@@ -107,6 +108,7 @@ Examination(morbus):
   popis: Stanovení mutací v exonech 8, 14, 15 genu ATP7B - Morbus Wilson, SOP OV č. 10
   aktual: true
   certif: false
+  body: 105
   genotypy:
             - g1
             - g2

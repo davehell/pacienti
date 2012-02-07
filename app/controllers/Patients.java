@@ -11,6 +11,10 @@ import javax.persistence.*;
 import play.data.binding.*;
 import java.util.*;
  
+
+
+import play.libs.*;
+
 @With(Secure.class) 
 public class Patients extends Application  {
 
@@ -23,8 +27,8 @@ public class Patients extends Application  {
   public static void detail(Long id) {
     Patient pacient = Patient.findById(id);
     notFoundIfNull(pacient);
-
-    render(pacient);
+String pok = Codec.hexSHA1("kjjksdnp");
+    render(pacient, pok);
   }
 
   public static void form(Long id) {

@@ -3,7 +3,8 @@ background: #fff url(../images/header.png) repeat-x;
 padding: 0;
 margin: 0;
 color: #333;
-font: 90% Arial, Helvetica, sans-serif;
+/*font: 90% Arial, Helvetica, sans-serif;*/
+font: 90%  Calibri, sans-serif;
 }
 
 #header {

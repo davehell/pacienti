@@ -49,9 +49,9 @@
       <td>${_.typ} </td>
       <td>${_.datumOdberu?.format()} ${_.casOdberu?.format('HH:mm')} </td>
       <td>${_.datumPrijeti?.format()} ${_.casPrijeti?.format('HH:mm')} </td>
-      <td>${_.parafaPrijeti?.name} </td>
+      <td>${_.parafaPrijeti?.jmeno} </td>
       <td>${_.datumIzolace?.format()} </td>
-      <td>${_.parafaIzolace?.name} </td>
+      <td>${_.parafaIzolace?.jmeno} </td>
       <td>#{a @BioMaterials.form(_.id, _.pacient.id)}upravit#{/a} #{a @BioMaterials.myDelete(_.id)}smazat#{/a}</td>
     </tr>
     #{/list}
@@ -81,7 +81,7 @@
     <tr>
       <td>${_.vysetreni.nazev} </td>
       <td>${_.datumVysetreni?.format()} </td>
-      <td>${_.parafaVysetreni?.name} </td>
+      <td>${_.parafaVysetreni?.jmeno} </td>
       <td>#{a @Reports.report(_.id)}závěrečná zpráva#{/a} #{a @Reports.form(_.id, _.pacient.id)}upravit#{/a} #{a @Reports.myDelete(_.id)}smazat#{/a}</td>
     </tr>
     #{/list}

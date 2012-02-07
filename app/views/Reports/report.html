@@ -4,6 +4,11 @@
   <head>
     <title>Výsledková zpráva molekulárně genetického vyšetření</title>
     <meta charset="${_response_encoding}">
+    <style media="print">
+    
+     body {font-family: Arial,serif;}
+    
+    </style>
   </head>
   <body>
 <img src="@{'/public/images/lfg_logo.gif'}" width="73px" height="85px">
@@ -104,7 +109,7 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 <table>
   <tr>
     <td>Analýzu provedl:</td>
-    <td>${zprava.parafaVysetreni?.name} </td>
+    <td>${zprava.parafaVysetreni?.jmeno} </td>
   </tr>
   <tr>
     <td>Analýzu uvolnil:</td>

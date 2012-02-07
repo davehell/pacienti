@@ -21,6 +21,8 @@ public class AppModul extends Model {
     public String uvolnujiAnalyzu;
     @MaxSize(200)
     public String typyMaterialu;
+    @MaxSize(20)
+    public String formNeprovVys; //IF-71.0
     
     
 

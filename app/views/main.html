@@ -21,7 +21,7 @@
     <div id="header">
       <ul>
 <!--         <li><a href="@{Patients.detail(1)}">Index</a></li> -->
-        <li><a href="@{Secure.logout()}">Odhlášení</a> ${connected?.name} ${connected?.modul} </li>
+        <li><a href="@{Secure.logout()}">Odhlášení</a> ${connected?.jmeno} ${connected?.modul} </li>
       </ul>
     </div>
     
@@ -34,7 +34,7 @@
        <li><a href="@{BioMaterials.neizolovana()}">Neizolovaná DNA</a></li>
        
       </ul>
-<!--
+
       <ul>
        #{secure.check 'admin'}
         <li><a href="@{Patients.list()}">Pacienti</a></li>
@@ -49,7 +49,7 @@
         <li><a href="@{AppModuls.list()}">Moduly</a></li>
        #{/secure.check}
       </ul>
--->
+
     </div>
 
     <div id="container">
