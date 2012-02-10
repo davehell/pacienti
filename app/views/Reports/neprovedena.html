@@ -38,15 +38,58 @@
     </thead>
     <tbody>
 
+%{
+  vysId = 0;
+  vysSum = 0;
+  sum = 0;
+  i = 0;
+}%
+ 
     #{list vysetreni}
+%{
+  i++;
+  if(i > 1 && _.vysetreni.id != vysId ) {
+}%
     <tr>
-      <td>${_.vysetreni.nazev} </td>
-      <td>${_.pacient.getKod()} </td>
-      <td>${_.pacient.jmeno} </td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td></td>
+      <td>sum </td>
+    </tr>
+%{
+ }
+}%
+    <tr>
+      <td>#{if _.vysetreni.id != vysId}${_.vysetreni.nazev}#{/if} </td>
+      <td>${_.vysetreni.id} </td>
+      <td>${vysId} </td>
       <td>${_.pacient.koncDna} </td>
       <td>${_.vysetreni.body} </td>
     </tr>
+
+#{if _isLast}
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td></td>
+      <td>sum </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td></td>
+      <td>uplne sum </td>
+    </tr>
+#{/if}
+%{
+vysId = (int)_.vysetreni.id;
+}%
+
     #{/list}
+
     </tbody>
   </table>
 

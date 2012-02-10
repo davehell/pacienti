@@ -38,7 +38,7 @@
     #{select "${field.name}", value:"${zprava?.bioMaterial?.id}", id:"${field.name}"}
     	#{option "0"}vyberte#{/option}
       #{list bioMaterialy}
-        #{option "${_.id}"}${_.datumOdberu.format()} - ${_.typ}#{/option}
+        #{option "${_.id}"}${_.datumOdberu?.format()} - ${_.typ}#{/option}
       #{/list}
     #{/select}
     <span class="error">#{error 'zprava.bioMaterial.id' /}</span>

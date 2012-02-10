@@ -103,49 +103,6 @@ BioMaterial(vlas):
   datumPrijeti: 2012-02-06 09:33:00.0
   parafaPrijeti: david
 
-Examination(morbus):
-  nazev: Morbus Wilson
-  popis: Stanovení mutací v exonech 8, 14, 15 genu ATP7B - Morbus Wilson, SOP OV č. 10
-  aktual: true
-  certif: false
-  body: 105
-  genotypy:
-            - g1
-            - g2
-            - g3
-
-Genotype(g1):
-  nazev: ATP7B (kódující sekvence exonu 8)
-  vysetreni: morbus
-
-Genotype(g2):
-  nazev: ATP7B (kódující sekvence exonu 14)
-  vysetreni: morbus
-
-Genotype(g3):
-  nazev: ATP7B (kódující sekvence exonu 15)
-  vysetreni: morbus
-
-Report(zprava1):
-  pacient: pat1
-  bioMaterial: krev
-  vysetreni: morbus
-  datumVysetreni: 2012-02-06 09:33:00.0
-  parafaVysetreni: david
-  vysledky:
-            - v1
-            - v2
-
-Result(v1):
-  zavZprava: zprava1
-  genotyp: g1
-  vysledek: jojo
-
-Result(v2):
-  zavZprava: zprava1
-  genotyp: g2
-  vysledek: nene
-
 InsuranceCompany(201): 
   cislo: 201
   nazev: Vojenská zdravotní pojišťovna
@@ -190,3 +147,130 @@ InsuranceCompany(400):
   cislo: 400
   nazev: Samoplátce
   modul:  ov
+
+
+Examination(e1):
+  nazev: Predispozice k žilním trombózám I
+  popis:
+  aktual: true
+  certif: false
+  body: 7205
+
+Examination(e2):
+  nazev: Predispozice k žilním trombózám II
+  popis:
+  aktual: true
+  certif: false
+  body: 11193
+
+Examination(e3):
+  nazev: Predispozice k žilním trombózám III
+  popis:
+  aktual: true
+  certif: false
+  body: 12190
+
+Examination(e4):
+  nazev: Cystická fibróza
+  popis:
+  aktual: true
+  certif: false
+  body: 21138
+
+Examination(e5):
+  nazev: Gilbertův syndrom.
+  popis:
+  aktual: true
+  certif: false
+  body: 6523
+
+Examination(e6):
+  nazev: Laktózová intolerance
+  popis:
+  aktual: true
+  certif: false
+  body: 4214
+
+Examination(e7):
+  nazev: Prelinguální hluchota
+  popis:
+  aktual: true
+  certif: false
+  body: 1170
+
+Examination(e8):
+  nazev: Wilsonova choroba
+  popis: Stanovení mutací v exonech 8, 14, 15 genu ATP7B - Morbus Wilson, SOP OV č. 10
+  aktual: true
+  certif: false
+  body: 11170
+  genotypy:
+            - g1
+            - g2
+            - g3
+
+Genotype(g1):
+  nazev: ATP7B (kódující sekvence exonu 8)
+  vysetreni: e8
+
+Genotype(g2):
+  nazev: ATP7B (kódující sekvence exonu 14)
+  vysetreni: e8
+
+Genotype(g3):
+  nazev: ATP7B (kódující sekvence exonu 15)
+  vysetreni: e8
+
+Examination(e9):
+  nazev: Celiakální sprue
+  popis:
+  aktual: true
+  certif: false
+  body: 6070
+
+Examination(e10):
+  nazev: Delece v AZF genu
+  popis:
+  aktual: true
+  certif: false
+  body: 12243
+
+Examination(e11):
+  nazev: Bechtěrevova choroba-HLA B27
+  popis:
+  aktual: true
+  certif: false
+  body: 4076
+
+Examination(e12):
+  nazev: Crohnova choroba
+  popis:
+  aktual: true
+  certif: false
+  body: 7205
+
+Report(zprava1):
+  pacient: pat1
+  bioMaterial: krev
+  vysetreni: e8
+  datumVysetreni: 2012-02-06 09:33:00.0
+  parafaVysetreni: david
+  vysledky:
+            - v1
+            - v2
+            - v3
+
+Result(v1):
+  zavZprava: zprava1
+  genotyp: g1
+  vysledek: +/+
+
+Result(v2):
+  zavZprava: zprava1
+  genotyp: g2
+  vysledek: -/-
+
+Result(v3):
+  zavZprava: zprava1
+  genotyp: g3
+  vysledek: +/-

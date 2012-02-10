@@ -65,7 +65,31 @@ public class Report extends Model {
 
 
     public static List<Report> getNeprovedena(Date datumOd, Date datumDo) {
-        List<Report> result = Report.find("bioMaterial.datumPrijeti >= ? and datumVysetreni is null", datumOd).fetch();
+
+        //List<Report> result = Report.find("bioMaterial.datumPrijeti >= ? and datumVysetreni is null", datumOd).fetch();
+        //List<Report> result = Report.findAll();
+        List<Report> result = Report.find("datumVysetreni is null order by vysetreni.id asc, pacient.evCislo asc").fetch();
+/*
+Query q = JPA.em().createQuery ("UPDATE Doctor d SET d.jmeno = :jmeno ");
+q.setParameter ("jmeno", "pok");
+Integer updated = q.executeUpdate ();
+Logger.info(updated.toString());
+*/
+//Query q = JPA.em().createQuery ("select r, sum(r.vysetreni.body) from Report r group by r.id order by r.vysetreni.nazev ");
+//List<Report> results = (List<Report>) q.getResultList ();
+/*
+    List<Report> result = Report.find(
+        "select new map(sum(r.vysetreni.body) as body, r.vysetreni.nazev as vyset) from Report r group by r.vysetreni.id having (select r2.pacient from Report r2)"
+    ).fetch();
+*/
+/*
+SELECT tbPacienti.jmeno, tbTypyVysetreni.nazev, tbTypyVysetreni.body
+FROM
+WHERE (((tbBioMaterialy.datum_prijeti)>[datum_prijeti_od] And (tbBioMaterialy.datum_prijeti)<[datum_prijeti_do]))
+GROUP BY tbPacienti.jmeno, tbTypyVysetreni.nazev, tbTypyVysetreni.body
+HAVING (((tbPacienti.rok)>=2010) AND ((tbVysetreni.datum_vysetreni) Is Null))
+ORDER BY tbPacienti.rok DESC , tbPacienti.evidencni_cislo DESC;
+*/
         return result;
     }
 }

@@ -72,7 +72,7 @@
   #{select "${field.name}", value:"${bioMaterial?.parafaPrijeti?.id}", id:"${field.name}"}
   	#{option }vyberte#{/option}
     #{list users}
-      #{option "${_.id}"}${_.name}#{/option}
+      #{option "${_.id}"}${_.parafa}#{/option}
     #{/list}
   #{/select}
   <span class="error">#{error 'bioMaterial.parafaPrijeti' /}</span>
@@ -94,7 +94,7 @@
   #{select "${field.name}", value:"${bioMaterial?.parafaIzolace?.id}", id:"${field.name}"}
   	#{option }vyberte#{/option}
     #{list users}
-      #{option "${_.id}"}${_.name}#{/option}
+      #{option "${_.id}"}${_.parafa}#{/option}
     #{/list}
   #{/select}
   <span class="error">#{error 'bioMaterial.parafaIzolace' /}</span>
