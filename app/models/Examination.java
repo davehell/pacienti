@@ -13,7 +13,8 @@ public class Examination extends Model {
     @MaxSize(100)
     public String nazev;
 
-    @MaxSize(300)
+    //@MaxSize(300)
+    @Lob
     public String popis;
 
     public int body;
@@ -21,6 +22,8 @@ public class Examination extends Model {
     public boolean aktual;
 
     public boolean certif;
+
+    public int sloupce;
 
      @OneToMany(mappedBy="vysetreni", cascade=CascadeType.ALL)
      public List<Genotype> genotypy;

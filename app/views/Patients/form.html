@@ -97,7 +97,7 @@
 #{field 'pacient.pozn'}
 <p>
   <label>&{field.name}</label>
-  <textarea id="${field.id}" name="${field.name}" value="${pacient?.pozn}" class="${field.errorClass}"></textarea>
+  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${pacient?.pozn} </textarea>
   <span class="error">${field.error}</span>
 </p>
 #{/}
@@ -105,7 +105,7 @@
 #{field 'pacient.verejnaPozn'}
 <p>
   <label>&{field.name}</label>
-  <textarea id="${field.id}" name="${field.name}" value="${pacient?.verejnaPozn}" class="${field.errorClass}"></textarea>
+  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${pacient?.verejnaPozn} </textarea>
   <span class="error">${field.error}</span>
 </p>
 #{/}

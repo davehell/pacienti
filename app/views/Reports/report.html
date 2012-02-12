@@ -5,41 +5,56 @@
     <title>Výsledková zpráva molekulárně genetického vyšetření</title>
     <meta charset="${_response_encoding}">
     <style>
-    
-     body {font-family: "Times New Roman", Arial, ;}
-    
+      body {font-family: "Times New Roman"; font-size: 12pt;}
+      #page {width: 17cm;}
+      #logo {width: 75px; height: 85px; position: absolute; top: 0; left: 0;}
+      #certif{width: 40px; height: 40px; position: absolute; top: 2cm; right: 0;}
+      #head-center { text-align: center; width: 100%;}
+      #head-center p {margin: 0;}
+      h1,h2 {font-size: 14pt; text-align: center;}
+      h3 {}
+      .tab { font-style: italic; width: 100%;}
+      td.gtyp { text-align: center; font-weight: bold;}
+      .noItal {font-style: normal;}
     </style>
   </head>
   <body>
-<img src="@{'/public/images/lfg_logo.gif'}" width="73px" height="85px">
 
-<p style="font-weight: bold; font-style: italic;">
-Laboratoř forenzní genetiky, spol. s r. o.
-IČO: 255 30 038
-IČZ: 72 862 000
-</p>
-<p style="font-style: italic;">
- Adresa: Ústav soudního lékařství, Tvrdého 2a, 662 99 Brno
-Tel.: 543 426 511
-</p>
-<p style="font-weight: bold; text-decoration: underline;">
-www.lfg-brno.cz
-</p>
+<div id="page">
+<div id="logo">
+  <img src="@{'/public/images/lfg_logo.gif'}" width="73px" height="85px">
+</div>
 
-#{if zprava.vysetreni.certif}
-<img src="@{'/public/images/cert_m8141.gif'}" width="40px" height="38px">
-#{/if}
 
-<hr>
+<div id="head-center">
+  <p style="font-weight: bold; font-style: italic; ">
+  Laboratoř forenzní genetiky, spol. s r. o.<br>
+  IČO: 255 30 038<br>
+  IČZ: 72 862 000
+  </p>
+  <p style="font-style: italic; font-size: 10pt;">
+    Adresa: Ústav soudního lékařství, Tvrdého 2a, 662 99 Brno<br>
+    Tel.: 543 426 511<br>
+    <span style="font-weight: bold; text-decoration: none;">www.lfg-brno.cz</span>
+  </p>
+</div>
+
+*{#{if zprava.vysetreni.certif} }*
+<div id="certif">
+  <img src="@{'/public/images/cert_m8141.gif'}" width="40px" height="38px">
+</div>
+*{#{/if} }*
+
+<hr style="clear: both;">
 
 <h1>Výsledková zpráva molekulárně genetického vyšetření</h1>
 
-<p>
+<p style="text-align: center; ">
 Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 <em>Opavská 39, 708 00 Ostrava – Poruba, tel.: +420 596 973 356</em>
 </p>
 
-<table style="width: 100%;">
+<table class="tab">
   <tr>
     <td>Primární vzorek:</td>
     <td>Datum odběru:</td>
@@ -58,7 +73,7 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 
 <h2>${zprava.vysetreni.popis} </h2>
 
-<table style="width: 100%;">
+<table class="tab">
   <tr>
     <td>Jméno a příjmení:</td>
     <td>${zprava.pacient.jmeno} </td>
@@ -69,7 +84,7 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
     <td>Rodné číslo:</td>
     <td>${zprava.pacient.rodneCislo} </td>
     <td>Číslo dokladu:</td>
-    <td>&nbsp;</td>
+    <td>${zprava.pacient.getCDokladu()} </td>
   </tr>
   <tr>
     <td>Pojišťovna:</td>
@@ -95,41 +110,45 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 <table>
   #{list zprava.vysledky}
   <tr>
-    <td>${_.genotyp.nazev} </td>
+    <td class="gtyp">${_.genotyp.nazev} </td>
     <td>${_.vysledek} </td>
   </tr>
   #{/list}
 </table>
+<p style="font-size: 10pt;">
+ Vysvětlivky: <strong>wt</strong> – &bdquo;wild type&rdquo; = &bdquo;ne-mutantní&rdquo; alela, <strong>mut</strong>. – &bdquo;mutantní&rdquo; alela
+</p>
 
 <h3>Závěr:</h3>
 <p>
  ${zprava.zavZprava}
 </p>
 
-<table>
+
+<table class="tab">
   <tr>
     <td>Analýzu provedl:</td>
-    <td>${zprava.parafaVysetreni?.jmeno} </td>
+    <td><span class="noItal">${zprava.parafaVysetreni?.jmeno} </span></td>
   </tr>
   <tr>
     <td>Analýzu uvolnil:</td>
-    <td>${zprava.parafaUvolneni} </td>
+    <td><span class="noItal">${zprava.parafaUvolneni} </span></td>
   </tr>
   <tr>
     <td>Vedoucí lékař:</td>
-    <td>${zprava.vedouciLekar} </td>
+    <td class="noItal">${zprava.vedouciLekar} </td>
   </tr>
   <tr>
     <td>Datum a čas</td>
-    <td>${new Date().format('dd.MM.yyyy HH:mm')} </td>
+    <td class="noItal">${new Date().format('dd.MM.yyyy HH:mm')} </td>
   </tr>
 #{if zprava.vysetreni.certif}
   <tr>
     <td>Vysvětlivky:</td>
-    <td>* na výsledkové zprávě označuje akreditované vyšetření</td>
+    <td><strong>* na výsledkové zprávě označuje akreditované vyšetření</strong></td>
   </tr>
 #{/if}
 </table>
-
+</div> <!-- page -->
   </body>
 </html>

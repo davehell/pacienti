@@ -37,7 +37,7 @@ public class Report extends Model {
     @MaxSize(100)
     public String vedouciLekar;
 
-    @MaxSize(500)
+    @Lob
     public String zavZprava;
 
     public boolean pozitivni;

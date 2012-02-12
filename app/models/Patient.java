@@ -67,6 +67,11 @@ public class Patient extends Model {
     }
 
 
+    public String getCDokladu() {
+        if(modul.cDokladu == null || evCislo == null || evRok == null) return "";
+        return modul.cDokladu + (evRok.toString().length() > 2 ? evRok.toString().substring(2) : evRok.toString()) + String.format("%4s", evCislo.toString()).replace(' ', '0');
+    }
+
     public String getKod() {
         if(evCislo == null || evRok == null) return "";
         return modul.kod + ' ' + String.format("%3s", evCislo.toString()).replace(' ', '0')   + '/' + (evRok.toString().length() > 2 ? evRok.toString().substring(2) : evRok.toString());

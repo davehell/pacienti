@@ -22,9 +22,10 @@ public class AppModul extends Model {
     @MaxSize(200)
     public String typyMaterialu;
     @MaxSize(20)
-    public String formNeprovVys; //IF-71.0
-    
-    
+    public String formNeprovVys;
+    @MaxSize(5)
+    public String cDokladu;
+
 
     public AppModul(String nazev) {
         this.nazev = nazev;

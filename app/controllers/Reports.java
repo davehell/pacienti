@@ -18,11 +18,11 @@ public class Reports extends Application {
   public static void report(Long id) {
     Report zprava = Report.findById(id);
     notFoundIfNull(zprava);
-    //render(zprava);
+    render(zprava);
 
       Options options = new Options();
-      options.FOOTER = "lkjdklsfkjhdkjhgkjhk";
-      options.filename = "pok.pdf";
+      //options.FOOTER = "lkjdklsfkjhdkjhgkjhk";
+      //options.filename = "pok.pdf";
 
 //ok IHtmlToPdfTransformer.PageSize pok2 = new IHtmlToPdfTransformer.PageSize(21.0, 29.7);
 //not ok options.pageSize = pok2;
@@ -85,15 +85,18 @@ public class Reports extends Application {
     } else {
       Report newZprava = Report.findById(zpravaId);
 
-    	for (int i = 0; i < vysledky.size(); i++) {
-        if(vysledky.get(i) == null) continue;
-        Result vysl = Result.findById(vysledky.get(i).id);
-        vysl.vysledek = vysledky.get(i).vysledek;
-        vysl.save();
-    	}
+      if(vysledky != null) {
+      	for (int i = 0; i < vysledky.size(); i++) {
+          if(vysledky.get(i) == null) continue;
+          Result vysl = Result.findById(vysledky.get(i).id);
+          vysl.vysledek = vysledky.get(i).vysledek;
+          vysl.save();
+      	}
+      }
 
       newZprava.datumVysetreni = zprava.datumVysetreni;
       newZprava.parafaVysetreni = zprava.parafaVysetreni;
+      newZprava.parafaUvolneni = zprava.parafaUvolneni;
       newZprava.vedouciLekar = zprava.vedouciLekar;
       newZprava.zavZprava = zprava.zavZprava;
       newZprava.pozitivni = zprava.pozitivni;
