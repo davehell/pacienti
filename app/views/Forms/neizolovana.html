@@ -1,5 +1,16 @@
-#{extends 'main.html' /}
-#{set title:'Neizolovaná DNA' /}
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Neizolovaná DNA</title>
+    <meta charset="${_response_encoding}">
+    <style media="print">
+     body {font-family: Arial,serif;}
+    </style>
+  </head>
+  <body>
+
+<h1>Neizolovaná DNA</h1>
 
 #{if bioMaterialy}
   <table>
@@ -23,3 +34,6 @@
         There is currently nothing to read here.
     </div>
 #{/else}
+
+  </body>
+</html>

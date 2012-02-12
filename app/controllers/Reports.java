@@ -22,7 +22,7 @@ public class Reports extends Application {
 
       Options options = new Options();
       options.FOOTER = "lkjdklsfkjhdkjhgkjhk";
-      options.filename = "pok.pdf";
+      //options.filename = "pok.pdf";
 
 //ok IHtmlToPdfTransformer.PageSize pok2 = new IHtmlToPdfTransformer.PageSize(21.0, 29.7);
 //not ok options.pageSize = pok2;
@@ -135,7 +135,8 @@ public class Reports extends Application {
       if(datumDo == null) datumDo = new Date();
     
       List<Report> vysetreni = Report.getNeprovedena(datumOd, datumDo);
+      AppModul modul = connected.modul;
 
-      render(vysetreni, datumOd, datumDo);
+      render(vysetreni, datumOd, datumDo, modul);
   }
 }

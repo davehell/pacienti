@@ -72,6 +72,11 @@ public class Patient extends Model {
         return modul.kod + ' ' + String.format("%3s", evCislo.toString()).replace(' ', '0')   + '/' + (evRok.toString().length() > 2 ? evRok.toString().substring(2) : evRok.toString());
     }
 
+    public String getKonc() {
+        if(koncDna == null) return "";
+        return koncDna + " ng/&micro;l";
+    }
+
     public String toString() {
         return jmeno;
     }

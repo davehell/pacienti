@@ -1,0 +1,42 @@
+#{extends 'main.html' /}
+
+#{if typ == "neprovedena-vysetreni"}
+  #{set title:'Neprovedená vyšetření' /}
+#{/if}
+#{elseif typ == "pocty-vzorku"}
+  #{set title:'Počty vzorků od lékaře' /}
+#{/elseif}
+#{elseif typ == "neizolovana-dna"}
+  #{set title:'Neizolovaná DNA' /}
+#{/elseif}
+#{else}
+#{/else}
+
+<style type="text/css">
+  .totalSum {border-top: 1px solid black;}
+  .totalSum, .sum {text-align: right; padding-right: 1em;}
+</style>
+
+
+#{form @index(typ)}
+
+  #{field 'datumOd'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${datumOd.format('dd.MM.yyyy')}" class="${field.errorClass}">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+  #{field 'datumDo'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${datumDo.format('dd.MM.yyyy')}" class="${field.errorClass}">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+    <p>
+        <input type="submit" value="Zobrazit" />
+    </p>
+#{/form}

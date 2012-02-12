@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Počty vzorků od lékaře </title>
+    <meta charset="${_response_encoding}">
+    <style media="print">
+     body {font-family: Arial,serif;}
+    </style>
+  </head>
+  <body>
+
+<h1>Počty vzorků od lékaře</h1>
+<p>
+ Období: ${datumOd.format()} - ${datumDo.format()}
+</p>
+
+#{if lekari}
+  <table>
+    <thead>
+      <th>Počet vzorků</th>
+      <th>IČZ</th>
+      <th>Lékař</th>
+      <th>Pracoviště</th>
+    </thead>
+    <tbody>
+    #{list lekari}
+    <tr>
+      <td>${_.pocet} </td>
+      <td>${_.lekar.icz} </td>
+      <td>${_.lekar.jmeno} </td>
+      <td>${_.lekar.pracoviste} </td>
+    </tr>
+    #{/list}
+    </tbody>
+  </table>
+#{/if}
+#{else}
+    <div class="empty">
+        There is currently nothing to read here.
+    </div>
+#{/else}
+
+  </body>
+</html>

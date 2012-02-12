@@ -74,9 +74,5 @@ public class BioMaterials extends Application {
       Patients.detail(pacient.id);
   }
 
-  public static void neizolovana() {
-      List<BioMaterial> bioMaterialy = BioMaterial.getNeizolovana();
 
-      render(bioMaterialy);
-  }
 }

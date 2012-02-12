@@ -1,37 +1,21 @@
-#{extends 'main.html' /}
-#{set title:'Neprovedená vyšetření' /}
+<!DOCTYPE html>
 
+<html>
+  <head>
+    <title>Neprovedená vyšetření</title>
+    <meta charset="${_response_encoding}">
+    <style media="print">
+     body {font-family: Arial,serif;}
+     .totalSum {border-top: 1px solid black;}
+     .totalSum, .sum {text-align: right; padding-right: 1em;}
+    </style>
+  </head>
+  <body>
 
-<style type="text/css">
-.totalSum {border-top: 1px solid black;}
-.totalSum, .sum {text-align: right; padding-right: 1em;}
-</style>
-
-#{form @neprovedena()}
+<h1>Neprovedená vyšetření</h1>
 <p>
- 
+ Období: ${datumOd.format()} - ${datumDo.format()}
 </p>
-  #{field 'datumOd'}
-  <p>
-    <label>&{field.name}</label>
-    <input type="text" id="${field.id}" name="${field.name}" value="${datumOd.format('dd.MM.yyyy')}" class="${field.errorClass}">
-    <span class="error">${field.error}</span>
-  </p>
-  #{/}
-
-  #{field 'datumDo'}
-  <p>
-    <label>&{field.name}</label>
-    <input type="text" id="${field.id}" name="${field.name}" value="${datumDo.format('dd.MM.yyyy')}" class="${field.errorClass}">
-    <span class="error">${field.error}</span>
-  </p>
-  #{/}
-
-    <p>
-        <input type="submit" value="Zobrazit" />
-    </p>
-#{/form}
-
 
 #{if vysetreni}
   <table>
@@ -50,7 +34,7 @@
   sum = 0;
   i = 0;
 }%
- 
+
     #{list vysetreni}
 %{
   i++;
@@ -111,3 +95,6 @@ vysId = (int)_.vysetreni.id;
         There is currently nothing to read here.
     </div>
 #{/else}
+
+  </body>
+</html>

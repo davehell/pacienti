@@ -30,8 +30,10 @@ GET   /vysetreni/{id}/zaverecna-zprava            Reports.report
 GET		/pojistovny													    InsuranceCompanies.index
 GET		/lekari   													    Doctors.index
 
-GET		/neprovedena-vysetreni								    Reports.neprovedena
-GET		/neizolovana-dna											    BioMaterials.neizolovana
+GET		/sestavy/neizolovana-dna											    Forms.neizolovana
+GET		/sestavy/{typ}								       Forms.index
+
+
 
 *       /admin                                  module:crud
 
