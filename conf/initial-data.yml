@@ -2,7 +2,7 @@
 # and then load them using Fixtures.load("data.yml")
 
 AppModul(ov):
-    nazev:          Ostrava
+    nazev: Ostrava
     kod: KO
     vedouciLekari: MUDr. Ditta Leznarová,MUDr. Jana Zvolská
     uvolnujiAnalyzu: RNDr. Hana Kolaříková,MUDr. Jana Zvolská
@@ -173,24 +173,227 @@ Examination(e3):
 
 Examination(e4):
   nazev: Cystická fibróza
-  popis:
+  popis: Stanovení mutací v CFTR genu (36 mutací + Tn) SOP OV č. 2 *
   aktual: true
-  certif: false
+  certif: true
   body: 21138
+  genotypy:
+            - g9
+            - g10
+            - g10
+            - g12
+            - g13
+            - g14
+            - g15
+            - g16
+            - g17
+            - g18
+            - g19
+            - g20
+            - g21
+            - g22
+            - g23
+            - g24
+            - g25
+            - g26
+            - g27
+            - g28
+            - g29
+            - g30
+            - g31
+            - g32
+            - g33
+            - g34
+            - g35
+            - g36
+            - g37
+            - g38
+            - g39
+            - g40
+            - g41
+            - g42
+            - g43
+            - g44
+
+Genotype(g9):
+  nazev: F508del
+  vysetreni: e4
+
+Genotype(g10):
+  nazev: S1251N
+  vysetreni: e4
+
+Genotype(g11):
+  nazev: G85E
+  vysetreni: e4
+
+Genotype(g12):
+  nazev: 3659delC
+  vysetreni: e4
+
+Genotype(g13):
+  nazev: I507del
+  vysetreni: e4
+
+Genotype(g14):
+  nazev: 3905insT
+  vysetreni: e4
+
+Genotype(g15):
+  nazev: 621+1G->T
+  vysetreni: e4
+
+Genotype(g16):
+  nazev: 3849+10kbC->T
+  vysetreni: e4
+
+Genotype(g16):
+  nazev: G542X
+  vysetreni: e4
+
+Genotype(g17):
+  nazev: CFTRdele2,3 (21 kb)
+  vysetreni: e4
+
+Genotype(g18):
+  nazev: R117H
+  vysetreni: e4
+
+Genotype(g19):
+  nazev: 2143delT
+  vysetreni: e4
+
+Genotype(g20):
+  nazev: 1717-1G->A
+  vysetreni: e4
+
+Genotype(g21):
+  nazev: 711+1G->T
+  vysetreni: e4
+
+Genotype(g22):
+  nazev: 1078delT
+  vysetreni: e4
+
+Genotype(g23):
+  nazev: A455E
+  vysetreni: e4
+
+Genotype(g24):
+  nazev: G551D
+  vysetreni: e4
+
+Genotype(g25):
+  nazev: 3272-26A->G
+  vysetreni: e4
+
+Genotype(g26):
+  nazev: R347P
+  vysetreni: e4
+
+Genotype(g27):
+  nazev: 2183AA->G
+  vysetreni: e4
+
+Genotype(g28):
+  nazev: R553X
+  vysetreni: e4
+
+Genotype(g29):
+  nazev: 1898+1G->A
+  vysetreni: e4
+
+Genotype(g30):
+  nazev: R334W
+  vysetreni: e4
+
+Genotype(g31):
+  nazev: 2184delA
+  vysetreni: e4
+
+Genotype(g32):
+  nazev: R560T
+  vysetreni: e4
+
+Genotype(g33):
+  nazev: I148T
+  vysetreni: e4
+
+Genotype(g34):
+  nazev: E60X
+  vysetreni: e4
+
+Genotype(g35):
+  nazev: Tn
+  vysetreni: e4
+
+Genotype(g36):
+  nazev: N1303K
+  vysetreni: e4
+
+Genotype(g37):
+  nazev: 3199del6
+  vysetreni: e4
+
+Genotype(g38):
+  nazev: 711+5G->A
+  vysetreni: e4
+
+Genotype(g39):
+  nazev: Q552X
+  vysetreni: e4
+
+Genotype(g40):
+  nazev: 3120+1G->A
+  vysetreni: e4
+
+Genotype(g41):
+  nazev: 2789+5G->A
+  vysetreni: e4
+
+Genotype(g42):
+  nazev: W1282X
+  vysetreni: e4
+
+Genotype(g43):
+  nazev: 394delTT
+  vysetreni: e4
+
+Genotype(g44):
+  nazev: R1162X
+  vysetreni: e4
+
 
 Examination(e5):
   nazev: Gilbertův syndrom.
-  popis:
+  popis: GILBERTŮV SYNDROM – stanovení inzerce A(TA)7 TAA  v promotoru genu UGT1A1 metodou PCR, SOP OV č. 8
   aktual: true
   certif: false
   body: 6523
+  genotypy:
+            - g48
+
+Genotype(g48):
+  nazev: Inzerce  TA repetitivní sekvence (7TA)
+  vysetreni: e5
 
 Examination(e6):
   nazev: Laktózová intolerance
-  popis:
+  popis: Stanovení  laktózové  intolerance – mutací -13910T/C a -22018A/G v genu LCT, SOP OV č.7
   aktual: true
   certif: false
   body: 4214
+  genotypy:
+            - g7
+            - g8
+
+Genotype(g7):
+  nazev: -13910T/C
+  vysetreni: e6
+
+Genotype(g8):
+  nazev: -22018A/G
+  vysetreni: e6
 
 Examination(e7):
   nazev: Prelinguální hluchota
@@ -224,17 +427,49 @@ Genotype(g3):
 
 Examination(e9):
   nazev: Celiakální sprue
-  popis:
+  popis: Stanovení vybraných alel HLA II. třídy asociovaných s rozvojem celiakální sprue, SOP OV č. 3 *
   aktual: true
-  certif: false
+  certif: true
   body: 6070
+  genotypy:
+            - g4
+            - g5
+            - g6
+
+Genotype(g4):
+  nazev: HLA typ DQ 2 (DQA1*05 / DQB1*02)
+  vysetreni: e9
+
+Genotype(g5):
+  nazev: HLA typ DQ 8 (DQA1*03 / DQB1*03)
+  vysetreni: e9
+
+Genotype(g6):
+  nazev: DRB1*04
+  vysetreni: e9
 
 Examination(e10):
   nazev: Delece v AZF genu
-  popis:
+  popis: Stanovení mikrodelece ve faktoru AZF a/b/c lokalizovaném na Y chromozomu, SOP OV č. 4 *
   aktual: true
-  certif: false
+  certif: true
   body: 12243
+  genotypy:
+            - g45
+            - g46
+            - g47
+Genotype(g45):
+  nazev: AZFa: sY84 / sY86
+  vysetreni: e10
+
+Genotype(g46):
+  nazev: AZFb: sY127 / sY134
+  vysetreni: e10
+
+Genotype(g47):
+  nazev: AZFc: sY254 / sY255
+  vysetreni: e10
+
 
 Examination(e11):
   nazev: Bechtěrevova choroba-HLA B27

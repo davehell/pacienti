@@ -22,7 +22,7 @@ public class Reports extends Application {
 
       Options options = new Options();
       options.FOOTER = "lkjdklsfkjhdkjhgkjhk";
-      //options.filename = "pok.pdf";
+      options.filename = "pok.pdf";
 
 //ok IHtmlToPdfTransformer.PageSize pok2 = new IHtmlToPdfTransformer.PageSize(21.0, 29.7);
 //not ok options.pageSize = pok2;
