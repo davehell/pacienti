@@ -19,24 +19,40 @@
 
 
 #{form @index(typ)}
-
+<fieldset>
+  <legend>Období</legend>
   #{field 'datumOd'}
   <p>
-    <label>&{field.name}</label>
+    <label>&{field.name} </label><br>
     <input type="text" id="${field.id}" name="${field.name}" value="${datumOd.format('dd.MM.yyyy')}" class="${field.errorClass}">
-    <span class="error">${field.error}</span>
+    <span class="error">${field.error} </span>
   </p>
   #{/}
 
   #{field 'datumDo'}
   <p>
-    <label>&{field.name}</label>
+    <label>&{field.name} </label><br>
     <input type="text" id="${field.id}" name="${field.name}" value="${datumDo.format('dd.MM.yyyy')}" class="${field.errorClass}">
-    <span class="error">${field.error}</span>
+    <span class="error">${field.error} </span>
   </p>
   #{/}
 
     <p>
         <input type="submit" value="Zobrazit" />
     </p>
+</fieldset>
 #{/form}
+
+<script type="text/javascript">
+    var calSetup = {
+			showOn: "button",
+      buttonImage: "@{'/public/images/calendar.gif'}",
+			buttonImageOnly: true,
+      dateFormat: "dd.mm.yy"
+		};
+
+		$( "#datumOd" ).datepicker(calSetup);
+		$( "#datumDo" ).datepicker(calSetup);
+
+
+</script>

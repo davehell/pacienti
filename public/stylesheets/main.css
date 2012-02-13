@@ -1,165 +1,27 @@
 body {
-background: #fff url(../images/header.png) repeat-x;
-padding: 0;
-margin: 0;
-color: #333;
-/*font: 90% Arial, Helvetica, sans-serif;*/
-font: 90%  Calibri, sans-serif;
+/*background: #fff url(../images/header.png) repeat-x;*/
+
 }
 
 #header {
 height: 50px;
-}
 
-#footer {
-/*background: #fff url(../images/footer.png) repeat-x;*/
-height: 60px;
-clear: both;
 }
 
 #menu {
-  width: 20%;
-  float: left;
+background-color: #C3D9FF;
 }
 
-#container {
-  width: 80%;
-  float: right;
+#footer {
+background-color: #C3D9FF;
 }
 
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-font-family: "Trebuchet MS", Helvetica, sans-serif;
-font-weight: normal;
-margin: 10px 0 0px 0;
-color: #FF6A03;
-clear: left;
-}
-h1 {
-font-size: 2.1em;
-padding-bottom: 15px;
-margin-bottom: 20px;
-margin-top: 10px;
-}
-h2 {
-font-size: 1.6em;
-margin-top: 20px;
-margin-bottom: 10px;
-}
-h3 {
-font-size: 1.3em;
-margin: 20px 0 10px 0;
-}
-
-
-label, dt {
-  width: 15em;
-  display: block;
-  float: left;
-}
-
-table {
-  border: 1px solid black;
-}
-th {
-  background-color: #328CCD;
-}
-tr {
-  border: 1px solid grey;
-}
-
-
-/* ------- zacatek MENU ---------- */
+label {width: 10em; margin-right: 1em;}
 /*
-#menu ul {
-	width: 150px;
-	border-style: none solid none solid;
-	border-color: #D0D0D0;
-	border-width: 1px;
-	list-style: none;
-	margin: 0 0 1em 0;
-	padding: 0;
-}
-
-#menu ul li a {
-  height: 24px;
-  text-decoration: none;
-}
-
-
-#menu ul li a:link, #menu ul li a:visited {
-	color: #333;
-	display: block;
-	background: #fff url('../images/menu_button.png');
-	padding: 8px 5px 0 20px;
-	text-align: left;
-}
-#menu ul li.current a{
-	color: #000;
-	background: #fff url('../images/menu_button.png') 0 -96px;
-}
-#menu ul li a:hover {
-	color: #fff;
-	background: #9B9B9B url('../images/menu_button.png') 0 -32px;
-}
-
-#menu ul li a:active {
-	color: #fff;
-	background: #9B9B9B url('../images/menu_button.png') 0 -64px;
-}
+input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea {width:300px}
+textarea {width:300px;height:150px;}
 */
-#menu ul {
-	width: 150px;
-	list-style: none;
-	margin: 20px 0 1em 0;
-	padding: 0;
-	font-size: 0.9em;
-  background-color: inherit;
-}
+textarea {height:auto;}
+form .error {padding:0.2em;}
 
-#menu ul li a {
-  height: 16px;
-  text-decoration: none;
-}
-#menu ul li a:link, #menu ul li a:visited {
-	color: #333;
-	display: block;
-	background: #fff url('../images/menu_button2.png');
-	padding: 3px 5px 3px 20px;
-	text-align: left;
-	/*border-bottom: 1px solid #F0F0F0;*/
-}
-#menu ul li.current a{
-	color: #333;
-	background: #fff url('../images/menu_button2.png') 0 -44px;
-	font-weight: bold;
-}
-#menu ul li a:hover {
-	color: #333;
-	background: #fff url('../images/menu_button2.png') 0 -22px;
-}
-
-
-#menu ul ul{
-  font-size: 0.9em;
-  list-style-type: square;)
-  margin: 0 0 5px 20px;
-  padding: 0 0 0 40px;
-}
-#menu ul strong {
-  margin: 0 0 0 20px;
-  font-size: 0.9em;
-}
-#menu ul ul li a {
-  height: auto;
-}
-#menu ul ul li a:link, #menu ul ul li a:visited, #menu ul ul li.current a {
-  background: none;
-  font-weight: normal;
-  padding: 0;
-}
-
-#menu ul ul li a:hover {
-  background-color: #F5F5F5;
-}
-/* ------- konec MENU ---------- */
+thead th {border: 1px solid black;}

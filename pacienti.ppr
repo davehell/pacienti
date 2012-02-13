@@ -21,6 +21,7 @@ pacienti
 			app\controllers\BioMaterials.java
 			app\controllers\Doctors.java
 			app\controllers\Examinations.java
+			app\controllers\Forms.java
 			app\controllers\Genotypes.java
 			app\controllers\InsuranceCompanies.java
 			app\controllers\Patients.java
@@ -40,10 +41,15 @@ pacienti
 			app\models\Result.java
 			app\models\User.java
 		+views
-			+Doctors
+			+Forms
+				app\views\Forms\index.html
+				app\views\Forms\neizolovana.html
+				app\views\Forms\neprovedena.html
+				app\views\Forms\poctyVzorku.html
+			-Doctors
 				app\views\Doctors\form.html
 				app\views\Doctors\index.html
-			+InsCompanies
+			-InsCompanies
 				app\views\InsuranceCompanies\form.html
 				app\views\InsuranceCompanies\index.html
 			+Reports
@@ -51,7 +57,6 @@ pacienti
 				app\views\Reports\report.html
 			+BioMaterials
 				app\views\BioMaterials\form.html
-				app\views\BioMaterials\neizolovana.html
 			+AppModuls
 				app\views\AppModuls\form.html
 			+Patients
@@ -60,7 +65,7 @@ pacienti
 				app\views\Patients\index.html
 			+Application
 				app\views\Application\index.html
-				app\views\Reports\neprovedena.html
+				app\views\Forms\neprovedena.html
 			-errors
 				app\views\errors\404.html
 				app\views\errors\500.html
@@ -86,52 +91,20 @@ pacienti
 [Open project files]
 0=conf\routes
 1=app\views\main.html
-2=app\views\Reports\form.html
-3=app\models\AppModul.java
-4=app\models\Examination.java
-5=conf\initial-data.yml
-6=public\stylesheets\main.css
-7=conf\application.conf
-8=app\views\Reports\report.html
-9=app\controllers\Reports.java
-10=..\..\..\play\modules\pdf-0.9\samples-and-tests\pdf\app\controllers\Application.java
-11=..\..\..\play\modules\pdf-0.9\src\play\modules\pdf\PDF.java
+2=app\controllers\Reports.java
+3=app\views\Reports\report.html
 [Selected Project Files]
 Main=
-Selected=app\controllers\Reports.java
+Selected=app\views\Reports\report.html
 [conf\routes]
 TopLine=1
-Caret=65,28
+Caret=9,7
 [app\views\main.html]
-TopLine=1
-Caret=74,24
-[app\views\Reports\form.html]
-TopLine=68
-Caret=43,94
-[app\models\AppModul.java]
-TopLine=1
-Caret=43,25
-[app\models\Examination.java]
-TopLine=1
-Caret=1,1
-[conf\initial-data.yml]
-TopLine=13
-Caret=8,36
-[public\stylesheets\main.css]
-TopLine=1
-Caret=19,7
-[conf\application.conf]
-TopLine=173
-Caret=2,223
-[app\views\Reports\report.html]
-TopLine=1
-Caret=25,7
+TopLine=26
+Caret=41,35
 [app\controllers\Reports.java]
-TopLine=3
-Caret=1,30
-[..\..\..\play\modules\pdf-0.9\samples-and-tests\pdf\app\controllers\Application.java]
 TopLine=1
-Caret=36,16
-[..\..\..\play\modules\pdf-0.9\src\play\modules\pdf\PDF.java]
-TopLine=37
-Caret=9,63
+Caret=7,21
+[app\views\Reports\report.html]
+TopLine=102
+Caret=39,128

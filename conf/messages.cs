@@ -34,12 +34,19 @@ zprava.datumPCR1  = datum 1. PCR
 zprava.datumPCR2  = datum 2. PCR
 zprava.datumElForezy = datum elektroforézy v agarórovém gelu
 zprava.datumRevHybrid = datum reverzní hybridizace
-zprava.datumFragmentAn = datum fragmentační nalýzy
+zprava.datumFragmentAn = datum fragmentační anlýzy
 zprava.datumRTAn = datum RT analýzy
 zprava.datumSekv = datum sekvenace
 
 datumOd = počáteční datum
 datumDo = koncové datum
+
+pojistovna.cislo = číslo
+pojistovna.nazev = název
+
+lekar.icz = IČZ
+lekar.jmeno = jméno
+lekar.pracoviste = pracoviště
 
 # For use in JavaExtensions.since tag
 since.seconds = %s second%s ago

@@ -35,13 +35,19 @@
 #{if pacient.bioMaterialy}
 <table class="display" id="biomat">
   <thead>
-    <th>Typ</th>
-    <th>Datum odběru</th>
-    <th>Datum přijetí</th>
+  <tr>
+    <th rowspan="2">Typ</th>
+    <th rowspan="2">Datum odběru</th>
+    <th colspan="2">Příjem</th>
+    <th colspan="2">Izolace DNA</th>
+    <th rowspan="2">&nbsp;</th>
+  </tr>
+  <tr>
+    <th>Datum</th>
     <th>Parafa</th>
-    <th>Datum izolace</th>
+    <th>Datum</th>
     <th>Parafa</th>
-    <th>&nbsp;</th>
+  </tr>
   </thead>
   <tbody>
     #{list pacient.bioMaterialy}
@@ -49,9 +55,9 @@
       <td>${_.typ} </td>
       <td>${_.datumOdberu?.format()} ${_.casOdberu?.format('HH:mm')} </td>
       <td>${_.datumPrijeti?.format()} ${_.casPrijeti?.format('HH:mm')} </td>
-      <td>${_.parafaPrijeti?.jmeno} </td>
+      <td>${_.parafaPrijeti?.parafa} </td>
       <td>${_.datumIzolace?.format()} </td>
-      <td>${_.parafaIzolace?.jmeno} </td>
+      <td>${_.parafaIzolace?.parafa} </td>
       <td>#{a @BioMaterials.form(_.id, _.pacient.id)}upravit#{/a} #{a @BioMaterials.myDelete(_.id)}smazat#{/a}</td>
     </tr>
     #{/list}
@@ -81,7 +87,7 @@
     <tr>
       <td>${_.vysetreni.nazev} </td>
       <td>${_.datumVysetreni?.format()} </td>
-      <td>${_.parafaVysetreni?.jmeno} </td>
+      <td>${_.parafaVysetreni?.parafa} </td>
       <td>#{a @Reports.report(_.id)}závěrečná zpráva#{/a} #{a @Reports.form(_.id, _.pacient.id)}upravit#{/a} #{a @Reports.myDelete(_.id)}smazat#{/a}</td>
     </tr>
     #{/list}

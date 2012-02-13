@@ -18,7 +18,7 @@ public class Reports extends Application {
   public static void report(Long id) {
     Report zprava = Report.findById(id);
     notFoundIfNull(zprava);
-    render(zprava);
+    //render(zprava);
 
       Options options = new Options();
       //options.FOOTER = "lkjdklsfkjhdkjhgkjhk";

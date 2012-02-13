@@ -28,6 +28,9 @@ public class User extends Model {
     @MaxSize(10)
     public String parafa;
 
+    @MaxSize(100)
+    public String pozice;
+
     public boolean isAdmin;    
    
     public User(String username, String password, String name) {

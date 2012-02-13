@@ -9,104 +9,118 @@
 
 #{ifErrors}
     <p class="error">
-        oprav chyby
+        Opravte chyby ve formuláři!
     </p>
 #{/ifErrors}
 
 
 #{form @mySave(pacient?.id)}
+<fieldset>
+  <legend>Zadejte informace o pacientovi</legend>
 
-#{field 'pacient.evRok'}
-<p>
-  <label>&{field.name}</label>
-  <input type="text" id="${field.id}" name="${field.name}" value="#{if pacient}${pacient.evRok}#{/if}#{else}${new Date().format('yyyy')}#{/else}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
-</p>
-#{/}
 
 #{field 'pacient.evCislo'}
-<p>
-  <label>&{field.name}</label>
+<p class="left">
+  <label>&{field.name} </label><br>
+  ${connected?.modul?.kod} &nbsp;&nbsp;
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.evCislo}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
+
+#{field 'pacient.evRok'}
+<p class="left">
+  <label>&{field.name} </label><br>
+  /&nbsp;&nbsp;<input type="text" id="${field.id}" name="${field.name}" value="#{if pacient}${pacient.evRok}#{/if}#{else}${new Date().format('yyyy')}#{/else}" class="${field.errorClass}">
+  <span class="error">${field.error} </span>
+</p>
+#{/}
+
+
 
 
 #{field 'pacient.rodneCislo'}
-<p>
-  <label>&{field.name}</label>
+<p class="clear">
+  <label>&{field.name} </label><br>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rodneCislo}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'pacient.jmeno'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.jmeno}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'pacient.pojistovna.id'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   #{select "${field.name}", items:pojistovny, valueProperty:'id', value:"${pacient?.pojistovna?.id}" /}
+  *{  
+  #{select "${field.name}", id:"${field.name}"}
+    #{option }vyberte#{/option}
+    #{list pojistovny}
+      #{option "${_.id}"}${_.cislo} - ${_.nazev}#{/option}
+    #{/list}
+  #{/select}
+  }*
   <span class="error">#{error 'pacient.pojistovna' /} </span>
 </p>
 #{/}
 
 #{field 'pacient.lekar.id'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   #{select "${field.name}", value:"${pacient?.lekar?.id}", id:"${field.name}"}
   	#{option }vyberte#{/option}
     #{list lekari}
       #{option "${_.id}"}${_.icz} - ${_.jmeno}#{/option}
     #{/list}
   #{/select}
-  <span class="error">#{error 'pacient.lekar' /}</span>
+  <span class="error">#{error 'pacient.lekar' /} </span>
 </p>
 #{/}
 
 #{field 'pacient.infSouhlas'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   <input type="checkbox" id="${field.id}" name="${field.name}" #{if pacient?.infSouhlas} checked="checked" #{/if} class="${field.errorClass}">
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'pacient.diagnoza'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.diagnoza}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'pacient.koncDna'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.koncDna}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'pacient.pozn'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${pacient?.pozn} </textarea>
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'pacient.verejnaPozn'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${pacient?.verejnaPozn} </textarea>
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
@@ -115,5 +129,5 @@
     <p>
         <input type="submit" value="Uložit" />
     </p>
-
+</fieldset>
 #{/form}

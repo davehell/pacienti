@@ -9,95 +9,99 @@
 
 #{ifErrors}
     <p class="error">
-        oprav chyby
+        Opravte chyby ve formuláři!
     </p>
 #{/ifErrors}
 
+<form>
+<fieldset>
+  <legend>Pacient</legend>
+  <ul>
+   <li>#{a @Patients.detail(pacient?.id)}${pacient?.getKod()}#{/a}</li>
+   <li>${pacient?.jmeno} </li>
+   <li>${pacient?.rodneCislo} </li>
+  </ul>
+</fieldset>
+</form>
 
-<p>
- Pacient:
-</p>
-<ul>
- <li>#{a @Patients.detail(pacient?.id)}${pacient?.getKod()}#{/a}</li>
- <li>${pacient?.jmeno} </li>
- <li>${pacient?.rodneCislo} </li>
-</ul>
 
 #{form @mySave(bioMaterial?.id)}
+<fieldset>
+  <legend>Zadejte informace o biologickém materiálu</legend>
 
 #{field 'bioMaterial.typ'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
+  <span class="small">${typyMaterialu?.join(', ') }</span><br>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.typ}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
-  <span><em>${typyMaterialu?.join(', ') }</em></span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'bioMaterial.datumOdberu'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumOdberu?.format('dd.MM.yyyy')}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'bioMaterial.casOdberu'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casOdberu?.format('hh:mm')}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'bioMaterial.datumPrijeti'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumPrijeti?.format()}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'bioMaterial.casPrijeti'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casPrijeti?.format('hh:mm')}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'bioMaterial.parafaPrijeti.id'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   #{select "${field.name}", value:"${bioMaterial?.parafaPrijeti?.id}", id:"${field.name}"}
   	#{option }vyberte#{/option}
     #{list users}
       #{option "${_.id}"}${_.parafa}#{/option}
     #{/list}
   #{/select}
-  <span class="error">#{error 'bioMaterial.parafaPrijeti' /}</span>
+  <span class="error">#{error 'bioMaterial.parafaPrijeti' /} </span>
 </p>
 #{/}
 
 #{field 'bioMaterial.datumIzolace'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumIzolace?.format('dd.MM.yyyy')}" class="${field.errorClass}">
-  <span class="error">${field.error}</span>
+  <span class="error">${field.error} </span>
 </p>
 #{/}
 
 
 #{field 'bioMaterial.parafaIzolace.id'}
 <p>
-  <label>&{field.name}</label>
+  <label>&{field.name} </label><br>
   #{select "${field.name}", value:"${bioMaterial?.parafaIzolace?.id}", id:"${field.name}"}
   	#{option }vyberte#{/option}
     #{list users}
       #{option "${_.id}"}${_.parafa}#{/option}
     #{/list}
   #{/select}
-  <span class="error">#{error 'bioMaterial.parafaIzolace' /}</span>
+  <span class="error">#{error 'bioMaterial.parafaIzolace' /} </span>
 </p>
 #{/}
 
@@ -108,29 +112,21 @@
     <p>
         <input type="submit" value="Uložit" />
     </p>
-
+</fieldset>
 #{/form}
 
 
 <script type="text/javascript">
-		$( "#bioMaterial_datumOdberu" ).datepicker({
+    var calSetup = {
 			showOn: "button",
       buttonImage: "@{'/public/images/calendar.gif'}",
 			buttonImageOnly: true,
       dateFormat: "dd.mm.yy"
-		});
-		$( "#bioMaterial_datumPrijeti" ).datepicker({
-			showOn: "button",
-      buttonImage: "@{'/public/images/calendar.gif'}",
-			buttonImageOnly: true,
-      dateFormat: "dd.mm.yy"
-		});
-		$( "#bioMaterial_datumIzolace" ).datepicker({
-			showOn: "button",
-      buttonImage: "@{'/public/images/calendar.gif'}",
-			buttonImageOnly: true,
-      dateFormat: "dd.mm.yy"
-		});
+		};
+
+		$( "#bioMaterial_datumOdberu" ).datepicker(calSetup);
+		$( "#bioMaterial_datumPrijeti" ).datepicker(calSetup);
+		$( "#bioMaterial_datumIzolace" ).datepicker(calSetup);
 
 		var typyMaterialu = [
       #{list typyMaterialu}

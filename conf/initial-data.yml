@@ -14,29 +14,43 @@ AppModul(br):
   nazev: Brno
   kod: BR
 
-AppModul(ph):
-  nazev: Praha
 
 User(david):
     username:       davehell
     passwordHash:   83ff63f5ff3518a2cba17bde7238d3087b5a964c
     jmeno:          David Hellebrand
     parafa:         DH
+    pozice:         odborný pracovník
     modul:          ov
     isAdmin:        true
 
-User(bob):
-  username: bob
-  passwordHash: bob
-  jmeno: Bobík
-  modul: ov
-  isAdmin: false
+User(lh):
+    username:       lh
+    passwordHash:   83ff63f5ff3518a2cba17bde7238d3087b5a964c
+    jmeno:          Mgr. Lenka Hrdá
+    parafa:         LH
+    pozice:         laborantka
+    modul:          ov
+    isAdmin:        false
 
-User(alice):
-  username: alice
-  passwordHash: alice
-  jmeno: Alice
-  modul: ov
+User(jf):
+    username:       jf
+    passwordHash:   83ff63f5ff3518a2cba17bde7238d3087b5a964c
+    jmeno:          RNDr. Jiří Fišer
+    parafa:         JF
+    pozice:         odborný pracovník
+    modul:          ov
+    isAdmin:        false
+
+User(hk):
+    username:       hk
+    passwordHash:   83ff63f5ff3518a2cba17bde7238d3087b5a964c
+    jmeno:          RNDr. Hana Kolaříková
+    parafa:         HK
+    pozice:         odborný pracovník
+    modul:          ov
+    isAdmin:        false
+
 
 InsuranceCompany(207):
   cislo: 207
@@ -96,7 +110,7 @@ BioMaterial(slina):
   typ: slina
   datumOdberu: 2012-01-01 02:23:00.0
   datumPrijeti: 2012-02-04 06:16:00.0
-  parafaPrijeti: bob
+  parafaPrijeti: lh
 
 BioMaterial(vlas):
   pacient: pat1

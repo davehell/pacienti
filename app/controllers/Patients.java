@@ -27,13 +27,12 @@ public class Patients extends Application  {
   public static void detail(Long id) {
     Patient pacient = Patient.findById(id);
     notFoundIfNull(pacient);
-String pok = Codec.hexSHA1("kjjksdnp");
-    render(pacient, pok);
+//String pok = Codec.hexSHA1("kjjksdnp");
+    render(pacient);
   }
 
   public static void form(Long id) {
     List<InsuranceCompany> pojistovny = InsuranceCompany.find("modul = ? order by cislo asc", connected.modul).fetch();
-    
     List<Doctor> lekari = Doctor.find("modul = ? order by icz asc", connected.modul).fetch();
 
     if(id != null) {
@@ -81,7 +80,7 @@ String pok = Codec.hexSHA1("kjjksdnp");
       _pacient.save();
     }
 
-    flash.success("Pacient %s uložen.", pacient.jmeno);
+    flash.success("Informace o pacientovi %s byly úspěšně uloženy.", pacient.getKod());
     detail(id);
   }
 

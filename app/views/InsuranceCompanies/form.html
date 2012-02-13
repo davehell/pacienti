@@ -9,25 +9,27 @@
 
 #{ifErrors}
     <p class="error">
-        oprav chyby
+        Opravte chyby ve formuláři!
     </p>
 #{/ifErrors}
 
 #{form @mySave(pojistovna?.id)}
+<fieldset>
+  <legend>Zadejte informace o pojišťovně</legend>
 
   #{field 'pojistovna.cislo'}
   <p>
-    <label>&{field.name}</label>
+    <label>&{field.name} </label><br>
     <input type="text" id="${field.id}" name="${field.name}" value="${pojistovna?.cislo}" class="${field.errorClass}">
-    <span class="error">${field.error}</span>
+    <span class="error">${field.error} </span>
   </p>
   #{/}
 
   #{field 'pojistovna.nazev'}
   <p>
-    <label>&{field.name}</label>
+    <label>&{field.name} </label><br>
     <input type="text" id="${field.id}" name="${field.name}" value="${pojistovna?.nazev}" class="${field.errorClass}">
-    <span class="error">${field.error}</span>
+    <span class="error">${field.error} </span>
   </p>
   #{/}
 
@@ -35,5 +37,6 @@
         <input type="submit" value="Uložit" />
     </p>
 
+</fieldset>
 #{/form}
 

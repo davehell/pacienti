@@ -14,9 +14,10 @@
       h1,h2 {font-size: 14pt; text-align: center;}
       h3 {}
       .tab { font-style: italic; width: 100%;}
-      td.gtyp { text-align: center; font-weight: bold;}
+      td.gtyp { text-align: left; font-weight: bold;}
       .noItal {font-style: normal;}
     </style>
+    <link rel="stylesheet" media="all" href="@{'/public/stylesheets/blueprint/print.css'}" type="text/css">
   </head>
   <body>
 
@@ -39,11 +40,11 @@
   </p>
 </div>
 
-*{#{if zprava.vysetreni.certif} }*
+#{if zprava.vysetreni.certif}
 <div id="certif">
   <img src="@{'/public/images/cert_m8141.gif'}" width="40px" height="38px">
 </div>
-*{#{/if} }*
+#{/if}
 
 <hr style="clear: both;">
 
@@ -125,7 +126,7 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 </p>
 
 
-<table class="tab">
+<table class="tab" style="width: auto;">
   <tr>
     <td>Analýzu provedl:</td>
     <td><span class="noItal">${zprava.parafaVysetreni?.jmeno} </span></td>
