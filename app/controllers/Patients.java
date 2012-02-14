@@ -56,7 +56,7 @@ public class Patients extends Application  {
 
     validation.valid(pacient);
     if(validation.hasErrors()) {
-      render("@form", pacient, lekari);
+      render("@form", pacient, lekari, pojistovny);
     }
 
     if(id == null) {

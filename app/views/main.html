@@ -23,24 +23,37 @@
   <body>
     <div class="container showgrid2">
     <div class="column span-24 last" id="header">
-      <ul>
-<!--         <li><a href="@{Patients.detail(1)}">Index</a></li> -->
-        <li><a href="@{Secure.logout()}">Odhlášení</a> ${connected?.jmeno} ${connected?.modul} </li>
-      </ul>
+       ${connected?.jmeno} ${connected?.modul}
+      <a href="@{Secure.logout()}">Odhlášení</a>
     </div>
     
-    <div id="menu" class="column span-24 last">
-      <ul>
-       <li><a href="@{Patients.index()}">Pacienti</a></li>
-       <li><a href="@{InsuranceCompanies.index()}">Pojišťovny</a></li>
-       <li><a href="@{Doctors.index()}">Lékaři</a></li>
-       <li><a href="@{Forms.index("neprovedena-vysetreni")}">Neprovedená vyš.</a></li>
-       <li><a href="@{Forms.index("pocty-vzorku")}">Počty vzorků</a></li>
-       <li><a href="@{Forms.neizolovana()}">Neizolovaná DNA</a></li>
-      </ul>
+    <div id="menu" class="column span-24 last prepend-top">
+    	<ul>
+    		<li><a href="#tabs-1">Pacienti</a></li>
+    		<li><a href="#tabs-2">Nastavení</a></li>
+    		<li><a href="#tabs-3">Tiskové sestavy</a></li>
+    	</ul>
+    	<div id="tabs-1">
+        <ul>
+         <li><a href="@{Patients.index()}">Pacienti</a></li>
+        </ul>
+    	</div>
+    	<div id="tabs-2">
+        <ul>
+         <li><a href="@{InsuranceCompanies.index()}">Pojišťovny</a></li>
+         <li><a href="@{Doctors.index()}">Lékaři</a></li>
+        </ul>
+    	</div>
+    	<div id="tabs-3">
+        <ul>
+         <li><a href="@{Forms.index("neprovedena-vysetreni")}">Neprovedená vyš.</a></li>
+         <li><a href="@{Forms.index("pocty-vzorku")}">Počty vzorků</a></li>
+         <li><a href="@{Forms.neizolovana()}">Neizolovaná DNA</a></li>
+        </ul>
+    	</div>
     </div>
 
-    <div id="main"  class="column span-24 last">
+    <div id="main"  class="column span-24 last prepend-top append-bottom">
       <h1>#{get 'title' /}</h1>
 
       #{if flash.error}
@@ -75,5 +88,17 @@
       #{/secure.check}
     </div>
   </div> <!-- container -->
+
+	<script>
+	$(function() {
+		$( "#menu" ).tabs();
+	});
+
+	$(function() {
+		$( "a", "#header" ).button();
+    $( "a", "#main" ).button();
+	});
+
+	</script>
   </body>
 </html>

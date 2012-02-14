@@ -57,16 +57,16 @@
 
 #{field 'pacient.pojistovna.id'}
 <p>
-  <label>&{field.name} </label><br>
-  #{select "${field.name}", items:pojistovny, valueProperty:'id', value:"${pacient?.pojistovna?.id}" /}
-  *{  
-  #{select "${field.name}", id:"${field.name}"}
-    #{option }vyberte#{/option}
+  <label>&{field.name} </label> <br>
+  *{ #{select "${field.name}", items:pojistovny, valueProperty:'id', value:"${pacient?.pojistovna?.id}" /} }*
+
+  #{select "${field.name}", value:"${pacient?.pojistovna?.id}", id:"${field.name}"}
+    #{option "0"}vyberte#{/option}
     #{list pojistovny}
       #{option "${_.id}"}${_.cislo} - ${_.nazev}#{/option}
     #{/list}
   #{/select}
-  }*
+
   <span class="error">#{error 'pacient.pojistovna' /} </span>
 </p>
 #{/}

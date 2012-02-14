@@ -17,22 +17,31 @@
 <fieldset>
   <legend>Pacient</legend>
   <ul>
-   <li>#{a @Patients.detail(pacient?.id)}${pacient?.getKod()}#{/a}</li>
    <li>${pacient?.jmeno} </li>
    <li>${pacient?.rodneCislo} </li>
   </ul>
+
+#{if zprava?.bioMaterial?.id}
+  <p>
+    Biologický materiál: <em>${zprava.bioMaterial.typ}</em>
+  </p>
+#{/if}
+#{if zprava?.vysetreni?.id}
+  <input type="hidden" name="zprava.vysetreni.id" value="${zprava.vysetreni.id}">
+  <p>
+    Vyšetření: <em>${zprava.vysetreni.nazev}</em>
+  </p>
+#{/if}
 </fieldset>
 </form>
 
 #{form @mySave(zprava?.id)}
-<fieldset class="span-12">
-  <legend>Detail vyšetření</legend>
+<div class="span-12">
+<fieldset>
+  <legend>Vyšetření</legend>
 
 #{if zprava?.bioMaterial?.id}
   <input type="hidden" name="zprava.bioMaterial.id" value="${zprava.bioMaterial.id}">
-  <p>
-    Biologický materiál: <em>${zprava.bioMaterial.typ}</em>
-  </p>
 #{/if}
 #{else}
   #{field 'zprava.bioMaterial.id'}
@@ -51,9 +60,6 @@
 
 #{if zprava?.vysetreni?.id}
   <input type="hidden" name="zprava.vysetreni.id" value="${zprava.vysetreni.id}">
-  <p>
-    Vyšetření: <em>${zprava.vysetreni.nazev}</em>
-  </p>
 #{/if}
 #{else}
   #{field 'zprava.vysetreni.id'}
@@ -187,11 +193,12 @@
         <input type="submit" value="Uložit" />
     </p>
 </fieldset>
+</div>
 
-<fieldset class="span-10 last">
-  <legend>Zadejte výsledky</legend>
+<div class="span-12 last">
 #{if zprava?.id}
-  <h2>Zjištěný genotyp</h2>
+<fieldset>
+  <legend>Zjištěný genotyp</legend>
   #{list zprava?.vysledky}
     <p>
       <label>${_.genotyp.nazev} </label><br>
@@ -199,12 +206,12 @@
       <input type="text" name="vysledky[${_.id}].vysledek" value="${_.vysledek}">
     </p>
   #{/list}
-#{/if}
-
     <p>
         <input type="submit" value="Uložit" />
     </p>
 </fieldset>
+#{/if}
+</div>
 #{/form}
 
 <script type="text/javascript">
