@@ -25,7 +25,7 @@ public class Doctor extends Model {
     public AppModul modul;
 
     public String toString() {
-        return icz + " - " + jmeno;
+        return jmeno + " (" + icz + ")";
     }
 
     public Doctor(String icz, String jmeno, String pracoviste) {

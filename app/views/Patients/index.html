@@ -38,11 +38,20 @@ $(document).ready(function() {
         "sPaginationType": "full_numbers",
         "bStateSave": true,
         "aaSorting": [[ 1, "desc" ],[ 0, "desc" ]],
+        "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "Vše"]],
         "aoColumnDefs": [
             { "bVisible": false, "aTargets": [ 0, 1 ] },
             { "bSearchable": false, "aTargets": [ 0, 1, 5 ] }
         ]
     });
+
+    $('#example tbody tr').live('click', function () {
+        var nTds = $('td', this);
+        var sBrowser = $(nTds[0]).text();
+
+
+        alert( sBrowser )
+    } );
 
 } );
 </script>

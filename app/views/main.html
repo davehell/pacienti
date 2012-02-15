@@ -9,9 +9,10 @@
     <!--[if lt IE 8]><link rel="stylesheet" media="screen,projection" href="@{'/public/stylesheets/blueprint/ie.css'}" type="text/css"><![endif]-->
     <link rel="stylesheet" media="screen,projection" href="@{'/public/stylesheets/main.css'}" type="text/css">
     
-    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/demo_table_jui.css'}">
+    
     <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/jquery-ui-1.8.16.custom.css'}">
     <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/jquery.ui.all.css'}">
+    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/demo_table_jui.css'}">
     #{get 'moreStyles' /}
     <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
     <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
@@ -21,13 +22,16 @@
     #{get 'moreScripts' /}
   </head>
   <body>
-    <div class="container showgrid2">
+    <div class="container showgridx">
     <div class="column span-24 last" id="header">
-       ${connected?.jmeno} ${connected?.modul}
-      <a href="@{Secure.logout()}">Odhlášení</a>
+      <h1>Evidence pacientů</h1>
+      <p>
+        ${connected?.jmeno}, ${connected?.modul} <br>
+        <a href="@{Secure.logout()}">Odhlášení</a>
+      </p>
     </div>
     
-    <div id="menu" class="column span-24 last prepend-top">
+    <div class="column span-24 last prepend-top append-bottom" id="menu">
     	<ul>
     		<li><a href="#tabs-1">Pacienti</a></li>
     		<li><a href="#tabs-2">Nastavení</a></li>
@@ -96,7 +100,7 @@
 
 	$(function() {
 		$( "a", "#header" ).button();
-    $( "a", "#main" ).button();
+    //$( "a", "#main" ).button();
 	});
 
 	</script>
