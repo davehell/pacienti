@@ -3,44 +3,23 @@
 #{set title:'Pacient ' + pacient.getKod() /}
 
 <p>
-  #{a @form(pacient.id)}upravit#{/a} #{a @myDelete(pacient.id)}smazat#{/a}
+  <span class="button">#{a @myDelete(pacient.id)}smazat#{/a}</span>
 </p>
 
-<dl>
-  <dt>Evidenční číslo</dt>
-  <dd>${pacient.getKod()}</dd>
-  <dt>Jméno</dt>
-  <dd>${pacient.jmeno}</dd>
-  <dt>Rodné číslo</dt>
-  <dd>${pacient.rodneCislo}</dd>
-  <dt>Pojišťovna</dt>
-  <dd>${pacient.pojistovna.toString()}</dd>
-  <dt>Lékař</dt>
-  <dd>${pacient.lekar?.toString()} &nbsp;</dd>
-  <dt>Informovaný souhlas</dt>
-  <dd>${ pacient.infSouhlas.yesno('ano', 'ne') }</dd>
-
-  <dt>Koncentrace DNA</dt>
-  <dd>${ pacient.koncDna}&nbsp;</dd>
-  <dt>Interní poznámka</dt>
-  <dd>${ pacient.pozn}&nbsp;</dd>
-  <dt>Veřejná poznámka</dt>
-  <dd>${ pacient.verejnaPozn}&nbsp;</dd>
-</dl>
+#{include 'Patients/form.html' /}
 
 <h2>Biologické materiály</h2>
 <p>
-  #{a @BioMaterials.form(null, pacient.id)}Nový materiál#{/a}
+  <span class="button">#{a @BioMaterials.form(null, pacient.id)}Nový materiál#{/a}</span>
 </p>
 #{if pacient.bioMaterialy}
-<table class="display" id="biomat">
+<table class="display" id="biomatTable">
   <thead>
   <tr>
     <th rowspan="2">Typ</th>
     <th rowspan="2">Datum odběru</th>
     <th colspan="2">Příjem</th>
     <th colspan="2">Izolace DNA</th>
-    <th rowspan="2">&nbsp;</th>
   </tr>
   <tr>
     <th>Datum a čas</th>
@@ -52,13 +31,12 @@
   <tbody>
     #{list pacient.bioMaterialy}
     <tr>
-      <td>${_.typ} </td>
+      <td>#{a @BioMaterials.form(_.id, _.pacient.id)}${_.typ}#{/a} </td>
       <td>${_.datumOdberu?.format()} ${_.casOdberu?.format('HH:mm')} </td>
       <td>${_.datumPrijeti?.format()} ${_.casPrijeti?.format('HH:mm')} </td>
       <td>${_.parafaPrijeti?.parafa} </td>
       <td>${_.datumIzolace?.format()} </td>
       <td>${_.parafaIzolace?.parafa} </td>
-      <td>#{a @BioMaterials.form(_.id, _.pacient.id)}upravit#{/a} #{a @BioMaterials.myDelete(_.id)}smazat#{/a}</td>
     </tr>
     #{/list}
   </tbody>
@@ -72,7 +50,7 @@
 
 <h2>Vyšetření</h2>
 <p>
-  #{a @Reports.form(null, pacient.id)}Nové vyšetření#{/a}
+  <span class="button">#{a @Reports.form(null, pacient.id)}Nové vyšetření#{/a}</span>
 </p>
 #{if pacient.zpravy}
 <table class="display" id="zpravy">
@@ -85,10 +63,10 @@
   <tbody>
     #{list pacient.zpravy}
     <tr>
-      <td>${_.vysetreni.nazev} </td>
+      <td>#{a @Reports.form(_.id, _.pacient.id)}${_.vysetreni.nazev}#{/a} </td>
       <td>${_.datumVysetreni?.format()} </td>
       <td>${_.parafaVysetreni?.parafa} </td>
-      <td>#{a @Reports.report(_.id)}závěrečná zpráva#{/a} #{a @Reports.form(_.id, _.pacient.id)}upravit#{/a} #{a @Reports.myDelete(_.id)}smazat#{/a}</td>
+      <td>#{a @Reports.report(_.id)}závěrečná zpráva#{/a} </td>
     </tr>
     #{/list}
   </tbody>
@@ -100,19 +78,4 @@
     </div>
 #{/else}
 
-<script type="text/javascript">
-$(document).ready(function() {
-/*
-    oTable = $('#biomat').dataTable({
-        "bJQueryUI": true,
-        "sPaginationType": "full_numbers"
-    });
 
-    oTable = $('#zpravy').dataTable({
-        "bJQueryUI": true,
-        "sPaginationType": "full_numbers"
-    });
-*/
-} );
-
-</script>

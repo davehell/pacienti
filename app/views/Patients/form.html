@@ -16,12 +16,12 @@
 
 #{form @mySave(pacient?.id)}
 <fieldset>
-  <legend>Zadejte informace o pacientovi</legend>
+  <legend>Informace o pacientovi</legend>
 
 
 #{field 'pacient.evCislo'}
 <p class="left">
-  <label>&{field.name} </label><br>
+  <label class="required">&{field.name} </label>
   ${connected?.modul?.kod} &nbsp;&nbsp;
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.evCislo}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
@@ -30,18 +30,14 @@
 
 #{field 'pacient.evRok'}
 <p class="left">
-  <label>&{field.name} </label><br>
   /&nbsp;&nbsp;<input type="text" id="${field.id}" name="${field.name}" value="#{if pacient}${pacient.evRok}#{/if}#{else}${new Date().format('yyyy')}#{/else}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
 #{/}
 
-
-
-
 #{field 'pacient.rodneCislo'}
 <p class="clear">
-  <label>&{field.name} </label><br>
+  <label class="required">&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rodneCislo}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -49,7 +45,7 @@
 
 #{field 'pacient.jmeno'}
 <p>
-  <label>&{field.name} </label><br>
+  <label class="required">&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.jmeno}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -57,7 +53,7 @@
 
 #{field 'pacient.pojistovna.id'}
 <p>
-  <label>&{field.name} </label> <br>
+  <label class="required">&{field.name} </label>
   *{ #{select "${field.name}", items:pojistovny, valueProperty:'id', value:"${pacient?.pojistovna?.id}" /} }*
 
   #{select "${field.name}", value:"${pacient?.pojistovna?.id}", id:"${field.name}"}
@@ -73,7 +69,7 @@
 
 #{field 'pacient.lekar.id'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   #{select "${field.name}", value:"${pacient?.lekar?.id}", id:"${field.name}"}
   	#{option }vyberte#{/option}
     #{list lekari}
@@ -86,7 +82,7 @@
 
 #{field 'pacient.infSouhlas'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="checkbox" id="${field.id}" name="${field.name}" #{if pacient?.infSouhlas} checked="checked" #{/if} class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -94,7 +90,7 @@
 
 #{field 'pacient.diagnoza'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.diagnoza}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -102,15 +98,15 @@
 
 #{field 'pacient.koncDna'}
 <p>
-  <label>&{field.name} </label><br>
-  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.koncDna}" class="${field.errorClass}">
+  <label>&{field.name} </label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.koncDna}" class="${field.errorClass}"><span>&nbsp;&nbsp;ng/&micro;l</span>
   <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'pacient.pozn'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${pacient?.pozn} </textarea>
   <span class="error">${field.error} </span>
 </p>
@@ -118,7 +114,7 @@
 
 #{field 'pacient.verejnaPozn'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${pacient?.verejnaPozn} </textarea>
   <span class="error">${field.error} </span>
 </p>

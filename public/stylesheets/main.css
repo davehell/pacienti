@@ -28,7 +28,10 @@ background-color: #C3D9FF;
 display: none;
 }
 
-label {width: 10em; margin-right: 1em;}
+form label {width: 10em; margin: 0.5em; display: inline-block; vertical-align: top;}
+label.required {color: #CC0000;}
+form p {margin: 0;}
+form input[type=submit] {margin-left: 10em;}
 /*
 input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea {width:300px}
 textarea {width:300px;height:150px;}
@@ -47,4 +50,7 @@ h1,h2,h3 {color: #1D5987; border-bottom: 1px solid #1D5987;}
   background: #fff url('../images/main.png') repeat-x;
   margin-bottom: 20px;
 }
+
+#pacTable tr, #biomatTable tr {cursor: pointer;}
+#pacTable td span, #biomatTable td span {display: none;}
 

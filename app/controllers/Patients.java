@@ -27,8 +27,10 @@ public class Patients extends Application  {
   public static void detail(Long id) {
     Patient pacient = Patient.findById(id);
     notFoundIfNull(pacient);
-//String pok = Codec.hexSHA1("kjjksdnp");
-    render(pacient);
+    List<InsuranceCompany> pojistovny = InsuranceCompany.find("modul = ? order by cislo asc", connected.modul).fetch();
+    List<Doctor> lekari = Doctor.find("modul = ? order by icz asc", connected.modul).fetch();
+
+    render(pacient, pojistovny, lekari);
   }
 
   public static void form(Long id) {

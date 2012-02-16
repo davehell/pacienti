@@ -10,9 +10,10 @@
     <link rel="stylesheet" media="screen,projection" href="@{'/public/stylesheets/main.css'}" type="text/css">
     
     
-    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/jquery-ui-1.8.16.custom.css'}">
-    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/jquery.ui.all.css'}">
     <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/demo_table_jui.css'}">
+    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/jquery.ui.all.css'}">
+    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/jquery-ui-1.8.16.custom.css'}">
+    
     #{get 'moreStyles' /}
     <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
     <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
@@ -36,6 +37,7 @@
     		<li><a href="#tabs-1">Pacienti</a></li>
     		<li><a href="#tabs-2">Nastavení</a></li>
     		<li><a href="#tabs-3">Tiskové sestavy</a></li>
+        <li><a href="#tabs-4">Import</a></li>
     	</ul>
     	<div id="tabs-1">
         <ul>
@@ -53,7 +55,11 @@
          <li><a href="@{Forms.index("neprovedena-vysetreni")}">Neprovedená vyš.</a></li>
          <li><a href="@{Forms.index("pocty-vzorku")}">Počty vzorků</a></li>
          <li><a href="@{Forms.neizolovana()}">Neizolovaná DNA</a></li>
+         <li>štítky</li>
         </ul>
+    	</div>
+    	<div id="tabs-4">
+
     	</div>
     </div>
 
@@ -93,6 +99,8 @@
     </div>
   </div> <!-- container -->
 
+
+
 	<script>
 	$(function() {
 		$( "#menu" ).tabs();
@@ -100,7 +108,8 @@
 
 	$(function() {
 		$( "a", "#header" ).button();
-    //$( "a", "#main" ).button();
+    $( "a", "span.button" ).button();
+    $( "input:submit").button();
 	});
 
 	</script>

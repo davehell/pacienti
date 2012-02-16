@@ -17,6 +17,7 @@
 <fieldset>
   <legend>Pacient</legend>
   <ul>
+   <li>#{a @Patients.detail(pacient?.id)}${pacient?.getKod()}#{/a}</li>
    <li>${pacient?.jmeno} </li>
    <li>${pacient?.rodneCislo} </li>
   </ul>
@@ -46,7 +47,7 @@
 #{else}
   #{field 'zprava.bioMaterial.id'}
   <p>
-    <label>&{field.name} </label><br>
+    <label class="required">&{field.name} </label>
     #{select "${field.name}", value:"${zprava?.bioMaterial?.id}", id:"${field.name}"}
     	#{option "0"}vyberte#{/option}
       #{list bioMaterialy}
@@ -64,7 +65,7 @@
 #{else}
   #{field 'zprava.vysetreni.id'}
   <p>
-    <label>&{field.name} </label><br>
+    <label class="required"l>&{field.name} </label>
     #{select "${field.name}", value:"${zprava?.vysetreni?.id}", id:"${field.name}"}
     	#{option "0"}vyberte#{/option}
       #{list vysetreni}
@@ -78,7 +79,7 @@
 
 #{field 'zprava.datumVysetreni'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumVysetreni?.format()}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -86,7 +87,7 @@
 
 #{field 'zprava.parafaVysetreni.id'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   #{select "${field.name}", value:"${zprava?.parafaVysetreni?.id}", id:"${field.name}"}
   	#{option }vyberte#{/option}
     #{list users}
@@ -99,25 +100,26 @@
 
 #{field 'zprava.parafaUvolneni'}
 <p>
-  <label>&{field.name} </label><br>
-  <span class="small">${uvolnujiAnalyzu?.join(', ') } </span><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.parafaUvolneni}" class="${field.errorClass}">
-  <span class="error">${field.error} </span>
+  <span class="error">${field.error} </span><br>
+    <span class="small">${uvolnujiAnalyzu?.join(', ') } </span>
 </p>
 #{/}
 
 #{field 'zprava.vedouciLekar'}
 <p>
-  <label>&{field.name} </label><br>
-  <span class="small">${vedouciLekari?.join(', ') } </span><br>
+  <label>&{field.name} </label>
+  
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.vedouciLekar}" class="${field.errorClass}">
-  <span class="error">${field.error} </span>
+  <span class="error">${field.error} </span><br>
+  <span class="small">${vedouciLekari?.join(', ') } </span>
 </p>
 #{/}
 
 #{field 'zprava.zavZprava'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${zprava?.zavZprava}</textarea>
   <span class="error">${field.error} </span>
 </p>
@@ -125,7 +127,7 @@
 
 #{field 'zprava.pozitivni'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="checkbox" id="${field.id}" name="${field.name}" #{if zprava?.pozitivni} checked="checked" #{/if} class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -133,7 +135,7 @@
 
 #{field 'zprava.datumPCR1'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumPCR1?.format('dd.MM.yyyy')}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -141,7 +143,7 @@
 
 #{field 'zprava.datumPCR2'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumPCR2?.format('dd.MM.yyyy')}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -149,7 +151,7 @@
 
 #{field 'zprava.datumElForezy'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumElForezy?.format('dd.MM.yyyy')}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -157,7 +159,7 @@
 
 #{field 'zprava.datumRevHybrid'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumRevHybrid?.format('dd.MM.yyyy')}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -165,7 +167,7 @@
 
 #{field 'zprava.datumFragmentAn'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumFragmentAn?.format('dd.MM.yyyy')}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -173,7 +175,7 @@
 
 #{field 'zprava.datumRTAn'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumRTAn?.format('dd.MM.yyyy')}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -181,7 +183,7 @@
 
 #{field 'zprava.datumSekv'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumSekv?.format('dd.MM.yyyy')}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -201,7 +203,7 @@
   <legend>Zjištěný genotyp</legend>
   #{list zprava?.vysledky}
     <p>
-      <label>${_.genotyp.nazev} </label><br>
+      <label>${_.genotyp.nazev} </label>
       <input type="hidden" name="vysledky[${_.id}].id" value="${_.id}">
       <input type="text" name="vysledky[${_.id}].vysledek" value="${_.vysledek}">
     </p>

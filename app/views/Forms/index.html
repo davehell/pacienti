@@ -23,7 +23,7 @@
   <legend>Období</legend>
   #{field 'datumOd'}
   <p>
-    <label>&{field.name} </label><br>
+    <label class="required">&{field.name} </label>
     <input type="text" id="${field.id}" name="${field.name}" value="${datumOd.format('dd.MM.yyyy')}" class="${field.errorClass}">
     <span class="error">${field.error} </span>
   </p>
@@ -31,7 +31,7 @@
 
   #{field 'datumDo'}
   <p>
-    <label>&{field.name} </label><br>
+    <label class="required">&{field.name} </label>
     <input type="text" id="${field.id}" name="${field.name}" value="${datumDo.format('dd.MM.yyyy')}" class="${field.errorClass}">
     <span class="error">${field.error} </span>
   </p>

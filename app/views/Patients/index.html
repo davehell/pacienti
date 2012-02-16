@@ -2,12 +2,12 @@
 #{set title:'Pacienti' /}
 
 <p>
-  #{a @form()}Nový pacient#{/a}
+  <span class="button">#{a @form()}Nový pacient#{/a}</span>
 </p>
 
 
 #{if pacienti}
-  <table class="display" id="example">
+  <table class="display" id="pacTable">
     <thead>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
@@ -19,13 +19,13 @@
     <tbody>
 
     #{list pacienti}
-    <tr>
+    <tr">
       <td>${_.evCislo} </td>
       <td>${_.evRok} </td>
-      <td>${_.getKod()} </td>
+      <td><span>@{ detail(_.id)}</span>${_.getKod()}</td>
       <td>${_.jmeno} </td>
       <td>${_.rodneCislo} </td>
-      <td>#{a @detail(_.id)}detail#{/a}</td>
+      <td>@{ detail(_.id)} </td>
     </tr>
     #{/list}
     </tbody>
@@ -33,24 +33,22 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    oTable = $('#example').dataTable({
+    oTable = $('#pacTable').dataTable({
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
-        "bStateSave": true,
+        "bStateSave": false,
         "aaSorting": [[ 1, "desc" ],[ 0, "desc" ]],
         "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "Vše"]],
         "aoColumnDefs": [
-            { "bVisible": false, "aTargets": [ 0, 1 ] },
+            { "bVisible": false, "aTargets": [ 0, 1, 5 ] },
             { "bSearchable": false, "aTargets": [ 0, 1, 5 ] }
         ]
     });
 
-    $('#example tbody tr').live('click', function () {
+    $('#pacTable tbody tr').live('click', function () {
         var nTds = $('td', this);
-        var sBrowser = $(nTds[0]).text();
-
-
-        alert( sBrowser )
+        var nSpans = $('span', nTds[0]);
+        window.location.href = nSpans[0].innerHTML;
     } );
 
 } );

@@ -1,16 +1,19 @@
 #{extends 'main.html' /}
 
 #{ifnot bioMaterial?.id}
-    #{set title:'Nový materiál' /}
+  #{set title:'Nový biologický materiál' /}
 #{/ifnot}
 #{else}
-    #{set title:'Materiál ' + bioMaterial.typ /}
+  #{set title:'Biologický materiál ' + bioMaterial.typ /}
+  <p>
+    #{a @myDelete(bioMaterial.id)}smazat#{/a}
+  </p>
 #{/else}
 
 #{ifErrors}
-    <p class="error">
-        Opravte chyby ve formuláři!
-    </p>
+  <p class="error">
+      Opravte chyby ve formuláři!
+  </p>
 #{/ifErrors}
 
 <form>
@@ -27,20 +30,20 @@
 
 #{form @mySave(bioMaterial?.id)}
 <fieldset>
-  <legend>Zadejte informace o biologickém materiálu</legend>
+  <legend>Informace o biologickém materiálu</legend>
 
 #{field 'bioMaterial.typ'}
 <p>
-  <label>&{field.name} </label><br>
-  <span class="small">${typyMaterialu?.join(', ') }</span><br>
+  <label class="required">&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.typ}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
+  <span class="small">${typyMaterialu?.join(', ') }</span>
 </p>
 #{/}
 
 #{field 'bioMaterial.datumOdberu'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumOdberu?.format('dd.MM.yyyy')}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -48,7 +51,7 @@
 
 #{field 'bioMaterial.casOdberu'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casOdberu?.format('hh:mm')}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -56,7 +59,7 @@
 
 #{field 'bioMaterial.datumPrijeti'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumPrijeti?.format()}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -64,7 +67,7 @@
 
 #{field 'bioMaterial.casPrijeti'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casPrijeti?.format('hh:mm')}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -72,7 +75,7 @@
 
 #{field 'bioMaterial.parafaPrijeti.id'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   #{select "${field.name}", value:"${bioMaterial?.parafaPrijeti?.id}", id:"${field.name}"}
   	#{option }vyberte#{/option}
     #{list users}
@@ -85,7 +88,7 @@
 
 #{field 'bioMaterial.datumIzolace'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumIzolace?.format('dd.MM.yyyy')}" class="${field.errorClass}">
   <span class="error">${field.error} </span>
 </p>
@@ -94,7 +97,7 @@
 
 #{field 'bioMaterial.parafaIzolace.id'}
 <p>
-  <label>&{field.name} </label><br>
+  <label>&{field.name} </label>
   #{select "${field.name}", value:"${bioMaterial?.parafaIzolace?.id}", id:"${field.name}"}
   	#{option }vyberte#{/option}
     #{list users}

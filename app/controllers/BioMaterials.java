@@ -54,7 +54,7 @@ public class BioMaterials extends Application {
       newBioMat.save();
     }
 
-    flash.success("Materiál %s uložen.", bioMaterial.typ);
+    flash.success("Biologický materiál %s uložen.", bioMaterial.typ);
 
     Patients.detail(pacientId);
     
@@ -66,10 +66,10 @@ public class BioMaterials extends Application {
       Patient pacient = bioMaterial.pacient;
       try {
         bioMaterial.delete();
-        flash.success("Materiál %s odebrán.", bioMaterial.typ);
+        flash.success("Biologický materiál %s smazán.", bioMaterial.typ);
       }
       catch (Exception e) {
-          flash.error("Materiál %s se nepodařilo odebrat.", bioMaterial.typ);
+          flash.error("Biologický materiál %s se nepodařilo smazat.", bioMaterial.typ);
       }
       Patients.detail(pacient.id);
   }
