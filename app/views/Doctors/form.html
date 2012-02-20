@@ -15,10 +15,10 @@
 
 #{form @mySave(lekar?.id)}
 <fieldset>
-    <legend>Zadejte informace o lékaři</legend>
+    <legend>Informace o lékaři</legend>
   #{field 'lekar.icz'}
   <p>
-    <label>&{field.name} </label><br>
+    <label class="required">&{field.name} </label>
     <input type="text" id="${field.id}" name="${field.name}" value="${lekar?.icz}" class="${field.errorClass}">
     <span class="error">${field.error} </span>
   </p>
@@ -26,23 +26,59 @@
 
   #{field 'lekar.jmeno'}
   <p>
-    <label>&{field.name} </label><br>
-    <input type="text" id="${field.id}" name="${field.name}" value="${lekar?.jmeno}" class="${field.errorClass}">
+    <label class="required">&{field.name} </label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${lekar?.jmeno}" class="${field.errorClass} longW">
     <span class="error">${field.error} </span>
   </p>
   #{/}
 
   #{field 'lekar.pracoviste'}
   <p>
-    <label>&{field.name} </label><br>
-    <input type="text" id="${field.id}" name="${field.name}" value="${lekar?.pracoviste}" class="${field.errorClass}">
+    <label>&{field.name} </label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${lekar?.pracoviste}" class="${field.errorClass} vLongW">
     <span class="error">${field.error} </span>
   </p>
   #{/}
 
-    <p>
-        <input type="submit" value="Uložit" />
-    </p>
+  <p>
+    <input type="submit" value="Uložit" />
+    #{if lekar?.id}  
+    <span class="button delete">#{a @myDelete(lekar?.id), id:"delButton"}Smazat lékaře#{/a}</span>
+    #{/if}       
+  </p>
  </fieldset>
 #{/form}
 
+
+#{if lekar?.id}
+  </div>
+
+  <div id="dialog-confirm" title="Lékař ${lekar?.jmeno}">
+  	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Opravdu chcete smazat tohoto lékaře?</p>
+  </div>
+  
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $('#dialog-confirm').dialog({
+      	resizable: false,
+      	height:160,
+      	modal: true,
+      	autoOpen: false,
+      	buttons: {
+      		'Smazat': function() {
+      		  $( this ).dialog( 'close' );
+            window.location.href = $('#delButton').attr('href');       				
+      		},
+      		'Storno': function() {
+      			$( this ).dialog( 'close' );
+      		}
+      	}
+      });    
+  
+      $('#delButton').click(function () {
+        $( "#dialog-confirm" ).dialog('open');
+        return false;       
+      } );
+  } );
+  </script>  
+#{/if}

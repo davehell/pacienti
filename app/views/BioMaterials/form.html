@@ -4,10 +4,7 @@
   #{set title:'Nový biologický materiál' /}
 #{/ifnot}
 #{else}
-  #{set title:'Biologický materiál ' + bioMaterial.typ /}
-  <p>
-    #{a @myDelete(bioMaterial.id)}smazat#{/a}
-  </p>
+  #{set title:'Biologický materiál' /}
 #{/else}
 
 #{ifErrors}
@@ -16,26 +13,19 @@
   </p>
 #{/ifErrors}
 
-<form>
-<fieldset>
-  <legend>Pacient</legend>
-  <ul>
-   <li>#{a @Patients.detail(pacient?.id)}${pacient?.getKod()}#{/a}</li>
-   <li>${pacient?.jmeno} </li>
-   <li>${pacient?.rodneCislo} </li>
-  </ul>
-</fieldset>
-</form>
-
-
 #{form @mySave(bioMaterial?.id)}
 <fieldset>
   <legend>Informace o biologickém materiálu</legend>
 
+<p>
+  <label>pacient </label>
+  <span class="infoInput">#{a @Patients.detail(pacient?.id), title:"Zobrazit detail pacienta"}${pacient?.getKod()}#{/a}, ${pacient?.jmeno} </span>
+</p>
+
 #{field 'bioMaterial.typ'}
 <p>
   <label class="required">&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.typ}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.typ}" class="${field.errorClass} longW">
   <span class="error">${field.error} </span>
   <span class="small">${typyMaterialu?.join(', ') }</span>
 </p>
@@ -44,32 +34,36 @@
 #{field 'bioMaterial.datumOdberu'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumOdberu?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumOdberu?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   <span class="error">${field.error} </span>
+  <span class="small">dd.mm.rrrr</span>
 </p>
 #{/}
 
 #{field 'bioMaterial.casOdberu'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casOdberu?.format('hh:mm')}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casOdberu?.format('hh:mm')}" class="${field.errorClass} shortW">
   <span class="error">${field.error} </span>
+  <span class="small">hh:mm</span>
 </p>
 #{/}
 
 #{field 'bioMaterial.datumPrijeti'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumPrijeti?.format()}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumPrijeti?.format()}" class="${field.errorClass} datumW">
   <span class="error">${field.error} </span>
+  <span class="small">dd.mm.rrrr</span>
 </p>
 #{/}
 
 #{field 'bioMaterial.casPrijeti'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casPrijeti?.format('hh:mm')}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casPrijeti?.format('hh:mm')}" class="${field.errorClass} shortW">
   <span class="error">${field.error} </span>
+  <span class="small">hh:mm</span>
 </p>
 #{/}
 
@@ -77,7 +71,7 @@
 <p>
   <label>&{field.name} </label>
   #{select "${field.name}", value:"${bioMaterial?.parafaPrijeti?.id}", id:"${field.name}"}
-  	#{option }vyberte#{/option}
+  	#{option }&{'selectBox.option.none'}#{/option}
     #{list users}
       #{option "${_.id}"}${_.parafa}#{/option}
     #{/list}
@@ -89,8 +83,9 @@
 #{field 'bioMaterial.datumIzolace'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumIzolace?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumIzolace?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   <span class="error">${field.error} </span>
+  <span class="small">dd.mm.rrrr</span>
 </p>
 #{/}
 
@@ -99,7 +94,7 @@
 <p>
   <label>&{field.name} </label>
   #{select "${field.name}", value:"${bioMaterial?.parafaIzolace?.id}", id:"${field.name}"}
-  	#{option }vyberte#{/option}
+  	#{option }&{'selectBox.option.none'}#{/option}
     #{list users}
       #{option "${_.id}"}${_.parafa}#{/option}
     #{/list}
@@ -112,12 +107,45 @@
 <input type="hidden" name="bioMaterial.id" value="${bioMaterial?.id}">
 
 
-    <p>
-        <input type="submit" value="Uložit" />
-    </p>
+  <p>
+      <input type="submit" value="Uložit" />
+      #{if bioMaterial?.id}  
+      <span class="button delete">#{a @myDelete(bioMaterial?.id), id:"delButton"}Smazat materiál#{/a}</span>
+      #{/if}
+  </p>
 </fieldset>
 #{/form}
 
+#{if bioMaterial?.id}
+<div id="dialog-confirm" title="Biologický materiál ${bioMaterial?.typ}">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Opravdu chcete smazat tento materiál?</p>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#dialog-confirm').dialog({
+    	resizable: false,
+    	height:160,
+    	modal: true,
+    	autoOpen: false,
+    	buttons: {
+    		'Smazat': function() {
+    		  $( this ).dialog( 'close' );
+          window.location.href = $('#delButton').attr('href');       				
+    		},
+    		'Storno': function() {
+    			$( this ).dialog( 'close' );
+    		}
+    	}
+    });    
+
+    $('#delButton').click(function () {
+      $( "#dialog-confirm" ).dialog('open');
+      return false;       
+    } );
+} );
+</script>
+#{/if}
 
 <script type="text/javascript">
     var calSetup = {

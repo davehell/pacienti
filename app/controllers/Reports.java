@@ -24,8 +24,10 @@ public class Reports extends Application {
       //options.FOOTER = "lkjdklsfkjhdkjhgkjhk";
       //options.filename = "pok.pdf";
 
-//ok IHtmlToPdfTransformer.PageSize pok2 = new IHtmlToPdfTransformer.PageSize(21.0, 29.7);
-//not ok options.pageSize = pok2;
+//ok 
+IHtmlToPdfTransformer.PageSize pok2 = new IHtmlToPdfTransformer.PageSize(21.0, 29.7, 1.9, 1.9, 1.5, 1.5);
+//not ok 
+options.pageSize = pok2;
 
 // int[] pok = IHtmlToPdfTransformer.A4P.getSize();
 // Logger.info(Integer.toString(pok[0]) + " " + Integer.toString(pok[1]) );
@@ -42,8 +44,6 @@ public class Reports extends Application {
     List<User> users = User.find("byModul", connected.modul).fetch();
     String[] vedouciLekari = connected.modul.vedouciLekari.split(",");
     String[] uvolnujiAnalyzu = connected.modul.uvolnujiAnalyzu.split(",");
-
-
 
     if(id != null) {
       Report zprava = Report.findById(id);
@@ -128,6 +128,7 @@ public class Reports extends Application {
       }
       catch (Exception e) {
           flash.error("Vyšetření %s se nepodařilo odebrat.",report.vysetreni);
+          form(id, pacient.id);
       }
 
       Patients.detail(pacient.id);

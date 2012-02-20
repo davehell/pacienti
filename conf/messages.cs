@@ -48,6 +48,15 @@ lekar.icz = IČZ
 lekar.jmeno = jméno
 lekar.pracoviste = pracoviště
 
+selectBox.option.select = vyberte
+selectBox.option.none = nezadáno
+
+noRecords = Nejsou uloženy žádné záznamy.
+
+secure.username=Uživatelské jméno:
+secure.password=Heslo:
+secure.signin=Přihlásit se
+
 # For use in JavaExtensions.since tag
 since.seconds = %s second%s ago
 since.minutes = %s minute%s ago
@@ -58,7 +67,7 @@ since.years   = %s year%s ago
 since.format  = MMM d, yyyy
 
 # Validation messages
-validation.required=Povinný údaj
+validation.required=povinný údaj
 validation.minSize=Minimum size is %2$d
 validation.maxSize=Maximum size is %2$d
 validation.email=Invalid email address
@@ -68,7 +77,7 @@ validation.max=Cannot be greater than %2$d
 validation.match=Must match %2$s
 validation.isTrue=Must be checked
 validation.equals=Must be equal to &{%2$s}
-validation.invalid=Nesprávná hodnota
+validation.invalid=nesprávná hodnota
 validation.future=Must be in the future
 validation.after=Must be after %2$s
 validation.past=Must be in the past

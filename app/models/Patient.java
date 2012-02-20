@@ -85,4 +85,15 @@ public class Patient extends Model {
     public String toString() {
         return jmeno;
     }
+
+    //kod = KO-111/12
+    public static Patient getByKod(String kod) {
+        if(kod.isEmpty() || kod.length() != "KO-111/12".length()) return null;
+        String modulKod = kod.substring(0, 2);
+        Integer pacCislo = Integer.parseInt(kod.substring(3, 6));
+        Integer pacRok = 2000 + Integer.parseInt(kod.substring(7, 9));
+
+        Patient pacient = Patient.find("modul.kod = ? and evCislo = ? and evRok = ?", modulKod, pacCislo, pacRok).first();
+        return pacient;
+    }
 }

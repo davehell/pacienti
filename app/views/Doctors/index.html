@@ -1,8 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Lékaři' /}
 
+
 <p>
-  #{a @form()}Nový lékař#{/a}
+  <span class="button">#{a @form()}Nový lékař#{/a}</span>
 </p>
 
 #{if lekari}
@@ -11,15 +12,13 @@
       <th>IČZ</th>
       <th>Jméno</th>
       <th>Pracoviště</th>
-      <th>&nbsp;</th>
     </thead>
     <tbody>
     #{list lekari}
     <tr>
-      <td>${_.icz} </td>
+      <td>#{a @form(_.id), title:"Upravit tohoto lékaře"}${_.icz}#{/a} </td>
       <td>${_.jmeno} </td>
       <td>${_.pracoviste} </td>
-      <td>#{a @form(_.id)}upravit#{/a} #{a @myDelete(_.id)}smazat#{/a} </td>
     </tr>
     #{/list}
     </tbody>
@@ -30,7 +29,10 @@ $(document).ready(function() {
     oTable = $('#example').dataTable({
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
-        "bLengthChange": false
+        "bLengthChange": false,
+        "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "Vše"]],
+        "bLengthChange": true,
+        "iDisplayLength":25        
     });
 } );
 </script>
@@ -38,6 +40,6 @@ $(document).ready(function() {
 
 #{else}
     <div class="empty">
-        There is currently nothing to read here.
+        &{'noRecords'}
     </div>
 #{/else}

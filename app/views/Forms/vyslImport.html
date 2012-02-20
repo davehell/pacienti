@@ -1,0 +1,41 @@
+#{extends 'main.html' /}
+#{set title:'Import výsledků' /}
+
+#{ifnot fileName}
+<form action="@{vyslImport()}" method="POST" enctype="multipart/form-data">
+<fieldset>
+  <legend>Výsledky vyšetření</legend>
+  <p>
+    <label>Soubor s daty</label>
+    <input type="file" id="file" name="file" />
+  </p>
+  <p>
+     <input type="submit" value="Odeslat" />
+  </p>
+</fieldset>
+</form>
+#{/ifnot}
+#{else}
+<p>
+ Soubor s daty: ${fileName}
+</p> 
+
+<table>
+  <thead>
+    <tr>
+      <th>Sample Name</th>
+      <th>Marker</th>
+      <th>Call</th>
+    </tr>
+  </thead>
+  <tbody>
+#{list str}
+    <tr>
+      <td>${_.split(",")[0]}</td>
+      <td>${_.split(",")[1]}</td>
+      <td>${_.split(",")[2]}</td>
+    </tr>
+#{/list}
+  </tbody>
+</table>
+#{/else}

@@ -1,10 +1,6 @@
 #{extends 'main.html' /}
 #{set title:'Pacienti' /}
 
-<p>
-  <span class="button">#{a @form()}Nový pacient#{/a}</span>
-</p>
-
 
 #{if pacienti}
   <table class="display" id="pacTable">
@@ -19,10 +15,10 @@
     <tbody>
 
     #{list pacienti}
-    <tr">
+    <tr>
       <td>${_.evCislo} </td>
       <td>${_.evRok} </td>
-      <td><span>@{ detail(_.id)}</span>${_.getKod()}</td>
+      <td>#{a @Patients.detail(_.id), title:"Zobrazit detail tohoto pacienta"}${_.getKod()}#{/a} </td>
       <td>${_.jmeno} </td>
       <td>${_.rodneCislo} </td>
       <td>@{ detail(_.id)} </td>
@@ -39,25 +35,27 @@ $(document).ready(function() {
         "bStateSave": false,
         "aaSorting": [[ 1, "desc" ],[ 0, "desc" ]],
         "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "Vše"]],
+        "iDisplayLength":25,
         "aoColumnDefs": [
             { "bVisible": false, "aTargets": [ 0, 1, 5 ] },
             { "bSearchable": false, "aTargets": [ 0, 1, 5 ] }
         ]
     });
 
+/*
     $('#pacTable tbody tr').live('click', function () {
         var nTds = $('td', this);
         var nSpans = $('span', nTds[0]);
         window.location.href = nSpans[0].innerHTML;
     } );
-
+*/
 } );
 </script>
 
  #{/if}
 #{else}
     <div class="empty">
-        There is currently nothing to read here.
+        &{'noRecords'}
     </div>
 #{/else}
 

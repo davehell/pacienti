@@ -23,14 +23,14 @@
 <p class="left">
   <label class="required">&{field.name} </label>
   ${connected?.modul?.kod} &nbsp;&nbsp;
-  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.evCislo}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.evCislo}" class="${field.errorClass} shortW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
 
 #{field 'pacient.evRok'}
 <p class="left">
-  /&nbsp;&nbsp;<input type="text" id="${field.id}" name="${field.name}" value="#{if pacient}${pacient.evRok}#{/if}#{else}${new Date().format('yyyy')}#{/else}" class="${field.errorClass}">
+  /&nbsp;&nbsp;<input type="text" id="${field.id}" name="${field.name}" value="#{if pacient}${pacient.evRok}#{/if}#{else}${new Date().format('yyyy')}#{/else}" class="${field.errorClass} shortW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -46,7 +46,7 @@
 #{field 'pacient.jmeno'}
 <p>
   <label class="required">&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.jmeno}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.jmeno}" class="${field.errorClass} longW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -56,8 +56,8 @@
   <label class="required">&{field.name} </label>
   *{ #{select "${field.name}", items:pojistovny, valueProperty:'id', value:"${pacient?.pojistovna?.id}" /} }*
 
-  #{select "${field.name}", value:"${pacient?.pojistovna?.id}", id:"${field.name}"}
-    #{option "0"}vyberte#{/option}
+  #{select "${field.name}", value:"${pacient?.pojistovna?.id}", id:"${field.name}", class:"vLongW"}
+    #{option "0"}&{'selectBox.option.select'}#{/option}
     #{list pojistovny}
       #{option "${_.id}"}${_.cislo} - ${_.nazev}#{/option}
     #{/list}
@@ -70,8 +70,8 @@
 #{field 'pacient.lekar.id'}
 <p>
   <label>&{field.name} </label>
-  #{select "${field.name}", value:"${pacient?.lekar?.id}", id:"${field.name}"}
-  	#{option }vyberte#{/option}
+  #{select "${field.name}", value:"${pacient?.lekar?.id}", id:"${field.name}", class:"vLongW"}
+  	#{option }&{'selectBox.option.none'}#{/option}
     #{list lekari}
       #{option "${_.id}"}${_.icz} - ${_.jmeno}#{/option}
     #{/list}
@@ -91,7 +91,7 @@
 #{field 'pacient.diagnoza'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.diagnoza}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.diagnoza}" class="${field.errorClass} shortW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -99,7 +99,7 @@
 #{field 'pacient.koncDna'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.koncDna}" class="${field.errorClass}"><span>&nbsp;&nbsp;ng/&micro;l</span>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.koncDna}" class="${field.errorClass} shortW"><span>&nbsp;&nbsp;ng/&micro;l</span>
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -107,7 +107,7 @@
 #{field 'pacient.pozn'}
 <p>
   <label>&{field.name} </label>
-  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${pacient?.pozn} </textarea>
+  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} vLongW">${pacient?.pozn} </textarea>
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -115,15 +115,49 @@
 #{field 'pacient.verejnaPozn'}
 <p>
   <label>&{field.name} </label>
-  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${pacient?.verejnaPozn} </textarea>
+  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} vLongW">${pacient?.verejnaPozn} </textarea>
   <span class="error">${field.error} </span>
 </p>
 #{/}
 
 <input type="hidden" name="pacient.id" value="${pacient?.id}">
 
-    <p>
-        <input type="submit" value="Uložit" />
-    </p>
+<p>
+    <input type="submit" value="Uložit" />
+    #{if pacient?.id}  
+    <span class="button delete">#{a @myDelete(pacient?.id), id:"delButton"}Smazat pacienta#{/a}</span>
+    #{/if}
+</p>
 </fieldset>
 #{/form}
+
+#{if pacient?.id}
+<div id="dialog-confirm" title="Pacient ${pacient?.getKod()}">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Opravdu chcete smazat tohoto pacienta?</p>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#dialog-confirm').dialog({
+    	resizable: false,
+    	height:160,
+    	modal: true,
+    	autoOpen: false,
+    	buttons: {
+    		'Smazat': function() {
+    		  $( this ).dialog( 'close' );
+          window.location.href = $('#delButton').attr('href');       				
+    		},
+    		'Storno': function() {
+    			$( this ).dialog( 'close' );
+    		}
+    	}
+    });    
+
+    $('#delButton').click(function () {
+      $( "#dialog-confirm" ).dialog('open');
+      return false;       
+    } );
+} );
+</script>
+#{/if}

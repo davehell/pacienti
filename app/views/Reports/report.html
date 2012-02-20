@@ -4,20 +4,22 @@
   <head>
     <title>Výsledková zpráva molekulárně genetického vyšetření</title>
     <meta charset="${_response_encoding}">
+    <link rel="stylesheet" media="all" href="@{'/public/stylesheets/blueprint/print.css'}" type="text/css">
     <style>
       body {font-family: "Times New Roman"; font-size: 12pt;}
-      #page {width: 17cm;}
+      #page {width: 17cm; height: 26cm; border: 0px solid black; position: relative; margin: 0;}
       #logo {width: 75px; height: 85px; position: absolute; top: 0; left: 0;}
       #certif{width: 40px; height: 40px; position: absolute; top: 2cm; right: 0;}
       #head-center { text-align: center; width: 100%;}
       #head-center p {margin: 0;}
       h1,h2 {font-size: 14pt; text-align: center;}
-      h3 {}
+      h1 {border-top: 1px solid black; padding-top: 10px;}
       .tab { font-style: italic; width: 100%;}
-      td.gtyp { text-align: left; font-weight: bold;}
+      td.gtyp { text-align: left; font-weight: bold; padding-right: 0.5cm;}
+      td.gres { width: 1cm;}
       .noItal {font-style: normal;}
     </style>
-    <link rel="stylesheet" media="all" href="@{'/public/stylesheets/blueprint/print.css'}" type="text/css">
+    
   </head>
   <body>
 
@@ -46,7 +48,7 @@
 </div>
 #{/if}
 
-<hr style="clear: both;">
+
 
 <h1>Výsledková zpráva molekulárně genetického vyšetření</h1>
 
@@ -67,7 +69,7 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
     <td>${zprava.bioMaterial.typ} </td>
     <td>Datum přijetí vzorku:</td>
     <td>${zprava.bioMaterial.datumPrijeti?.format()} </td>
-    <td>Čas přijetí vzorku</td>
+    <td>Čas přijetí vzorku:</td>
     <td>${zprava.bioMaterial.casPrijeti?.format('HH:mm')} </td>
   </tr>
 </table>
@@ -110,10 +112,17 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 <h3>Zjištěný genotyp:</h3>
 <table>
   #{list zprava.vysledky}
-  <tr>
+    #{if _isFirst}
+    <tr>
+    #{/if}
     <td class="gtyp">${_.genotyp.nazev} </td>
-    <td>${_.vysledek} </td>
-  </tr>
+    <td class="gres">${_.vysledek} </td>
+    #{if _index % zprava.vysetreni.sloupce == 0}
+    </tr>
+    #{ifnot _isLast}
+    <tr>
+    #{/ifnot}
+    #{/if} 
   #{/list}
 </table>
 <p style="font-size: 10pt;">
@@ -126,10 +135,10 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 </p>
 
 
-<table class="tab" style="width: auto;">
+<table class="tab" style="width: auto; position: absolute; bottom: 0;">
   <tr>
     <td>Analýzu provedl:</td>
-    <td><span class="noItal">${zprava.parafaVysetreni?.jmeno} </span></td>
+    <td><span class="noItal">${zprava.parafaVysetreni?.jmeno} </span>, ${zprava.parafaVysetreni?.pozice} </td>
   </tr>
   <tr>
     <td>Analýzu uvolnil:</td>

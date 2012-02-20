@@ -15,26 +15,8 @@ import java.util.*;
 public class Doctors extends Application {
 
   public static void index() {
-  /*
-Query q = JPA.em().createQuery ("UPDATE Doctor d SET d.jmeno = :jmeno ");
-q.setParameter ("jmeno", "pok");
-Integer updated = q.executeUpdate ();
-Logger.info(updated.toString());
-*/
 
-/*
-List<Doctor> docs  = new ArrayList<Doctor>();
-docs.add(new Doctor("llllllllllll","y","y"));
-docs.add(new Doctor("pppppppppppp","df","df"));
-
-for (int i = 0; i < docs.size(); i++) {
-  if(docs.get(i) == null) continue;
-  JPA.em().persist(docs.get(i));
-}
-*/
-
-
-    Query query = JPA.em().createQuery("select d from Doctor d");
+    Query query = JPA.em().createQuery("select d from Doctor d order by icz desc");
     List<Doctor> lekari = query.getResultList();
     render(lekari);
   }
@@ -83,6 +65,7 @@ for (int i = 0; i < docs.size(); i++) {
       }
       catch (Exception e) {
           flash.error("Lékaře %s se nepodařilo odebrat.",lekar.toString());
+          form(id);
       }
       index();
   }

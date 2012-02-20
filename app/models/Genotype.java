@@ -14,7 +14,7 @@ public class Genotype extends Model {
     public Examination vysetreni;
 
     @Required
-    @MaxSize(35)
+    @MaxSize(50)
     public String nazev;
     
 

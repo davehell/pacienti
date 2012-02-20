@@ -2,22 +2,20 @@
 #{set title:'Pojišťovny' /}
 
 <p>
-  #{a @form()}Nová pojišťovna#{/a}
+  <span class="button">#{a @form()}Nová pojišťovna#{/a}</span>
 </p>
 
 #{if pojistovny}
-  <table class="display" id="example">
+  <table class="display" id="pojistTable">
     <thead>
       <th>Číslo</th>
       <th>Název</th>
-      <th>&nbsp;</th>
     </thead>
     <tbody>
     #{list pojistovny}
     <tr>
-      <td>${_.cislo} </td>
+      <td>#{a @form(_.id)}${_.cislo}#{/a} </td>
       <td>${_.nazev} </td>
-      <td>#{a @form(_.id)}upravit#{/a} #{a @myDelete(_.id)}smazat#{/a} </td>
     </tr>
     #{/list}
     </tbody>
@@ -25,12 +23,14 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    oTable = $('#example').dataTable({
+    oTable = $('#pojistTable').dataTable({
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
-        "aaSorting": [[ 1, "asc" ]],
-        "bStateSave": true,
-        "bLengthChange": false
+        "bStateSave": false,
+        "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "Vše"]],
+        "bLengthChange": true,
+        "iDisplayLength":25
+ 
     });
 } );
 </script>
@@ -38,6 +38,6 @@ $(document).ready(function() {
 
 #{else}
     <div class="empty">
-        There is currently nothing to read here.
+        &{'noRecords'}
     </div>
 #{/else}

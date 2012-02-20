@@ -28,10 +28,23 @@ GET   /vysetreni/{id}/smazat                      Reports.myDelete
 GET   /vysetreni/{id}/zaverecna-zprava            Reports.report
 
 GET		/pojistovny													    InsuranceCompanies.index
+GET   /pojistovna/{id}/upravit                     InsuranceCompanies.form
+GET   /pojistovna/novy                             InsuranceCompanies.form
+POST  /pojistovna/{id}/ulozit                      InsuranceCompanies.mySave
+POST  /pojistovna/ulozit                           InsuranceCompanies.mySave
+GET   /pojistovna/{id}/smazat                      InsuranceCompanies.myDelete
+
 GET		/lekari   													    Doctors.index
+GET   /lekar/{id}/upravit                     Doctors.form
+GET   /lekar/novy                             Doctors.form
+POST  /lekar/{id}/ulozit                      Doctors.mySave
+POST  /lekar/ulozit                           Doctors.mySave
+GET   /lekar/{id}/smazat                      Doctors.myDelete
 
 GET		/sestavy/neizolovana-dna											    Forms.neizolovana
 GET		/sestavy/{typ}								       Forms.index
+POST  /import-vysledku                     Forms.vyslImport
+GET   /import-vysledku                      Forms.vyslImport
 
 
 

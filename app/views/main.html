@@ -23,16 +23,20 @@
     #{get 'moreScripts' /}
   </head>
   <body>
-    <div class="container showgridx">
+    <div class="container">
     <div class="column span-24 last" id="header">
       <h1>Evidence pacientů</h1>
+#{if connected}
       <p>
         ${connected?.jmeno}, ${connected?.modul} <br>
-        <a href="@{Secure.logout()}">Odhlášení</a>
+        ${request.remoteAddress} <a href="@{Secure.logout()}">Odhlášení</a>
       </p>
+#{/if}      
     </div>
+
+<div class="column span-24 last prepend-top " id="menu">
     
-    <div class="column span-24 last prepend-top append-bottom" id="menu">
+#{if connected}     
     	<ul>
     		<li><a href="#tabs-1">Pacienti</a></li>
     		<li><a href="#tabs-2">Nastavení</a></li>
@@ -42,6 +46,7 @@
     	<div id="tabs-1">
         <ul>
          <li><a href="@{Patients.index()}">Pacienti</a></li>
+         <li><a href="@{Patients.form()}">Nový pacient</a></li>
         </ul>
     	</div>
     	<div id="tabs-2">
@@ -59,8 +64,9 @@
         </ul>
     	</div>
     	<div id="tabs-4">
-
+        <li><a href="@{Forms.vyslImport()}">Import výsledků</a></li>
     	</div>
+#{/if}      	
     </div>
 
     <div id="main"  class="column span-24 last prepend-top append-bottom">
@@ -80,7 +86,6 @@
       #{doLayout /}
     </div>
     
-
     <div class="span-24 last prepend-top" id="footer">
       #{secure.check 'admin'}
       <ul>
@@ -100,16 +105,24 @@
   </div> <!-- container -->
 
 
-
 	<script>
+#{if connected}
 	$(function() {
-		$( "#menu" ).tabs();
-	});
+	  var sel = 0;
 
+    #{if request.action.equals("Forms.vyslImport")} sel = 3;#{/if}
+    #{elseif request.controller.equals("Forms")} sel = 2;#{/elseif}
+    #{elseif request.controller.equals("Doctors")} sel = 1;#{/elseif}
+    #{elseif request.controller.equals("InsuranceCompanies")} sel = 1;#{/elseif}
+
+	  
+		$( "#menu" ).tabs({selected: sel});
+	});
+#{/if}
 	$(function() {
 		$( "a", "#header" ).button();
     $( "a", "span.button" ).button();
-    $( "input:submit").button();
+    $( "input:submit").button();             
 	});
 
 	</script>

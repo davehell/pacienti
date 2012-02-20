@@ -2,36 +2,32 @@
 
 #{set title:'Pacient ' + pacient.getKod() /}
 
-<p>
-  <span class="button">#{a @myDelete(pacient.id)}smazat#{/a}</span>
-</p>
-
 #{include 'Patients/form.html' /}
 
-<h2>Biologické materiály</h2>
-<p>
-  <span class="button">#{a @BioMaterials.form(null, pacient.id)}Nový materiál#{/a}</span>
-</p>
+<div class="hWithButton">
+  <h2>Biologické materiály</h2>
+  <span class="button">#{a @BioMaterials.form(null, pacient.id)}Přidat materiál#{/a}</span>
+</div>  
 #{if pacient.bioMaterialy}
-<table class="display" id="biomatTable">
+<table class="display">
   <thead>
   <tr>
     <th rowspan="2">Typ</th>
-    <th rowspan="2">Datum odběru</th>
-    <th colspan="2">Příjem</th>
-    <th colspan="2">Izolace DNA</th>
+    <th rowspan="2" class="datumW">Datum odběru</th>
+    <th colspan="2" style="text-align: center;">Příjem</th>
+    <th colspan="2" style="text-align: center;">Izolace DNA</th>
   </tr>
   <tr>
-    <th>Datum a čas</th>
-    <th>Parafa</th>
-    <th>Datum a čas</th>
-    <th>Parafa</th>
+    <th class="datumCasW">Datum a čas</th>
+    <th class="parafaW">Parafa</th>
+    <th class="datumCasW">Datum a čas</th>
+    <th class="parafaW">Parafa</th>
   </tr>
   </thead>
   <tbody>
     #{list pacient.bioMaterialy}
     <tr>
-      <td>#{a @BioMaterials.form(_.id, _.pacient.id)}${_.typ}#{/a} </td>
+      <td>#{a @BioMaterials.form(_.id, _.pacient.id), title:"Upravit informace o tomto materiálu"}${_.typ}#{/a} </td>
       <td>${_.datumOdberu?.format()} ${_.casOdberu?.format('HH:mm')} </td>
       <td>${_.datumPrijeti?.format()} ${_.casPrijeti?.format('HH:mm')} </td>
       <td>${_.parafaPrijeti?.parafa} </td>
@@ -44,29 +40,31 @@
 #{/if}
 #{else}
     <div class="empty">
-        There is currently nothing to read here.
+        &{'noRecords'}
     </div>
 #{/else}
 
-<h2>Vyšetření</h2>
-<p>
-  <span class="button">#{a @Reports.form(null, pacient.id)}Nové vyšetření#{/a}</span>
-</p>
+
+<div class="hWithButton">
+  <h2>Vyšetření</h2>
+  <span class="button">#{a @Reports.form(null, pacient.id)}Přidat vyšetření#{/a}</span>
+</div> 
+
 #{if pacient.zpravy}
-<table class="display" id="zpravy">
+<table class="display">
   <thead>
-    <th>Název</th>
-    <th>Datum vyšetření</th>
-    <th>Parafa</th>
+    <th style="width: 29em;">Název</th>
+    <th class="datumW">Datum vyšetření</th>
+    <th class="parafaW">Parafa</th>
     <th>&nbsp;</th>
   </thead>
   <tbody>
     #{list pacient.zpravy}
     <tr>
-      <td>#{a @Reports.form(_.id, _.pacient.id)}${_.vysetreni.nazev}#{/a} </td>
+      <td>#{a @Reports.form(_.id, _.pacient.id), title:"Upravit informace o tomto vyšetření"}${_.vysetreni.nazev}#{/a} </td>
       <td>${_.datumVysetreni?.format()} </td>
       <td>${_.parafaVysetreni?.parafa} </td>
-      <td>#{a @Reports.report(_.id)}závěrečná zpráva#{/a} </td>
+      <td>#{a @Reports.report(_.id), title:"Zobrazit závěrečnou zprávu tohoto vyšetření"}závěrečná zpráva#{/a} </td>
     </tr>
     #{/list}
   </tbody>
@@ -74,7 +72,7 @@
 #{/if}
 #{else}
     <div class="empty">
-        There is currently nothing to read here.
+        &{'noRecords'}
     </div>
 #{/else}
 

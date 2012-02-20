@@ -16,7 +16,7 @@ import java.util.*;
 public class InsuranceCompanies extends Application  {
 
   public static void index() {
-    List<InsuranceCompany> pojistovny = InsuranceCompany.find("byModul", connected.modul).fetch();
+    List<InsuranceCompany> pojistovny = InsuranceCompany.find("modul = ? order by nazev desc", connected.modul).fetch();
     render(pojistovny);
   }
 
@@ -61,6 +61,7 @@ public class InsuranceCompanies extends Application  {
       }
       catch (Exception e) {
           flash.error("Pojišťovnu %s se nepodařilo odebrat.", pojistovna.toString());
+          form(id);
       }
 
       index();

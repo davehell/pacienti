@@ -70,6 +70,7 @@ public class BioMaterials extends Application {
       }
       catch (Exception e) {
           flash.error("Biologický materiál %s se nepodařilo smazat.", bioMaterial.typ);
+          form(bioMaterial.id, bioMaterial.pacient.id);
       }
       Patients.detail(pacient.id);
   }

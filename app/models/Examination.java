@@ -25,12 +25,17 @@ public class Examination extends Model {
 
     public int sloupce;
 
-     @OneToMany(mappedBy="vysetreni", cascade=CascadeType.ALL)
-     public List<Genotype> genotypy;
-
-
+    @OneToMany(mappedBy="vysetreni", cascade=CascadeType.ALL)
+    public List<Genotype> genotypy;
 
     public String toString() {
         return nazev;
-    }      
+    }
+
+    public static Examination getByGenotyp(String genotyp) {
+        if(genotyp.isEmpty()) return null;
+
+        Genotype gtyp = Genotype.find("nazev = ?", genotyp).first();
+        return (gtyp == null) ? null : gtyp.vysetreni;
+    }
 }

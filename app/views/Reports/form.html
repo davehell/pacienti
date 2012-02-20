@@ -4,7 +4,7 @@
     #{set title:'Nové vyšetření' /}
 #{/ifnot}
 #{else}
-    #{set title:'Vyšetření  ' + zprava.vysetreni.nazev /}
+    #{set title:'Vyšetření' /}
 #{/else}
 
 #{ifErrors}
@@ -13,43 +13,34 @@
     </p>
 #{/ifErrors}
 
-<form>
-<fieldset>
-  <legend>Pacient</legend>
-  <ul>
-   <li>#{a @Patients.detail(pacient?.id)}${pacient?.getKod()}#{/a}</li>
-   <li>${pacient?.jmeno} </li>
-   <li>${pacient?.rodneCislo} </li>
-  </ul>
-
-#{if zprava?.bioMaterial?.id}
-  <p>
-    Biologický materiál: <em>${zprava.bioMaterial.typ}</em>
-  </p>
-#{/if}
-#{if zprava?.vysetreni?.id}
-  <input type="hidden" name="zprava.vysetreni.id" value="${zprava.vysetreni.id}">
-  <p>
-    Vyšetření: <em>${zprava.vysetreni.nazev}</em>
-  </p>
-#{/if}
-</fieldset>
-</form>
 
 #{form @mySave(zprava?.id)}
-<div class="span-12">
+#{if zprava?.id}
+  <div class="span-15">
+#{/if}
+
 <fieldset>
-  <legend>Vyšetření</legend>
+  <legend>Informace o vyšetření</legend>
+
+<p>
+  <label>pacient</label>
+  <span class="infoInput">#{a @Patients.detail(pacient?.id), title:"Zobrazit detail pacienta"}${pacient?.getKod()}#{/a}, ${pacient?.jmeno} </span>
+</p>
+
 
 #{if zprava?.bioMaterial?.id}
   <input type="hidden" name="zprava.bioMaterial.id" value="${zprava.bioMaterial.id}">
+  <p>
+    <label>biologický materiál</label>
+    <span class="infoInput">${zprava?.bioMaterial?.typ} </span>
+  </p>  
 #{/if}
 #{else}
   #{field 'zprava.bioMaterial.id'}
   <p>
     <label class="required">&{field.name} </label>
-    #{select "${field.name}", value:"${zprava?.bioMaterial?.id}", id:"${field.name}"}
-    	#{option "0"}vyberte#{/option}
+    #{select "${field.name}", value:"${zprava?.bioMaterial?.id}", id:"${field.name}", class:"vLongW"}
+    	#{option "0"}&{'selectBox.option.select'}#{/option}
       #{list bioMaterialy}
         #{option "${_.id}"}${_.datumOdberu?.format()} - ${_.typ}#{/option}
       #{/list}
@@ -61,13 +52,17 @@
 
 #{if zprava?.vysetreni?.id}
   <input type="hidden" name="zprava.vysetreni.id" value="${zprava.vysetreni.id}">
+  <p>
+    <label>název vyšetření</label>
+    <span class="infoInput">${zprava?.vysetreni?.nazev} </span>
+  </p>  
 #{/if}
 #{else}
   #{field 'zprava.vysetreni.id'}
   <p>
     <label class="required"l>&{field.name} </label>
-    #{select "${field.name}", value:"${zprava?.vysetreni?.id}", id:"${field.name}"}
-    	#{option "0"}vyberte#{/option}
+    #{select "${field.name}", value:"${zprava?.vysetreni?.id}", id:"${field.name}", class:"vLongW"}
+    	#{option "0"}&{'selectBox.option.select'}#{/option}
       #{list vysetreni}
         #{option "${_.id}"}${_.nazev}#{/option}
       #{/list}
@@ -80,7 +75,7 @@
 #{field 'zprava.datumVysetreni'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumVysetreni?.format()}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumVysetreni?.format()}" class="${field.errorClass} datumW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -89,7 +84,7 @@
 <p>
   <label>&{field.name} </label>
   #{select "${field.name}", value:"${zprava?.parafaVysetreni?.id}", id:"${field.name}"}
-  	#{option }vyberte#{/option}
+  	#{option }&{'selectBox.option.none'}#{/option}
     #{list users}
       #{option "${_.id}"}${_.jmeno}#{/option}
     #{/list}
@@ -102,8 +97,8 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.parafaUvolneni}" class="${field.errorClass}">
-  <span class="error">${field.error} </span><br>
-    <span class="small">${uvolnujiAnalyzu?.join(', ') } </span>
+  <span class="error">${field.error} </span>
+  <span class="small">${uvolnujiAnalyzu?.join(', ') } </span>
 </p>
 #{/}
 
@@ -112,7 +107,7 @@
   <label>&{field.name} </label>
   
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.vedouciLekar}" class="${field.errorClass}">
-  <span class="error">${field.error} </span><br>
+  <span class="error">${field.error} </span>
   <span class="small">${vedouciLekari?.join(', ') } </span>
 </p>
 #{/}
@@ -136,7 +131,7 @@
 #{field 'zprava.datumPCR1'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumPCR1?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumPCR1?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -144,7 +139,7 @@
 #{field 'zprava.datumPCR2'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumPCR2?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumPCR2?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -152,7 +147,7 @@
 #{field 'zprava.datumElForezy'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumElForezy?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumElForezy?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -160,7 +155,7 @@
 #{field 'zprava.datumRevHybrid'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumRevHybrid?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumRevHybrid?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -176,7 +171,7 @@
 #{field 'zprava.datumRTAn'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumRTAn?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumRTAn?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -184,36 +179,71 @@
 #{field 'zprava.datumSekv'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumSekv?.format('dd.MM.yyyy')}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumSekv?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
 
 <input type="hidden" name="pacientId" id="pacientId" value="${pacient?.id}">
 
-    <p>
-        <input type="submit" value="Uložit" />
-    </p>
+  <p>
+    <input type="submit" value="Uložit" />
+    #{if zprava?.id}  
+    <span class="button delete">#{a @myDelete(zprava?.id), id:"delButton"}Smazat vyšetření#{/a}</span>
+    #{/if}        
+  </p>
 </fieldset>
-</div>
 
-<div class="span-12 last">
 #{if zprava?.id}
-<fieldset>
+  </div>
+
+  <div id="dialog-confirm" title="Vyšetření ${zprava?.vysetreni?.nazev}">
+  	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Opravdu chcete smazat toto vyšetření?</p>
+  </div>
+  
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $('#dialog-confirm').dialog({
+      	resizable: false,
+      	height:160,
+      	modal: true,
+      	autoOpen: false,
+      	buttons: {
+      		'Smazat': function() {
+      		  $( this ).dialog( 'close' );
+            window.location.href = $('#delButton').attr('href');       				
+      		},
+      		'Storno': function() {
+      			$( this ).dialog( 'close' );
+      		}
+      	}
+      });    
+  
+      $('#delButton').click(function () {
+        $( "#dialog-confirm" ).dialog('open');
+        return false;       
+      } );
+  } );
+  </script>  
+#{/if}
+
+#{if zprava?.id}
+<div class="span-9 last">
+<fieldset class="genotyp">
   <legend>Zjištěný genotyp</legend>
   #{list zprava?.vysledky}
     <p>
       <label>${_.genotyp.nazev} </label>
       <input type="hidden" name="vysledky[${_.id}].id" value="${_.id}">
-      <input type="text" name="vysledky[${_.id}].vysledek" value="${_.vysledek}">
+      <input type="text" name="vysledky[${_.id}].vysledek" value="${_.vysledek}" class="shortW">
     </p>
   #{/list}
     <p>
         <input type="submit" value="Uložit" />
     </p>
 </fieldset>
-#{/if}
 </div>
+#{/if}
 #{/form}
 
 <script type="text/javascript">

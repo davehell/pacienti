@@ -20,11 +20,11 @@
 
 #{form @index(typ)}
 <fieldset>
-  <legend>Období</legend>
+  <legend>Výběr období</legend>
   #{field 'datumOd'}
   <p>
     <label class="required">&{field.name} </label>
-    <input type="text" id="${field.id}" name="${field.name}" value="${datumOd.format('dd.MM.yyyy')}" class="${field.errorClass}">
+    <input type="text" id="${field.id}" name="${field.name}" value="${datumOd.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
     <span class="error">${field.error} </span>
   </p>
   #{/}
@@ -32,7 +32,7 @@
   #{field 'datumDo'}
   <p>
     <label class="required">&{field.name} </label>
-    <input type="text" id="${field.id}" name="${field.name}" value="${datumDo.format('dd.MM.yyyy')}" class="${field.errorClass}">
+    <input type="text" id="${field.id}" name="${field.name}" value="${datumDo.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
     <span class="error">${field.error} </span>
   </p>
   #{/}
