@@ -232,8 +232,9 @@
 <fieldset class="genotyp">
   <legend>Zjištěný genotyp</legend>
   #{list zprava?.vysledky}
+    %{ _.genotyp.nazev = _.genotyp.nazev.replace("->", "&#8594;"); }%
     <p>
-      <label>${_.genotyp.nazev} </label>
+      <label>${_.genotyp.nazev.raw()} </label>
       <input type="hidden" name="vysledky[${_.id}].id" value="${_.id}">
       <input type="text" name="vysledky[${_.id}].vysledek" value="${_.vysledek}" class="shortW">
     </p>

@@ -4,19 +4,25 @@
   <head>
     <title>Výsledková zpráva molekulárně genetického vyšetření</title>
     <meta charset="${_response_encoding}">
-    <link rel="stylesheet" media="all" href="@{'/public/stylesheets/blueprint/print.css'}" type="text/css">
+    
     <style>
-      body {font-family: "Times New Roman"; font-size: 12pt;}
-      #page {width: 17cm; height: 26cm; border: 0px solid black; position: relative; margin: 0;}
-      #logo {width: 75px; height: 85px; position: absolute; top: 0; left: 0;}
-      #certif{width: 40px; height: 40px; position: absolute; top: 2cm; right: 0;}
-      #head-center { text-align: center; width: 100%;}
-      #head-center p {margin: 0;}
-      h1,h2 {font-size: 14pt; text-align: center;}
-      h1 {border-top: 1px solid black; padding-top: 10px;}
+      body {font-family: "Times New Roman"; font-size: 12pt; line-height: 14pt;}
+      #page {width: 16.9cm; height: 26cm; border: 0px solid black; position: relative; margin: 0; padding: 0; border: 1px solid white;}
+      #logo { position: absolute; top: 0; left: 0;}
+      #certif{position: absolute; top: 1.3cm; right: 0;}
+      #head { text-align: center; width: 100%; border-bottom: 0.5px solid black; padding-bottom: 5px;}
+      #head p {margin: 0;}
+      table {border-collapse: collapse;  width: 100%; margin: 0;}
+      td {padding: 0; margin: 0;}
+      h1,h2 {font-size: 14pt; text-align: center;line-height: 14pt;}
+      h2 {width: 90%; }
+      h3 {font-size: 12pt; margin-bottom: 5px;}
+      h3 + p {margin: 0;}
       .tab { font-style: italic; width: 100%;}
+      #gtypTable {font-size: 10pt;  width: auto; margin-top: 10px;}
       td.gtyp { text-align: left; font-weight: bold; padding-right: 0.5cm;}
-      td.gres { width: 1cm;}
+      td.gres { width: 1.5cm;}
+      #gtypTable td{ border: 1px solid black;  padding: 2px 3px;}
       .noItal {font-style: normal;}
     </style>
     
@@ -24,27 +30,27 @@
   <body>
 
 <div id="page">
+
 <div id="logo">
-  <img src="@{'/public/images/lfg_logo.gif'}" width="73px" height="85px">
+  <img src="@{'/public/images/lfg_logo.gif'}" height="115px" width="100px">
 </div>
 
-
-<div id="head-center">
-  <p style="font-weight: bold; font-style: italic; ">
-  Laboratoř forenzní genetiky, spol. s r. o.<br>
-  IČO: 255 30 038<br>
-  IČZ: 72 862 000
+<div id="head">
+  <p style="font-weight: bold; font-style: italic; font-size: 12pt;">
+    Laboratoř forenzní genetiky, spol. s r. o.<br>
+    IČO: 255 30 038<br>
+    IČZ: 72 862 000
   </p>
   <p style="font-style: italic; font-size: 10pt;">
     Adresa: Ústav soudního lékařství, Tvrdého 2a, 662 99 Brno<br>
     Tel.: 543 426 511<br>
-    <span style="font-weight: bold; text-decoration: none;">www.lfg-brno.cz</span>
+    <span style="font-weight: bold; ">www.lfg-brno.cz</span>
   </p>
 </div>
 
 #{if zprava.vysetreni.certif}
 <div id="certif">
-  <img src="@{'/public/images/cert_m8141.gif'}" width="40px" height="38px">
+  <img src="@{'/public/images/cert_m8141.gif'}" height="60px" width="60px">
 </div>
 #{/if}
 
@@ -59,10 +65,10 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 
 <table class="tab">
   <tr>
-    <td>Primární vzorek:</td>
-    <td>Datum odběru:</td>
-    <td>${zprava.bioMaterial.datumOdberu?.format()} </td>
-    <td>Čas odběru:</td>
+    <td style="width: 5cm;">Primární vzorek:</td>
+    <td style="width: 4cm;">Datum odběru:</td>
+    <td style="width: 3cm;">${zprava.bioMaterial.datumOdberu?.format()} </td>
+    <td style="width: 4cm;">Čas odběru:</td>
     <td>${zprava.bioMaterial.casOdberu?.format('HH:mm')} </td>
   </tr>
   <tr>
@@ -78,9 +84,9 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 
 <table class="tab">
   <tr>
-    <td>Jméno a příjmení:</td>
-    <td>${zprava.pacient.jmeno} </td>
-    <td>Kód vzorku:</td>
+    <td style="width: 4cm;">Jméno a příjmení:</td>
+    <td style="width: 6cm;">${zprava.pacient.jmeno} </td>
+    <td style="width: 3cm;">Kód vzorku:</td>
     <td>${zprava.pacient.getKod()} </td>
   </tr>
   <tr>
@@ -103,19 +109,18 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
   </tr>
   <tr>
     <td>Adresa:</td>
-    <td>${zprava.pacient.lekar?.pracoviste} </td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td colspan="3">${zprava.pacient.lekar?.pracoviste} </td>
   </tr>
 </table>
 
 <h3>Zjištěný genotyp:</h3>
-<table>
+<table id="gtypTable">
   #{list zprava.vysledky}
+    %{ _.genotyp.nazev = _.genotyp.nazev.replace("->", "&rarr;"); }%
     #{if _isFirst}
     <tr>
     #{/if}
-    <td class="gtyp">${_.genotyp.nazev} </td>
+    <td class="gtyp">${_.genotyp.nazev.raw()} </td>
     <td class="gres">${_.vysledek} </td>
     #{if _index % zprava.vysetreni.sloupce == 0}
     </tr>
@@ -125,7 +130,7 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
     #{/if} 
   #{/list}
 </table>
-<p style="font-size: 10pt;">
+<p style="font-size: 10pt; margin: 0;">
  Vysvětlivky: <strong>wt</strong> – &bdquo;wild type&rdquo; = &bdquo;ne-mutantní&rdquo; alela, <strong>mut</strong>. – &bdquo;mutantní&rdquo; alela
 </p>
 

@@ -31,7 +31,7 @@ display: none;
 form label {width: 10em; margin: 0.5em; display: inline-block; vertical-align: top;}
 form fieldset.genotyp label {width: 15em;}
 label.required {color: #CC0000;}
-form p {margin: 0;}
+form p {margin: 0; padding: 0;}
 form input {width: 10em;}
 form input[type=submit] {margin-left: 10em;}
 form input[type=submit],form input[type=checkbox] {width: auto;}
@@ -40,6 +40,8 @@ form .infoInput {margin: 0.5em 0; display: inline-block;}
 form input[type=file] {width: auto;}
 textarea {height: 50px;}
 form .error {padding:0.2em 1em; color: #CC0000; border-width: 1px;}
+form .error {background: #fff; border: none;}
+
 form .hasError {border: 1px solid #CC0000;}
 
 thead th {border: 1px solid #A6C9E2;}
