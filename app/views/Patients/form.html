@@ -14,7 +14,7 @@
 #{/ifErrors}
 
 
-#{form @mySave(pacient?.id)}
+#{form @mySave(pacient?.id), id:"pacForm"}
 <fieldset>
   <legend>Informace o pacientovi</legend>
 
@@ -35,10 +35,25 @@
 </p>
 #{/}
 
-#{field 'pacient.rodneCislo'}
-<p class="clear">
+#{field 'pacient.rcZac'}
+<p class="left clear">
   <label class="required">&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rodneCislo}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rcZac}" class="${field.errorClass} shortW">
+  <span class="error">${field.error} </span>
+</p>
+#{/}
+
+#{field 'pacient.rcKon'}
+<p class="left">
+  /&nbsp;&nbsp;<input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rcKon}" class="${field.errorClass} shortW">
+  <span class="error">${field.error} </span>
+</p>
+#{/}
+
+#{field 'pacient.titul'}
+<p class="clear">
+  <label>&{field.name} </label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.titul}" class="${field.errorClass} shortW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -47,6 +62,14 @@
 <p>
   <label class="required">&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.jmeno}" class="${field.errorClass} longW">
+  <span class="error">${field.error} </span>
+</p>
+#{/}
+
+#{field 'pacient.prijmeni'}
+<p>
+  <label class="required">&{field.name} </label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.prijmeni}" class="${field.errorClass} longW">
   <span class="error">${field.error} </span>
 </p>
 #{/}
@@ -146,18 +169,32 @@ $(document).ready(function() {
     	buttons: {
     		'Smazat': function() {
     		  $( this ).dialog( 'close' );
-          window.location.href = $('#delButton').attr('href');       				
+          window.location.href = $('#delButton').attr('href');
     		},
     		'Storno': function() {
     			$( this ).dialog( 'close' );
     		}
     	}
-    });    
+    });
 
     $('#delButton').click(function () {
       $( "#dialog-confirm" ).dialog('open');
-      return false;       
+      return false;
     } );
 } );
 </script>
 #{/if}
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#pacForm').submit(function () {
+      var zac = $("#pacient_rcZac" ).val();
+      var kon = $("#pacient_rcKon" ).val();
+      var check = parseInt(zac + kon) % 11;
+      if(check != 0) {
+        alert("Zadané rodné číslo může být chybné.");
+      }
+      
+    } );
+} );
+</script>

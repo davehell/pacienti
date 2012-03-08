@@ -18,12 +18,10 @@ public class Result extends Model {
     
     public String vysledek;
 
-    public String vychozi;
-
 
     public Result(Report zprava, Genotype genotyp) {
         this.genotyp = genotyp;
-        this.vysledek = vychozi;
+        this.vysledek = genotyp.vychozi;
         this.zavZprava = zprava;
     }
 

@@ -8,11 +8,16 @@ import java.math.*;
 import play.data.binding.*;
 import java.util.*;
 
+@Table(
+    uniqueConstraints=@UniqueConstraint(columnNames={"modul_id", "evCislo", "evRok"})
+)
+
 @Entity
 public class Patient extends Model {
 
     //@Required
     @ManyToOne
+    @JoinColumn(name = "modul_id")
     public AppModul modul;
 
     @Required
@@ -22,12 +27,23 @@ public class Patient extends Model {
     public Integer evRok;
     
     @Required
-    @MaxSize(30)
-    public String rodneCislo;
+    @MaxSize(10)
+    public String rcZac;
+
+    @Required
+    @MaxSize(5)
+    public String rcKon;
+
+    @MaxSize(300)
+    public String titul;
+
+    @Required
+    @MaxSize(50)
+    public String jmeno;
 
     @Required
     @MaxSize(100)
-    public String jmeno;
+    public String prijmeni;
 
 
     @Required
@@ -55,10 +71,11 @@ public class Patient extends Model {
     @OneToMany(mappedBy="pacient", cascade=CascadeType.REMOVE)
     public List<Report> zpravy;
 
-    public Patient(String evCislo, String evRok, String rodneCislo, String jmeno, String infSouhlas, String diagnoza, String koncDna, String pozn, String verejnaPozn) {
+    public Patient(String evCislo, String evRok, String rcZac, String rcKon, String jmeno, String infSouhlas, String diagnoza, String koncDna, String pozn, String verejnaPozn) {
         this.evCislo = new Integer(evCislo);
         this.evRok = new Integer(evRok);
-        this.rodneCislo = rodneCislo;
+        this.rcZac = rcZac;
+        this.rcKon = rcKon;
         this.jmeno = jmeno;
         this.infSouhlas = (infSouhlas == "PRAVDA") ? true : false;
         this.koncDna = koncDna;
@@ -82,8 +99,12 @@ public class Patient extends Model {
         return koncDna + " ng/&micro;l";
     }
 
+    public String getRodneCislo() {
+        return rcZac + "/" + rcKon;
+    }
+
     public String toString() {
-        return jmeno;
+        return titul + " " + jmeno + " " + prijmeni;
     }
 
     //kod = KO-111/12

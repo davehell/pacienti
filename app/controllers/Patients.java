@@ -63,13 +63,20 @@ public class Patients extends Application  {
 
     if(id == null) {
         pacient.modul = connected.modul;
-        pacient.create();
+        try {
+          pacient.create();
+        }
+        catch (Exception e) {
+          flash.error("Pacienta se stejným evidenčním číslem již existuje.");
+          render("@form", pacient, lekari, pojistovny);
+        }
         id = pacient.id;
     } else {
       Patient _pacient = Patient.findById(id);
       _pacient.evCislo = pacient.evCislo;
       _pacient.evRok = pacient.evRok;
-      _pacient.rodneCislo = pacient.rodneCislo;
+      _pacient.rcZac = pacient.rcZac;
+      _pacient.rcKon = pacient.rcKon;
       _pacient.jmeno = pacient.jmeno;
       _pacient.pojistovna = pacient.pojistovna;
       _pacient.lekar = pacient.lekar;

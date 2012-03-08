@@ -1,7 +1,7 @@
 body {
 background: #FCFCFC url('../images/header.png') repeat-x;
-
 }
+
 #header {
   height: 50px;
 }
@@ -28,8 +28,9 @@ background-color: #C3D9FF;
 display: none;
 }
 
-form label {width: 10em; margin: 0.5em; display: inline-block; vertical-align: top;}
-form fieldset.genotyp label {width: 15em;}
+form label {width: 10em; margin: 0.5em; display: inline-block; vertical-align: top; }
+form fieldset.genotyp label {width: 15em;font-weight: normal;}
+form fieldset p:hover {background-color: #E5ECF9;}
 label.required {color: #CC0000;}
 form p {margin: 0; padding: 0;}
 form input {width: 10em;}

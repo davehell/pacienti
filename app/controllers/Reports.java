@@ -41,7 +41,7 @@ options.pageSize = pok2;
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.find("byPacient", pacient).fetch();
     List<Examination> vysetreni = Examination.find("byAktual", true).fetch();
-    List<User> users = User.find("byModul", connected.modul).fetch();
+    List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
     String[] vedouciLekari = connected.modul.vedouciLekari.split(",");
     String[] uvolnujiAnalyzu = connected.modul.uvolnujiAnalyzu.split(",");
 
@@ -60,7 +60,7 @@ options.pageSize = pok2;
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.findAll();
     List<Examination> vysetreni = Examination.find("byAktual", true).fetch();
-    List<User> users = User.find("byModul", connected.modul).fetch();
+    List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
     Result vysledek = null;
 
     zprava.pacient = pacient;

@@ -11,7 +11,7 @@ import java.util.*;
 public class BioMaterials extends Application {
 
   public static void form(Long id, Long pacientId) {
-    List<User> users = User.find("byModul", connected.modul).fetch();
+    List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
     String[] typyMaterialu = connected.modul.typyMaterialu.split(",");
@@ -28,7 +28,7 @@ public class BioMaterials extends Application {
 
 
   public static void mySave(Long bioMatId, BioMaterial bioMaterial, Long pacientId) {
-    List<User> users = User.find("byModul", connected.modul).fetch();
+    List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
     String[] typyMaterialu = connected.modul.typyMaterialu.split(",");

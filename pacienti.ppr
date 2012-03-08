@@ -92,9 +92,6 @@ pacienti
 1=app\views\main.html
 2=conf\messages.cs
 3=public\stylesheets\main.css
-4=app\views\Reports\report.html
-5=app\controllers\Reports.java
-6=public\stylesheets\blueprint\screen.css
 [Selected Project Files]
 Main=
 Selected=public\stylesheets\main.css
@@ -106,17 +103,8 @@ TopLine=1
 Caret=123,7
 Mark1=2,109
 [conf\messages.cs]
-TopLine=38
-Caret=27,58
-[public\stylesheets\main.css]
-TopLine=17
-Caret=49,42
-[app\views\Reports\report.html]
-TopLine=87
-Caret=13,111
-[app\controllers\Reports.java]
 TopLine=1
-Caret=1,22
-[public\stylesheets\blueprint\screen.css]
-TopLine=71
-Caret=72,97
+Caret=14,6
+[public\stylesheets\main.css]
+TopLine=1
+Caret=14,33

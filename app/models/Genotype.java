@@ -17,7 +17,8 @@ public class Genotype extends Model {
     @MaxSize(50)
     public String nazev;
     
-
+    @MaxSize(10)
+    public String vychozi;
 
     public String toString()  {
         return nazev;

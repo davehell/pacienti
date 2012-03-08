@@ -3,8 +3,10 @@
 #
 pacient.evCislo = evidenční číslo
 pacient.evRok = rok
-pacient.rodneCislo = rodné číslo
+pacient.rcZac = rodné číslo
+pacient.titul = titul
 pacient.jmeno = jméno
+pacient.prijmeni = příjmení
 pacient.pojistovna.id = pojišťovna
 pacient.lekar.id = lékař
 pacient.infSouhlas = informovaný souhlas
@@ -45,7 +47,7 @@ pojistovna.cislo = číslo
 pojistovna.nazev = název
 
 lekar.icz = IČZ
-lekar.jmeno = jméno
+lekar.jmeno = titul, jméno, příjmení
 lekar.pracoviste = pracoviště
 
 selectBox.option.select = vyberte

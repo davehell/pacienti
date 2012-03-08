@@ -6,7 +6,7 @@ AppModul(ov):
     kod: KO
     vedouciLekari: MUDr. Ditta Leznarová,MUDr. Jana Zvolská
     uvolnujiAnalyzu: RNDr. Hana Kolaříková,MUDr. Jana Zvolská
-    typyMaterialu: Krev nesrážlivá EDTA,izolovaná DNA,FTA karta krev,FTA karta plodová voda
+    typyMaterialu: krev nesrážlivá EDTA,izolovaná DNA,FTA karta krev,FTA karta plodová voda
     formNeprovVys: IF-71.0
     cDokladu: 5
 
@@ -14,6 +14,12 @@ AppModul(br):
   nazev: Brno
   kod: BR
 
+User(admin):
+    username:       admin
+    passwordHash:   d033e22ae348aeb5660fc2140aec35850c4da997
+    jmeno:          Admin
+    modul:          br
+    isAdmin:        true
 
 User(david):
     username:       davehell
@@ -57,6 +63,11 @@ InsuranceCompany(207):
   nazev: Oborová zdravotní pojišťovna
   modul: ov
 
+InsuranceCompany(207b):
+  cislo: 207
+  nazev: Oborová zdravotní pojišťovna
+  modul: br
+
 InsuranceCompany(111):
   cislo: 111
   nazev: Všeobecná zdravotní pojišťovna
@@ -64,19 +75,19 @@ InsuranceCompany(111):
 
 Doctor(mudr1):
   icz: 012345678
-  jmeno: Jan
+  jmeno: Nulla Hendrerit
   pracoviste: Ostrava, poliklinika
   modul: ov
 
 Doctor(mudr2):
   icz: 6655332211
-  jmeno: Honza
+  jmeno: Magna Donec
   pracoviste: Praha, nemocnice
   modul: ov
 
 Doctor(mudr3):
-  icz: 87533000
-  jmeno: MUDr. Marek Rozbroj
+  icz: 87654000
+  jmeno: MUDr. Phasellus Tristique
   pracoviste: Havířov-Šumbark
   modul: ov
 
@@ -84,8 +95,11 @@ Patient(pat1):
   modul: ov
   evCislo: 111
   evRok: 2012
-  rodneCislo: 850912/5482
-  jmeno: David
+  rcZac: 562169
+  rcKon: 4582
+  titul: Ing.
+  jmeno: Feugiat
+  prijmeni: Consectetuer
   pojistovna: 207
   lekar: mudr1
 
@@ -93,28 +107,30 @@ Patient(pat2):
   modul: ov
   evCislo: 222
   evRok: 2012
-  rodneCislo: 123456/5482
-  jmeno: Marek
+  rcZac: 123456
+  rcKon: 4582
+  jmeno: Curabitur
+  prijmeni: Pellentesque
   pojistovna: 111
   lekar: mudr1
 
 BioMaterial(krev):
   pacient: pat1
-  typ: krev
+  typ: Krev nesrážlivá EDTA
   datumOdberu: 03.01.2012 15:15
   datumPrijeti: 04.12.2011 20:20
   parafaPrijeti: david
 
 BioMaterial(slina):
   pacient: pat1
-  typ: slina
+  typ: izolovaná DNA
   datumOdberu: 2012-01-01 02:23:00.0
   datumPrijeti: 2012-02-04 06:16:00.0
   parafaPrijeti: lh
 
 BioMaterial(vlas):
   pacient: pat1
-  typ: vlas
+  typ: FTA karta krev
   datumOdberu: 2012-01-02 08:22:00.0
   datumPrijeti: 2012-02-06 09:33:00.0
   parafaPrijeti: david
@@ -199,6 +215,7 @@ Genotype(g52):
 Genotype(g53):
   nazev: Factor XIII (V34L)
   vysetreni: e1
+  vychozi: ---
 
 Genotype(g54):
   nazev: Factor II (G20210A)
@@ -207,22 +224,31 @@ Genotype(g54):
 Genotype(g55):
   nazev: PAI – 1 (4G/5G)
   vysetreni: e1
+  vychozi: ---
 
 Genotype(g56):
   nazev: MTHFR (C677T)
   vysetreni: e1
 
 Genotype(g57):
-  nazev: EPCR (A4600G-A3, G4678C-A1)
+  nazev: EPCR (A4600G-A3)
   vysetreni: e1
+  vychozi: ---
+
+Genotype(g57b):
+  nazev: EPCR (G4678C-A1)
+  vysetreni: e1
+  vychozi: ---
 
 Genotype(g58):
   nazev: GpIa (C807T)
   vysetreni: e1
+  vychozi: ---
 
 Genotype(g59):
   nazev: GpIIIa (T1565C)
   vysetreni: e1
+  vychozi: ---
 
 Examination(e2):
   nazev: Predispozice k žilním trombózám II
@@ -272,16 +298,22 @@ Genotype(g66):
   vysetreni: e2
 
 Genotype(g67):
-  nazev: EPCR (A4600G-A3, G4678C-A1)
+  nazev: EPCR (A4600G-A3)
+  vysetreni: e2
+
+Genotype(g67b):
+  nazev: EPCR (G4678C-A1)
   vysetreni: e2
 
 Genotype(g68):
   nazev: GpIa (C807T)
   vysetreni: e2
+  vychozi: ---
 
 Genotype(g69):
   nazev: GpIIIa (T1565C)
   vysetreni: e2
+  vychozi: ---
 
 Examination(e3):
   nazev: Predispozice k žilním trombózám III
@@ -331,7 +363,11 @@ Genotype(g76):
   vysetreni: e3
 
 Genotype(g77):
-  nazev: EPCR (A4600G-A3, G4678C-A1)
+  nazev: EPCR (A4600G-A3)
+  vysetreni: e3
+
+Genotype(g77b):
+  nazev: EPCR (G4678C-A1)
   vysetreni: e3
 
 Genotype(g78):
@@ -358,6 +394,7 @@ Examination(e4):
             - g14
             - g15
             - g16
+            - g16b
             - g17
             - g18
             - g19
@@ -419,7 +456,7 @@ Genotype(g16):
   nazev: 3849+10kbC->T
   vysetreni: e4
 
-Genotype(g16):
+Genotype(g16b):
   nazev: G542X
   vysetreni: e4
 
@@ -696,14 +733,14 @@ Report(zprava1):
 Result(v1):
   zavZprava: zprava1
   genotyp: g1
-  vysledek: +/+
+  vysledek: wt/wt
 
 Result(v2):
   zavZprava: zprava1
   genotyp: g2
-  vysledek: -/-
+  vysledek: mut/mut
 
 Result(v3):
   zavZprava: zprava1
   genotyp: g3
-  vysledek: +/-
+  vysledek: wt/mut
