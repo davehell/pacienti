@@ -20,20 +20,15 @@ public class Reports extends Application {
     notFoundIfNull(zprava);
     //render(zprava);
 
-      Options options = new Options();
-      //options.FOOTER = "lkjdklsfkjhdkjhgkjhk";
-      //options.filename = "pok.pdf";
+    Options options = new Options();
+    //options.FOOTER = "lkjdklsfkjhdkjhgkjhk";
+    //options.filename = "pok.pdf";
 
-//ok 
-IHtmlToPdfTransformer.PageSize pok2 = new IHtmlToPdfTransformer.PageSize(21.0, 29.7, 1.9, 1.9, 1.5, 1.5);
-//not ok 
-options.pageSize = pok2;
 
-// int[] pok = IHtmlToPdfTransformer.A4P.getSize();
-// Logger.info(Integer.toString(pok[0]) + " " + Integer.toString(pok[1]) );
+    IHtmlToPdfTransformer.PageSize pok2 = new IHtmlToPdfTransformer.PageSize(21.0, 29.7, 1.9, 1.9, 1.5, 1.5);
+    options.pageSize = pok2;
 
     renderPDF(zprava, options);
-    //writePDF(zprava, options);
   }
 
   public static void form(Long id, Long pacientId) {

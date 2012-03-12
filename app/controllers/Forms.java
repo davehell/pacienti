@@ -49,7 +49,13 @@ public class Forms extends Application {
       List<Report> vysetreni = Report.getNeprovedena(datumOd, datumDo);
       AppModul modul = connected.modul;
 
-      render(vysetreni, datumOd, datumDo, modul);
+      Options options = new Options();
+      options.FOOTER = modul.formNeprovVys;
+      IHtmlToPdfTransformer.PageSize ps = new IHtmlToPdfTransformer.PageSize(21.0, 29.7, 1.9, 1.9, 1.5, 1.5);
+      options.pageSize = ps;
+
+      //render(vysetreni, datumOd, datumDo, modul);
+      renderPDF(vysetreni, datumOd, datumDo, modul, options);
   }
 
   public static void poctyVzorku(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {
@@ -58,7 +64,13 @@ public class Forms extends Application {
 
       List<Doctor> lekari = Doctor.getPocetVzorku(datumOd, datumDo);
 
-      render(lekari, datumOd, datumDo);
+      Options options = new Options();
+      //options.FOOTER = "";
+      IHtmlToPdfTransformer.PageSize ps = new IHtmlToPdfTransformer.PageSize(21.0, 29.7, 1.9, 1.9, 1.5, 1.5);
+      options.pageSize = ps;
+
+      //render(lekari, datumOd, datumDo);
+      renderPDF(lekari, datumOd, datumDo, options);
   }
 
   public static void neizolovana() {
@@ -92,8 +104,10 @@ public class Forms extends Application {
         marker = columns[2];
         vysl   = columns[7];
 
+        if(vysl.equals("Both")) vysl = "wt/mut";
+        else vysl = vysl.substring(4);
+
         pacient = Patient.getByKod(pacKod);
-        if(pacient != null) System.out.println(pacient.jmeno);
 
         upraveno = Result.setVysl(pacKod, marker, vysl);
         if(upraveno) str.add(pacKod + "," + marker + "," + vysl);

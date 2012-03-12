@@ -4,6 +4,7 @@ import play.db.jpa.*;
 import play.data.validation.*;
 import javax.persistence.*;
 import play.libs.*;
+import java.util.*;
 
 @Entity
 public class Result extends Model {
@@ -34,7 +35,17 @@ public class Result extends Model {
       Patient pacient = Patient.getByKod(pacKod);
       if(pacient == null) return false;
 
-      Genotype genotyp = Genotype.find("nazev = ?", marker).first();
+      Iterator<Report> iterator = pacient.zpravy.iterator();
+      Report rep = null;
+      Genotype genotyp = null;
+      while (iterator.hasNext()) {
+        rep = iterator.next();
+        //System.out.println(rep.vysetreni.nazev);
+        genotyp = Genotype.find("vysetreni = ? and nazev = ?", rep.vysetreni, marker).first();
+        if(genotyp != null) break;
+      }
+
+      //Genotype genotyp = Genotype.find("nazev = ?", marker).first();
       if(genotyp == null) return false;
 
       Examination vysetreni = genotyp.vysetreni;

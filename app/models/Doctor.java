@@ -39,7 +39,14 @@ public class Doctor extends Model {
           "SELECT new map(count(m.id) as pocet, m.pacient.lekar as lekar) FROM BioMaterial m WHERE m.datumPrijeti >= ? and m.datumPrijeti <= ? GROUP BY m.pacient.lekar.id", datumOd, datumDo
       ).fetch();
 
+      return result;
+    }
 
-        return result;
+    public static List<Doctor> getPocetVzorku(Date datumOd, Date datumDo, Long lekar) {
+      List<Doctor> result = Doctor.find(
+          "SELECT new map(count(m.id) as pocet, m.pacient.lekar as lekar) FROM BioMaterial m WHERE m.pacient.lekar.id = ? and m.datumPrijeti >= ? and m.datumPrijeti <= ? GROUP BY m.pacient.lekar.id", lekar, datumOd, datumDo
+      ).fetch();
+
+      return result;
     }
 }
