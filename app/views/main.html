@@ -32,16 +32,16 @@
         ${request.remoteAddress} <a href="@{Secure.logout()}">Odhlášení</a>
       </p>
 #{/if}      
-    </div>
+    </div> <!-- header -->
 
 <div class="column span-24 last prepend-top " id="menu">
     
 #{if connected}     
     	<ul>
     		<li><a href="#tabs-1">Pacienti</a></li>
-    		<li><a href="#tabs-2">Nastavení</a></li>
     		<li><a href="#tabs-3">Tiskové sestavy</a></li>
         <li><a href="#tabs-4">Import</a></li>
+        <li><a href="#tabs-2">Nastavení</a></li>
     	</ul>
     	<div id="tabs-1">
         <ul>
@@ -67,7 +67,7 @@
         <li><a href="@{Forms.vyslImport()}">Import výsledků</a></li>
     	</div>
 #{/if}      	
-    </div>
+    </div> <!-- menu -->
 
     <div id="main"  class="column span-24 last prepend-top append-bottom">
       <h1>#{get 'title' /}</h1>
@@ -84,7 +84,7 @@
       #{/if}
 
       #{doLayout /}
-    </div>
+    </div> <!-- main -->
     
     <div class="span-24 last prepend-top" id="footer">
       #{secure.check 'admin'}
@@ -101,7 +101,7 @@
         <li><a href="@{AppModuls.list()}">Moduly</a></li>
       </ul>
       #{/secure.check}
-    </div>
+    </div> <!-- footer -->
   </div> <!-- container -->
 
 

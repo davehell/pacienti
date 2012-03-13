@@ -24,14 +24,14 @@
   <label class="required">&{field.name} </label>
   ${connected?.modul?.kod} &nbsp;&nbsp;
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.evCislo}" class="${field.errorClass} shortW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}#{ifError field.name}<span class="error">${field.error} </span>#{/ifError}#{/ifError}
 </p>
 #{/}
 
 #{field 'pacient.evRok'}
 <p class="left">
-  /&nbsp;&nbsp;<input type="text" id="${field.id}" name="${field.name}" value="#{if pacient}${pacient.evRok}#{/if}#{else}${new Date().format('yyyy')}#{/else}" class="${field.errorClass} shortW">
-  <span class="error">${field.error} </span>
+  &nbsp;&nbsp;/&nbsp;&nbsp;<input type="text" id="${field.id}" name="${field.name}" value="#{if pacient}${pacient.evRok}#{/if}#{else}${new Date().format('yyyy')}#{/else}" class="${field.errorClass} shortW">
+  #{ifError field.name} #{ifError field.name}<span class="error">${field.error} </span>#{/ifError} #{/ifError}
 </p>
 #{/}
 
@@ -39,14 +39,14 @@
 <p class="left clear">
   <label class="required">&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rcZac}" class="${field.errorClass} shortW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
 #{field 'pacient.rcKon'}
 <p class="left">
   /&nbsp;&nbsp;<input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rcKon}" class="${field.errorClass} shortW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -54,7 +54,7 @@
 <p class="clear">
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.titul}" class="${field.errorClass} shortW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -62,7 +62,7 @@
 <p>
   <label class="required">&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.jmeno}" class="${field.errorClass} longW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -70,7 +70,7 @@
 <p>
   <label class="required">&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.prijmeni}" class="${field.errorClass} longW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -107,7 +107,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="checkbox" id="${field.id}" name="${field.name}" #{if pacient?.infSouhlas} checked="checked" #{/if} class="${field.errorClass}">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -115,7 +115,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.diagnoza}" class="${field.errorClass} shortW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -123,7 +123,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.koncDna}" class="${field.errorClass} shortW"><span>&nbsp;&nbsp;ng/&micro;l</span>
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -131,7 +131,7 @@
 <p>
   <label>&{field.name} </label>
   <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} vLongW">${pacient?.pozn} </textarea>
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -139,7 +139,7 @@
 <p>
   <label>&{field.name} </label>
   <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} vLongW">${pacient?.verejnaPozn} </textarea>
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -184,6 +184,13 @@ $(document).ready(function() {
 } );
 </script>
 #{/if}
+#{else}
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $('#pacient_evCislo').focus();
+  } );
+  </script>
+#{/else}
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -194,7 +201,14 @@ $(document).ready(function() {
       if(check != 0) {
         alert("Zadané rodné číslo může být chybné.");
       }
-      
     } );
+
+    
+/*
+    $('#pacient_rcZac').keyup(function () {
+      if($('#pacient_rcZac').val().length == 6) $('#pacient_rcKon').focus();;
+    } );
+*/
+
 } );
 </script>

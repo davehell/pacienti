@@ -76,7 +76,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumVysetreni?.format()}" class="${field.errorClass} datumW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -97,7 +97,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.parafaUvolneni}" class="${field.errorClass}">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   <span class="small">${uvolnujiAnalyzu?.join(', ') } </span>
 </p>
 #{/}
@@ -107,7 +107,7 @@
   <label>&{field.name} </label>
   
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.vedouciLekar}" class="${field.errorClass}">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   <span class="small">${vedouciLekari?.join(', ') } </span>
 </p>
 #{/}
@@ -116,7 +116,7 @@
 <p>
   <label>&{field.name} </label>
   <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${zprava?.zavZprava}</textarea>
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -124,7 +124,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="checkbox" id="${field.id}" name="${field.name}" #{if zprava?.pozitivni} checked="checked" #{/if} class="${field.errorClass}">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -132,7 +132,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumPCR1?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -140,7 +140,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumPCR2?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -148,7 +148,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumElForezy?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -156,7 +156,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumRevHybrid?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -164,7 +164,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumFragmentAn?.format('dd.MM.yyyy')}" class="${field.errorClass}">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -172,7 +172,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumRTAn?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -180,7 +180,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumSekv?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
@@ -245,6 +245,7 @@
 </fieldset>
 </div>
 #{/if}
+
 #{/form}
 
 <script type="text/javascript">
@@ -285,7 +286,4 @@
 		$( "#zprava_parafaUvolneni" ).autocomplete({
 			source: uvolnujiAnalyzu
 		});
-	
-
-
 </script>

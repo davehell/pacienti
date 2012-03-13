@@ -37,8 +37,17 @@ public class Reports extends Application {
     List<BioMaterial> bioMaterialy = BioMaterial.find("byPacient", pacient).fetch();
     List<Examination> vysetreni = Examination.find("byAktual", true).fetch();
     List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
-    String[] vedouciLekari = connected.modul.vedouciLekari.split(",");
-    String[] uvolnujiAnalyzu = connected.modul.uvolnujiAnalyzu.split(",");
+
+    String[] vedouciLekari = {};
+    String[] uvolnujiAnalyzu = {};
+
+    if(connected.modul.vedouciLekari != null) {
+      vedouciLekari = connected.modul.vedouciLekari.split(",");
+    }
+    if(connected.modul.uvolnujiAnalyzu != null) {
+      uvolnujiAnalyzu = connected.modul.uvolnujiAnalyzu.split(",");
+    }
+    
 
     if(id != null) {
       Report zprava = Report.findById(id);

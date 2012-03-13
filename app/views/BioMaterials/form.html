@@ -26,7 +26,7 @@
 <p>
   <label class="required">&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.typ}" class="${field.errorClass} longW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   <span class="small">${typyMaterialu?.join(', ') }</span>
 </p>
 #{/}
@@ -35,7 +35,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumOdberu?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   <span class="small">dd.mm.rrrr</span>
 </p>
 #{/}
@@ -44,7 +44,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casOdberu?.format('hh:mm')}" class="${field.errorClass} shortW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   <span class="small">hh:mm</span>
 </p>
 #{/}
@@ -53,7 +53,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumPrijeti?.format()}" class="${field.errorClass} datumW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   <span class="small">dd.mm.rrrr</span>
 </p>
 #{/}
@@ -62,7 +62,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casPrijeti?.format('hh:mm')}" class="${field.errorClass} shortW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   <span class="small">hh:mm</span>
 </p>
 #{/}
@@ -84,7 +84,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumIzolace?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
-  <span class="error">${field.error} </span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   <span class="small">dd.mm.rrrr</span>
 </p>
 #{/}
@@ -146,6 +146,13 @@ $(document).ready(function() {
 } );
 </script>
 #{/if}
+#{else}
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $('#bioMaterial_typ').focus();
+  } );
+  </script>
+#{/else}
 
 <script type="text/javascript">
     var calSetup = {
@@ -168,6 +175,4 @@ $(document).ready(function() {
 		$( "#bioMaterial_typ" ).autocomplete({
 			source: typyMaterialu
 		});
-
-
 </script>

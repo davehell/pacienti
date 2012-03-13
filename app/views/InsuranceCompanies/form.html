@@ -21,7 +21,7 @@
   <p>
     <label class="required">&{field.name} </label>
     <input type="text" id="${field.id}" name="${field.name}" value="${pojistovna?.cislo}" class="${field.errorClass} shortW">
-    <span class="error">${field.error} </span>
+    #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   </p>
   #{/}
 
@@ -29,7 +29,7 @@
   <p>
     <label class="required">&{field.name} </label>
     <input type="text" id="${field.id}" name="${field.name}" value="${pojistovna?.nazev}" class="${field.errorClass} vLongW">
-    <span class="error">${field.error} </span>
+    #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   </p>
   #{/}
 
@@ -43,10 +43,7 @@
 </fieldset>
 #{/form}
 
-
 #{if pojistovna?.id}
-  </div>
-
   <div id="dialog-confirm" title="Pojišťovna ${pojistovna?.cislo}">
   	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Opravdu chcete smazat tuto pojišťovnu?</p>
   </div>
@@ -76,3 +73,11 @@
   } );
   </script>  
 #{/if}
+#{else}
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $('#pojistovna_cislo').focus();
+
+  } );
+  </script>
+#{/else}

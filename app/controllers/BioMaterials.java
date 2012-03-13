@@ -14,7 +14,12 @@ public class BioMaterials extends Application {
     List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
-    String[] typyMaterialu = connected.modul.typyMaterialu.split(",");
+    String[] typyMaterialu = {};
+
+    if(connected.modul.typyMaterialu != null) {
+      typyMaterialu = connected.modul.typyMaterialu.split(",");
+    }
+
 
     if(id != null) {
       BioMaterial bioMaterial = BioMaterial.findById(id);
@@ -31,7 +36,10 @@ public class BioMaterials extends Application {
     List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
-    String[] typyMaterialu = connected.modul.typyMaterialu.split(",");
+    String[] typyMaterialu = {};
+    if(connected.modul.typyMaterialu != null) {
+      typyMaterialu = connected.modul.typyMaterialu.split(",");
+    }
 
 
     validation.valid(bioMaterial);
