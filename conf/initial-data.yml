@@ -73,6 +73,11 @@ InsuranceCompany(111):
   nazev: Všeobecná zdravotní pojišťovna
   modul: ov
 
+InsuranceCompany(111v):
+  cislo: 111
+  nazev: Všeobecná zdravotní pojišťovna
+  modul: br
+
 Doctor(mudr1):
   icz: 012345678
   jmeno: Nulla Hendrerit
