@@ -44,15 +44,8 @@
 #{/form}
 
 <script type="text/javascript">
-    var calSetup = {
-			showOn: "button",
-      buttonImage: "@{'/public/images/calendar.gif'}",
-			buttonImageOnly: true,
-      dateFormat: "dd.mm.yy"
-		};
-
-		$( "#datumOd" ).datepicker(calSetup);
-		$( "#datumDo" ).datepicker(calSetup);
-
-
+  $(document).ready(function() {
+		$( "#datumOd" ).datepicker();
+		$( "#datumDo" ).datepicker();
+  } );
 </script>

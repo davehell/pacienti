@@ -249,13 +249,7 @@
 #{/form}
 
 <script type="text/javascript">
-    var calSetup = {
-			showOn: "button",
-      buttonImage: "@{'/public/images/calendar.gif'}",
-			buttonImageOnly: true,
-      dateFormat: "dd.mm.yy"
-		};
-
+  $(document).ready(function() {
 		$( "#zprava_datumVysetreni" ).datepicker(calSetup);
 		$( "#zprava_datumPCR1" ).datepicker(calSetup);
 		$( "#zprava_datumPCR2" ).datepicker(calSetup);
@@ -286,4 +280,5 @@
 		$( "#zprava_parafaUvolneni" ).autocomplete({
 			source: uvolnujiAnalyzu
 		});
+  } );
 </script>

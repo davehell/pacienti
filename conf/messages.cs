@@ -40,8 +40,13 @@ zprava.datumFragmentAn = datum fragmentační anlýzy
 zprava.datumRTAn = datum RT analýzy
 zprava.datumSekv = datum sekvenace
 
+secure.username=Uživatelské jméno:
+secure.password=Heslo:
+secure.signin=Přihlásit se
+
 datumOd = počáteční datum
 datumDo = koncové datum
+kalendar.title = kalendář
 
 pojistovna.cislo = číslo
 pojistovna.nazev = název
@@ -55,9 +60,6 @@ selectBox.option.none = nezadáno
 
 noRecords = Nejsou uloženy žádné záznamy.
 
-secure.username=Uživatelské jméno:
-secure.password=Heslo:
-secure.signin=Přihlásit se
 
 # For use in JavaExtensions.since tag
 since.seconds = %s second%s ago

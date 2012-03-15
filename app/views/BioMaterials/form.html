@@ -155,24 +155,19 @@ $(document).ready(function() {
 #{/else}
 
 <script type="text/javascript">
-    var calSetup = {
-			showOn: "button",
-      buttonImage: "@{'/public/images/calendar.gif'}",
-			buttonImageOnly: true,
-      dateFormat: "dd.mm.yy"
-		};
+  $(document).ready(function() {
+  		$( "#bioMaterial_datumOdberu" ).datepicker();
+  		$( "#bioMaterial_datumPrijeti" ).datepicker();
+  		$( "#bioMaterial_datumIzolace" ).datepicker();
 
-		$( "#bioMaterial_datumOdberu" ).datepicker(calSetup);
-		$( "#bioMaterial_datumPrijeti" ).datepicker(calSetup);
-		$( "#bioMaterial_datumIzolace" ).datepicker(calSetup);
+  		var typyMaterialu = [
+        #{list typyMaterialu}
+          "${_.raw()}" ${_isLast ? '' : ','}
+        #{/list}
+      ];
 
-		var typyMaterialu = [
-      #{list typyMaterialu}
-        "${_.raw()}" ${_isLast ? '' : ','}
-      #{/list}
-    ];
-
-		$( "#bioMaterial_typ" ).autocomplete({
-			source: typyMaterialu
-		});
+  		$( "#bioMaterial_typ" ).autocomplete({
+  			source: typyMaterialu
+  		});
+  } );
 </script>
