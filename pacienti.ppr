@@ -64,7 +64,6 @@ pacienti
 				app\views\Patients\index.html
 			+Application
 				app\views\Application\index.html
-				app\views\Forms\neprovedena.html
 			-errors
 				app\views\errors\404.html
 				app\views\errors\500.html
@@ -92,19 +91,23 @@ pacienti
 1=app\views\main.html
 2=conf\messages.cs
 3=public\stylesheets\main.css
+4=app\models\Report.java
 [Selected Project Files]
 Main=
 Selected=public\stylesheets\main.css
 [conf\routes]
-TopLine=12
-Caret=64,12
+TopLine=14
+Caret=1,51
 [app\views\main.html]
-TopLine=27
-Caret=1,42
-Mark1=2,109
+TopLine=35
+Caret=9,66
+Mark1=2,111
 [conf\messages.cs]
 TopLine=1
 Caret=14,6
 [public\stylesheets\main.css]
-TopLine=9
-Caret=36,36
+TopLine=1
+Caret=13,32
+[app\models\Report.java]
+TopLine=43
+Caret=1,1

@@ -79,6 +79,11 @@ public class Forms extends Application {
       render(bioMaterialy);
   }
 
+  public static void stitky() {
+    List<Patient> pacienti = Patient.find("byModul", connected.modul).fetch();
+    render(pacienti);
+  }
+
 
   public static void vyslImport(File file) {
     if(file != null) {

@@ -1,8 +1,9 @@
 #{extends 'main.html' /}
-#{set title:'Pacienti' /}
+#{set title:'Štítky' /}
 
 
 #{if pacienti}
+<div class="span-18">
   <table class="display" id="pacTable">
     <thead>
       <th>&nbsp;</th>
@@ -17,14 +18,26 @@
     <tr>
       <td>${_.evCislo} </td>
       <td>${_.evRok} </td>
-      <td>#{a @Patients.detail(_.id), title:"Zobrazit detail tohoto pacienta"}${_.getKod()}#{/a} </td>
+      <td><a href="" class="evCislo" title="">${_.getKod()}</a></td>
       <td>${_.jmeno} ${_.prijmeni} </td>
       <td>${_.getRodneCislo()} </td>
     </tr>
     #{/list}
     </tbody>
   </table>
+</div> <!-- span-15 -->
 
+<div class="span-5 push-1 last">
+  <p><strong>Vybrané štítky:</strong></p>
+  <p id="neStitky">Nejsou vybrány žádné štítky.</p>
+  <ul id="stitky">
+  </ul>
+
+  #{form @stitky()}
+  <input type="text" name="evCisla" id="evCisla" value="">
+  <input type="submit" value="Tisk" id="printButton" style="display: none; margin-left: 0;" />
+  #{/form}
+</div> <!-- span-9 -->
 <script type="text/javascript">
 $(document).ready(function() {
     oTable = $('#pacTable').dataTable({
@@ -40,17 +53,22 @@ $(document).ready(function() {
         ]
     });
 
-/*
-    $('#pacTable tbody tr').live('click', function () {
-        var nTds = $('td', this);
-        var nSpans = $('span', nTds[0]);
-        window.location.href = nSpans[0].innerHTML;
+    $("#printButton").hide();
+
+    $('.evCislo').click(function () {
+      $("#stitky").append('<li>' + this.innerHTML + '</li>');
+      var text = $("#evCisla").val();
+      if(text.length > 0) text += ";";
+      text += this.innerHTML;
+      $("#evCisla").val(text);
+      $("#printButton").show();
+      $("#neStitky").hide();
+      return false;
     } );
-*/
+
 } );
 </script>
-
- #{/if}
+#{/if}
 #{else}
     <div class="empty">
         &{'noRecords'}

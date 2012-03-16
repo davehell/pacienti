@@ -4,7 +4,7 @@ font-family: Arial,sans-serif;
 }
 
 #header {
-  height: 50px;
+  height: 35px;
 }
 #header h1 {
   float: left;
@@ -21,12 +21,19 @@ font-family: Arial,sans-serif;
 
 
 #menu {
-  min-height: 60px;
+  
 }
 
 #footer {
-background-color: #C3D9FF;
-display: none;
+border-top: 1px solid grey;
+}
+#footer li, #menu li {
+float: left;
+margin-right: 1em;
+list-style-type: none;
+}
+#footer ul, #menu ul {
+padding: 0;
 }
 
 form label {width: 10em; margin: 0.5em; display: inline-block; vertical-align: top; }

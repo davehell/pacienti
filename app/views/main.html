@@ -48,20 +48,22 @@
     	</ul>
     	<div id="tabs-1">
         <ul>
-         <li><a href="@{Patients.index()}">Pacienti</a></li>
+         <li><a href="@{Patients.index()}">Seznam pacientů</a></li>
          <li><a href="@{Patients.form()}">Nový pacient</a></li>
         </ul>
     	</div>
     	<div id="tabs-2">
         <ul>
-         <li><a href="@{Forms.index("neprovedena-vysetreni")}">Neprovedená vyš.</a></li>
+         <li><a href="@{Forms.index("neprovedena-vysetreni")}">Neprovedená vyšetření</a></li>
          <li><a href="@{Forms.index("pocty-vzorku")}">Počty vzorků od lékařů</a></li>
          <li><a href="@{Forms.neizolovana()}">Neizolovaná DNA</a></li>
-         <li>štítky</li>
+         <li><a href="@{Forms.stitky()}">Štítky</a></li>
         </ul>
     	</div>
     	<div id="tabs-3">
-        <li><a href="@{Forms.vyslImport()}">Import výsledků</a></li>
+        <ul>
+          <li><a href="@{Forms.vyslImport()}">Import výsledků</a></li>
+        </ul>
     	</div>
     	<div id="tabs-4">
         <ul>
@@ -88,9 +90,8 @@
 
       #{doLayout /}
     </div> <!-- main -->
-    
+    #{secure.check 'admin'}
     <div class="span-24 last prepend-top" id="footer">
-      #{secure.check 'admin'}
       <ul>
         <li><a href="@{Patients.list()}">Pacienti</a></li>
         <li><a href="@{Reports.list()}">Závěrečné zprávy</a></li>
@@ -103,8 +104,8 @@
         <li><a href="@{Users.list()}">Uživatelé</a></li>
         <li><a href="@{AppModuls.list()}">Moduly</a></li>
       </ul>
-      #{/secure.check}
     </div> <!-- footer -->
+    #{/secure.check}
   </div> <!-- container -->
 
 
@@ -120,6 +121,8 @@
 
 	  
 		$( "#menu" ).tabs({selected: sel});
+
+    //$( "#menu" ).tabs({select: function(event, ui) {}});
 	});
 #{/if}
 

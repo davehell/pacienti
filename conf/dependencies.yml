@@ -1,6 +1,7 @@
 # Application dependencies
 
 require:
+    - play 1.2.4
     - play -> crud
     - play -> secure
     - play -> pdf 0.9
