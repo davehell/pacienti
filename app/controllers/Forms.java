@@ -79,8 +79,17 @@ public class Forms extends Application {
       render(bioMaterialy);
   }
 
-  public static void stitky() {
-    List<Patient> pacienti = Patient.find("byModul", connected.modul).fetch();
+  public static void stitky(String evCisla) {
+    List<Patient> pacienti = new ArrayList<Patient>();
+    if(evCisla == null) {
+      pacienti = Patient.find("byModul", connected.modul).fetch();
+    }
+    else {
+      String[] kody = evCisla.split(";");
+      for (String kod : kody) {
+        pacienti.add(Patient.getByKod(kod));
+      }
+    }
     render(pacienti);
   }
 

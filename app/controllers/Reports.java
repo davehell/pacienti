@@ -142,8 +142,8 @@ public class Reports extends Application {
       if(datumOd == null) datumOd = new Date();
       if(datumDo == null) datumDo = new Date();
     
-      List<Report> vysetreni = Report.getNeprovedena(datumOd, datumDo);
       AppModul modul = connected.modul;
+      List<Report> vysetreni = Report.getNeprovedena(datumOd, datumDo, modul);
 
       render(vysetreni, datumOd, datumDo, modul);
   }
