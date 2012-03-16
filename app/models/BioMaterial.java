@@ -39,8 +39,8 @@ public class BioMaterial extends Model {
         return typ;
     }
 
-    public static List<BioMaterial> getNeizolovana() {
-        List<BioMaterial> result = BioMaterial.find("typ <> ? and datumIzolace is null", "izolovaná DNA").fetch();
+    public static List<BioMaterial> getNeizolovana(AppModul modul) {
+        List<BioMaterial> result = BioMaterial.find("pacient.modul = ? AND typ <> ? and datumIzolace is null", modul, "izolovaná DNA").fetch();
         return result;
     }
 }

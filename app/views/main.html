@@ -16,6 +16,7 @@
 		<link type="text/css" href="@{'/public/stylesheets/jqueryui/jquery-ui-1.8.18.custom.css'}" rel="stylesheet" />
 		<script type="text/javascript" src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
 		<script type="text/javascript" src="@{'/public/javascripts/jquery-ui-1.8.18.custom.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.ui.datepicker-cs.js'}"></script>
 
     <!-- datatable -->
     <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/demo_table_jui.css'}">
@@ -41,9 +42,9 @@
 #{if connected}     
     	<ul>
     		<li><a href="#tabs-1">Pacienti</a></li>
-    		<li><a href="#tabs-3">Tiskové sestavy</a></li>
-        <li><a href="#tabs-4">Import</a></li>
-        <li><a href="#tabs-2">Nastavení</a></li>
+    		<li><a href="#tabs-2">Tiskové sestavy</a></li>
+        <li><a href="#tabs-3">Import</a></li>
+        <li><a href="#tabs-4">Nastavení</a></li>
     	</ul>
     	<div id="tabs-1">
         <ul>
@@ -53,20 +54,20 @@
     	</div>
     	<div id="tabs-2">
         <ul>
-         <li><a href="@{InsuranceCompanies.index()}">Pojišťovny</a></li>
-         <li><a href="@{Doctors.index()}">Lékaři</a></li>
-        </ul>
-    	</div>
-    	<div id="tabs-3">
-        <ul>
          <li><a href="@{Forms.index("neprovedena-vysetreni")}">Neprovedená vyš.</a></li>
          <li><a href="@{Forms.index("pocty-vzorku")}">Počty vzorků od lékařů</a></li>
          <li><a href="@{Forms.neizolovana()}">Neizolovaná DNA</a></li>
          <li>štítky</li>
         </ul>
     	</div>
-    	<div id="tabs-4">
+    	<div id="tabs-3">
         <li><a href="@{Forms.vyslImport()}">Import výsledků</a></li>
+    	</div>
+    	<div id="tabs-4">
+        <ul>
+         <li><a href="@{InsuranceCompanies.index()}">Pojišťovny</a></li>
+         <li><a href="@{Doctors.index()}">Lékaři</a></li>
+        </ul>
     	</div>
 #{/if}      	
     </div> <!-- menu -->
@@ -112,10 +113,10 @@
 	$(function() {
 	  var sel = 0;
 
-    #{if request.action.equals("Forms.vyslImport")} sel = 3;#{/if}
-    #{elseif request.controller.equals("Forms")} sel = 2;#{/elseif}
-    #{elseif request.controller.equals("Doctors")} sel = 1;#{/elseif}
-    #{elseif request.controller.equals("InsuranceCompanies")} sel = 1;#{/elseif}
+    #{if request.action.equals("Forms.vyslImport")} sel = 2;#{/if}
+    #{elseif request.controller.equals("Forms")} sel = 1;#{/elseif}
+    #{elseif request.controller.equals("Doctors")} sel = 3;#{/elseif}
+    #{elseif request.controller.equals("InsuranceCompanies")} sel = 3;#{/elseif}
 
 	  
 		$( "#menu" ).tabs({selected: sel});
@@ -133,29 +134,10 @@
 		showOn: "button",
     buttonImage: "@{'/public/images/calendar.png'}",
     buttonText: "&{'kalendar.title'}",
-		buttonImageOnly: true,
-    dateFormat: "dd.mm.yy"
+		buttonImageOnly: true
 	};
   $.datepicker.setDefaults(calSetup);
 
-  $.datepicker.regional['cs'] = {
-    closeText: 'Zavřít',
-    prevText: 'Předchozí',
-    nextText: 'Další',
-    currentText: 'Dnes',
-    monthNames: ['Leden','Únor','Březen','Duben','Květen','Červen', 'Červenec','Srpen','Září','Říjen','Listopad','Prosinec'],
-    monthNamesShort: ['Le','Ún','Bř','Du','Kv','Čn', 'Čc','Sr','Zá','Ří','Li','Pr'],
-    dayNames: ['Neděle','Pondělí','Úterý','Středa','Čtvrtek','Pátek','Sobota'],
-    dayNamesShort: ['Ne','Po','Út','St','Čt','Pá','So',],
-    dayNamesMin: ['Ne','Po','Út','St','Čt','Pá','So'],
-    weekHeader: 'Ty',
-    dateFormat: 'dd.mm.yy',
-    firstDay: 1,
-    isRTL: false,
-    showMonthAfterYear: false,
-    yearSuffix: ''
-  };
-  $.datepicker.setDefaults($.datepicker.regional['cs']);
 
 	</script>
   </body>

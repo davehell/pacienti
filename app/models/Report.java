@@ -64,9 +64,9 @@ public class Report extends Model {
     public Date datumSekv;
 
 
-    public static List<Report> getNeprovedena(Date datumOd, Date datumDo) {
+    public static List<Report> getNeprovedena(Date datumOd, Date datumDo, AppModul modul) {
         //List<Report> result = Report.findAll();
-        List<Report> result = Report.find("datumVysetreni is null and bioMaterial.datumPrijeti >= ? and bioMaterial.datumPrijeti <= ?order by vysetreni.id asc, pacient.evCislo asc", datumOd, datumDo).fetch();
+        List<Report> result = Report.find("pacient.modul = ? and datumVysetreni is null and bioMaterial.datumPrijeti >= ? and bioMaterial.datumPrijeti <= ?order by vysetreni.id asc, pacient.evCislo asc", modul, datumOd, datumDo).fetch();
 /*
 Query q = JPA.em().createQuery ("UPDATE Doctor d SET d.jmeno = :jmeno ");
 q.setParameter ("jmeno", "pok");

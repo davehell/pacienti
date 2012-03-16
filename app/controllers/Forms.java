@@ -46,8 +46,8 @@ public class Forms extends Application {
       if(datumOd == null) datumOd = new Date();
       if(datumDo == null) datumDo = new Date();
 
-      List<Report> vysetreni = Report.getNeprovedena(datumOd, datumDo);
       AppModul modul = connected.modul;
+      List<Report> vysetreni = Report.getNeprovedena(datumOd, datumDo, modul);
 
       Options options = new Options();
       options.FOOTER = modul.formNeprovVys;
@@ -62,7 +62,7 @@ public class Forms extends Application {
       if(datumOd == null) datumOd = new Date();
       if(datumDo == null) datumDo = new Date();
 
-      List<Doctor> lekari = Doctor.getPocetVzorku(datumOd, datumDo);
+      List<Doctor> lekari = Doctor.getPocetVzorku(datumOd, datumDo, connected.modul);
 
       Options options = new Options();
       //options.FOOTER = "";
@@ -74,7 +74,7 @@ public class Forms extends Application {
   }
 
   public static void neizolovana() {
-      List<BioMaterial> bioMaterialy = BioMaterial.getNeizolovana();
+      List<BioMaterial> bioMaterialy = BioMaterial.getNeizolovana(connected.modul);
 
       render(bioMaterialy);
   }

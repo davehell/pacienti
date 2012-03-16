@@ -34,17 +34,17 @@ public class Doctor extends Model {
         this.pracoviste = pracoviste;
     }
 
-    public static List<Doctor> getPocetVzorku(Date datumOd, Date datumDo) {
+    public static List<Doctor> getPocetVzorku(Date datumOd, Date datumDo, AppModul modul) {
       List<Doctor> result = Doctor.find(
-          "SELECT new map(count(m.id) as pocet, m.pacient.lekar as lekar) FROM BioMaterial m WHERE m.datumPrijeti >= ? and m.datumPrijeti <= ? GROUP BY m.pacient.lekar.id", datumOd, datumDo
+          "SELECT new map(count(m.id) as pocet, m.pacient.lekar as lekar) FROM BioMaterial m WHERE m.pacient.lekar.modul = ? AND m.datumPrijeti >= ? and m.datumPrijeti <= ? GROUP BY m.pacient.lekar.id", modul, datumOd, datumDo
       ).fetch();
 
       return result;
     }
 
-    public static List<Doctor> getPocetVzorku(Date datumOd, Date datumDo, Long lekar) {
+    public static List<Doctor> getPocetVzorku(Date datumOd, Date datumDo, AppModul modul, Long lekar) {
       List<Doctor> result = Doctor.find(
-          "SELECT new map(count(m.id) as pocet, m.pacient.lekar as lekar) FROM BioMaterial m WHERE m.pacient.lekar.id = ? and m.datumPrijeti >= ? and m.datumPrijeti <= ? GROUP BY m.pacient.lekar.id", lekar, datumOd, datumDo
+          "SELECT new map(count(m.id) as pocet, m.pacient.lekar as lekar) FROM BioMaterial m WHERE m.pacient.lekar.modul = ? AND m.pacient.lekar.id = ? and m.datumPrijeti >= ? and m.datumPrijeti <= ? GROUP BY m.pacient.lekar.id", modul, lekar, datumOd, datumDo
       ).fetch();
 
       return result;

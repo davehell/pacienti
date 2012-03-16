@@ -5,9 +5,10 @@
     <title>Neprovedená vyšetření</title>
     <meta charset="${_response_encoding}">
     <style media="print">
-     body {font-family: Arial,serif;}
+     body {font-family: Arial,serif; font-size: 10pt;}
      .totalSum {border-top: 1px solid black;}
      .totalSum, .sum {text-align: right; padding-right: 1em;}
+     table {width: 100%;}
     </style>
   </head>
   <body>
@@ -21,10 +22,10 @@
   <table>
     <thead>
       <th>Vyšetření</th>
-      <th>Evidenční číslo</th>
+      <th>Ev. číslo</th>
       <th>Jméno</th>
-      <th>Koncentrace DNA</th>
-      <th>Počet bodů</th>
+      <th>Konc. DNA</th>
+      <th>Body</th>
     </thead>
     <tbody>
 
@@ -56,7 +57,7 @@
     <tr>
       <td>#{if _.vysetreni.id != vysId}${_.vysetreni.nazev}#{/if} </td>
       <td>${_.pacient.getKod()} </td>
-      <td>${_.pacient.jmeno} </td>
+      <td>${_.pacient.jmeno} ${_.pacient.prijmeni} </td>
       <td>${_.pacient.getKonc().raw()} </td>
       <td>&nbsp;</td>
     </tr>
