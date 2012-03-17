@@ -29,8 +29,8 @@ public class Patients extends Application  {
     notFoundIfNull(pacient);
     List<InsuranceCompany> pojistovny = InsuranceCompany.find("modul = ? order by cislo asc", connected.modul).fetch();
     List<Doctor> lekari = Doctor.find("modul = ? order by icz asc", connected.modul).fetch();
-
-    render(pacient, pojistovny, lekari);
+    List<Patient> stejnaRC = Patient.find("id <> ? AND modul = ? AND rcZac = ? AND rcKon = ?", id, connected.modul, pacient.rcZac, pacient.rcKon).fetch();
+    render(pacient, pojistovny, lekari, stejnaRC);
   }
 
   public static void form(Long id) {
@@ -44,6 +44,8 @@ public class Patients extends Application  {
       if(pacient.modul.id != connected.modul.id) {
         notFound();
       }
+
+      
 
       render(pacient, pojistovny, lekari);
     }

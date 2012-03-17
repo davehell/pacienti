@@ -18,7 +18,16 @@
 <fieldset>
   <legend>Informace o pacientovi</legend>
 
-
+#{if stejnaRC}
+  <p>
+    Pacient je již evidován:
+  </p>
+  <ul>
+  #{list stejnaRC}
+    <li>#{a @Patients.detail(_.id), title:"Zobrazit detail pacienta"}${_.getKod()}#{/a} </li>
+  #{/list}
+  </ul>
+#{/if}
 #{field 'pacient.evCislo'}
 <p class="left">
   <label class="required">&{field.name} </label>
@@ -38,14 +47,14 @@
 #{field 'pacient.rcZac'}
 <p class="left clear">
   <label class="required">&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rcZac}" class="${field.errorClass} shortW">
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rcZac}" class="${field.errorClass} shortW" maxlength="6">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
 
 #{field 'pacient.rcKon'}
 <p class="left">
-  &nbsp;&nbsp;/&nbsp;&nbsp;<input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rcKon}" class="${field.errorClass} shortW">
+  &nbsp;&nbsp;/&nbsp;&nbsp;<input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rcKon}" class="${field.errorClass} shortW" maxlength="4">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
