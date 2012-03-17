@@ -9,8 +9,8 @@ import java.util.*;
 import static play.modules.pdf.PDF.*;
 
 import org.allcolor.yahp.converter.IHtmlToPdfTransformer;
-import org.allcolor.yahp.converter.IHtmlToPdfTransformer.PageSize;
-import org.allcolor.yahp.*;
+//import org.allcolor.yahp.converter.IHtmlToPdfTransformer.PageSize;
+//import org.allcolor.yahp.*;
 
 @With(Secure.class)
 public class Reports extends Application {

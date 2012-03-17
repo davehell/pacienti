@@ -5,7 +5,7 @@
     <title>Neizolovaná DNA</title>
     <meta charset="${_response_encoding}">
     <style media="print">
-     body {font-family: Arial,serif;}
+     body {font-family: "Times New Roman", sans-serif;}
     </style>
   </head>
   <body>
@@ -23,7 +23,7 @@
     #{list bioMaterialy}
     <tr>
       <td>${_.pacient.getKod()} </td>
-      <td>${_.pacient.jmeno} ${_.pacient.prijmeni} </td>
+      <td>${_.pacient.toString()} </td>
     </tr>
     #{/list}
     </tbody>

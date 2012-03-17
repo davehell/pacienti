@@ -130,7 +130,7 @@
 #{field 'pacient.pozn'}
 <p>
   <label>&{field.name} </label>
-  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} vLongW">${pacient?.pozn} </textarea>
+  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} vLongW">${pacient?.pozn}</textarea>
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
@@ -138,7 +138,7 @@
 #{field 'pacient.verejnaPozn'}
 <p>
   <label>&{field.name} </label>
-  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} vLongW">${pacient?.verejnaPozn} </textarea>
+  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} vLongW">${pacient?.verejnaPozn}</textarea>
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
@@ -188,27 +188,15 @@ $(document).ready(function() {
   <script type="text/javascript">
   $(document).ready(function() {
       $('#pacient_evCislo').focus();
+
+      $('#pacForm').submit(function () {
+        var zac = $("#pacient_rcZac" ).val();
+        var kon = $("#pacient_rcKon" ).val();
+        var check = parseInt(zac + kon) % 11;
+        if(check != 0) {
+          alert("Zadané rodné číslo může být chybné.");
+        }
+      } );
   } );
   </script>
 #{/else}
-
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#pacForm').submit(function () {
-      var zac = $("#pacient_rcZac" ).val();
-      var kon = $("#pacient_rcKon" ).val();
-      var check = parseInt(zac + kon) % 11;
-      if(check != 0) {
-        alert("Zadané rodné číslo může být chybné.");
-      }
-    } );
-
-    
-/*
-    $('#pacient_rcZac').keyup(function () {
-      if($('#pacient_rcZac').val().length == 6) $('#pacient_rcKon').focus();;
-    } );
-*/
-
-} );
-</script>

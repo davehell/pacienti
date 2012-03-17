@@ -3,10 +3,8 @@
 # ~~~~
 
 # Home page
-#GET     /                                       Application.index
-GET		/															    Patients.index
+GET		/															           Patients.index
 
-#GET		/pacienti															    Patients.index
 GET   /pacient/{id}/upravit                     Patients.form
 GET   /pacient/novy                             Patients.form
 POST  /pacient/{id}/ulozit                      Patients.mySave
@@ -16,7 +14,7 @@ GET   /pacient/{id}/smazat                      Patients.myDelete
 
 GET   /pacient/{pacientId}/biomaterial/{id}/upravit BioMaterials.form
 GET   /pacient/{pacientId}/biomaterial/novy         BioMaterials.form
-POST  /biomaterial/{bioMatId}/ulozit                      BioMaterials.mySave
+POST  /biomaterial/{bioMatId}/ulozit                BioMaterials.mySave
 POST  /biomaterial/ulozit                           BioMaterials.mySave
 GET   /biomaterial/{id}/smazat                      BioMaterials.myDelete
 
@@ -27,7 +25,7 @@ POST  /vysetreni/ulozit                           Reports.mySave
 GET   /vysetreni/{id}/smazat                      Reports.myDelete
 GET   /vysetreni/{id}/zaverecna-zprava            Reports.report
 
-GET		/pojistovny													    InsuranceCompanies.index
+GET		/pojistovny													         InsuranceCompanies.index
 GET   /pojistovna/{id}/upravit                     InsuranceCompanies.form
 GET   /pojistovna/novy                             InsuranceCompanies.form
 POST  /pojistovna/{id}/ulozit                      InsuranceCompanies.mySave
@@ -41,10 +39,15 @@ POST  /lekar/{id}/ulozit                      Doctors.mySave
 POST  /lekar/ulozit                           Doctors.mySave
 GET   /lekar/{id}/smazat                      Doctors.myDelete
 
-GET		/sestavy/neizolovana-dna											    Forms.neizolovana
-GET		/sestavy/{typ}								       Forms.index
-POST  /import-vysledku                     Forms.vyslImport
-GET   /import-vysledku                      Forms.vyslImport
+GET		/sestavy/tisk/stitky/{evCisla}			    Forms.stitky
+GET		/sestavy/stitky								          Forms.stitky
+GET		/sestavy/{typ}								          Forms.index
+GET		/sestavy/tisk/neizolovana-dna			  		Forms.neizolovana
+GET		/sestavy/tisk/neprovedena-vysetreni/od/{datumOd}/do/{datumDo}			  Forms.neprovedena
+GET		/sestavy/tisk/pocty-vzorku/od/{datumOd}/do/{datumDo}			          Forms.poctyvzorku
+
+POST  /import-vysledku                        Forms.vyslImport
+GET   /import-vysledku                        Forms.vyslImport
 
 
 
@@ -55,7 +58,7 @@ GET   /import-vysledku                      Forms.vyslImport
 
 
 # Ignore favicon requests
-GET     /favicon.ico                            404
+#GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public

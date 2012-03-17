@@ -12,8 +12,8 @@ import play.libs.IO;
 import static play.modules.pdf.PDF.*;
 
 import org.allcolor.yahp.converter.IHtmlToPdfTransformer;
-import org.allcolor.yahp.converter.IHtmlToPdfTransformer.PageSize;
-import org.allcolor.yahp.*;
+//import org.allcolor.yahp.converter.IHtmlToPdfTransformer.PageSize;
+//import org.allcolor.yahp.*;
 
 @With(Secure.class)
 public class Forms extends Application {
@@ -80,17 +80,19 @@ public class Forms extends Application {
   }
 
   public static void stitky(String evCisla) {
-    List<Patient> pacienti = new ArrayList<Patient>();
     if(evCisla == null) {
-      pacienti = Patient.find("byModul", connected.modul).fetch();
+      List<Patient> pacienti = Patient.find("byModul", connected.modul).fetch();
+      render(pacienti);
     }
     else {
+      List<Patient> stitky = new ArrayList<Patient>();
       String[] kody = evCisla.split(";");
       for (String kod : kody) {
-        pacienti.add(Patient.getByKod(kod));
+        stitky.add(Patient.getByKod(kod));
       }
+      render(stitky);
     }
-    render(pacienti);
+    
   }
 
 

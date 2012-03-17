@@ -1,148 +1,173 @@
-#{extends 'main.html' /}
-#{set title:'Štítky' /}
+#{if stitky}
+<!DOCTYPE html>
 
-
-#{if pacienti}
-<div class="span-18">
-  <table class="display" id="pacTable">
-    <thead>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th>Evidenční číslo</th>
-      <th>Jméno</th>
-      <th>Rodné číslo</th>
-    </thead>
-    <tbody>
-
-    #{list pacienti}
-    <tr>
-      <td>${_.evCislo} </td>
-      <td>${_.evRok} </td>
-      <td><a href="" class="evCislo" title="">${_.getKod()}</a></td>
-      <td>${_.jmeno} ${_.prijmeni} </td>
-      <td>${_.getRodneCislo()} </td>
-    </tr>
-    #{/list}
-    </tbody>
-  </table>
-</div> <!-- span-15 -->
-
-<style type="text/css">
-#stitky li {cursor: pointer;}
-#stitky li:hover {color: red;}
-#print {display: none; margin-left: 1em;}
-#deleteAll {display: none; }
-</style>
-
-<div class="span-5 push-1 last">
-  <p>
-    <strong>Vybrané štítky:</strong>
-    <button id="print">Tisk</button>
-    <button id="deleteAll">Odebrat vše</button>
-  </p>
-  <p id="neStitky">Nejsou vybrány žádné štítky.</p>
-  <ul id="stitky">
-  </ul>
-  #{form @stitky(), id:"stitkyForm"}
-  <input type="hidden" name="evCisla" id="evCisla" value="">
-  
-  #{/form}
-</div> <!-- span-9 -->
-<script type="text/javascript">
-$(document).ready(function() {
-    oTable = $('#pacTable').dataTable({
-        "bJQueryUI": true,
-        "sPaginationType": "full_numbers",
-        "bStateSave": false,
-        "aaSorting": [[ 1, "desc" ],[ 0, "desc" ]],
-        "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "Vše"]],
-        "iDisplayLength":25,
-        "aoColumnDefs": [
-            { "bVisible": false, "aTargets": [ 0, 1 ] },
-            { "bSearchable": false, "aTargets": [ 0, 1 ] }
-        ],
-        "oLanguage": {
-          "sProcessing":   "Provádím...",
-          "sLengthMenu":   "Zobraz záznamů _MENU_",
-          "sZeroRecords":  "Žádné záznamy nebyly nalezeny",
-          "sInfo":         "Zobrazuji _START_ až _END_ z celkem _TOTAL_ záznamů",
-          "sInfoEmpty":    "Zobrazuji 0 až 0 z 0 záznamů",
-          "sInfoFiltered": "(filtrováno z celkem _MAX_ záznamů)",
-          "sInfoPostFix":  "",
-          "sSearch":       "Hledat:",
-          "sUrl":          "",
-          "oPaginate": {
-             "sFirst":    "První",
-             "sPrevious": "Předchozí",
-             "sNext":     "Další",
-             "sLast":     "Poslední"
-          }
-        }
-    });
-
-    //klik na evidenční číslo v tabulce pacientů
-    $('.evCislo').click(function () {
-      $("#stitky").append('<li>' + this.innerHTML + '</li>');
-      slozStitky();
-      $("#print").show();
-      $("#deleteAll").show();
-      $("#neStitky").hide();
-      return false;
-    } );
-
-    //tlačítko odebrat všechny štítky
-		$( "#deleteAll" ).button({
-      icons: {
-          primary: "ui-icon-trash"
-      },
-      text: false
-    });
-
-    $('#deleteAll').click(function() {
-      $('#stitky li').remove();
-      prazdneStitky();
-    });
-
-    //klik na položku v seznamu - odebraní daného štítku
-    $('#stitky li').live('click', function() {
-        $(this).remove();
-        slozStitky();
-        if($("#stitky li").size() == 0) prazdneStitky();
-    });
-
-    prazdneStitky = function() {
-      $("#print").hide();
-      $("#deleteAll").hide();
-      $("#neStitky").show();
-    };
-
-    //všechny štítky spojí v jeden řetězec
-    slozStitky = function() {
-      var text = "";
-      $("#stitky li").each(function(){
-        if(text.length > 0) text += ";";
-        text += $(this).text();
-      });
-      $("#evCisla").val(text);
-    };
-
-		$( "#print" ).button({
-      icons: {
-          primary: "ui-icon-print"
-      },
-      text: false
-    });
-
-    $('#print').click(function() {
-      $('#stitkyForm').submit();
-    });
-
-} );
-</script>
+<html>
+  <head>
+    <title>Štítky</title>
+    <meta charset="${_response_encoding}">
+    <style media="all">
+     body {font-family: "Times New Roman", sans-serif; font-size: 6pt; width: 1.5cm; height: 1.5cm; margin: 0; padding: 0; text-align: center;}
+     p {margin: 0; padding: 0;}
+     div {border: 1px solid black; margin: 0; padding: 0; height: 100%; page-break-after: always;}
+     .evCislo {font-size: 8pt; background-color: #D8D8D8; font-weight: bold; padding: 2px 0;}
+     .konc {margin-top: 0.5cm;}
+    </style>
+  </head>
+  <body>
+  #{list stitky}
+    <div>
+      <p class="evCislo">${_.getKod()} </p>
+      <p class="konc">${_.getKonc().raw()} </p>
+    </div>
+  #{/list}
+  </body>
+</html>
 #{/if}
 #{else}
-    <div class="empty">
-        &{'noRecords'}
-    </div>
-#{/else}
+  #{if pacienti}
+  #{extends 'main.html' /}
+  #{set title:'Štítky' /}
 
+  <div class="span-18">
+    <table class="display" id="pacTable">
+      <thead>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>Evidenční číslo</th>
+        <th>Jméno</th>
+        <th>Rodné číslo</th>
+      </thead>
+      <tbody>
+
+      #{list pacienti}
+      <tr>
+        <td>${_.evCislo} </td>
+        <td>${_.evRok} </td>
+        <td><a href="" class="evCislo" title="">${_.getKod()}</a></td>
+        <td>${_.jmeno} ${_.prijmeni} </td>
+        <td>${_.getRodneCislo()} </td>
+      </tr>
+      #{/list}
+      </tbody>
+    </table>
+  </div> <!-- span-15 -->
+
+  <style type="text/css">
+  #stitky li {cursor: pointer;}
+  #stitky li:hover {color: red;}
+  #print {display: none; margin-left: 1em;}
+  #deleteAll {display: none; }
+  </style>
+
+  <div class="span-5 push-1 last">
+    <p>
+      <strong>Vybrané štítky:</strong>
+      <button id="print">Tisk</button>
+      <button id="deleteAll">Odebrat vše</button>
+    </p>
+    <p id="neStitky">Nejsou vybrány žádné štítky.</p>
+    <ul id="stitky">
+    </ul>
+    #{form @stitky(), id:"stitkyForm"}
+    <input type="hidden" name="evCisla" id="evCisla" value="">
+
+    #{/form}
+  </div> <!-- span-9 -->
+  <script type="text/javascript">
+  $(document).ready(function() {
+      oTable = $('#pacTable').dataTable({
+          "bJQueryUI": true,
+          "sPaginationType": "full_numbers",
+          "bStateSave": false,
+          "aaSorting": [[ 1, "desc" ],[ 0, "desc" ]],
+          "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "Vše"]],
+          "iDisplayLength":25,
+          "aoColumnDefs": [
+              { "bVisible": false, "aTargets": [ 0, 1 ] },
+              { "bSearchable": false, "aTargets": [ 0, 1 ] }
+          ],
+          "oLanguage": {
+            "sProcessing":   "Provádím...",
+            "sLengthMenu":   "Zobraz záznamů _MENU_",
+            "sZeroRecords":  "Žádné záznamy nebyly nalezeny",
+            "sInfo":         "Zobrazuji _START_ až _END_ z celkem _TOTAL_ záznamů",
+            "sInfoEmpty":    "Zobrazuji 0 až 0 z 0 záznamů",
+            "sInfoFiltered": "(filtrováno z celkem _MAX_ záznamů)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Hledat:",
+            "sUrl":          "",
+            "oPaginate": {
+               "sFirst":    "První",
+               "sPrevious": "Předchozí",
+               "sNext":     "Další",
+               "sLast":     "Poslední"
+            }
+          }
+      });
+
+      //klik na evidenční číslo v tabulce pacientů
+      $('.evCislo').click(function () {
+        $("#stitky").append('<li>' + this.innerHTML + '</li>');
+        slozStitky();
+        $("#print").show();
+        $("#deleteAll").show();
+        $("#neStitky").hide();
+        return false;
+      } );
+
+      //tlačítko odebrat všechny štítky
+  		$( "#deleteAll" ).button({
+        icons: {
+            primary: "ui-icon-trash"
+        },
+        text: false
+      });
+
+      $('#deleteAll').click(function() {
+        $('#stitky li').remove();
+        prazdneStitky();
+      });
+
+      //klik na položku v seznamu - odebraní daného štítku
+      $('#stitky li').live('click', function() {
+          $(this).remove();
+          slozStitky();
+          if($("#stitky li").size() == 0) prazdneStitky();
+      });
+
+      prazdneStitky = function() {
+        $("#print").hide();
+        $("#deleteAll").hide();
+        $("#neStitky").show();
+      };
+
+      //všechny štítky spojí v jeden řetězec
+      slozStitky = function() {
+        var text = "";
+        $("#stitky li").each(function(){
+          if(text.length > 0) text += ";";
+          text += $(this).text();
+        });
+        $("#evCisla").val(text);
+      };
+
+  		$( "#print" ).button({
+        icons: {
+            primary: "ui-icon-print"
+        },
+        text: false
+      });
+
+      $('#print').click(function() {
+        $('#stitkyForm').submit();
+      });
+
+  } );
+  </script>
+  #{/if}
+  #{else}
+      <div class="empty">
+          &{'noRecords'}
+      </div>
+  #{/else}
+#{/else}

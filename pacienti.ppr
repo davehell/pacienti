@@ -99,13 +99,13 @@ pacienti
 8=app\models\Patient.java
 [Selected Project Files]
 Main=
-Selected=app\controllers\Forms.java
+Selected=app\views\Forms\stitky.html
 [conf\routes]
-TopLine=14
-Caret=1,51
+TopLine=17
+Caret=2,61
 [app\views\main.html]
-TopLine=39
-Caret=59,51
+TopLine=30
+Caret=34,30
 Mark1=2,111
 [conf\messages.cs]
 TopLine=1
@@ -117,11 +117,11 @@ Caret=3,24
 TopLine=43
 Caret=1,1
 [app\controllers\Forms.java]
-TopLine=59
-Caret=1,94
+TopLine=1
+Caret=24,107
 [app\views\Forms\stitky.html]
-TopLine=34
-Caret=17,43
+TopLine=1
+Caret=35,10
 [app\views\Reports\form.html]
 TopLine=6
 Caret=3,32
