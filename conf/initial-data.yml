@@ -9,10 +9,12 @@ AppModul(ov):
     typyMaterialu: krev nesrážlivá EDTA,izolovaná DNA,FTA karta krev,FTA karta plodová voda
     formNeprovVys: IF-71.0
     cDokladu: 5
+    bylImport: false
 
 AppModul(br):
   nazev: Brno
   kod: BR
+  bylImport: false
 
 User(admin):
     username:       admin

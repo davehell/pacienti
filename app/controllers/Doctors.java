@@ -17,6 +17,7 @@ public class Doctors extends Application {
   public static void index() {
     //Query query = JPA.em().createQuery("select d from Doctor d order by icz desc");
     //List<Doctor> lekari = query.getResultList();
+
     List<Doctor> lekari = Doctor.find("modul = ? order by icz desc", connected.modul).fetch();
     render(lekari);
   }

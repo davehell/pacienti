@@ -4,6 +4,7 @@
 
 # Home page
 GET		/															           Patients.index
+GET		/import												           Application.index
 
 GET   /pacient/{id}/upravit                     Patients.form
 GET   /pacient/novy                             Patients.form
@@ -58,7 +59,7 @@ GET   /import-vysledku                        Forms.vyslImport
 
 
 # Ignore favicon requests
-#GET     /favicon.ico                            404
+GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public

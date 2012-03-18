@@ -9,6 +9,10 @@ import play.data.binding.*;
 @Entity
 public class Doctor extends Model {
 
+    //@Required
+    @ManyToOne
+    public AppModul modul;
+
     @Required
     @MaxSize(20)
     public String icz;
@@ -20,18 +24,19 @@ public class Doctor extends Model {
     @MaxSize(200)
     public String pracoviste;
 
-    //@Required
-    @ManyToOne
-    public AppModul modul;
+    public String oldId;
 
     public String toString() {
         return jmeno + " (" + icz + ")";
     }
 
-    public Doctor(String icz, String jmeno, String pracoviste) {
+    public Doctor(AppModul modul, String jmeno, String icz, String pracoviste, String oldId) {
+        this.modul = modul;
         this.icz = icz;
         this.jmeno = jmeno;
         this.pracoviste = pracoviste;
+        this.oldId = oldId;
+        this.save();
     }
 
     public static List<Doctor> getPocetVzorku(Date datumOd, Date datumDo, AppModul modul) {

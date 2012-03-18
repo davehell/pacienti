@@ -3,31 +3,30 @@ package controllers;
 import play.*;
 import play.mvc.*;
 
+import play.db.jpa.*;
+import javax.persistence.*;
 import java.util.*;
+import play.data.binding.*;
 
 import models.*;
 
 @With(Secure.class)
 public class Application extends CRUD {
 
-    static User connected = null;
+  static User connected = null;
 
 
-    @Before
-    static void globals() {
-        connected = User.getByUsername(Security.connected());
-        renderArgs.put("connected", connected);
-    }
+  @Before
+  static void globals() {
+      connected = User.getByUsername(Security.connected());
+      renderArgs.put("connected", connected);
+  }
 
-    public static void index() {
-    Logger.info("I am an info message");
-        List users = User.findAll();
-        //User user = User.find("byUsername", "davehell").first();
-        List zpravy = Report.findAll();
+  public static void index() {
+    //if(connected.modul.bylImport) return;
+    //connected.modul.setImport(true);
 
-        render(users, zpravy);
-        Logger.info("Action executed ...");
-    }
+  } //index
 
 
 }

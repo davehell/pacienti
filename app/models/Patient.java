@@ -65,22 +65,46 @@ public class Patient extends Model {
     @MaxSize(300)
     public String verejnaPozn;
 
+    public String oldId;
+
     @OneToMany(mappedBy="pacient", cascade=CascadeType.REMOVE)
     public List<BioMaterial> bioMaterialy;
 
     @OneToMany(mappedBy="pacient", cascade=CascadeType.REMOVE)
     public List<Report> zpravy;
 
-    public Patient(String evCislo, String evRok, String rcZac, String rcKon, String jmeno, String infSouhlas, String diagnoza, String koncDna, String pozn, String verejnaPozn) {
-        this.evCislo = new Integer(evCislo);
-        this.evRok = new Integer(evRok);
+    public Patient(AppModul modul, String evCislo, String evRok, String rcZac, String rcKon, String jmeno, String prijmeni, String pojistovna, String lekar, String infSouhlas, String diagnoza, String koncDna, String pozn, String verejnaPozn, String oldId) {
+        this.modul = modul;
+        this.evCislo = Integer.parseInt(evCislo);
+        this.evRok = Integer.parseInt(evRok);
         this.rcZac = rcZac;
         this.rcKon = rcKon;
         this.jmeno = jmeno;
+        this.prijmeni = prijmeni;
         this.infSouhlas = (infSouhlas == "PRAVDA") ? true : false;
+        this.diagnoza = diagnoza;
         this.koncDna = koncDna;
         this.pozn = pozn;
         this.verejnaPozn = verejnaPozn;
+        this.oldId = oldId;
+        List<InsuranceCompany> pojistovny = InsuranceCompany.find("modul = ? and cislo = ?", modul, Integer.parseInt(pojistovna)).fetch();
+        if (pojistovny != null && !pojistovny.isEmpty()) {
+          this.pojistovna = pojistovny.get(0);
+        }
+
+        List<Doctor> lekari = Doctor.find("oldId = ?", lekar).fetch();
+        if (lekari != null && !lekari.isEmpty()) {
+          this.lekar = lekari.get(0);
+        }
+
+        try {
+          this.save();
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        
     }
 
 
