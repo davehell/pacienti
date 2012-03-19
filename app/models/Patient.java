@@ -50,7 +50,7 @@ public class Patient extends Model {
     @ManyToOne
     public InsuranceCompany pojistovna;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.REMOVE)
     public Doctor lekar;
     
     public boolean infSouhlas;

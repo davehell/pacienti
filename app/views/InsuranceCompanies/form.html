@@ -33,6 +33,20 @@
   </p>
   #{/}
 
+
+  #{field 'pojistovna.aktual'}
+    #{ifnot pojistovna?.id}
+        <input type="hidden" id="${field.id}" name="${field.name}" value="true">
+    #{/ifnot}
+    #{else}
+    <p>
+      <label>&{field.name} </label>
+      <input type="checkbox" id="${field.id}" name="${field.name}" #{if pojistovna?.aktual} checked="checked" #{/if} class="${field.errorClass}">
+      #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+    </p>
+    #{/else}
+  #{/}
+
   <p>
     <input type="submit" value="Uložit" />
     #{if pojistovna?.id}  

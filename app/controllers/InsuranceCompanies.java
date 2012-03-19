@@ -44,6 +44,7 @@ public class InsuranceCompanies extends Application  {
         InsuranceCompany newPojistovna = InsuranceCompany.findById(id);
         newPojistovna.cislo = pojistovna.cislo;
         newPojistovna.nazev = pojistovna.nazev;
+        newPojistovna.aktual = pojistovna.aktual;
         newPojistovna.save();
       }
 

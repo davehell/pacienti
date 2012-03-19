@@ -50,6 +50,7 @@ kalendar.title = kalendář
 
 pojistovna.cislo = číslo
 pojistovna.nazev = název
+pojistovna.aktual = aktuální
 
 lekar.icz = IČZ
 lekar.jmeno = titul, jméno, příjmení

@@ -34,7 +34,7 @@ public class Patients extends Application  {
   }
 
   public static void form(Long id) {
-    List<InsuranceCompany> pojistovny = InsuranceCompany.find("modul = ? order by cislo asc", connected.modul).fetch();
+    List<InsuranceCompany> pojistovny = InsuranceCompany.getAktual(connected.modul);
     List<Doctor> lekari = Doctor.find("modul = ? order by icz asc", connected.modul).fetch();
 
     if(id != null) {

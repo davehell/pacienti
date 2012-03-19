@@ -142,15 +142,15 @@ InsuranceCompany(209):
   cislo: 209
   nazev: Česká národní zdravotní pojišťovna
   modul:  ov
-InsuranceCompany(227): 
+InsuranceCompany(227):
   cislo: 227
   nazev: Agel
   modul:  ov
-InsuranceCompany(228): 
+InsuranceCompany(228):
   cislo: 228
   nazev: Média
   modul:  ov
-InsuranceCompany(400): 
+InsuranceCompany(400):
   cislo: 400
   nazev: Samoplátce
   modul:  ov
