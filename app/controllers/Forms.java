@@ -80,17 +80,23 @@ public class Forms extends Application {
   }
 
   public static void stitky(String evCisla) {
+    List<Patient> pacienti = Patient.find("byModul", connected.modul).fetch();
     if(evCisla == null) {
-      List<Patient> pacienti = Patient.find("byModul", connected.modul).fetch();
       render(pacienti);
     }
     else {
       List<Patient> stitky = new ArrayList<Patient>();
       String[] kody = evCisla.split(";");
+      Patient pacient = null;
       for (String kod : kody) {
-        stitky.add(Patient.getByKod(kod));
+        pacient = Patient.getByKod(kod);
+        if(pacient != null) stitky.add(pacient);
       }
-      render(stitky);
+      if(stitky.size() == 0) render(pacienti);
+      Options options = new Options();
+      IHtmlToPdfTransformer.PageSize ps = new IHtmlToPdfTransformer.PageSize(1.5, 1.5, 0.0, 0.0, 0.0, 0.0);
+      options.pageSize = ps;      
+      renderPDF(stitky, options);
     }
     
   }

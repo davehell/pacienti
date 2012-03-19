@@ -75,22 +75,11 @@ InsuranceCompany(111):
   nazev: Všeobecná zdravotní pojišťovna
   modul: ov
 
-InsuranceCompany(111v):
+InsuranceCompany(111b):
   cislo: 111
   nazev: Všeobecná zdravotní pojišťovna
   modul: br
 
-Doctor(mudr1):
-  icz: 012345678
-  jmeno: Nulla Hendrerit
-  pracoviste: Ostrava, poliklinika
-  modul: ov
-
-Doctor(mudr2):
-  icz: 6655332211
-  jmeno: Magna Donec
-  pracoviste: Praha, nemocnice
-  modul: ov
 
 Doctor(mudr3):
   icz: 87654000
@@ -108,18 +97,10 @@ Patient(pat1):
   jmeno: Feugiat
   prijmeni: Consectetuer
   pojistovna: 207
-  lekar: mudr1
+  lekar: mudr3
+  koncDna: 18,6
+  verejnaPozn: poznámka
 
-Patient(pat2):
-  modul: ov
-  evCislo: 222
-  evRok: 2012
-  rcZac: 123456
-  rcKon: 4582
-  jmeno: Curabitur
-  prijmeni: Pellentesque
-  pojistovna: 111
-  lekar: mudr1
 
 BioMaterial(krev):
   pacient: pat1
@@ -128,19 +109,6 @@ BioMaterial(krev):
   datumPrijeti: 04.12.2011 20:20
   parafaPrijeti: david
 
-BioMaterial(slina):
-  pacient: pat1
-  typ: izolovaná DNA
-  datumOdberu: 2012-01-01 02:23:00.0
-  datumPrijeti: 2012-02-04 06:16:00.0
-  parafaPrijeti: lh
-
-BioMaterial(vlas):
-  pacient: pat1
-  typ: FTA karta krev
-  datumOdberu: 2012-01-02 08:22:00.0
-  datumPrijeti: 2012-02-06 09:33:00.0
-  parafaPrijeti: david
 
 InsuranceCompany(201): 
   cislo: 201
