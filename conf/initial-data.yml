@@ -1,6 +1,3 @@
-# you describe your data using the YAML notation here
-# and then load them using Fixtures.load("data.yml")
-
 AppModul(ov):
     nazev: Ostrava
     kod: KO
@@ -9,17 +6,15 @@ AppModul(ov):
     typyMaterialu: krev nesrážlivá EDTA,izolovaná DNA,FTA karta krev,FTA karta plodová voda
     formNeprovVys: IF-71.0
     cDokladu: 5
-    bylImport: false
 
 AppModul(br):
   nazev: Brno
   kod: BR
-  bylImport: false
 
 User(admin):
-    username:       admin
-    passwordHash:   d033e22ae348aeb5660fc2140aec35850c4da997
-    jmeno:          Admin
+    username:       brno
+    passwordHash:   fbf703d4d52699ed28824f56571fe2bea443246a
+    jmeno:          Laboratoř forenzní genetiky
     modul:          br
     isAdmin:        true
 
@@ -34,7 +29,7 @@ User(david):
 
 User(lh):
     username:       lh
-    passwordHash:   83ff63f5ff3518a2cba17bde7238d3087b5a964c
+    passwordHash:   9808e069e91407c2841870851647ea0d23600d21
     jmeno:          Mgr. Lenka Hrdá
     parafa:         LH
     pozice:         laborantka
@@ -43,7 +38,7 @@ User(lh):
 
 User(jf):
     username:       jf
-    passwordHash:   83ff63f5ff3518a2cba17bde7238d3087b5a964c
+    passwordHash:   002e23b9512c2b19a361d0fa9d7207e91c14c61a
     jmeno:          RNDr. Jiří Fišer
     parafa:         JF
     pozice:         odborný pracovník
@@ -52,108 +47,12 @@ User(jf):
 
 User(hk):
     username:       hk
-    passwordHash:   83ff63f5ff3518a2cba17bde7238d3087b5a964c
+    passwordHash:   4fe0d24231b6309c90a78eeb8dc6ff2ca2d4cb85
     jmeno:          RNDr. Hana Kolaříková
     parafa:         HK
     pozice:         odborný pracovník
     modul:          ov
     isAdmin:        false
-
-
-InsuranceCompany(207):
-  cislo: 207
-  nazev: Oborová zdravotní pojišťovna
-  modul: ov
-
-InsuranceCompany(207b):
-  cislo: 207
-  nazev: Oborová zdravotní pojišťovna
-  modul: br
-
-InsuranceCompany(111):
-  cislo: 111
-  nazev: Všeobecná zdravotní pojišťovna
-  modul: ov
-
-InsuranceCompany(111b):
-  cislo: 111
-  nazev: Všeobecná zdravotní pojišťovna
-  modul: br
-
-
-Doctor(mudr3):
-  icz: 87654000
-  jmeno: MUDr. Phasellus Tristique
-  pracoviste: Havířov-Šumbark
-  modul: ov
-
-Patient(pat1):
-  modul: ov
-  evCislo: 111
-  evRok: 2012
-  rcZac: 562169
-  rcKon: 4582
-  titul: Ing.
-  jmeno: Feugiat
-  prijmeni: Consectetuer
-  pojistovna: 207
-  lekar: mudr3
-  koncDna: 18,6
-  verejnaPozn: poznámka
-
-
-BioMaterial(krev):
-  pacient: pat1
-  typ: Krev nesrážlivá EDTA
-  datumOdberu: 03.01.2012 15:15
-  datumPrijeti: 04.12.2011 20:20
-  parafaPrijeti: david
-
-
-InsuranceCompany(201): 
-  cislo: 201
-  nazev: Vojenská zdravotní pojišťovna
-  modul:  ov
-InsuranceCompany(205): 
-  cislo: 205
-  nazev: Hutnická  zaměstnanecká pojišťovna
-  modul:  ov
-InsuranceCompany(207): 
-  cislo: 207
-  nazev: Oborová zdravotní pojišťovna zaměstanců bank a pojišťoven
-  modul:  ov
-InsuranceCompany(209): 
-  cislo: 209
-  nazev: Zdravotní pojišťovna Škoda
-  modul:  ov
-InsuranceCompany(211): 
-  cislo: 211
-  nazev: Zdravotní pojišťovna Ministerstva Vnitra
-  modul:  ov
-InsuranceCompany(213): 
-  cislo: 213
-  nazev: Revírní bratrská pokladna
-  modul:  ov
-InsuranceCompany(217): 
-  cislo: 217 
-  nazev: Zdravotní pojišťovna METAL-ALIANCE
-  modul:  ov
-InsuranceCompany(209): 
-  cislo: 209
-  nazev: Česká národní zdravotní pojišťovna
-  modul:  ov
-InsuranceCompany(227):
-  cislo: 227
-  nazev: Agel
-  modul:  ov
-InsuranceCompany(228):
-  cislo: 228
-  nazev: Média
-  modul:  ov
-InsuranceCompany(400):
-  cislo: 400
-  nazev: Samoplátce
-  modul:  ov
 
 
 Examination(e1):
@@ -694,28 +593,3 @@ Examination(e12):
   sloupce: 1
   body: 7205
 
-Report(zprava1):
-  pacient: pat1
-  bioMaterial: krev
-  vysetreni: e8
-  datumVysetreni: 2012-02-06 09:33:00.0
-  parafaVysetreni: david
-  vysledky:
-            - v1
-            - v2
-            - v3
-
-Result(v1):
-  zavZprava: zprava1
-  genotyp: g1
-  vysledek: wt/wt
-
-Result(v2):
-  zavZprava: zprava1
-  genotyp: g2
-  vysledek: mut/mut
-
-Result(v3):
-  zavZprava: zprava1
-  genotyp: g3
-  vysledek: wt/mut

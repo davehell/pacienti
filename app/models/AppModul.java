@@ -26,8 +26,6 @@ public class AppModul extends Model {
     @MaxSize(5)
     public String cDokladu;
 
-    public boolean bylImport;
-
 
     public AppModul(String nazev) {
         this.nazev = nazev;
@@ -35,10 +33,5 @@ public class AppModul extends Model {
 
     public String toString() {
         return nazev;
-    }
-
-    public void setImport(boolean bylImport) {
-        this.bylImport = bylImport;
-        this.save();
     }
 }

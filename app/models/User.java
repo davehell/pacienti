@@ -10,7 +10,7 @@ public class User extends Model {
     
     @Required
     @MaxSize(15)
-    @MinSize(3)
+    @MinSize(2)
     @Match(value="^\\w*$", message="Neplatné uživatelské jméno")
     public String username;
     

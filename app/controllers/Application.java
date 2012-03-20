@@ -23,8 +23,6 @@ public class Application extends CRUD {
   }
 
   public static void index() {
-    //if(connected.modul.bylImport) return;
-    //connected.modul.setImport(true);
 
   } //index
 
