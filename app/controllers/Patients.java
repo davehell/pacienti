@@ -20,7 +20,7 @@ public class Patients extends Application  {
 
   public static void index() {
 
-    List<Patient> pacienti = Patient.find("byModul", connected.modul).fetch();
+    List<Patient> pacienti = Patient.find("modul = ? order by evRok desc, evCislo desc", connected.modul).fetch(100);
     render(pacienti);
   }
 

@@ -108,11 +108,12 @@
 
 
   <p>
-      <input type="submit" value="Uložit" />
+      <input class="left" type="submit" value="Uložit" />
       #{if bioMaterial?.id}  
-      <span class="button delete">#{a @myDelete(bioMaterial?.id), id:"delButton"}Smazat materiál#{/a}</span>
+      <span class="left button delete">#{a @myDelete(bioMaterial?.id), id:"delButton"}Smazat materiál#{/a}</span>
       #{/if}
   </p>
+  <div class="clear"></div>
 </fieldset>
 #{/form}
 

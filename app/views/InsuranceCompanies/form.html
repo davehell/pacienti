@@ -48,12 +48,12 @@
   #{/}
 
   <p>
-    <input type="submit" value="Uložit" />
+    <input class="left" type="submit" value="Uložit" />
     #{if pojistovna?.id}  
-    <span class="button delete">#{a @myDelete(pojistovna?.id), id:"delButton"}Smazat pojišťovnu#{/a}</span>
+    <span class="left button delete">#{a @myDelete(pojistovna?.id), id:"delButton"}Smazat pojišťovnu#{/a}</span>
     #{/if}      
   </p>
-
+  <div class="clear"></div>
 </fieldset>
 #{/form}
 

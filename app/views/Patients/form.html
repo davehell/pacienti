@@ -44,8 +44,10 @@
 </p>
 #{/}
 
+<div class="clear"></div>
+
 #{field 'pacient.rcZac'}
-<p class="left clear">
+<p class="left">
   <label class="required">&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rcZac}" class="${field.errorClass} shortW" maxlength="6">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
@@ -155,11 +157,12 @@
 <input type="hidden" name="pacient.id" value="${pacient?.id}">
 
 <p>
-    <input type="submit" value="Uložit" />
+    <input class="left" type="submit" value="Uložit" />
     #{if pacient?.id}  
-    <span class="button delete">#{a @myDelete(pacient?.id), id:"delButton"}Smazat pacienta#{/a}</span>
+    <span class="left button delete">#{a @myDelete(pacient?.id), id:"delButton"}Smazat pacienta#{/a}</span>
     #{/if}
 </p>
+<div class="clear"></div>
 </fieldset>
 #{/form}
 

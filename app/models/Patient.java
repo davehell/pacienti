@@ -65,8 +65,6 @@ public class Patient extends Model {
     @MaxSize(300)
     public String verejnaPozn;
 
-    public String oldId;
-
     @OneToMany(mappedBy="pacient", cascade=CascadeType.REMOVE)
     public List<BioMaterial> bioMaterialy;
 
@@ -86,7 +84,6 @@ public class Patient extends Model {
         this.koncDna = koncDna;
         this.pozn = pozn;
         this.verejnaPozn = verejnaPozn;
-        this.oldId = oldId;
         List<InsuranceCompany> pojistovny = InsuranceCompany.find("modul = ? and cislo = ?", modul, Integer.parseInt(pojistovna)).fetch();
         if (pojistovny != null && !pojistovny.isEmpty()) {
           this.pojistovna = pojistovny.get(0);

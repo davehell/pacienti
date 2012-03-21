@@ -24,8 +24,6 @@ public class Doctor extends Model {
     @MaxSize(200)
     public String pracoviste;
 
-    public String oldId;
-
     public String toString() {
         return jmeno + " (" + icz + ")";
     }
@@ -35,7 +33,6 @@ public class Doctor extends Model {
         this.icz = icz;
         this.jmeno = jmeno;
         this.pracoviste = pracoviste;
-        this.oldId = oldId;
         this.save();
     }
 

@@ -41,11 +41,12 @@
   #{/}
 
   <p>
-    <input type="submit" value="Uložit" />
+    <input class="left" type="submit" value="Uložit" />
     #{if lekar?.id}  
-    <span class="button delete">#{a @myDelete(lekar?.id), id:"delButton"}Smazat lékaře#{/a}</span>
+    <span class="left button delete">#{a @myDelete(lekar?.id), id:"delButton"}Smazat lékaře#{/a}</span>
     #{/if}       
   </p>
+  <div class="clear"></div>
  </fieldset>
 #{/form}
 

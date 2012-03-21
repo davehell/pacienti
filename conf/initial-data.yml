@@ -11,13 +11,6 @@ AppModul(br):
   nazev: Brno
   kod: BR
 
-User(admin):
-    username:       brno
-    passwordHash:   fbf703d4d52699ed28824f56571fe2bea443246a
-    jmeno:          Laboratoř forenzní genetiky
-    modul:          br
-    isAdmin:        true
-
 User(david):
     username:       davehell
     passwordHash:   83ff63f5ff3518a2cba17bde7238d3087b5a964c
@@ -27,14 +20,12 @@ User(david):
     modul:          ov
     isAdmin:        true
 
-User(lh):
-    username:       lh
-    passwordHash:   9808e069e91407c2841870851647ea0d23600d21
-    jmeno:          Mgr. Lenka Hrdá
-    parafa:         LH
-    pozice:         laborantka
-    modul:          ov
-    isAdmin:        false
+User(brno):
+    username:       brno
+    passwordHash:   fbf703d4d52699ed28824f56571fe2bea443246a
+    jmeno:          Laboratoř forenzní genetiky
+    modul:          br
+    isAdmin:        true
 
 User(jf):
     username:       jf
@@ -42,6 +33,15 @@ User(jf):
     jmeno:          RNDr. Jiří Fišer
     parafa:         JF
     pozice:         odborný pracovník
+    modul:          ov
+    isAdmin:        false
+
+User(lh):
+    username:       lh
+    passwordHash:   9808e069e91407c2841870851647ea0d23600d21
+    jmeno:          Mgr. Lenka Hrdá
+    parafa:         LH
+    pozice:         laborantka
     modul:          ov
     isAdmin:        false
 
@@ -587,9 +587,24 @@ Genotype(g49):
 
 Examination(e12):
   nazev: Crohnova choroba
-  popis:
+  popis: Stanovení mutací  R702W, G908R a 3020 ins C v genu NOD 2/CARD 15  Crohnova choroba, SOP OV č. 11
   aktual: true
   certif: false
   sloupce: 1
   body: 7205
+  genotypy:
+            - g82
+            - g83
+            - g84
 
+Genotype(g82):
+  nazev: R702W
+  vysetreni: e12
+
+Genotype(g83):
+  nazev: G908R
+  vysetreni: e12
+
+Genotype(g84):
+  nazev: 3020 ins C
+  vysetreni: e12

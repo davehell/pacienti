@@ -187,11 +187,12 @@
 <input type="hidden" name="pacientId" id="pacientId" value="${pacient?.id}">
 
   <p>
-    <input type="submit" value="Uložit" />
+    <input class="left" type="submit" value="Uložit" />
     #{if zprava?.id}  
-    <span class="button delete">#{a @myDelete(zprava?.id), id:"delButton"}Smazat vyšetření#{/a}</span>
+    <span class="left button delete">#{a @myDelete(zprava?.id), id:"delButton"}Smazat vyšetření#{/a}</span>
     #{/if}        
   </p>
+  <div class="clear"></div>
 </fieldset>
 
 #{if zprava?.id}
