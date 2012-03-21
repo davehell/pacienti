@@ -38,7 +38,7 @@ padding: 0;
 
 form label {width: 10em; margin: 0.5em; display: inline-block; vertical-align: top; }
 form fieldset.genotyp label {width: 15em;font-weight: normal;}
-/*form fieldset p:hover {background-color: #E5ECF9;}*/
+form fieldset {margin-top: 1em;}
 label.required {color: #CC0000;}
 label.required:after {content: "*";}
 form p {margin: 0; padding: 0;}

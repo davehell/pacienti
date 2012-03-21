@@ -16,6 +16,9 @@
 
 #{form @mySave(zprava?.id)}
 #{if zprava?.id}
+<p>
+ <span class="button">#{a @Reports.report(zprava.id), title:"Zobrazit závěrečnou zprávu tohoto vyšetření"}závěrečná zpráva#{/a}</span>
+</p>
   <div class="span-15">
 #{/if}
 
