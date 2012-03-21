@@ -6,6 +6,7 @@ import play.*;
 import play.mvc.*;
 import play.data.binding.*;
 import java.util.*;
+import java.text.*;
 
 @With(Secure.class) 
 public class BioMaterials extends Application {
@@ -32,13 +33,35 @@ public class BioMaterials extends Application {
   }
 
 
-  public static void mySave(Long bioMatId, BioMaterial bioMaterial, Long pacientId) {
+  public static void mySave(Long bioMatId, BioMaterial bioMaterial, Long pacientId, String casOdberu, String casPrijeti) {
     List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
     String[] typyMaterialu = {};
     if(connected.modul.typyMaterialu != null) {
       typyMaterialu = connected.modul.typyMaterialu.split(",");
+    }
+
+
+    DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+    df.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
+    DateFormat dtf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+    dtf.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
+
+    if(bioMaterial.datumOdberu != null && casOdberu != null) {
+      try {
+        bioMaterial.datumOdberu = dtf.parse(df.format(bioMaterial.datumOdberu) + " " + casOdberu);
+      } catch (ParseException e) {
+        e.printStackTrace();
+      }
+    }
+
+    if(bioMaterial.datumPrijeti != null && casPrijeti != null) {
+      try {
+        bioMaterial.datumPrijeti = dtf.parse(df.format(bioMaterial.datumPrijeti) + " " + casPrijeti);
+      } catch (ParseException e) {
+        e.printStackTrace();
+      }
     }
 
 

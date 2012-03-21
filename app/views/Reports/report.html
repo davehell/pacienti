@@ -69,14 +69,14 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
     <td style="width: 4cm;">Datum odběru:</td>
     <td style="width: 3cm;">${zprava.bioMaterial.datumOdberu?.format()} </td>
     <td style="width: 4cm;">Čas odběru:</td>
-    <td>${zprava.bioMaterial.casOdberu?.format('HH:mm')} </td>
+    <td>${zprava.bioMaterial.datumOdberu?.format('HH:mm').replace("00:00", "")} </td>
   </tr>
   <tr>
     <td>${zprava.bioMaterial.typ} </td>
     <td>Datum přijetí vzorku:</td>
     <td>${zprava.bioMaterial.datumPrijeti?.format()} </td>
     <td>Čas přijetí vzorku:</td>
-    <td>${zprava.bioMaterial.casPrijeti?.format('HH:mm')} </td>
+    <td>${zprava.bioMaterial.datumPrijeti?.format('HH:mm').replace("00:00", "")} </td>
   </tr>
 </table>
 

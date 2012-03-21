@@ -13,7 +13,7 @@
   </p>
 #{/ifErrors}
 
-#{form @mySave(bioMaterial?.id)}
+#{form @mySave(bioMaterial?.id), id:"bioMatForm"}
 <fieldset>
   <legend>Informace o biologickém materiálu</legend>
 
@@ -40,10 +40,10 @@
 </p>
 #{/}
 
-#{field 'bioMaterial.casOdberu'}
+#{field 'casOdberu'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casOdberu?.format('hh:mm')}" class="${field.errorClass} shortW">
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumOdberu?.format('HH:mm').replace("00:00", "")}" class="${field.errorClass} shortW">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   <span class="small">hh:mm</span>
 </p>
@@ -53,16 +53,14 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumPrijeti?.format()}" class="${field.errorClass} datumW">
-  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   <span class="small">dd.mm.rrrr</span>
 </p>
 #{/}
 
-#{field 'bioMaterial.casPrijeti'}
+#{field 'casPrijeti'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.casPrijeti?.format('hh:mm')}" class="${field.errorClass} shortW">
-  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumPrijeti?.format('HH:mm').replace("00:00", "")}" class="${field.errorClass} shortW">
   <span class="small">hh:mm</span>
 </p>
 #{/}
@@ -170,5 +168,10 @@ $(document).ready(function() {
   		$( "#bioMaterial_typ" ).autocomplete({
   			source: typyMaterialu
   		});
+
+      $('#bioMatForm').submit(function () {
+        //$("#bioMaterial_datumOdberu" ).val($("#bioMaterial_datumOdberu" ).val() + " " + $("#bioMaterial_casOdberu").val());
+        //$("#bioMaterial_datumPrijeti" ).val($("#bioMaterial_datumPrijeti" ).val() + " " + $("#bioMaterial_casPrijeti").val());
+      } );
   } );
 </script>

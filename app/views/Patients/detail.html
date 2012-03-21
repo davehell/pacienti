@@ -13,14 +13,14 @@
   <thead>
   <tr>
     <th rowspan="2">Typ</th>
-    <th rowspan="2" class="datumW">Datum odběru</th>
+    <th rowspan="2" class="datumW">Datum a čas odběru</th>
     <th colspan="2" style="text-align: center;">Příjem</th>
     <th colspan="2" style="text-align: center;">Izolace DNA</th>
   </tr>
   <tr>
     <th class="datumCasW">Datum a čas</th>
     <th class="parafaW">Parafa</th>
-    <th class="datumCasW">Datum a čas</th>
+    <th class="datumCasW">Datum</th>
     <th class="parafaW">Parafa</th>
   </tr>
   </thead>
@@ -28,8 +28,8 @@
     #{list pacient.bioMaterialy}
     <tr>
       <td>#{a @BioMaterials.form(_.id, _.pacient.id), title:"Upravit informace o tomto materiálu"}${_.typ}#{/a} </td>
-      <td>${_.datumOdberu?.format()} ${_.casOdberu?.format('HH:mm')} </td>
-      <td>${_.datumPrijeti?.format()} ${_.casPrijeti?.format('HH:mm')} </td>
+      <td>${_.datumOdberu?.format('dd.MM.yyyy HH:mm').replace("00:00", "")} </td>
+      <td>${_.datumPrijeti?.format('dd.MM.yyyy HH:mm').replace("00:00", "")} </td>
       <td>${_.parafaPrijeti?.parafa} </td>
       <td>${_.datumIzolace?.format()} </td>
       <td>${_.parafaIzolace?.parafa} </td>

@@ -18,13 +18,9 @@ public class BioMaterial extends Model {
 
     @As("dd.MM.yyyy")
     public Date datumOdberu;
-    @As("HH:mm")
-    public Date casOdberu;
 
     @As("dd.MM.yyyy")
     public Date datumPrijeti;
-    @As("HH:mm")
-    public Date casPrijeti;
 
     @OneToOne
     public User parafaPrijeti;
