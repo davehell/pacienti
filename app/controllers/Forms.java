@@ -127,6 +127,7 @@ public class Forms extends Application {
         vysl   = columns[7];
 
         if(vysl.equals("Both")) vysl = "wt/mut";
+        else if(vysl.equals("Undetermined")) vysl = "";
         else vysl = vysl.substring(4);
 
         pacient = Patient.getByKod(pacKod);
