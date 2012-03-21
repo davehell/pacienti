@@ -28,8 +28,8 @@
     #{list pacient.bioMaterialy}
     <tr>
       <td>#{a @BioMaterials.form(_.id, _.pacient.id), title:"Upravit informace o tomto materiálu"}${_.typ}#{/a} </td>
-      <td>${_.datumOdberu?.format('dd.MM.yyyy HH:mm').replace("00:00", "")} </td>
-      <td>${_.datumPrijeti?.format('dd.MM.yyyy HH:mm').replace("00:00", "")} </td>
+      <td>${_.datumOdberu?.format('dd.MM.yyyy HH:mm')?.replace("00:00", "")} </td>
+      <td>${_.datumPrijeti?.format('dd.MM.yyyy HH:mm')?.replace("00:00", "")} </td>
       <td>${_.parafaPrijeti?.parafa} </td>
       <td>${_.datumIzolace?.format()} </td>
       <td>${_.parafaIzolace?.parafa} </td>

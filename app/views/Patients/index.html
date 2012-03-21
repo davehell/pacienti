@@ -18,7 +18,7 @@
       <td>${_.evCislo} </td>
       <td>${_.evRok} </td>
       <td>#{a @Patients.detail(_.id), title:"Zobrazit detail tohoto pacienta"}${_.getKod()}#{/a} </td>
-      <td>${_.jmeno} ${_.prijmeni} </td>
+      <td>${_.toString()} </td>
       <td>${_.getRodneCislo()} </td>
     </tr>
     #{/list}

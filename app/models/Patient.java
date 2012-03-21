@@ -125,7 +125,8 @@ public class Patient extends Model {
     }
 
     public String toString() {
-        return titul + " " + jmeno + " " + prijmeni;
+        return  prijmeni + " " + jmeno + (titul.length() > 0 ? ", " + titul : "");
+
     }
 
     //kod = KO-111/12

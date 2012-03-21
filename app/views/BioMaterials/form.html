@@ -19,7 +19,7 @@
 
 <p>
   <label>pacient </label>
-  <span class="infoInput">#{a @Patients.detail(pacient?.id), title:"Zobrazit detail pacienta"}${pacient?.getKod()}#{/a}, ${pacient?.jmeno} ${pacient?.prijmeni} </span>
+  <span class="infoInput">#{a @Patients.detail(pacient?.id), title:"Zobrazit detail pacienta"}${pacient?.getKod()}#{/a}, ${pacient?.toString()} </span>
 </p>
 
 #{field 'bioMaterial.typ'}
@@ -43,7 +43,7 @@
 #{field 'casOdberu'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumOdberu?.format('HH:mm').replace("00:00", "")}" class="${field.errorClass} shortW">
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumOdberu?.format('HH:mm')?.replace("00:00", "")}" class="${field.errorClass} shortW">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   <span class="small">hh:mm</span>
 </p>
@@ -60,7 +60,7 @@
 #{field 'casPrijeti'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumPrijeti?.format('HH:mm').replace("00:00", "")}" class="${field.errorClass} shortW">
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumPrijeti?.format('HH:mm')?.replace("00:00", "")}" class="${field.errorClass} shortW">
   <span class="small">hh:mm</span>
 </p>
 #{/}
