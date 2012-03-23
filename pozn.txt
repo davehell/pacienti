@@ -1,0 +1,5 @@
+INSERT INTO bioMATERIAL  SELECT * FROM CSVREAD('D:/wamp/www/pacienti/db/test.csv');
+CALL CSVWRITE('D:/wamp/www/pacienti/db/exp.csv', 'SELECT * FROM biomaterial');
+
+jdbc:h2:file:d:/wamp/www/pacienti/db/h2/play
+jdbc:h2:mem:play
