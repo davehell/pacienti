@@ -17,12 +17,12 @@ pacient.verejnaPozn = veřejná poznámka
 
 bioMaterial.typ = typ
 bioMaterial.datumOdberu = datum odběru
-bioMaterial.casOdberu = čas odběru
-bioMaterial.datumPrijeti = datum přijetí vzorku
-bioMaterial.casPrijeti = čas přijetí vzorku
+bioMaterial.datumPrijeti = datum přijetí
 bioMaterial.parafaPrijeti.id  = vzorek přijal
 bioMaterial.datumIzolace  = datum izolace DNA
 bioMaterial.parafaIzolace.id = izolaci provedl
+casOdberu = čas odběru
+casPrijeti = čas přijetí
 
 zprava.bioMaterial.id = biologický materiál
 zprava.vysetreni.id = vyšetření
@@ -40,8 +40,8 @@ zprava.datumFragmentAn = datum fragmentační anlýzy
 zprava.datumRTAn = datum RT analýzy
 zprava.datumSekv = datum sekvenace
 
-secure.username=Uživatelské jméno:
-secure.password=Heslo:
+secure.username=uživatelské jméno:
+secure.password=heslo:
 secure.signin=Přihlásit se
 
 datumOd = počáteční datum

@@ -54,6 +54,13 @@ User(hk):
     modul:          ov
     isAdmin:        false
 
+User(demo):
+    username:       demo
+    passwordHash:   89e495e7941cf9e40e6980d14a16bf023ccd4c91
+    jmeno:          demo
+    modul:          br
+    isAdmin:        false
+
 
 Examination(e1):
   nazev: Predispozice k žilním trombózám I

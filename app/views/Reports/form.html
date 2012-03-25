@@ -45,7 +45,7 @@
     #{select "${field.name}", value:"${zprava?.bioMaterial?.id}", id:"${field.name}", class:"vLongW"}
     	#{option "0"}&{'selectBox.option.select'}#{/option}
       #{list bioMaterialy}
-        #{option "${_.id}"}${_.datumOdberu?.format()} - ${_.typ}#{/option}
+        #{option "${_.id}"}${_.typ}  ${ _.datumOdberu?.yesno(' - ', '') }  ${_.datumOdberu?.format()}#{/option}
       #{/list}
     #{/select}
     <span class="error">#{error 'zprava.bioMaterial.id' /} </span>

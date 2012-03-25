@@ -201,6 +201,10 @@ $(document).ready(function() {
   $(document).ready(function() {
       $('#pacient_evCislo').focus();
 
+  		$( "#pacient_titul" ).autocomplete({
+  			source: ["Bc.","Ing.","Mgr.","MUDr.","RNDr."]
+  		});
+
       $('#pacForm').submit(function () {
         var zac = $("#pacient_rcZac" ).val();
         var kon = $("#pacient_rcKon" ).val();
