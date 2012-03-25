@@ -104,6 +104,9 @@ public class Patient extends Model {
         
     }
 
+    public static List<Patient> getLastPatients(AppModul modul, int count) {
+        return Patient.find("modul = ? order by evRok desc, evCislo desc", modul).fetch(count);
+    }
 
     public String getCDokladu() {
         if(modul.cDokladu == null || evCislo == null || evRok == null) return "";

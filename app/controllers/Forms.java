@@ -80,7 +80,7 @@ public class Forms extends Application {
   }
 
   public static void stitky(String evCisla) {
-    List<Patient> pacienti = Patient.find("byModul", connected.modul).fetch();
+    List<Patient> pacienti = Patient.getLastPatients(connected.modul, 100);
     if(evCisla == null) {
       render(pacienti);
     }

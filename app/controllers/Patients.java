@@ -19,8 +19,7 @@ import play.libs.*;
 public class Patients extends Application  {
 
   public static void index() {
-
-    List<Patient> pacienti = Patient.find("modul = ? order by evRok desc, evCislo desc", connected.modul).fetch(100);
+    List<Patient> pacienti = Patient.getLastPatients(connected.modul, 100);
     render(pacienti);
   }
 
