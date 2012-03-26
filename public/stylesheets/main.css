@@ -44,6 +44,7 @@ label.required:after {content: "*";}
 form p {margin: 0; padding: 0;}
 form input {width: 10em;}
 form input[type=submit] {margin-left: 10em;}
+#crudListSearch form input[type=submit] {margin-left: auto;}
 form input[type=submit],form input[type=checkbox] {width: auto;}
 form input[type=checkbox] {width: auto; margin: 0.5em 0;}
 form .infoInput {margin: 0.5em 0; display: inline-block;}

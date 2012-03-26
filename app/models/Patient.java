@@ -8,9 +8,11 @@ import java.math.*;
 import play.data.binding.*;
 import java.util.*;
 
+
 @Table(
     uniqueConstraints=@UniqueConstraint(columnNames={"modul_id", "evCislo", "evRok"})
 )
+
 
 @Entity
 public class Patient extends Model {

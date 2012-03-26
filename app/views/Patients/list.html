@@ -1,0 +1,35 @@
+#{extends 'main.html' /}
+#{set title:"Archiv pacientů" /}
+
+<div id="crudList" class="${type.name}">
+    <div id="crudListSearch">
+        #{crud.search /}
+    </div>
+
+
+    <div id="crudListTable">
+        #{crud.table fields:['evCislo', 'jmeno', 'rodneCislo'] }
+          #{crud.custom 'evCislo'}
+            #{a @Patients.detail(object.id), title:"Zobrazit detail tohoto pacienta"}
+              ${object.getKod()}
+            #{/a}
+          #{/crud.custom}
+          #{crud.custom 'jmeno'}
+              ${object.toString()}
+          #{/crud.custom}
+          #{crud.custom 'rodneCislo'}
+              ${object.getRodneCislo()}
+          #{/crud.custom}
+         #{/crud.table}
+    </div>
+
+    <div id="crudListPagination">
+        #{crud.pagination /}
+    </div>
+#{secure.check 'admin'}
+    <p id="crudListAdd">
+        <a href="@{blank()}">&{'crud.add', type.modelName}</a>
+    </p>
+#{/secure.check}
+</div>
+

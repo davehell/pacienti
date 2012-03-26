@@ -62,6 +62,13 @@ selectBox.option.none = nezadáno
 noRecords = Nejsou uloženy žádné záznamy.
 
 
+crud.search = Hledat
+crud.pagination.previous = Předchozí
+crud.pagination.first = První
+crud.pagination.next = Další
+crud.pagination.last = Poslední
+
+
 # For use in JavaExtensions.since tag
 since.seconds = %s second%s ago
 since.minutes = %s minute%s ago
