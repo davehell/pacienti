@@ -7,12 +7,10 @@ import play.mvc.*;
 import play.db.jpa.*;
 import play.data.validation.*;
 import javax.persistence.*;
-
 import play.data.binding.*;
 import java.util.*;
- 
-
-
+import java.io.*;
+import java.text.*;
 import play.libs.*;
 
 @With(Secure.class) 
@@ -68,7 +66,7 @@ public class Patients extends Application  {
           pacient.create();
         }
         catch (Exception e) {
-          flash.error("Pacienta se stejným evidenčním číslem již existuje.");
+          flash.error("Pacient se stejným evidenčním číslem již existuje.");
           render("@form", pacient, lekari, pojistovny);
         }
         id = pacient.id;
@@ -88,6 +86,23 @@ public class Patients extends Application  {
       _pacient.verejnaPozn = pacient.verejnaPozn;
 
       _pacient.save();
+    }
+
+
+    try
+    { //ulozeni do logu
+      DateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+      String time = dtf.format(new Date());
+      DateFormat df = new SimpleDateFormat("yyyy-MM");
+      String filename = df.format(new Date());
+
+      FileWriter out = new FileWriter("logs/" + filename + ".txt", true);
+
+      BufferedWriter writer = new BufferedWriter(out);
+      writer.write(time + ";" + connected.parafa + ";" + "Patient.mySave;" + pacient.getKod() +  "\r\n");
+      writer.close();
+    }
+    catch(Exception e) {
     }
 
     flash.success("Informace o pacientovi %s byly úspěšně uloženy.", pacient.getKod());

@@ -8,12 +8,11 @@ import play.data.binding.*;
 import java.util.*;
 import java.io.File;
 import play.libs.IO;
+import java.text.*;
 
 import static play.modules.pdf.PDF.*;
 
 import org.allcolor.yahp.converter.IHtmlToPdfTransformer;
-//import org.allcolor.yahp.converter.IHtmlToPdfTransformer.PageSize;
-//import org.allcolor.yahp.*;
 
 @With(Secure.class)
 public class Forms extends Application {
@@ -39,6 +38,15 @@ public class Forms extends Application {
     else if(typ.equals("neizolovana-dna")) {
       neizolovana();
     }
+  }
+
+
+  public static void log() {
+    DateFormat df = new SimpleDateFormat("yyyy-MM");
+    String filename = df.format(new Date());
+    File file = new File("logs/" + filename + ".txt");
+    List<String> lines = IO.readLines(file);
+    render(lines);
   }
 
 
