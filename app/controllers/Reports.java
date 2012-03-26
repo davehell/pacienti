@@ -35,7 +35,7 @@ public class Reports extends Application {
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.find("byPacient", pacient).fetch();
-    List<Examination> vysetreni = Examination.find("byAktual", true).fetch();
+    List<Examination> vysetreni = Examination.getActual();
     List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
 
     String[] vedouciLekari = {};
@@ -63,7 +63,7 @@ public class Reports extends Application {
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.findAll();
-    List<Examination> vysetreni = Examination.find("byAktual", true).fetch();
+    List<Examination> vysetreni = Examination.getActual();
     List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
     Result vysledek = null;
 
@@ -100,7 +100,7 @@ public class Reports extends Application {
 
       newZprava.datumVysetreni = zprava.datumVysetreni;
       newZprava.parafaVysetreni = zprava.parafaVysetreni;
-      newZprava.parafaUvolneni = zprava.parafaUvolneni;
+      newZprava.analyzuUvolnil = zprava.analyzuUvolnil;
       newZprava.vedouciLekar = zprava.vedouciLekar;
       newZprava.zavZprava = zprava.zavZprava;
       newZprava.pozitivni = zprava.pozitivni;

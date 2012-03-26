@@ -96,10 +96,10 @@
 </p>
 #{/}
 
-#{field 'zprava.parafaUvolneni'}
+#{field 'zprava.analyzuUvolnil'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.parafaUvolneni}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.analyzuUvolnil}" class="${field.errorClass}">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   <span class="small">${uvolnujiAnalyzu?.join(', ') } </span>
 </p>
@@ -281,7 +281,7 @@
       #{/list}
     ];
 
-		$( "#zprava_parafaUvolneni" ).autocomplete({
+		$( "#zprava_analyzuUvolnil" ).autocomplete({
 			source: uvolnujiAnalyzu
 		});
   } );

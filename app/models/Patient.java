@@ -65,10 +65,10 @@ public class Patient extends Model {
     @MaxSize(300)
     public String verejnaPozn;
 
-    @OneToMany(mappedBy="pacient", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy="pacient", cascade=CascadeType.ALL)
     public List<BioMaterial> bioMaterialy;
 
-    @OneToMany(mappedBy="pacient", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy="pacient", cascade=CascadeType.ALL)
     public List<Report> zpravy;
 
     public Patient(AppModul modul, String evCislo, String evRok, String rcZac, String rcKon, String jmeno, String prijmeni, String pojistovna, String lekar, String infSouhlas, String diagnoza, String koncDna, String pozn, String verejnaPozn, String oldId) {

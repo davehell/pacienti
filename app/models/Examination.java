@@ -32,6 +32,11 @@ public class Examination extends Model {
         return nazev;
     }
 
+
+    public static List<Examination> getActual() {
+        return Examination.find("aktual = ? order by nazev asc", true).fetch();
+    }
+
     public static Examination getByGenotyp(String genotyp) {
         if(genotyp.isEmpty()) return null;
 
