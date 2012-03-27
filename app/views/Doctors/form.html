@@ -24,6 +24,14 @@
   </p>
   #{/}
 
+  #{field 'lekar.odbornost'}
+  <p>
+    <label>&{field.name} </label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${lekar?.odbornost}" class="${field.errorClass}">
+    #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+  </p>
+  #{/}
+
   #{field 'lekar.jmeno'}
   <p>
     <label class="required">&{field.name} </label>

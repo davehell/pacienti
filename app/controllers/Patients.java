@@ -42,8 +42,6 @@ public class Patients extends Application  {
         notFound();
       }
 
-      
-
       render(pacient, pojistovny, lekari);
     }
 

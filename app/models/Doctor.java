@@ -16,6 +16,9 @@ public class Doctor extends Model {
     @Required
     @MaxSize(20)
     public String icz;
+
+    @MaxSize(20)
+    public String odbornost;
         
     @Required
     @MaxSize(100)
@@ -28,9 +31,10 @@ public class Doctor extends Model {
         return jmeno + " (" + icz + ")";
     }
 
-    public Doctor(AppModul modul, String jmeno, String icz, String pracoviste, String oldId) {
+    public Doctor(AppModul modul, String jmeno, String icz, String odbornost, String pracoviste, String oldId) {
         this.modul = modul;
         this.icz = icz;
+        this.odbornost = odbornost;
         this.jmeno = jmeno;
         this.pracoviste = pracoviste;
         this.save();
