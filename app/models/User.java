@@ -5,6 +5,10 @@ import play.data.validation.*;
 import javax.persistence.*;
 import play.libs.*;
 
+@Table(
+    uniqueConstraints=@UniqueConstraint(columnNames={"modul_id", "parafa"})
+)
+
 @Entity
 public class User extends Model {
     

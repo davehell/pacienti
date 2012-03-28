@@ -13,6 +13,12 @@
             #{a @Patients.detail(object.id), title:"Zobrazit detail tohoto pacienta"}
               ${object.getKod()}
             #{/a}
+            #{secure.check 'admin'}
+            &nbsp;
+            #{a @Patients.show(object.id)}
+              edit
+            #{/a}
+            #{/secure.check}
           #{/crud.custom}
           #{crud.custom 'jmeno'}
               ${object.toString()}

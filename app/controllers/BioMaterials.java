@@ -72,7 +72,15 @@ public class BioMaterials extends Application {
 
     if(bioMatId == null) {
         bioMaterial.pacient = pacient;
-        bioMaterial.create();
+        try {
+          bioMaterial.create();
+          appLog.add("biologický materiál", "create", bioMaterial.id);
+        }
+        catch (Exception e) {
+          flash.error("Biologický materiál se nepodařilo vytvořit.");
+          Patients.detail(pacientId);
+        }
+        
     } else {
       BioMaterial newBioMat = BioMaterial.findById(bioMatId);
       newBioMat.typ = bioMaterial.typ;
@@ -82,10 +90,18 @@ public class BioMaterials extends Application {
       newBioMat.datumIzolace = bioMaterial.datumIzolace;
       newBioMat.parafaIzolace = bioMaterial.parafaIzolace;
 
-      newBioMat.save();
+      try {
+        newBioMat.save();
+        appLog.add("biologický materiál", "update", bioMatId);
+      }
+      catch (Exception e) {
+        Logger.error(e.getMessage());
+        flash.error("Uložení se neprovedlo.");
+        Patients.detail(pacientId);
+      }
     }
 
-    flash.success("Biologický materiál %s uložen.", bioMaterial.typ);
+    flash.success("biologický materiál %s uložen.", bioMaterial.typ);
 
     Patients.detail(pacientId);
     
@@ -97,6 +113,7 @@ public class BioMaterials extends Application {
       Patient pacient = bioMaterial.pacient;
       try {
         bioMaterial.delete();
+        appLog.add("biologický materiál", "delete", id);
         flash.success("Biologický materiál %s smazán.", bioMaterial.typ);
       }
       catch (Exception e) {

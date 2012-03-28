@@ -32,7 +32,7 @@ public class Reports extends Application {
   }
 
   public static void form(Long id, Long pacientId) {
-    Patient pacient = Patient.findById(pacientId);
+    Patient pacient = Patient.getByModulAndId(connected.modul, pacientId);
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.find("byPacient", pacient).fetch();
     List<Examination> vysetreni = Examination.getActual();
@@ -60,7 +60,7 @@ public class Reports extends Application {
 
 
   public static void mySave(Long zpravaId, Report zprava, Long pacientId, List<Result> vysledky) {
-    Patient pacient = Patient.findById(pacientId);
+    Patient pacient = Patient.getByModulAndId(connected.modul, pacientId);
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.findAll();
     List<Examination> vysetreni = Examination.getActual();
@@ -76,16 +76,22 @@ public class Reports extends Application {
     }
 
     if(zpravaId == null) {
-// for(Post p : Post.<Post>findAll()) {
-//     p.delete();
-// }
         List<Genotype> genotypes = Genotype.find("byVysetreni", zprava.vysetreni).fetch();
         for(Iterator<Genotype> i = genotypes.iterator(); i.hasNext(); ) {
           vysledek = new Result(zprava, i.next());
           if(vysledek == null) continue;
           zprava.vysledky.add(vysledek);
         }
-        zprava.create();
+
+        try {
+          zprava.create();
+          appLog.add("vyšetření", "create", zprava.id);
+        }
+        catch (Exception e) {
+          flash.error("Vyšetření se nepodařilo vytvořit.");
+          Patients.detail(pacientId);
+        }
+
     } else {
       Report newZprava = Report.findById(zpravaId);
 
@@ -113,6 +119,15 @@ public class Reports extends Application {
       newZprava.datumSekv = zprava.datumSekv;
       newZprava.save();
 
+      try {
+        newZprava.save();
+        appLog.add("vyšetření", "update", zpravaId);
+      }
+      catch (Exception e) {
+        Logger.error(e.getMessage());
+        flash.error("Uložení se neprovedlo.");
+        Patients.detail(pacientId);
+      }
     }
 
     flash.success("Vyšetření %s uloženo.", zprava.vysetreni.nazev);
@@ -128,6 +143,7 @@ public class Reports extends Application {
 
       try {
         report.delete();
+        appLog.add("vyšetření", "delete", id);
         flash.success("Vyšetření %s odebráno.", report.vysetreni);
       }
       catch (Exception e) {

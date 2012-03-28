@@ -168,14 +168,14 @@
 
 #{if pacient?.id}
 <div id="dialog-confirm" title="Pacient ${pacient?.getKod()}">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Opravdu chcete smazat tohoto pacienta?</p>
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Opravdu chcete smazat tohoto pacienta?<br> Budou smazány také všechny biologické materiály a vyšetření.</p>
 </div>
 
 <script type="text/javascript">
 $(document).ready(function() {
     $('#dialog-confirm').dialog({
     	resizable: false,
-    	height:160,
+    	height:200,
     	modal: true,
     	autoOpen: false,
     	buttons: {

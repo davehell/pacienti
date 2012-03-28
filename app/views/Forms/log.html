@@ -2,6 +2,28 @@
 
 #{set title:'Log' /}
 
-#{list lines}
- <p>${_} </p>
-#{/list}
+#{if lines}
+  <table>
+  <thead>
+    <tr>
+      <th>Datum a čas</th>
+      <th>Uživatel</th>
+      <th>Objekt</th>
+      <th>ID objektu</th>
+      <th>Akce</th>
+    </tr>
+  </thead>
+  <tbody>
+  #{list lines}
+    #{if _.split(";").contains(connected.modul.nazev)}
+    <tr><td>${_.split(";").remove(connected.modul.nazev).join('</td><td>').raw()} </td></tr>
+    #{/if}
+  #{/list}
+  </tbody>
+  </table>
+#{/if}
+#{else}
+    <div class="empty">
+        &{'noRecords'}
+    </div>
+#{/else}

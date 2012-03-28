@@ -9,9 +9,8 @@ import play.data.validation.*;
 import javax.persistence.*;
 import play.data.binding.*;
 import java.util.*;
-import java.io.*;
-import java.text.*;
-import play.libs.*;
+
+
 
 @With(Secure.class) 
 public class Patients extends Application  {
@@ -22,11 +21,11 @@ public class Patients extends Application  {
   }
 
   public static void detail(Long id) {
-    Patient pacient = Patient.findById(id);
+    Patient pacient = Patient.getByModulAndId(connected.modul, id);
     notFoundIfNull(pacient);
     List<InsuranceCompany> pojistovny = InsuranceCompany.find("modul = ? order by cislo asc", connected.modul).fetch();
     List<Doctor> lekari = Doctor.find("modul = ? order by icz asc", connected.modul).fetch();
-    List<Patient> stejnaRC = Patient.find("id <> ? AND modul = ? AND rcZac = ? AND rcKon = ?", id, connected.modul, pacient.rcZac, pacient.rcKon).fetch();
+    List<Patient> stejnaRC = Patient.getPatientsWithSameRC(connected.modul, id,pacient.rcZac, pacient.rcKon);
     render(pacient, pojistovny, lekari, stejnaRC);
   }
 
@@ -68,6 +67,7 @@ public class Patients extends Application  {
           render("@form", pacient, lekari, pojistovny);
         }
         id = pacient.id;
+        appLog.add("pacient " + pacient.getKod(), "create", id);
     } else {
       Patient _pacient = Patient.findById(id);
       _pacient.evCislo = pacient.evCislo;
@@ -83,24 +83,15 @@ public class Patients extends Application  {
       _pacient.pozn = pacient.pozn;
       _pacient.verejnaPozn = pacient.verejnaPozn;
 
-      _pacient.save();
-    }
-
-
-    try
-    { //ulozeni do logu
-      DateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-      String time = dtf.format(new Date());
-      DateFormat df = new SimpleDateFormat("yyyy-MM");
-      String filename = df.format(new Date());
-
-      FileWriter out = new FileWriter("logs/" + filename + ".txt", true);
-
-      BufferedWriter writer = new BufferedWriter(out);
-      writer.write(time + ";" + connected.parafa + ";" + "Patient.mySave;" + pacient.getKod() +  "\r\n");
-      writer.close();
-    }
-    catch(Exception e) {
+      try {
+        _pacient.save();
+        appLog.add("pacient " + pacient.getKod(), "update", id);
+      }
+      catch (Exception e) {
+        Logger.error(e.getMessage());
+        flash.error("Uložení se neprovedlo.");
+        render("@form", pacient, lekari, pojistovny);
+      }
     }
 
     flash.success("Informace o pacientovi %s byly úspěšně uloženy.", pacient.getKod());
@@ -109,12 +100,12 @@ public class Patients extends Application  {
 
 
   public static void myDelete(Long id) {
-      Patient pacient = Patient.findById(id);
-      if(pacient.modul.id != connected.modul.id) {
-        notFound();
-      }
+      Patient pacient = Patient.getByModulAndId(connected.modul, id);
+      notFoundIfNull(pacient);
+
       try {
         pacient.delete();
+        appLog.add("pacient " + pacient.getKod(), "delete", id);
         flash.success("Pacient %s odebrán.", pacient.getKod());
       }
       catch (Exception e) {

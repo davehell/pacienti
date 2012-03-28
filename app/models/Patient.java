@@ -144,4 +144,15 @@ public class Patient extends Model {
         Patient pacient = Patient.find("modul.kod = ? and evCislo = ? and evRok = ?", modulKod, pacCislo, pacRok).first();
         return pacient;
     }
+
+    public static Patient getByModulAndId(AppModul modul, Long id) {
+        Patient pacient = Patient.find("modul = ? and id = ?", modul, id).first();
+        return pacient;
+    }
+
+    public static List<Patient> getPatientsWithSameRC(AppModul modul, Long id, String rcZac, String rcKon) {
+        List<Patient> pacienti = Patient.find("id <> ? AND modul = ? AND rcZac = ? AND rcKon = ?", id, modul, rcZac, rcKon).fetch();
+        return pacienti;
+    }
+
 }

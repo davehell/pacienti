@@ -44,8 +44,7 @@ public class Forms extends Application {
   public static void log() {
     DateFormat df = new SimpleDateFormat("yyyy-MM");
     String filename = df.format(new Date());
-    File file = new File("logs/" + filename + ".txt");
-    List<String> lines = IO.readLines(file);
+    List<String> lines = appLog.get(filename);
     render(lines);
   }
 

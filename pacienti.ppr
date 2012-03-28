@@ -42,6 +42,7 @@ pacienti
 		+views
 			+Forms
 				app\views\Forms\index.html
+				app\views\Forms\log.html
 				app\views\Forms\neizolovana.html
 				app\views\Forms\neprovedena.html
 				app\views\Forms\poctyVzorku.html
@@ -63,6 +64,7 @@ pacienti
 				app\views\Patients\detail.html
 				app\views\Patients\form.html
 				app\views\Patients\index.html
+				app\views\Patients\list.html
 			+Application
 				app\views\Application\index.html
 			-errors
@@ -96,15 +98,15 @@ pacienti
 Main=
 Selected=public\stylesheets\main.css
 [conf\routes]
-TopLine=3
-Caret=1,55
+TopLine=1
+Caret=24,9
 [app\views\main.html]
-TopLine=96
-Caret=22,140
-Mark1=2,111
+TopLine=29
+Caret=34,73
+Mark1=2,113
 [conf\messages.cs]
-TopLine=27
-Caret=11,41
+TopLine=46
+Caret=1,70
 [public\stylesheets\main.css]
-TopLine=15
-Caret=33,41
+TopLine=2
+Caret=21,18
