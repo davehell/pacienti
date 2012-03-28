@@ -117,6 +117,7 @@
 	  var sel = 0;
 
     #{if request.action.equals("Forms.vyslImport")} sel = 2;#{/if}
+    #{elseif request.action.equals("Forms.log")} sel = 3;#{/elseif}
     #{elseif request.controller.equals("Forms")} sel = 1;#{/elseif}
     #{elseif request.controller.equals("Doctors")} sel = 3;#{/elseif}
     #{elseif request.controller.equals("InsuranceCompanies")} sel = 3;#{/elseif}

@@ -50,6 +50,7 @@ GET		/sestavy/tisk/pocty-vzorku/od/{datumOd}/do/{datumDo}			          Forms.poct
 
 POST  /import-vysledku                        Forms.vyslImport
 GET   /import-vysledku                        Forms.vyslImport
+GET   /log                                    Forms.log
 
 
 
