@@ -14,3 +14,4 @@ INSERT INTO genotype SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/
 INSERT INTO patient SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/patient.csv');
 INSERT INTO biomaterial SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/biomaterial.csv');
 INSERT INTO report SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/report.csv');
+INSERT INTO result SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/result.csv');

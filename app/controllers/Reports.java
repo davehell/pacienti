@@ -103,6 +103,14 @@ public class Reports extends Application {
           vysl.save();
       	}
       }
+      else { //oprava chybejicich vysledku
+        List<Genotype> genotypes2 = Genotype.find("byVysetreni", newZprava.vysetreni).fetch();
+        for(Iterator<Genotype> j = genotypes2.iterator(); j.hasNext(); ) {
+          vysledek = new Result(newZprava, j.next());
+          if(vysledek == null) continue;
+          newZprava.vysledky.add(vysledek);
+        }
+      }
 
       newZprava.datumVysetreni = zprava.datumVysetreni;
       newZprava.parafaVysetreni = zprava.parafaVysetreni;
