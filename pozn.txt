@@ -4,8 +4,9 @@ CALL CSVWRITE('D:/wamp/www/pacienti/db/exp.csv', 'SELECT * FROM biomaterial');
 jdbc:h2:file:d:/wamp/www/pacienti/db/h2/play
 jdbc:h2:mem:play
 
-script drop to 'D:/pacienti/zaloha.zip' COMPRESSION zip
-RUNSCRIPT FROM 'backup.sql'
+script drop to 'D:/wamp/www/pacienti/db 2012-04-03/backup.sql'
+script drop to 'D:/wamp/www/pacienti/db/zaloha.zip' COMPRESSION zip
+RUNSCRIPT FROM 'D:/wamp/www/pacienti/db/backup.sql'
 
 INSERT INTO insurancecompany SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/insurancecompany.csv');
 INSERT INTO doctor SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/doctor.csv');
@@ -15,3 +16,6 @@ INSERT INTO patient SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/p
 INSERT INTO biomaterial SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/biomaterial.csv');
 INSERT INTO report SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/report.csv');
 INSERT INTO result SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/result.csv');
+
+
+INSERT INTO patient SELECT * FROM CSVREAD('D:/wamp/www/pacienti/db/import.csv');

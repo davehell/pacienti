@@ -6,3 +6,4 @@
 /logs
 server.pid
 *.log
+Thumbs.db

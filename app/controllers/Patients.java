@@ -59,6 +59,7 @@ public class Patients extends Application  {
 
     if(id == null) {
         pacient.modul = connected.modul;
+        pacient.rodneCislo = pacient.rcZac + "/" + pacient.rcKon;
         try {
           pacient.create();
         }
@@ -74,6 +75,7 @@ public class Patients extends Application  {
       _pacient.evRok = pacient.evRok;
       _pacient.rcZac = pacient.rcZac;
       _pacient.rcKon = pacient.rcKon;
+      _pacient.rodneCislo = pacient.rcZac + "/" + pacient.rcKon;
       _pacient.jmeno = pacient.jmeno;
       _pacient.pojistovna = pacient.pojistovna;
       _pacient.lekar = pacient.lekar;

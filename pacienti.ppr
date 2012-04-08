@@ -94,19 +94,47 @@ pacienti
 1=app\views\main.html
 2=conf\messages.cs
 3=public\stylesheets\main.css
+4=pozn.txt
+5=..\..\..\Dokumenty\analyza gmf\import dat\result.csv
+6=..\..\..\Dokumenty\analyza gmf\import dat\genotype.csv
+7=app\controllers\Reports.java
+8=..\..\..\Dokumenty\analyza gmf\import dat\examination.csv
+9=..\..\..\Dokumenty\analyza gmf\import dat\report.csv
+10=app\controllers\Genotypes.java
 [Selected Project Files]
 Main=
-Selected=public\stylesheets\main.css
+Selected=app\controllers\Reports.java
 [conf\routes]
-TopLine=1
-Caret=24,9
+TopLine=19
+Caret=5,41
 [app\views\main.html]
-TopLine=29
-Caret=34,73
+TopLine=98
+Caret=57,120
 Mark1=2,113
 [conf\messages.cs]
 TopLine=46
 Caret=1,70
 [public\stylesheets\main.css]
 TopLine=2
-Caret=21,18
+Caret=2,29
+[pozn.txt]
+TopLine=1
+Caret=27,13
+[..\..\..\Dokumenty\analyza gmf\import dat\result.csv]
+TopLine=24373
+Caret=25,24425
+[..\..\..\Dokumenty\analyza gmf\import dat\genotype.csv]
+TopLine=72
+Caret=35,124
+[app\controllers\Reports.java]
+TopLine=82
+Caret=75,107
+[..\..\..\Dokumenty\analyza gmf\import dat\examination.csv]
+TopLine=1
+Caret=33,20
+[..\..\..\Dokumenty\analyza gmf\import dat\report.csv]
+TopLine=2644
+Caret=3,2689
+[app\controllers\Genotypes.java]
+TopLine=1
+Caret=2,11

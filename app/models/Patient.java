@@ -36,6 +36,9 @@ public class Patient extends Model {
     @MaxSize(5)
     public String rcKon;
 
+    @MaxSize(15)
+    public String rodneCislo;
+
     @MaxSize(300)
     public String titul;
 
