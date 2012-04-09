@@ -28,6 +28,8 @@ public class Patient extends Model {
     @Required
     public Integer evRok;
     
+    public String kod;
+
     @Required
     @MaxSize(10)
     public String rcZac;

@@ -60,6 +60,7 @@ public class Patients extends Application  {
     if(id == null) {
         pacient.modul = connected.modul;
         pacient.rodneCislo = pacient.rcZac + "/" + pacient.rcKon;
+        pacient.kod = pacient.getKod();
         try {
           pacient.create();
         }
@@ -73,6 +74,7 @@ public class Patients extends Application  {
       Patient _pacient = Patient.findById(id);
       _pacient.evCislo = pacient.evCislo;
       _pacient.evRok = pacient.evRok;
+      _pacient.kod = pacient.getKod();
       _pacient.rcZac = pacient.rcZac;
       _pacient.rcKon = pacient.rcKon;
       _pacient.rodneCislo = pacient.rcZac + "/" + pacient.rcKon;
