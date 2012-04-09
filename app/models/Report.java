@@ -5,6 +5,7 @@ import play.data.validation.*;
 import javax.persistence.*;
 import java.util.*;
 import play.data.binding.*;
+import java.sql.Clob;
 
 @Entity
 public class Report extends Model {
@@ -24,6 +25,9 @@ public class Report extends Model {
     @OneToMany(mappedBy="zavZprava", cascade=CascadeType.ALL)
     public List<Result> vysledky = new ArrayList<Result>();
 
+
+    @Lob
+    public String vysledek;
 
     @As("dd.MM.yyyy")
     public Date datumVysetreni;
@@ -62,6 +66,18 @@ public class Report extends Model {
 
     @As("dd.MM.yyyy")
     public Date datumSekv;
+
+
+    public LinkedHashMap<String,String> getVysl() {
+        if(this.vysledek == null) return null;
+        String[] mujSplit = this.vysledek.split("\\$", -1);
+System.out.println(this.vysledek);
+        LinkedHashMap<String,String> h2 = new LinkedHashMap<String,String>();
+        for ( int i=0; i< mujSplit.length - 1 ; i+=2 ){
+            h2.put( mujSplit[i], mujSplit[i+1] );
+        }
+        return h2;
+    }
 
 
     public static List<Report> getNeprovedena(Date datumOd, Date datumDo, AppModul modul) {

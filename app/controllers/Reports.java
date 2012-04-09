@@ -9,8 +9,7 @@ import java.util.*;
 import static play.modules.pdf.PDF.*;
 
 import org.allcolor.yahp.converter.IHtmlToPdfTransformer;
-//import org.allcolor.yahp.converter.IHtmlToPdfTransformer.PageSize;
-//import org.allcolor.yahp.*;
+
 
 @With(Secure.class)
 public class Reports extends Application {
@@ -19,6 +18,7 @@ public class Reports extends Application {
     Report zprava = Report.findById(id);
     notFoundIfNull(zprava);
     //render(zprava);
+    LinkedHashMap<String,String> vyslMap = zprava.getVysl();
 
     Options options = new Options();
     //options.FOOTER = "lkjdklsfkjhdkjhgkjhk";
@@ -28,7 +28,7 @@ public class Reports extends Application {
     IHtmlToPdfTransformer.PageSize pok2 = new IHtmlToPdfTransformer.PageSize(21.0, 29.7, 1.9, 1.9, 1.5, 1.5);
     options.pageSize = pok2;
 
-    renderPDF(zprava, options);
+    renderPDF(zprava, vyslMap, options);
   }
 
   public static void form(Long id, Long pacientId) {
@@ -40,6 +40,7 @@ public class Reports extends Application {
 
     String[] vedouciLekari = {};
     String[] uvolnujiAnalyzu = {};
+    LinkedHashMap<String,String> vyslMap = new LinkedHashMap<String,String>();
 
     if(connected.modul.vedouciLekari != null) {
       vedouciLekari = connected.modul.vedouciLekari.split(",");
@@ -52,36 +53,52 @@ public class Reports extends Application {
     if(id != null) {
       Report zprava = Report.findById(id);
       notFoundIfNull(zprava);
-      render(zprava, pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu);
+      vyslMap = zprava.getVysl();
+      render(zprava, vyslMap, pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu);
     }
 
     render(pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu);
   }
 
 
-  public static void mySave(Long zpravaId, Report zprava, Long pacientId, List<Result> vysledky) {
+  public static void mySave(Long zpravaId, Report zprava, Long pacientId, String[] vysledky, String[] markery) {
     Patient pacient = Patient.getByModulAndId(connected.modul, pacientId);
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.findAll();
     List<Examination> vysetreni = Examination.getActual();
     List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
-    Result vysledek = null;
+    String vysledek = "";
+    Genotype genotyp = null;
+    LinkedHashMap<String,String> vyslMap = new LinkedHashMap<String,String>();
+
+
+    if(vysledky != null) {
+      int j = 1; int len = vysledky.length;
+      for (int i = 0; i < vysledky.length; i++) {
+        if(vysledky[i] == null) {len--; continue;}
+        vysledek += (markery[i] + "$" + vysledky[i]);
+        if(j++ < len) vysledek += "$";
+    	}
+    }
 
     zprava.pacient = pacient;
-
+    zprava.vysledek = vysledek;
+    vyslMap = zprava.getVysl();
 
     validation.valid(zprava);
     if(validation.hasErrors()) {
-        render("@form", zprava, pacient, bioMaterialy, vysetreni, users);
+        render("@form", zprava, vyslMap, pacient, bioMaterialy, vysetreni, users);
     }
 
     if(zpravaId == null) {
         List<Genotype> genotypes = Genotype.find("byVysetreni", zprava.vysetreni).fetch();
+        int k = 1;
         for(Iterator<Genotype> i = genotypes.iterator(); i.hasNext(); ) {
-          vysledek = new Result(zprava, i.next());
-          if(vysledek == null) continue;
-          zprava.vysledky.add(vysledek);
+          genotyp = i.next();
+          vysledek += (genotyp.nazev + "$" + genotyp.vychozi);
+          if(k++ < genotypes.size()) vysledek += "$";
         }
+        zprava.vysledek = vysledek;
 
         try {
           zprava.create();
@@ -91,27 +108,10 @@ public class Reports extends Application {
           flash.error("Vyšetření se nepodařilo vytvořit.");
           Patients.detail(pacientId);
         }
-
     } else {
       Report newZprava = Report.findById(zpravaId);
 
-      if(vysledky != null) {
-      	for (int i = 0; i < vysledky.size(); i++) {
-          if(vysledky.get(i) == null) continue;
-          Result vysl = Result.findById(vysledky.get(i).id);
-          vysl.vysledek = vysledky.get(i).vysledek;
-          vysl.save();
-      	}
-      }
-      else { //oprava chybejicich vysledku
-        List<Genotype> genotypes2 = Genotype.find("byVysetreni", newZprava.vysetreni).fetch();
-        for(Iterator<Genotype> j = genotypes2.iterator(); j.hasNext(); ) {
-          vysledek = new Result(newZprava, j.next());
-          if(vysledek == null) continue;
-          newZprava.vysledky.add(vysledek);
-        }
-      }
-
+      newZprava.vysledek = vysledek;
       newZprava.datumVysetreni = zprava.datumVysetreni;
       newZprava.parafaVysetreni = zprava.parafaVysetreni;
       newZprava.analyzuUvolnil = zprava.analyzuUvolnil;

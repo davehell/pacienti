@@ -16,6 +16,7 @@
 
 #{form @mySave(zprava?.id)}
 #{if zprava?.id}
+<input type="hidden" name="zpravaId" value="${zprava.id}">
 <p>
  <span class="button">#{a @Reports.report(zprava.id), title:"Zobrazit závěrečnou zprávu tohoto vyšetření"}závěrečná zpráva#{/a}</span>
 </p>
@@ -188,6 +189,8 @@
 #{/}
 
 <input type="hidden" name="pacientId" id="pacientId" value="${pacient?.id}">
+<input type="hidden" name="zprava.id" value="${zprava?.id}">
+<input type="hidden" name="zprava.vysledek" value="${zprava?.vysledek}">
 
   <p>
     <input class="left" type="submit" value="Uložit" />
@@ -235,14 +238,17 @@
 <div class="span-9 last">
 <fieldset class="genotyp">
   <legend>Zjištěný genotyp</legend>
-  #{list zprava?.vysledky}
-    %{ _.genotyp.nazev = _.genotyp.nazev.replace("->", "&#8594;"); }%
+
+  #{list items:vyslMap?.keySet(), as:'marker'}
+
     <p>
-      <label>${_.genotyp.nazev.raw()} </label>
-      <input type="hidden" name="vysledky[${_.id}].id" value="${_.id}">
-      <input type="text" name="vysledky[${_.id}].vysledek" value="${_.vysledek}" class="shortW">
+      <label>${marker.replace("->", "&rarr;").raw()} </label>
+      <input type="hidden" name="markery[]" value="${marker}">
+      <input type="text" name="vysledky[]" value="${vyslMap.get(marker)}" class="shortW">
     </p>
   #{/list}
+
+
     <p>
         <input type="submit" value="Uložit" />
     </p>

@@ -115,16 +115,15 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 
 <h3>Zjištěný genotyp:</h3>
 <table id="gtypTable">
-  #{list zprava.vysledky}
-    %{ _.genotyp.nazev = _.genotyp.nazev.replace("->", "&rarr;"); }%
-    #{if _isFirst}
+  #{list items:vyslMap?.keySet(), as:'marker'}
+    #{if marker_isFirst}
     <tr>
     #{/if}
-    <td class="gtyp">${_.genotyp.nazev.raw()} </td>
-    <td class="gres">${_.vysledek} </td>
-    #{if _index % zprava.vysetreni.sloupce == 0}
+    <td class="gtyp">${marker.replace("->", "&rarr;").raw()} </td>
+    <td class="gres">${vyslMap.get(marker)} </td>
+    #{if marker_index % zprava.vysetreni.sloupce == 0}
     </tr>
-    #{ifnot _isLast}
+    #{ifnot marker_isLast}
     <tr>
     #{/ifnot}
     #{/if} 

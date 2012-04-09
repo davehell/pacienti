@@ -66,10 +66,5 @@ public class Result extends Model {
         return false;
       }
       return true;
-
-// Query q = JPA.em().createQuery ("UPDATE Doctor d SET d.jmeno = :jmeno ");
-// q.setParameter ("jmeno", "pok");
-// Integer updated = q.executeUpdate ();
-
     }
 }
