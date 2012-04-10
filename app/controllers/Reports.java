@@ -76,7 +76,7 @@ public class Reports extends Application {
       int j = 1; int len = vysledky.length;
       for (int i = 0; i < vysledky.length; i++) {
         if(vysledky[i] == null) {len--; continue;}
-        vysledek += (markery[i] + "$" + vysledky[i]);
+        vysledek += (markery[i] + "$" + vysledky[i].replace("$", "&#36;"));
         if(j++ < len) vysledek += "$";
     	}
     }

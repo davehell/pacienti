@@ -22,8 +22,8 @@ public class Report extends Model {
     @ManyToOne
     public Examination vysetreni;
 
-    @OneToMany(mappedBy="zavZprava", cascade=CascadeType.ALL)
-    public List<Result> vysledky = new ArrayList<Result>();
+    //@OneToMany(mappedBy="zavZprava", cascade=CascadeType.ALL)
+    //public List<Result> vysledky = new ArrayList<Result>();
 
 
     @Lob
@@ -70,15 +70,61 @@ public class Report extends Model {
 
     public LinkedHashMap<String,String> getVysl() {
         if(this.vysledek == null) return null;
-        String[] mujSplit = this.vysledek.split("\\$", -1);
-System.out.println(this.vysledek);
-        LinkedHashMap<String,String> h2 = new LinkedHashMap<String,String>();
-        for ( int i=0; i< mujSplit.length - 1 ; i+=2 ){
-            h2.put( mujSplit[i], mujSplit[i+1] );
+        String[] splitVysl = this.vysledek.split("\\$", -1);
+
+        LinkedHashMap<String,String> map = new LinkedHashMap<String,String>();
+        for ( int i=0; i< splitVysl.length - 1 ; i+=2 ){
+            map.put( splitVysl[i], splitVysl[i+1] );
         }
-        return h2;
+        return map;
     }
 
+
+    public static boolean setVysl(String pacKod, String marker, String vysl) {
+      Patient pacient = Patient.getByKod(pacKod);
+      if(pacient == null) return false;
+
+      Iterator<Report> iterator = pacient.zpravy.iterator();
+      Report rep = null;
+      Genotype genotyp = null;
+      while (iterator.hasNext()) {
+        rep = iterator.next();
+        genotyp = Genotype.find("vysetreni = ? and nazev = ?", rep.vysetreni, marker).first();
+        if(genotyp != null) break;
+      }
+
+      if(genotyp == null) return false;
+
+      Examination vysetreni = genotyp.vysetreni;
+      if(vysetreni == null) return false;
+
+      Report zprava = Report.find("pacient = ? and vysetreni = ?", pacient, vysetreni).first();
+      if(zprava == null) return false;
+
+//       Result vysledek = Result.find("zavZprava = ? and genotyp = ?", zprava, genotyp).first();
+//       if(vysledek == null) return false;
+
+      String vyslStr = "";
+      String[] splitVysl = zprava.vysledek.split("\\$", -1);
+      for ( int i=0; i< splitVysl.length - 1 ; i+=2 ){
+        if(splitVysl[i].equals(marker)) {
+            splitVysl[i+1] = vysl;
+        }
+        if(vyslStr.length() > 0) vyslStr += "$";
+        vyslStr += (splitVysl[i] + "$" + splitVysl[i+1]);
+
+      }
+
+
+      try {
+        zprava.vysledek = vyslStr;
+        zprava.save();
+      }
+      catch (Exception e) {
+        return false;
+      }
+      return true;
+    }
 
     public static List<Report> getNeprovedena(Date datumOd, Date datumDo, AppModul modul) {
         //List<Report> result = Report.findAll();

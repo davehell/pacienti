@@ -26,7 +26,30 @@ public class Application extends CRUD {
       appLog = new AppLogger(connected);
   }
 
-  public static void index() {
+  //u kazdeho pacienta ulozi do "kod" jeho evidencni kod (kvuli fulltextovemu vyhledavani v archivu)
+  public static void kod() {
+    Patient pacient = null;
+    Integer updated = -1;
+    Query q = null;
+
+    q = JPA.em().createQuery ("select p from Patient p order by id");
+    //q.setMaxResults(10);
+    List<Patient> pacienti =  q.getResultList ();
+
+
+    for (int i = 0; i < pacienti.size(); i++) {
+      pacient = pacienti.get(i);
+      q = JPA.em().createQuery ("UPDATE Patient p SET p.kod = :kod WHERE p.id = :id ");
+      q.setParameter ("id", pacient.id);
+      q.setParameter ("kod", pacient.getKod());
+      updated = q.executeUpdate ();
+      //System.out.println(updated.toString());
+  	}
+  } //kod
+
+/*
+  //u kazde zav. zpravy posklada vsechny vysledky do jednoho retezce (report.vysledek)
+  public static void vysl() {
     Report zprava = null;
     Result vysledek = null;
     List<Genotype> genotypy = null;
@@ -76,16 +99,11 @@ public class Application extends CRUD {
       q.setParameter ("vysledek", vyslStr);
       updated = q.executeUpdate ();
   	}
+  } //vysl
+*/
 
-
-System.out.println("maxLen: " + maxLen.toString());
-System.out.println("--------KONEC------------------");
-  } //index
-
-
-
+  //slozeni rcZac a rcKon do rodneCislo
   public static void rc() {
-    //slozeni rcZac a rcKon do rodneCislo
     Patient pacient = null;
     Integer updated = -1;
     Query q = null;

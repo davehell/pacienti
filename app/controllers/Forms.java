@@ -139,7 +139,7 @@ public class Forms extends Application {
 
         pacient = Patient.getByKod(pacKod);
 
-        upraveno = Result.setVysl(pacKod, marker, vysl);
+        upraveno = Report.setVysl(pacKod, marker, vysl);
         if(upraveno) str.add(pacKod + "," + marker + "," + vysl);
         //System.out.println(pacKod + " - " + marker + " - " + vysl);
       }

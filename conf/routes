@@ -4,7 +4,7 @@
 
 # Home page
 GET		/															           Patients.index
-GET		/import												           Application.index
+GET		/import												           Application.kod
 
 GET   /pacient/{id}/upravit                     Patients.form
 GET   /pacient/novy                             Patients.form

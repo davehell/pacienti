@@ -36,7 +36,7 @@ public class BioMaterial extends Model {
     }
 
     public static List<BioMaterial> getNeizolovana(AppModul modul) {
-        List<BioMaterial> result = BioMaterial.find("pacient.modul = ? AND typ <> ? and datumIzolace is null", modul, "izolovaná DNA").fetch();
+        List<BioMaterial> result = BioMaterial.find("pacient.modul = ? AND typ <> ? and datumIzolace is null and pacient.evRok >= ?", modul, "izolovaná DNA", 2010).fetch();
         return result;
     }
 }
