@@ -6,7 +6,7 @@ jdbc:h2:mem:play
 
 script drop to 'D:/wamp/www/pacienti/db 2012-04-03/backup.sql'
 script drop to 'D:/wamp/www/pacienti/db/zaloha.zip' COMPRESSION zip
-RUNSCRIPT FROM 'D:/wamp/www/pacienti/db/backup.sql'
+RUNSCRIPT FROM 'D:/wamp/www/pacienti/db/backup 2012-04-10.sql'
 
 INSERT INTO insurancecompany SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/insurancecompany.csv');
 INSERT INTO doctor SELECT * FROM CSVREAD('D:/Dokumenty/analyza gmf/import dat/doctor.csv');

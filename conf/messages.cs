@@ -55,6 +55,7 @@ pojistovna.aktual = aktuální
 lekar.icz = IČZ
 lekar.jmeno = titul, jméno, příjmení
 lekar.pracoviste = pracoviště
+lekar.odbornost = odbornost
 
 selectBox.option.select = vyberte
 selectBox.option.none = nezadáno
