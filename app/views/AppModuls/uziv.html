@@ -1,0 +1,68 @@
+#{extends 'main.html' /}
+
+#{set title:'Profil uživatele ' + uziv?.jmeno /}
+
+#{ifErrors}
+    <p class="error">
+        Opravte chyby ve formuláři!
+    </p>
+#{/ifErrors}
+
+#{form @saveUziv(uziv?.id)}
+
+  <input type="hidden" name="id" value="${uziv?.id}">
+  #{field 'jmeno'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${uziv?.jmeno}" class="${field.errorClass} longW">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+  #{field 'parafa'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${uziv?.parafa}" class="${field.errorClass} longW">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+  #{field 'pozice'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${uziv?.pozice}" class="${field.errorClass} longW">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+<br>
+  #{field 'heslo'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="password" id="${field.id}" name="${field.name}" value="" class="${field.errorClass} longW">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+  #{field 'heslo2'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="password" id="${field.id}" name="${field.name}" value="" class="${field.errorClass} longW">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+
+  #{field 'origHeslo'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="password" id="${field.id}" name="${field.name}" value="" class="${field.errorClass} longW">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+    <p>
+        <input type="submit" value="Uložit" />
+    </p>
+
+#{/form}
+

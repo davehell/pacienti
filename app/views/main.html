@@ -31,8 +31,8 @@
       <h1>Evidence pacientů</h1>
 #{if connected}
       <p>
-        ${connected?.jmeno}, ${connected?.modul} <br>
-        *{ ${request.remoteAddress} }* <a href="@{Secure.logout()}">Odhlášení</a>
+        <a href="@{AppModuls.uziv()}" title="úprava profilu">${connected?.jmeno}</a>, ${connected?.modul} <br>
+        *{ ${request.remoteAddress} }* <span class="button"><a href="@{Secure.logout()}">Odhlášení</a></span>
       </p>
 #{/if}      
     </div> <!-- header -->
@@ -129,7 +129,6 @@
 #{/if}
 
 	$(function() {
-		$( "a", "#header" ).button();
     $( "a", "span.button" ).button();
     $( "input:submit").button();             
 	});

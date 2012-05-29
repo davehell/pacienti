@@ -57,6 +57,13 @@ lekar.jmeno = titul, jméno, příjmení
 lekar.pracoviste = pracoviště
 lekar.odbornost = odbornost
 
+jmeno = jméno
+parafa = parafa
+pozice = pozice
+heslo = nové heslo
+heslo2 = ověření hesla
+origHeslo = původní heslo
+
 selectBox.option.select = vyberte
 selectBox.option.none = nezadáno
 
