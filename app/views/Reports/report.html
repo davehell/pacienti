@@ -148,7 +148,7 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 <table class="tab" style="width: auto; position: absolute; bottom: 0;">
   <tr>
     <td>Analýzu provedl:</td>
-    <td><span class="noItal">${zprava.parafaVysetreni?.jmeno} </span>, ${zprava.parafaVysetreni?.pozice} </td>
+    <td>#{if zprava.parafaVysetreni}<span class="noItal">${zprava.parafaVysetreni?.jmeno} </span>, ${zprava.parafaVysetreni?.pozice}#{/if} #{if zprava.analyzuProvedl}, ${zprava.analyzuProvedl}#{/if}</td>
   </tr>
   <tr>
     <td>Analýzu uvolnil:</td>

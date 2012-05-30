@@ -50,7 +50,7 @@ form input[type=submit],form input[type=checkbox] {width: auto;}
 form input[type=checkbox] {width: auto; margin: 0.5em 0;}
 form .infoInput {margin: 0.5em 0; display: inline-block;}
 form input[type=file] {width: auto;}
-textarea {height: 50px;}
+textarea {height: 150px;}
 form .error {padding:0.2em 1em; color: #CC0000; border-width: 1px;}
 form .error {background: #fff; border: none;}
 

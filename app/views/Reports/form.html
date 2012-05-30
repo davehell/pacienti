@@ -97,12 +97,21 @@
 </p>
 #{/}
 
+#{field 'zprava.analyzuProvedl'}
+<p>
+  <label>&{field.name} </label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.analyzuProvedl}" class="${field.errorClass} vLongW">
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+  <!-- <span class="small">${provadiAnalyzu?.join(', ') } </span> -->
+</p>
+#{/}
+
 #{field 'zprava.analyzuUvolnil'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.analyzuUvolnil}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.analyzuUvolnil}" class="${field.errorClass} longW">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
-  <span class="small">${uvolnujiAnalyzu?.join(', ') } </span>
+  <!-- <span class="small">${uvolnujiAnalyzu?.join(', ') } </span> -->
 </p>
 #{/}
 
@@ -110,9 +119,9 @@
 <p>
   <label>&{field.name} </label>
   
-  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.vedouciLekar}" class="${field.errorClass}">
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.vedouciLekar}" class="${field.errorClass} longW">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
-  <span class="small">${vedouciLekari?.join(', ') } </span>
+  <!-- <span class="small">${vedouciLekari?.join(', ') } </span> -->
 </p>
 #{/}
 
@@ -289,6 +298,16 @@
 
 		$( "#zprava_analyzuUvolnil" ).autocomplete({
 			source: uvolnujiAnalyzu
+		});
+
+		var provadiAnalyzu = [
+      #{list provadiAnalyzu}
+        "${_.raw()}" ${_isLast ? '' : ','}
+      #{/list}
+    ];
+
+		$( "#zprava_analyzuProvedl" ).autocomplete({
+			source: provadiAnalyzu
 		});
 
 

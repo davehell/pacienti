@@ -40,13 +40,17 @@ public class Reports extends Application {
 
     String[] vedouciLekari = {};
     String[] uvolnujiAnalyzu = {};
+    String[] provadiAnalyzu = {};
     LinkedHashMap<String,String> vyslMap = new LinkedHashMap<String,String>();
 
     if(connected.modul.vedouciLekari != null) {
-      vedouciLekari = connected.modul.vedouciLekari.split(",");
+      vedouciLekari = connected.modul.vedouciLekari.split(";");
     }
     if(connected.modul.uvolnujiAnalyzu != null) {
-      uvolnujiAnalyzu = connected.modul.uvolnujiAnalyzu.split(",");
+      uvolnujiAnalyzu = connected.modul.uvolnujiAnalyzu.split(";");
+    }
+    if(connected.modul.provadiAnalyzu != null) {
+      provadiAnalyzu = connected.modul.provadiAnalyzu.split(";");
     }
     
 
@@ -54,7 +58,7 @@ public class Reports extends Application {
       Report zprava = Report.findById(id);
       notFoundIfNull(zprava);
       vyslMap = zprava.getVysl();
-      render(zprava, vyslMap, pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu);
+      render(zprava, vyslMap, pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu);
     }
 
     render(pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu);
@@ -115,6 +119,7 @@ public class Reports extends Application {
       newZprava.datumVysetreni = zprava.datumVysetreni;
       newZprava.parafaVysetreni = zprava.parafaVysetreni;
       newZprava.analyzuUvolnil = zprava.analyzuUvolnil;
+      newZprava.analyzuProvedl = zprava.analyzuProvedl;
       newZprava.vedouciLekar = zprava.vedouciLekar;
       newZprava.zavZprava = zprava.zavZprava;
       newZprava.pozitivni = zprava.pozitivni;

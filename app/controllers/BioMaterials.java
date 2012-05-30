@@ -18,7 +18,7 @@ public class BioMaterials extends Application {
     String[] typyMaterialu = {};
 
     if(connected.modul.typyMaterialu != null) {
-      typyMaterialu = connected.modul.typyMaterialu.split(",");
+      typyMaterialu = connected.modul.typyMaterialu.split(";");
     }
 
 

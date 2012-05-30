@@ -38,6 +38,9 @@ public class Report extends Model {
     @MaxSize(100)
     public String analyzuUvolnil;
 
+    @MaxSize(200)
+    public String analyzuProvedl;
+
     @MaxSize(100)
     public String vedouciLekar;
 
