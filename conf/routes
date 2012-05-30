@@ -52,6 +52,8 @@ POST  /import-vysledku                        Forms.vyslImport
 GET   /import-vysledku                        Forms.vyslImport
 GET   /log                                    Forms.log
 
+GET   /profil                                 AppModuls.uziv
+
 
 
 *       /admin                                  module:crud
