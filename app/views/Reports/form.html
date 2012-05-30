@@ -141,8 +141,24 @@
 </p>
 #{/}
 
+<fieldset>
+  <legend>Datum</legend>
+
+
+
+<div id="datumyOdkazy">
+  <span><a href="">&{'zprava.datumPCR1'} </a></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <span><a href="">&{'zprava.datumPCR2'} </a></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <span><a href="">&{'zprava.datumElForezy'} </a></span><br>
+  <span><a href="">&{'zprava.datumRevHybrid'} </a></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <span><a href="">&{'zprava.datumFragmentAn'} </a></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <span><a href="">&{'zprava.datumRTAn'} </a></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <span><a href="">&{'zprava.datumSekv'} </a></span>
+</div>
+
+<div id="datumy">
 #{field 'zprava.datumPCR1'}
-<p>
+<p #{ifnot zprava?.datumPCR1}class="hide"#{/ifnot}>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumPCR1?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
@@ -150,7 +166,7 @@
 #{/}
 
 #{field 'zprava.datumPCR2'}
-<p>
+<p #{ifnot zprava?.datumPCR2}class="hide"#{/ifnot}>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumPCR2?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
@@ -158,7 +174,7 @@
 #{/}
 
 #{field 'zprava.datumElForezy'}
-<p>
+<p #{ifnot zprava?.datumElForezy}class="hide"#{/ifnot}>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumElForezy?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
@@ -166,7 +182,7 @@
 #{/}
 
 #{field 'zprava.datumRevHybrid'}
-<p>
+<p #{ifnot zprava?.datumRevHybrid}class="hide"#{/ifnot}>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumRevHybrid?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
@@ -174,7 +190,7 @@
 #{/}
 
 #{field 'zprava.datumFragmentAn'}
-<p>
+<p #{ifnot zprava?.datumFragmentAn}class="hide"#{/ifnot}>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumFragmentAn?.format('dd.MM.yyyy')}" class="${field.errorClass}">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
@@ -182,7 +198,7 @@
 #{/}
 
 #{field 'zprava.datumRTAn'}
-<p>
+<p #{ifnot zprava?.datumRTAn}class="hide"#{/ifnot}>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumRTAn?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
@@ -190,12 +206,14 @@
 #{/}
 
 #{field 'zprava.datumSekv'}
-<p>
+<p #{ifnot zprava?.datumSekv}class="hide"#{/ifnot}>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumSekv?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
+</div> <!-- datumy -->
+</fieldset> <!-- datum -->
 
 <input type="hidden" name="pacientId" id="pacientId" value="${pacient?.id}">
 <input type="hidden" name="zprava.id" value="${zprava?.id}">
@@ -315,5 +333,12 @@
 		$( ".vyslAutoCompl" ).autocomplete({
 			source: vysledkyAutoCompl
 		});
+
+    $('#datumyOdkazy span').click(function () {
+      var index = $('#datumyOdkazy span').index(this) + 1;
+      $('#datumy p:nth-child(' + index + ')').show();
+      return false;
+    } );
+
   } );
 </script>
