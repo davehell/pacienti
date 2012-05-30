@@ -20,11 +20,13 @@ public class AppModul extends Model {
     @MaxSize(200)
     public String uvolnujiAnalyzu;
     @MaxSize(200)
+    public String provadiAnalyzu;
+    @MaxSize(200)
     public String typyMaterialu;
     @MaxSize(20)
-    public String formNeprovVys;
+    public String formNeprovVys;  //kod formulare pro neprovedena vysetreni (zobrazuje se v paticce)
     @MaxSize(5)
-    public String cDokladu;
+    public String cDokladu; //prvni cislice v Cisle dokladu na zaverecne zprave
 
 
     public AppModul(String nazev) {

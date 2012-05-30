@@ -1,11 +1,6 @@
 #{extends 'main.html' /}
 
-#{ifnot modul?.id}
-    #{set title:'Nový modul' /}
-#{/ifnot}
-#{else}
-    #{set title:'Modul ' + modul.nazev /}
-#{/else}
+#{set title:'Modul ' + modul?.nazev /}
 
 #{ifErrors}
     <p class="error">
@@ -14,12 +9,37 @@
 #{/ifErrors}
 
 #{form @mySave(modul?.id)}
+  <input type="hidden" name="modul.nazev" id="modul.nazev" value="${modul?.nazev}">
 
-  #{field 'modul.nazev'}
+  #{field 'modul.vedouciLekari'}
   <p>
-    <label>&{field.name}</label>
-    <input type="text" id="${field.id}" name="${field.name}" value="${modul?.nazev}" class="${field.errorClass}">
-    <span class="error">${field.error}</span>
+    <label>&{field.name} </label>
+    <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${modul?.vedouciLekari}</textarea>
+    #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+  </p>
+  #{/}
+
+  #{field 'modul.uvolnujiAnalyzu'}
+  <p>
+    <label>&{field.name} </label>
+    <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${modul?.uvolnujiAnalyzu}</textarea>
+    #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+  </p>
+  #{/}
+
+  #{field 'modul.provadiAnalyzu'}
+  <p>
+    <label>&{field.name} </label>
+    <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${modul?.provadiAnalyzu}</textarea>
+    #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+  </p>
+  #{/}
+
+  #{field 'modul.typyMaterialu'}
+  <p>
+    <label>&{field.name} </label>
+    <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${modul?.typyMaterialu}</textarea>
+    #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
   </p>
   #{/}
 

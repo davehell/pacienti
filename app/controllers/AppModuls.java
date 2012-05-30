@@ -57,15 +57,10 @@ public class AppModuls extends Application {
 
       uziv();
   }
-/*
-  public static void form(Long id) {
-    if(id != null) {
-      AppModul modul = AppModul.findById(id);
-      notFoundIfNull(modul);
-      render(modul);
-    }
 
-    render();
+  public static void form() {
+    AppModul modul = connected.modul;
+    render(modul);
   }
 
 
@@ -75,18 +70,29 @@ public class AppModuls extends Application {
           render("@form", modul);
       }
       if(id == null) {
-          modul.create();
+          flash.error("Uložení se neprovedlo.");
       } else {
-        AppModul modulOld = AppModul.findById(id);
-        modulOld.nazev = modul.nazev;
-        modulOld.save();
+        AppModul newModul = AppModul.findById(id);
+        newModul.vedouciLekari = modul.vedouciLekari;
+        newModul.uvolnujiAnalyzu = modul.uvolnujiAnalyzu;
+        newModul.provadiAnalyzu = modul.provadiAnalyzu;
+        newModul.typyMaterialu = modul.typyMaterialu;
+
+        try {
+          newModul.save();
+          flash.success("Modul %s uložen.", modul.nazev);
+        }
+        catch (Exception e) {
+          Logger.error(e.getMessage());
+          flash.error("Uložení se neprovedlo.");
+        }
       }
       
-      flash.success("modul %s uložen.", modul.nazev);
-      index();
+      
+      form();
   }
 
-
+/*
   public static void delete(Long id) {
       AppModul modul = AppModul.findById(id);
       modul.delete();

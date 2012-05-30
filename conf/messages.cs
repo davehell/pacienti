@@ -64,6 +64,11 @@ heslo = nové heslo
 heslo2 = ověření hesla
 origHeslo = původní heslo
 
+modul.vedouciLekari = vedoucí lékaři
+modul.uvolnujiAnalyzu = uvolňují analýzy
+modul.provadiAnalyzu = provádí analýzy
+modul.typyMaterialu = typy primárních vzorků
+
 selectBox.option.select = vyberte
 selectBox.option.none = nezadáno
 

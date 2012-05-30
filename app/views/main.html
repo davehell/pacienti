@@ -31,7 +31,8 @@
       <h1>Evidence pacientů</h1>
 #{if connected}
       <p>
-        <a href="@{AppModuls.uziv()}" title="úprava profilu">${connected?.jmeno}</a>, ${connected?.modul} <br>
+        <a href="@{AppModuls.uziv()}" title="úprava profilu">${connected?.jmeno}</a>,
+        <a href="@{AppModuls.form()}" title="informace o modulu">${connected?.modul}</a> <br>
         *{ ${request.remoteAddress} }* <span class="button"><a href="@{Secure.logout()}">Odhlášení</a></span>
       </p>
 #{/if}      
