@@ -67,16 +67,44 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
   <tr>
     <td style="width: 5cm;">Primární vzorek:</td>
     <td style="width: 4cm;">Datum odběru:</td>
-    <td style="width: 3cm;">${zprava.bioMaterial.datumOdberu?.format()} </td>
+    <td style="width: 3cm;"> 
+    #{if zprava.bioMaterial.datumOdberu}
+      ${zprava.bioMaterial.datumOdberu?.format()}
+    #{/if}
+    #{else}
+      &{'neuvedeno'}
+    #{/else}
+    </td>
     <td style="width: 4cm;">Čas odběru:</td>
-    <td>${zprava.bioMaterial.datumOdberu?.format('HH:mm')?.replace("00:00", "")} </td>
+    <td>
+    #{if zprava.bioMaterial.datumOdberu}
+      ${zprava.bioMaterial.datumOdberu?.format('HH:mm')?.replace("00:00", "neuvedeno")} 
+    #{/if}
+    #{else}
+      &{'neuvedeno'}
+    #{/else}
+    </td>
   </tr>
   <tr>
     <td>${zprava.bioMaterial.typ} </td>
     <td>Datum přijetí vzorku:</td>
-    <td>${zprava.bioMaterial.datumPrijeti?.format()} </td>
+    <td>
+    #{if zprava.bioMaterial.datumPrijeti}
+      ${zprava.bioMaterial.datumPrijeti?.format()}
+    #{/if}
+    #{else}
+      &{'neuvedeno'}
+    #{/else}
+    </td>
     <td>Čas přijetí vzorku:</td>
-    <td>${zprava.bioMaterial.datumPrijeti?.format('HH:mm')?.replace("00:00", "")} </td>
+    <td>
+    #{if zprava.bioMaterial.datumPrijeti}
+      ${zprava.bioMaterial.datumPrijeti?.format('HH:mm')?.replace("00:00", "neuvedeno")}
+    #{/if}
+    #{else}
+      &{'neuvedeno'}
+    #{/else}
+    </td>
   </tr>
 </table>
 
@@ -120,7 +148,7 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
     <tr>
     #{/if}
     <td class="gtyp">${marker.replace("->", "&rarr;").raw()} </td>
-    <td class="gres">${vyslMap.get(marker)} </td>
+    <td class="gres">${vyslMap.get(marker).replace("mut", "<strong>mut</strong>").raw()} </td>
     #{if marker_index % zprava.vysetreni.sloupce == 0}
     </tr>
     #{ifnot marker_isLast}
@@ -135,13 +163,13 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 
 <h3>Závěr:</h3>
 <p>
- ${zprava.zavZprava}
+ ${zprava.zavZprava.replace("((", "<strong>").replace("))", "</strong>").raw()}
 </p>
 
 #{if zprava.pacient.verejnaPozn}
 <h3>Poznámka:</h3>
 <p>
- ${zprava.pacient.verejnaPozn}
+ ${zprava.pacient.verejnaPozn.replace("((", "<strong>").replace("))", "</strong>").raw()}
 </p>
 #{/if}
 

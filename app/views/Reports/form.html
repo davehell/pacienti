@@ -125,14 +125,6 @@
 </p>
 #{/}
 
-#{field 'zprava.zavZprava'}
-<p>
-  <label>&{field.name} </label>
-  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${zprava?.zavZprava}</textarea>
-  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
-</p>
-#{/}
-
 #{field 'zprava.pozitivni'}
 <p>
   <label>&{field.name} </label>
@@ -140,6 +132,19 @@
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
+
+
+#{field 'zprava.zavZprava'}
+<p>
+  <label>&{field.name} </label>
+  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}">${zprava?.zavZprava}</textarea>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+</p>
+<p>
+ <label>&nbsp;</label><span class="small">((tučně))</span>
+</p>
+#{/}
+
 
 <fieldset>
   <legend>Datum</legend>

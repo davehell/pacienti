@@ -72,6 +72,7 @@ modul.typyMaterialu = typy primárních vzorků
 
 selectBox.option.select = vyberte
 selectBox.option.none = nezadáno
+neuvedeno = neuvedeno
 
 noRecords = Nejsou uloženy žádné záznamy.
 

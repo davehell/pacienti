@@ -152,6 +152,9 @@
   <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} vLongW">${pacient?.verejnaPozn}</textarea>
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
+<p>
+ <label>&nbsp;</label><span class="small">((tučně))</span>
+</p>
 #{/}
 
 <input type="hidden" name="pacient.id" value="${pacient?.id}">

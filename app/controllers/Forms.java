@@ -133,7 +133,7 @@ public class Forms extends Application {
         marker = columns[2];
         vysl   = columns[7];
 
-        if(vysl.equals("Both")) vysl = "wt/mut";
+        if(vysl.equals("Both")) vysl = "mut/wt";
         else if(vysl.equals("Undetermined")) vysl = "";
         else vysl = vysl.substring(4);
 
