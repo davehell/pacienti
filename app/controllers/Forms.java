@@ -111,13 +111,15 @@ public class Forms extends Application {
 
   public static void vyslImport(File file) {
     if(file != null) {
-      List str = new ArrayList();
+      List strOk = new ArrayList();
+      List strErr = new ArrayList();
       List<String> lines = IO.readLines(file);
       String line = "";
       String[] columns = null;
       String pacKod = "";
       String marker = "";
       String vysl = "";
+      String origVysl = "";
       Patient pacient = null;
       Examination vysetreni = null;
       boolean upraveno = false;
@@ -131,28 +133,40 @@ public class Forms extends Application {
 
         pacKod = columns[1];
         marker = columns[2];
-        vysl   = columns[7];
+        origVysl = columns[7];
 
-        if(vysl.equals("Both")) vysl = "mut/wt";
-        else if(vysl.equals("Undetermined")) vysl = "";
-        else vysl = vysl.substring(4);
+        try {
+          if(marker.substring(0,3).equals("PAI")) {
+            if(origVysl.equals("4G")) vysl = "mut/mut";
+            else if(origVysl.equals("5G")) vysl = "wt/wt";
+            else if(origVysl.equals("Both")) vysl = "mut/wt";
+          }
+          else {
+            if(origVysl.equals("Both")) vysl = "mut/wt";
+            else if(origVysl.equals("Undetermined")) vysl = "";
+            else vysl = origVysl.substring(4);
+          }
+        }
+        catch (Exception e) {
+            vysl = "";
+        }
 
+        vysl = vysl.trim();
         pacient = Patient.getByKod(pacKod);
 
         upraveno = Report.setVysl(pacKod, marker, vysl);
-        if(upraveno) str.add(pacKod + "," + marker + "," + vysl);
+        if(upraveno) strOk.add(pacKod + "," + marker + "," + origVysl + "," + vysl);
+        else         strErr.add(pacKod + "," + marker + "," + origVysl + "," + vysl);
         //System.out.println(pacKod + " - " + marker + " - " + vysl);
       }
 
       String fileName = file.getName();
-      render(fileName, str);
+      render(fileName, strOk, strErr);
     }
     else {
       render();
     }
-
-    
-  }  
+  }//vyslImport
   
   
 }

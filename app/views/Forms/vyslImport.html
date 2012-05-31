@@ -20,22 +20,52 @@
  Soubor s daty: ${fileName}
 </p> 
 
+<div class="span-12">
+<h3 class="success">Import proběhl v pořádku:</h3>
 <table>
   <thead>
     <tr>
       <th>Sample Name</th>
       <th>Marker</th>
       <th>Call</th>
+      <th>Výsledek</th>
     </tr>
   </thead>
   <tbody>
-#{list str}
+#{list strOk}
     <tr>
       <td>${_.split(",", -1)[0]}</td>
       <td>${_.split(",", -1)[1]}</td>
       <td>${_.split(",", -1)[2]}</td>
+      <td>#{ifnot _.split(",", -1)[3]}<span class="highlight">POZOR!!!</span>#{/ifnot}${_.split(",", -1)[3]}</td>
     </tr>
 #{/list}
   </tbody>
 </table>
+</div>
+
+<div class="span-12 last">
+<h3 class="error">Import se nepodařil:</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Sample Name</th>
+      <th>Marker</th>
+      <th>Call</th>
+      <th>Výsledek</th>
+    </tr>
+  </thead>
+  <tbody>
+#{list strErr}
+    <tr>
+      <td>${_.split(",", -1)[0]}</td>
+      <td>${_.split(",", -1)[1]}</td>
+      <td>${_.split(",", -1)[2]}</td>
+      <td>${_.split(",", -1)[3]}</td>
+    </tr>
+#{/list}
+  </tbody>
+</table>
+</div>
 #{/else}
+
