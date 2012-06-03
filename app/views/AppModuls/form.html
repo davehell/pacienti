@@ -11,6 +11,7 @@
 #{form @mySave(modul?.id)}
   <input type="hidden" name="modul.nazev" id="modul.nazev" value="${modul?.nazev}">
 
+
   #{field 'modul.vedouciLekari'}
   <p>
     <label>&{field.name} </label>
@@ -43,6 +44,10 @@
   </p>
   #{/}
 
+<p>
+  <label>&nbsp; </label>
+  <small>Pozn.: oddělovačem položek je středník</small>
+</p>
     <p>
         <input type="submit" value="Uložit" />
     </p>
