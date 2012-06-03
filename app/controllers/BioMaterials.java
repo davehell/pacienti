@@ -12,7 +12,7 @@ import java.text.*;
 public class BioMaterials extends Application {
 
   public static void form(Long id, Long pacientId) {
-    List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
+    List<User> users = User.getDoctors(connected.modul);
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
     String[] typyMaterialu = {};

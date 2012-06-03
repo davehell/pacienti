@@ -36,7 +36,7 @@ public class Reports extends Application {
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.find("byPacient", pacient).fetch();
     List<Examination> vysetreni = Examination.getActual();
-    List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
+    List<User> users = User.getDoctors(connected.modul);
 
     String[] vedouciLekari = {};
     String[] uvolnujiAnalyzu = {};

@@ -4,6 +4,7 @@ import play.db.jpa.*;
 import play.data.validation.*;
 import javax.persistence.*;
 import play.libs.*;
+import java.util.*;
 
 @Table(
     uniqueConstraints=@UniqueConstraint(columnNames={"modul_id", "parafa"})
@@ -35,7 +36,8 @@ public class User extends Model {
     @MaxSize(100)
     public String pozice;
 
-    public boolean isAdmin;    
+    public boolean isAdmin;
+    public boolean isDoctor;
    
     public User(String username, String password, String name) {
         this.username = username;
@@ -57,8 +59,18 @@ public class User extends Model {
         return user.isAdmin;
     }
 
+    public static boolean isUserDoctor(String username) {
+        User user = find("byUsername", username).first();
+        if(user == null) return false;
+        return user.isDoctor;
+    }
+
     public static User getByUsername(String username) {
         return find("byUsername", username).first();
+    }
+
+    public static List<User> getDoctors(AppModul modul) {
+        return User.find("modul = ? AND isDoctor = ?", modul, true).fetch();
     }
 
     public String toString()  {
