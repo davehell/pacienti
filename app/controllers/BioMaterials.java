@@ -8,6 +8,7 @@ import play.data.binding.*;
 import java.util.*;
 import java.text.*;
 
+@Check("doctor")
 @With(Secure.class) 
 public class BioMaterials extends Application {
 

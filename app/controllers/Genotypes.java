@@ -4,7 +4,7 @@ import play.*;
 import play.mvc.*;
 import models.*;
 
-@Check("admin")
+@Check("doctor")
 @With(Secure.class)
 public class Genotypes extends Application {
    

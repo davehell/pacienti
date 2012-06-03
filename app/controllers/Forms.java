@@ -40,7 +40,7 @@ public class Forms extends Application {
     }
   }
 
-
+  @Check("doctor")
   public static void log() {
     DateFormat df = new SimpleDateFormat("yyyy-MM");
     String filename = df.format(new Date());
@@ -49,6 +49,7 @@ public class Forms extends Application {
   }
 
 
+  @Check("doctor")
   public static void neprovedena(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {
       if(datumOd == null) datumOd = new Date();
       if(datumDo == null) datumDo = new Date();
@@ -65,6 +66,7 @@ public class Forms extends Application {
       renderPDF(vysetreni, datumOd, datumDo, modul, options);
   }
 
+  
   public static void poctyVzorku(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {
       if(datumOd == null) datumOd = new Date();
       if(datumDo == null) datumDo = new Date();
@@ -80,12 +82,14 @@ public class Forms extends Application {
       renderPDF(lekari, datumOd, datumDo, options);
   }
 
+  @Check("doctor")
   public static void neizolovana() {
       List<BioMaterial> bioMaterialy = BioMaterial.getNeizolovana(connected.modul);
 
       render(bioMaterialy);
   }
 
+  @Check("doctor")
   public static void stitky(String evCisla) {
     List<Patient> pacienti = Patient.getLastPatients(connected.modul, 100);
     if(evCisla == null) {
@@ -108,7 +112,7 @@ public class Forms extends Application {
     
   }
 
-
+  @Check("doctor")
   public static void vyslImport(File file) {
     if(file != null) {
       List strOk = new ArrayList();

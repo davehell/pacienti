@@ -11,6 +11,7 @@ import javax.persistence.*;
 import play.data.binding.*;
 import java.util.*;
 
+@Check("doctor")
 @With(Secure.class)
 @CRUD.For(InsuranceCompany.class)
 public class InsuranceCompanies extends Application  {

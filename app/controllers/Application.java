@@ -26,6 +26,9 @@ public class Application extends CRUD {
       appLog = new AppLogger(connected);
   }
 
+  public static void start() {
+    render();
+  }
   //u kazdeho pacienta ulozi do "kod" jeho evidencni kod (kvuli fulltextovemu vyhledavani v archivu)
   public static void kod() {
     Patient pacient = null;

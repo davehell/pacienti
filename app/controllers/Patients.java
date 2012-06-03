@@ -11,8 +11,8 @@ import play.data.binding.*;
 import java.util.*;
 
 
-
-@With(Secure.class) 
+@Check("doctor")
+@With(Secure.class)
 public class Patients extends Application  {
 
   public static void index() {

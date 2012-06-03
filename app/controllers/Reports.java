@@ -10,7 +10,7 @@ import static play.modules.pdf.PDF.*;
 
 import org.allcolor.yahp.converter.IHtmlToPdfTransformer;
 
-
+@Check("doctor")
 @With(Secure.class)
 public class Reports extends Application {
 

@@ -40,13 +40,17 @@
 
 <div class="column span-24 last prepend-top " id="menu">
     
-#{if connected}     
+#{if connected}
     	<ul>
+        #{if connected.isAdmin || connected.isDoctor}
     		<li><a href="#tabs-1">Pacienti</a></li>
     		<li><a href="#tabs-2">Tiskové sestavy</a></li>
         <li><a href="#tabs-3">Import</a></li>
         <li><a href="#tabs-4">Nastavení</a></li>
+        #{/if}
+        <li><a href="#tabs-5">Statistika</a></li>
     	</ul>
+      #{if connected.isAdmin || connected.isDoctor}
     	<div id="tabs-1">
         <ul>
          <li><a href="@{Patients.index()}">Seznam pacientů</a></li>
@@ -57,7 +61,6 @@
     	<div id="tabs-2">
         <ul>
          <li><a href="@{Forms.index("neprovedena-vysetreni")}">Neprovedená vyšetření</a></li>
-         <li><a href="@{Forms.index("pocty-vzorku")}">Počty vzorků od lékařů</a></li>
          <li><a href="@{Forms.neizolovana()}">Neizolovaná DNA</a></li>
          <li><a href="@{Forms.stitky()}">Štítky</a></li>
         </ul>
@@ -72,6 +75,12 @@
          <li><a href="@{InsuranceCompanies.index()}">Pojišťovny</a></li>
          <li><a href="@{Doctors.index()}">Lékaři</a></li>
          <li><a href="@{Forms.log()}">Log</a></li>
+        </ul>
+    	</div>
+      #{/if}
+    	<div id="tabs-5">
+        <ul>
+         <li><a href="@{Forms.index("pocty-vzorku")}">Počty vzorků od lékařů</a></li>
         </ul>
     	</div>
 #{/if}      	
@@ -118,6 +127,7 @@
 
     #{if request.action.equals("Forms.vyslImport")} sel = 2;#{/if}
     #{elseif request.action.equals("Forms.log")} sel = 3;#{/elseif}
+    #{elseif request.action.equals("Forms.poctyVzorku")} sel = 4;#{/elseif}
     #{elseif request.controller.equals("Forms")} sel = 1;#{/elseif}
     #{elseif request.controller.equals("Doctors")} sel = 3;#{/elseif}
     #{elseif request.controller.equals("InsuranceCompanies")} sel = 3;#{/elseif}

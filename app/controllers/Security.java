@@ -9,7 +9,7 @@ public class Security extends Secure.Security {
   }
   
   static void onAuthenticated() {
-      Patients.index();
+      Application.start();
   }
 	
   static boolean authenticate(String username, String password) {
@@ -18,8 +18,10 @@ public class Security extends Secure.Security {
   }
 
   static boolean check(String profile) {
-      if("admin".equals(profile)) {
-          return User.isUserAdmin(connected());
+      if(User.isUserAdmin(connected())) return true;
+
+      if("doctor".equals(profile)) {
+          return User.isUserDoctor(connected());
       }
       return false;
   }

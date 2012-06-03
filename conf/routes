@@ -3,9 +3,10 @@
 # ~~~~
 
 # Home page
-GET		/															           Patients.index
-GET		/import												           Application.kod
+GET		/															           Application.start
+#GET		/import												           Application.kod
 
+GET		/pacienti 	  									           Patients.index
 GET   /pacient/{id}/upravit                     Patients.form
 GET   /pacient/novy                             Patients.form
 POST  /pacient/{id}/ulozit                      Patients.mySave
