@@ -15,6 +15,7 @@ pacient.koncDna = koncentrace DNA
 pacient.pozn = interní poznámka
 pacient.verejnaPozn = veřejná poznámka
 
+
 bioMaterial.typ = typ
 bioMaterial.datumOdberu = datum odběru
 bioMaterial.datumPrijeti = datum přijetí
@@ -76,6 +77,7 @@ neuvedeno = neuvedeno
 
 noRecords = Nejsou uloženy žádné záznamy.
 
+examination.score = bodové ohodnocení vyšetření
 
 crud.search = Hledat
 crud.pagination.previous = Předchozí

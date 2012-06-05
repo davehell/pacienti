@@ -9,6 +9,7 @@ import play.data.validation.*;
 import javax.persistence.*;
 import play.data.binding.*;
 import java.util.*;
+import java.text.*;
 
 
 @Check("doctor")
@@ -27,6 +28,58 @@ public class Patients extends Application  {
     List<Doctor> lekari = Doctor.find("modul = ? order by icz asc", connected.modul).fetch();
     List<Patient> stejnaRC = Patient.getPatientsWithSameRC(connected.modul, id,pacient.rcZac, pacient.rcKon);
     render(pacient, pojistovny, lekari, stejnaRC);
+  }
+
+  public static void score(Long id) {
+    Patient pacient = Patient.getByModulAndId(connected.modul, id);
+    notFoundIfNull(pacient);
+
+    List str = new ArrayList();
+    Map<Long, String> vzorky = new HashMap<Long, String>(); //kombinace "id bio materialu" a "kodu vykonu"
+    DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+    df.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
+    Calendar c = Calendar.getInstance();
+    Date datum = null;
+    String[] svatky = {"01.01","01.05","08.05","05.07","06.07","28.09","28.10","17.11","24.12","25.12","26.12"};
+    int blbec = 0;
+
+    for(Report zprava : pacient.zpravy) {
+      if(zprava.datumVysetreni == null) continue;
+
+      for(Score ohodnoceni : zprava.vysetreni.score) {
+        datum = zprava.datumVysetreni;
+        blbec = 0;
+        for(int i = 0; i < ohodnoceni.pocet; i++) {
+          if(ohodnoceni.jednouNaVzorek) {
+            if(vzorky.get(zprava.bioMaterial.id) != null) continue; //pro tento biomat se uz dany kod vykonu provadel
+            vzorky.put(zprava.bioMaterial.id, ohodnoceni.kod);
+          }
+
+          //retezec jdouci na vystup
+          str.add(zprava.vysetreni.nazev + ";" + df.format(datum) + ";" + ohodnoceni.kod + ";" + ohodnoceni.popis + ";" + (ohodnoceni.body / ohodnoceni.pocet) );
+
+          if(ohodnoceni.jednouDenne) {
+            while(blbec < 100) {
+              System.out.println(blbec);
+              blbec++;
+
+              c.setTime(datum);
+              c.add(Calendar.DATE, 1);
+              datum = c.getTime();
+
+              if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) continue;
+              if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) continue;
+              if(Arrays.asList(svatky).contains( df.format(datum).substring(0,5))) continue;
+
+              break;
+            }
+          }
+        } //for ohodnoceni.pocet
+    	} //for zprava.vysetreni.score
+  	} //for pacient.zpravy
+
+
+    render(pacient, str);
   }
 
   public static void form(Long id) {

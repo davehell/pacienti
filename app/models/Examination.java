@@ -28,8 +28,11 @@ public class Examination extends Model {
     @OneToMany(mappedBy="vysetreni", cascade=CascadeType.ALL)
     public List<Genotype> genotypy;
 
+    @OneToMany(mappedBy="vysetreni", cascade=CascadeType.ALL)
+    public List<Score> score;
+
     public String toString() {
-        return nazev;
+        return (aktual ? "" : "X ") + nazev;
     }
 
 

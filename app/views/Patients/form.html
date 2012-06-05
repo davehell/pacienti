@@ -18,6 +18,9 @@
 <fieldset>
   <legend>Informace o pacientovi</legend>
 
+  <p>
+   #{a @Patients.score(pacient?.id), title:"Zobrazit bodové ohodnocení vyšetření"}&{'examination.score'}#{/a}
+  </p>
 #{if stejnaRC}
   <p>
     Pacient je již evidován:

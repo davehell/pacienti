@@ -14,7 +14,6 @@ ProjectFilesOnly=0
 pacienti
 	+app
 		+controllers
-			app\controllers\Admin.java
 			app\controllers\Application.java
 			app\controllers\AppModuls.java
 			app\controllers\BioMaterials.java
@@ -25,7 +24,7 @@ pacienti
 			app\controllers\InsuranceCompanies.java
 			app\controllers\Patients.java
 			app\controllers\Reports.java
-			app\controllers\Results.java
+			app\controllers\Scores.java
 			app\controllers\Security.java
 			app\controllers\Users.java
 		+models
@@ -38,6 +37,7 @@ pacienti
 			app\models\Patient.java
 			app\models\Report.java
 			app\models\Result.java
+			app\models\Score.java
 			app\models\User.java
 		+views
 			+Forms
@@ -68,8 +68,8 @@ pacienti
 				app\views\Patients\index.html
 				app\views\Patients\list.html
 			+Application
-				app\views\Application\index.html
-			-errors
+				app\views\Application\start.html
+			+errors
 				app\views\errors\404.html
 				app\views\errors\500.html
 			app\views\main.html
@@ -96,35 +96,39 @@ pacienti
 1=app\views\main.html
 2=conf\messages.cs
 3=public\stylesheets\main.css
-4=app\controllers\Forms.java
-5=..\..\..\Dokumenty\120402_LCT_FXIII_PAI_EPCR1.csv
-6=app\views\Forms\vyslImport.html
-7=app\models\Report.java
+4=app\models\Examination.java
+5=app\models\Genotype.java
+6=app\models\Score.java
+7=app\controllers\Genotypes.java
+8=app\controllers\Scores.java
 [Selected Project Files]
 Main=
-Selected=..\..\..\Dokumenty\120402_LCT_FXIII_PAI_EPCR1.csv
+Selected=conf\routes
 [conf\routes]
-TopLine=20
-Caret=61,56
+TopLine=1
+Caret=62,16
 [app\views\main.html]
-TopLine=13
-Caret=20,52
-Mark1=2,113
+TopLine=82
+Caret=30,117
+Mark1=2,123
 [conf\messages.cs]
 TopLine=64
 Caret=22,75
 [public\stylesheets\main.css]
+TopLine=27
+Caret=9,53
+[app\models\Examination.java]
 TopLine=1
-Caret=1,1
-[app\controllers\Forms.java]
-TopLine=119
-Caret=23,151
-[..\..\..\Dokumenty\120402_LCT_FXIII_PAI_EPCR1.csv]
-TopLine=17
-Caret=72,42
-[app\views\Forms\vyslImport.html]
+Caret=30,32
+[app\models\Genotype.java]
 TopLine=1
-Caret=4,19
-[app\models\Report.java]
-TopLine=87
-Caret=15,117
+Caret=1,30
+[app\models\Score.java]
+TopLine=1
+Caret=47,32
+[app\controllers\Genotypes.java]
+TopLine=1
+Caret=2,11
+[app\controllers\Scores.java]
+TopLine=1
+Caret=20,9

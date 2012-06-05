@@ -14,6 +14,7 @@ POST  /pacient/ulozit                           Patients.mySave
 GET   /pacient/{id}/detail                      Patients.detail
 GET   /pacient/{id}/smazat                      Patients.myDelete
 GET   /pacienti/archiv                          Patients.list
+GET   /pacient/{id}/body                        Patients.score
 
 GET   /pacient/{pacientId}/biomaterial/{id}/upravit BioMaterials.form
 GET   /pacient/{pacientId}/biomaterial/novy         BioMaterials.form
