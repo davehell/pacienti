@@ -11,6 +11,9 @@ import play.data.binding.*;
 import java.util.*;
 import java.text.*;
 
+import static play.modules.pdf.PDF.*;
+import org.allcolor.yahp.converter.IHtmlToPdfTransformer;
+
 
 @Check("doctor")
 @With(Secure.class)
@@ -40,7 +43,7 @@ public class Patients extends Application  {
     df.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
     Calendar c = Calendar.getInstance();
     Date datum = null;
-    String[] svatky = {"01.01","01.05","08.05","05.07","06.07","28.09","28.10","17.11","24.12","25.12","26.12"};
+    String[] svatky = {"01.01","01.05","08.05","05.07","06.07","28.09","28.10","17.11","24.12","25.12","26.12"}; //TODO: chybi velikonocni pondeli
     int blbec = 0;
 
     for(Report zprava : pacient.zpravy) {
@@ -48,7 +51,6 @@ public class Patients extends Application  {
 
       for(Score ohodnoceni : zprava.vysetreni.score) {
         datum = zprava.datumVysetreni;
-        blbec = 0;
         for(int i = 0; i < ohodnoceni.pocet; i++) {
           if(ohodnoceni.jednouNaVzorek) {
             if(vzorky.get(zprava.bioMaterial.id) != null) continue; //pro tento biomat se uz dany kod vykonu provadel
@@ -59,8 +61,8 @@ public class Patients extends Application  {
           str.add(zprava.vysetreni.nazev + ";" + df.format(datum) + ";" + ohodnoceni.kod + ";" + ohodnoceni.popis + ";" + (ohodnoceni.body / ohodnoceni.pocet) );
 
           if(ohodnoceni.jednouDenne) {
+            blbec = 0;
             while(blbec < 100) {
-              System.out.println(blbec);
               blbec++;
 
               c.setTime(datum);
@@ -79,7 +81,13 @@ public class Patients extends Application  {
   	} //for pacient.zpravy
 
 
-    render(pacient, str);
+    Options options = new Options();
+    IHtmlToPdfTransformer.PageSize ps = new IHtmlToPdfTransformer.PageSize(21.0, 29.7, 1.9, 1.9, 1.5, 1.5);
+    options.pageSize = ps;
+
+    //render(pacient, str);
+    renderPDF(pacient, str, options);
+    
   }
 
   public static void form(Long id) {

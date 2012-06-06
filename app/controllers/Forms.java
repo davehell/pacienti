@@ -11,7 +11,6 @@ import play.libs.IO;
 import java.text.*;
 
 import static play.modules.pdf.PDF.*;
-
 import org.allcolor.yahp.converter.IHtmlToPdfTransformer;
 
 @With(Secure.class)

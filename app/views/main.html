@@ -27,7 +27,7 @@
   </head>
   <body>
     <div class="container">
-    <div class="column span-24 last" id="header">
+    <div class="column span-24 last noprint" id="header">
       <h1>Evidence pacientů</h1>
 #{if connected}
       <p>
@@ -38,7 +38,7 @@
 #{/if}      
     </div> <!-- header -->
 
-<div class="column span-24 last prepend-top " id="menu">
+<div class="column span-24 last prepend-top noprint" id="menu">
     
 #{if connected}
     	<ul>
@@ -103,7 +103,7 @@
       #{doLayout /}
     </div> <!-- main -->
     #{secure.check 'admin'}
-    <div class="span-24 last prepend-top" id="footer">
+    <div class="span-24 last prepend-top noprint" id="footer">
       <ul>
         <li><a href="@{Patients.list()}">Pacienti</a></li>
         <li><a href="@{Reports.list()}">Závěrečné zprávy</a></li>
