@@ -140,9 +140,9 @@ public class Forms extends Application {
 
         try {
           if(marker.substring(0,3).equals("PAI")) {
-            if(origVysl.equals("4G")) vysl = "mut/mut";
-            else if(origVysl.equals("5G")) vysl = "wt/wt";
-            else if(origVysl.equals("Both")) vysl = "mut/wt";
+            if(origVysl.equals("4G")) vysl = "4G/4G";
+            else if(origVysl.equals("5G")) vysl = "5G/5G";
+            else if(origVysl.equals("Both")) vysl = "4G/5G";
           }
           else {
             if(origVysl.equals("Both")) vysl = "mut/wt";
