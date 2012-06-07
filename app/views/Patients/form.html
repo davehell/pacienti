@@ -18,12 +18,10 @@
 <fieldset>
   <legend>Informace o pacientovi</legend>
 
-  <p>
-   #{a @Patients.score(pacient?.id), title:"Zobrazit bodové ohodnocení vyšetření"}&{'examination.score'}#{/a}
-  </p>
+  <div class="span-10">
 #{if stejnaRC}
-  <p>
-    Pacient je již evidován:
+  <p class="notice">
+    Pacient je již evidován!
   </p>
   <ul>
   #{list stejnaRC}
@@ -88,12 +86,23 @@
 </p>
 #{/}
 
+<p>
+    <input class="left" type="submit" value="Uložit" />
+    #{if pacient?.id}
+    <span class="left button">#{a @myDelete(pacient?.id), id:"delButton"}Smazat pacienta#{/a}</span>
+    #{/if}
+</p>
+<div class="clear"></div>
+
+</div>
+<div class="span-13 last">
+
 #{field 'pacient.pojistovna.id'}
 <p>
   <label class="required">&{field.name} </label>
   *{ #{select "${field.name}", items:pojistovny, valueProperty:'id', value:"${pacient?.pojistovna?.id}" /} }*
 
-  #{select "${field.name}", value:"${pacient?.pojistovna?.id}", id:"${field.name}", class:"vLongW"}
+  #{select "${field.name}", value:"${pacient?.pojistovna?.id}", id:"${field.name}", class:"longW"}
     #{option "0"}&{'selectBox.option.select'}#{/option}
     #{list pojistovny}
       #{option "${_.id}"}${_.cislo} - ${_.nazev}#{/option}
@@ -107,7 +116,7 @@
 #{field 'pacient.lekar.id'}
 <p>
   <label>&{field.name} </label>
-  #{select "${field.name}", value:"${pacient?.lekar?.id}", id:"${field.name}", class:"vLongW"}
+  #{select "${field.name}", value:"${pacient?.lekar?.id}", id:"${field.name}", class:"longW"}
   	#{option }&{'selectBox.option.none'}#{/option}
     #{list lekari}
       #{option "${_.id}"}${_.icz} - ${_.jmeno}#{/option}
@@ -144,7 +153,7 @@
 #{field 'pacient.pozn'}
 <p>
   <label>&{field.name} </label>
-  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} vLongW">${pacient?.pozn}</textarea>
+  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} longerW">${pacient?.pozn}</textarea>
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
@@ -152,23 +161,19 @@
 #{field 'pacient.verejnaPozn'}
 <p>
   <label>&{field.name} </label>
-  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} vLongW">${pacient?.verejnaPozn}</textarea>
+  <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} longerW">${pacient?.verejnaPozn}</textarea>
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 <p>
  <label>&nbsp;</label><span class="small">((tučně))</span>
 </p>
 #{/}
+</div>
 
 <input type="hidden" name="pacient.id" value="${pacient?.id}">
 
-<p>
-    <input class="left" type="submit" value="Uložit" />
-    #{if pacient?.id}
-    <span class="left button delete">#{a @myDelete(pacient?.id), id:"delButton"}Smazat pacienta#{/a}</span>
-    #{/if}
-</p>
-<div class="clear"></div>
+
+
 </fieldset>
 #{/form}
 
@@ -285,7 +290,7 @@ $(document).ready(function() {
 						}
 					})
 					.addClass( "ui-widget ui-widget-content ui-corner-left" )
-          .addClass( "vLongW" );
+          .addClass( "longerW" );
 
 				input.data( "autocomplete" )._renderItem = function( ul, item ) {
 					return $( "<li></li>" )

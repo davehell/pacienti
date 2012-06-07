@@ -2,12 +2,16 @@
 
 #{set title:'Pacient ' + pacient.getKod() /}
 
+<span class="button">#{a @BioMaterials.form(null, pacient.id)}Přidat materiál#{/a}</span>
+<span class="button">#{a @Reports.form(null, pacient.id)}Přidat vyšetření#{/a}</span>
+<span class="button">#{a @Patients.score(pacient.id)}&{'examination.score'}#{/a}</span>
+
+
 #{include 'Patients/form.html' /}
 
 <div class="hWithButton">
   <h2>Biologické materiály</h2>
-  <span class="button">#{a @BioMaterials.form(null, pacient.id)}Přidat materiál#{/a}</span>
-</div>  
+</div>
 #{if pacient.bioMaterialy}
 <table class="display">
   <thead>
@@ -47,8 +51,7 @@
 
 <div class="hWithButton">
   <h2>Vyšetření</h2>
-  <span class="button">#{a @Reports.form(null, pacient.id)}Přidat vyšetření#{/a}</span>
-</div> 
+</div>
 
 #{if pacient.zpravy}
 <table class="display">

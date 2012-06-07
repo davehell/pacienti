@@ -26,20 +26,21 @@
     #{get 'moreScripts' /}
   </head>
   <body>
-    <div class="container">
-    <div class="column span-24 last noprint" id="header">
+    <div class="noprint" id="header2">
+      <div class="inside">
       <h1>Evidence pacientů</h1>
 #{if connected}
       <p>
         <a href="@{AppModuls.uziv()}" title="úprava profilu">${connected?.jmeno}</a>,
-        <a href="@{AppModuls.form()}" title="informace o modulu">${connected?.modul}</a> <br>
-        *{ ${request.remoteAddress} }* <span class="button"><a href="@{Secure.logout()}">Odhlášení</a></span>
+        <a href="@{AppModuls.form()}" title="informace o modulu">${connected?.modul}</a>
+        <span><a href="@{Secure.logout()}">Odhlášení</a></span>
       </p>
-#{/if}      
+#{/if}
+    </div>
     </div> <!-- header -->
+    <div class="container">
 
-<div class="column span-24 last prepend-top noprint" id="menu">
-    
+    <div class="column span-24 last noprint" id="menu">
 #{if connected}
     	<ul>
         #{if connected.isAdmin || connected.isDoctor}

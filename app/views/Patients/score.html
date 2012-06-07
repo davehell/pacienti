@@ -1,6 +1,17 @@
-#{extends 'main.html' /}
+<!DOCTYPE html>
 
-#{set title: pacient.getKod() + ' - bodové ohodnocení' /}
+<html>
+  <head>
+    <title>&{'examination.score'}</title>
+    <meta charset="${_response_encoding}">
+    <style media="print">
+     body {font-family: "Times New Roman", sans-serif; font-size: 10pt;}
+     table {width: 100%;}
+    </style>
+  </head>
+  <body>
+
+<h1>${pacient.getKod()} - &{'examination.score'}</h1>
 
 <table style="width: 100%;">
   <thead>
@@ -15,9 +26,11 @@
 %{ lastVys = ""; }%
 #{list str}
     #{if _.split(";", -1)[0] != lastVys}
+    <!--
     <tr>
       <td colspan="4"><strong>${_.split(";", -1)[0]}</strong></td>
     </tr>
+    -->
     #{/if}
     #{else}
     <tr>
