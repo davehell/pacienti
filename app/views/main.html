@@ -88,7 +88,9 @@
     </div> <!-- menu -->
 
     <div id="main"  class="column span-24 last prepend-top append-bottom">
+      #{if title}
       <h1>#{get 'title' /}</h1>
+      #{/if}
 
       #{if flash.error}
           <p class="error">
