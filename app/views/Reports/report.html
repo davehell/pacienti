@@ -162,9 +162,11 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 </p>
 
 <h3>Závěr:</h3>
+#{if zprava.zavZprava}
 <p>
  ${zprava.zavZprava.replace("((", "<strong>").replace("))", "</strong>").raw()}
 </p>
+#{/if}
 
 #{if zprava.pacient.verejnaPozn}
 <h3>Poznámka:</h3>

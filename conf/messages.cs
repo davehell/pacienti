@@ -45,6 +45,9 @@ zprava.datumSekv = sekvenace
 secure.username=uživatelské jméno:
 secure.password=heslo:
 secure.signin=Přihlásit se
+secure.title=Přihlášení
+secure.error=Neznámé uživatelské jméno nebo heslo.
+secure.logout=Odhlášení proběhlo úspěšně.
 
 datumOd = počáteční datum
 datumDo = koncové datum

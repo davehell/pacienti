@@ -1,0 +1,33 @@
+#{extends 'Secure/layout.html' /}
+#{set title: 'Přihlášení' /}
+
+
+<div class="login">
+<h1>Evidence pacientů</h1>
+	#{form @authenticate()}
+		#{if flash.error}
+			<p class="error">
+				&{flash.error}
+			</p>
+		#{/if}
+		#{if flash.success}
+			<p class="success">
+				&{flash.success}
+			</p>
+		#{/if}
+
+
+		<p>
+			<label for="username">&{'secure.username'}</label><br>
+			<input type="text" name="username" id="username" value="${flash.username}" class="input" />
+		</p>
+		<p>
+			<label for="password">&{'secure.password'}</label><br>
+			<input type="password" name="password" id="password" value="" class="input" />
+		</p>
+		<p class="submit">
+			<input type="submit" id="signin" value="&{'secure.signin'}" />
+		</p>
+
+	#{/form}
+</div>

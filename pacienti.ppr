@@ -73,6 +73,9 @@ pacienti
 			+errors
 				app\views\errors\404.html
 				app\views\errors\500.html
+			-Secure
+				app\views\Secure\layout.html
+				app\views\Secure\login.html
 			app\views\main.html
 			app\views\admin.html
 		app\Bootstrap.java
@@ -87,6 +90,7 @@ pacienti
 			public\javascripts\jquery-1.6.4.min.js
 		+stylesheets
 			public\stylesheets\main.css
+			public\stylesheets\secure.css
 	+test
 		test\Application.test.html
 		test\ApplicationTest.java
@@ -99,17 +103,17 @@ pacienti
 3=public\stylesheets\main.css
 [Selected Project Files]
 Main=
-Selected=public\stylesheets\main.css
+Selected=conf\messages.cs
 [conf\routes]
 TopLine=1
 Caret=63,17
 [app\views\main.html]
-TopLine=45
-Caret=52,90
+TopLine=110
+Caret=24,125
 Mark1=2,124
 [conf\messages.cs]
-TopLine=54
-Caret=22,80
+TopLine=29
+Caret=21,49
 [public\stylesheets\main.css]
-TopLine=65
-Caret=3,91
+TopLine=63
+Caret=54,108
