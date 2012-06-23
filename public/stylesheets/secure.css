@@ -1,7 +1,9 @@
 html, body {
     background: #fbfbfb;
-    font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif;
+    font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Arial CE", Arial, sans-serif;
 }
+
+
 
 .login {
 width: 320px;
@@ -10,10 +12,9 @@ margin: auto;
 }
 
 .login h1 {
-    font-weight: bold;
     color: #333;
     text-align: center;
-    font-size: 24px;
+    font-size:24px; font-family: 'Signika', Arial, sans-serif; font-weight: 400;
 }
 
 
@@ -47,6 +48,8 @@ outline: none;
 box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
 -webkit-border-radius:3px;border-radius:3px;border-width:1px;border-style:solid;
 }
+
+
 
 .login label {
 color: #777;

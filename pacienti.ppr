@@ -73,7 +73,7 @@ pacienti
 			+errors
 				app\views\errors\404.html
 				app\views\errors\500.html
-			-Secure
+			+Secure
 				app\views\Secure\layout.html
 				app\views\Secure\login.html
 			app\views\main.html
@@ -103,17 +103,17 @@ pacienti
 3=public\stylesheets\main.css
 [Selected Project Files]
 Main=
-Selected=conf\messages.cs
+Selected=public\stylesheets\main.css
 [conf\routes]
-TopLine=1
+TopLine=25
 Caret=63,17
 [app\views\main.html]
-TopLine=110
-Caret=24,125
-Mark1=2,124
+TopLine=112
+Caret=2,127
+Mark1=2,126
 [conf\messages.cs]
 TopLine=29
-Caret=21,49
+Caret=24,50
 [public\stylesheets\main.css]
-TopLine=63
-Caret=54,108
+TopLine=41
+Caret=1,65
