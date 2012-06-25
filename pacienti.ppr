@@ -101,14 +101,25 @@ pacienti
 1=app\views\main.html
 2=conf\messages.cs
 3=public\stylesheets\main.css
+4=app\controllers\Patients.java
+5=app\models\Score.java
+6=app\models\Examination.java
 [Selected Project Files]
 Main=
+<<<<<<< HEAD
 Selected=public\stylesheets\main.css
+=======
+Selected=app\models\Score.java
+>>>>>>> score
 [conf\routes]
 TopLine=25
 Caret=63,17
 [app\views\main.html]
+<<<<<<< HEAD
 TopLine=112
+=======
+TopLine=110
+>>>>>>> score
 Caret=2,127
 Mark1=2,126
 [conf\messages.cs]
@@ -116,4 +127,17 @@ TopLine=29
 Caret=24,50
 [public\stylesheets\main.css]
 TopLine=41
+<<<<<<< HEAD
 Caret=1,65
+=======
+Caret=23,49
+[app\controllers\Patients.java]
+TopLine=73
+Caret=3,85
+[app\models\Score.java]
+TopLine=1
+Caret=22,26
+[app\models\Examination.java]
+TopLine=1
+Caret=7,31
+>>>>>>> score
