@@ -35,7 +35,6 @@ public class Examination extends Model {
         return (aktual ? "" : "X ") + nazev;
     }
 
-
     public static List<Examination> getActual() {
         return Examination.find("aktual = ? order by nazev asc", true).fetch();
     }

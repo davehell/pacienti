@@ -13,23 +13,16 @@ public class Score extends Model {
     @ManyToOne
     public Examination vysetreni;
 
-    @MaxSize(10)
-    public String kod;  //kod vykonu
-
-    public int pocet; //uctovany pocet
+    @Required
+    @ManyToOne
+    public Operation vykon;
 
     @Required
-    @MaxSize(50)
-    public String popis;  //slovni popis vykonu
+    public int pocet;  //uctovany pocet
 
-    public int body;  //body za vykon
-
-    public boolean jednouNaVzorek;  //uctovat pouze 1x na vzorek
-
-    public boolean jednouDenne; //uctovat pouze 1x denne
 
     public String toString()  {
-        return popis + " - " + vysetreni.nazev;
+        return vysetreni.nazev + " - " + vykon.kod;
     }
 
 

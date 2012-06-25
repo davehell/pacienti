@@ -45,24 +45,32 @@ public class Patients extends Application  {
     Date datum = null;
     String[] svatky = {"01.01","01.05","08.05","05.07","06.07","28.09","28.10","17.11","24.12","25.12","26.12"}; //TODO: chybi velikonocni pondeli
     int blbec = 0;
-    int pocet = 0;
+    int pocetDni = 0;
+
 
     for(Report zprava : pacient.zpravy) {
       if(zprava.datumVysetreni == null) continue;
-
       for(Score ohodnoceni : zprava.vysetreni.score) {
-        datum = zprava.datumVysetreni;
-        pocet = (ohodnoceni.jednouDenne ? ohodnoceni.pocet : 1);
-        for(int i = 0; i < pocet; i++) {
-          if(ohodnoceni.jednouNaVzorek) {
+        pocetDni = (ohodnoceni.vykon.jednouDenne ? ohodnoceni.pocet : 1);   //do kolika dni se ma vykon rozepsat
+        
+        if(ohodnoceni.vykon.kod.equals("94119")) {
+          datum = zprava.bioMaterial.datumIzolace;
+          if(datum == null) datum = zprava.datumVysetreni;
+        }
+        else {
+          datum = zprava.datumVysetreni;
+        }
+        
+        for(int i = 0; i < pocetDni; i++) {
+          if(ohodnoceni.vykon.jednouNaVzorek) {
             if(vzorky.get(zprava.bioMaterial.id) != null) continue; //pro tento biomat se uz dany kod vykonu provadel
-            vzorky.put(zprava.bioMaterial.id, ohodnoceni.kod);
+            vzorky.put(zprava.bioMaterial.id, ohodnoceni.vykon.kod);
           }
 
           //retezec jdouci na vystup
-          str.add(zprava.vysetreni.nazev + ";" + df.format(datum) + ";" + ohodnoceni.kod + ";" + zprava.vysetreni.nazev + ";" + ohodnoceni.popis );
+          str.add(df.format(datum) + ";" + ohodnoceni.vykon.kod + ";" + (ohodnoceni.vykon.jednouDenne ? 1 : ohodnoceni.pocet) );
 
-          if(ohodnoceni.jednouDenne) {
+          if(ohodnoceni.vykon.jednouDenne) {
             blbec = 0;
             while(blbec < 100) {
               blbec++;
@@ -78,8 +86,9 @@ public class Patients extends Application  {
               break;
             }
           }
-        } //for pocet
+        } //for pocetDni
     	} //for zprava.vysetreni.score
+
   	} //for pacient.zpravy
 
 
