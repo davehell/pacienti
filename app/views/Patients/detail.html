@@ -2,8 +2,10 @@
 
 #{set title:'Pacient ' + pacient.getKod() /}
 
+<!--
 <span class="button">#{a @BioMaterials.form(null, pacient.id)}Přidat materiál#{/a}</span>
 <span class="button">#{a @Reports.form(null, pacient.id)}Přidat vyšetření#{/a}</span>
+-->
 <span class="button">#{a @Patients.score(pacient.id)}&{'examination.score'}#{/a}</span>
 
 
@@ -11,6 +13,7 @@
 
 <div class="hWithButton">
   <h2>Biologické materiály</h2>
+  <span class="button">#{a @BioMaterials.form(null, pacient.id)}Přidat materiál#{/a}</span>
 </div>
 #{if pacient.bioMaterialy}
 <table class="display">
@@ -51,6 +54,7 @@
 
 <div class="hWithButton">
   <h2>Vyšetření</h2>
+  <span class="button">#{a @Reports.form(null, pacient.id)}Přidat vyšetření#{/a}</span>
 </div>
 
 #{if pacient.zpravy}
