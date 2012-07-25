@@ -32,7 +32,7 @@
 #{if connected}
       <p>
         <a href="@{AppModuls.uziv()}" title="úprava profilu">${connected?.jmeno}</a>,
-        <a href="@{AppModuls.form()}" title="informace o modulu">${connected?.modul}</a>
+        <a href="@{AppModuls.form()}" title="nastavení modulu">${connected?.modul}</a>
         <span><a href="@{Secure.logout()}">Odhlášení</a></span>
       </p>
 #{/if}

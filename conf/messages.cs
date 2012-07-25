@@ -80,7 +80,7 @@ neuvedeno = neuvedeno
 
 noRecords = Nejsou uloženy žádné záznamy.
 
-examination.score = Bodové ohodnocení vyšetření
+examination.score = Účtování vyšetření
 
 crud.search = Hledat
 crud.pagination.previous = Předchozí
