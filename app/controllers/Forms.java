@@ -137,6 +137,7 @@ public class Forms extends Application {
         pacKod = columns[1];
         marker = columns[2];
         origVysl = columns[7];
+        vysl = "";
 
         try {
           if(marker.substring(0,3).equals("PAI")) {

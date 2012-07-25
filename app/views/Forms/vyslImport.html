@@ -37,7 +37,7 @@
       <td>${_.split(",", -1)[0]}</td>
       <td>${_.split(",", -1)[1]}</td>
       <td>${_.split(",", -1)[2]}</td>
-      <td>#{ifnot _.split(",", -1)[3]}<span class="highlight">POZOR!!!</span>#{/ifnot}${_.split(",", -1)[3]}</td>
+      <td>#{ifnot _.split(",", -1)[3]}<span class="highlight">&{'vyslImport.neznamy'}</span>#{/ifnot}${_.split(",", -1)[3]}</td>
     </tr>
 #{/list}
   </tbody>
@@ -61,7 +61,7 @@
       <td>${_.split(",", -1)[0]}</td>
       <td>${_.split(",", -1)[1]}</td>
       <td>${_.split(",", -1)[2]}</td>
-      <td>${_.split(",", -1)[3]}</td>
+      <td>#{ifnot _.split(",", -1)[3]}<span class="highlight">&{'vyslImport.neznamy'}</span>#{/ifnot}${_.split(",", -1)[3]}</td>
     </tr>
 #{/list}
   </tbody>

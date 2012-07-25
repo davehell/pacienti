@@ -82,6 +82,8 @@ noRecords = Nejsou uloženy žádné záznamy.
 
 examination.score = Účtování vyšetření
 
+vyslImport.neznamy = neznámý
+
 crud.search = Hledat
 crud.pagination.previous = Předchozí
 crud.pagination.first = První
