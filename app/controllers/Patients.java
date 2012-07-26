@@ -176,20 +176,25 @@ public class Patients extends Application  {
 
 
   public static void myDelete(Long id) {
-      Patient pacient = Patient.getByModulAndId(connected.modul, id);
-      notFoundIfNull(pacient);
+    Patient pacient = Patient.getByModulAndId(connected.modul, id);
+    notFoundIfNull(pacient);
+    
+    //TODO: zahada - bez tohoto (i kdyz prazdneho cyklu) se pacient nesmaze,
+    //protoze dojde k poruseni referencni integrity u Report
+    for(Report zprava : pacient.zpravy) {
+    }
 
-      try {
-        pacient.delete();
-        appLog.add("pacient " + pacient.getKod(), "delete", id);
-        flash.success("Pacient %s odebrán.", pacient.getKod());
-      }
-      catch (Exception e) {
-          Logger.error(e.getMessage());
-          flash.error("Pacienta %s se nepodařilo odebrat.",pacient.getKod());
-          detail(pacient.id);
-      }
-      index();
+    try {
+      pacient.delete();
+      appLog.add("pacient " + pacient.getKod(), "delete", id);
+      flash.success("Pacient %s odebrán.", pacient.getKod());
+    }
+    catch (Exception e) {
+        Logger.error(e.getMessage());
+        flash.error("Pacienta %s se nepodařilo odebrat.",pacient.getKod());
+        detail(pacient.id);
+    }
+    index();
   }
 
 

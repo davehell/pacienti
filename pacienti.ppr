@@ -36,7 +36,6 @@ pacienti
 			app\models\InsuranceCompany.java
 			app\models\Patient.java
 			app\models\Report.java
-			app\models\Result.java
 			app\models\Score.java
 			app\models\User.java
 		+views
