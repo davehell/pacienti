@@ -69,13 +69,22 @@
 
 #{field 'bioMaterial.parafaPrijeti.id'}
 <p>
-  <label>&{field.name} </label>
+  <label>&{field.name}</label>
+  #{ifnot bioMaterial?.id}
+    <input type="hidden" name="${field.name}" value="${connected?.id}">
+    <input type="text" id="${field.id}_label" name="${field.name}_label" value="${connected.parafa}" class="${field.errorClass} disabled shortW" disabled="disabled">
+  #{/ifnot}
+  #{else}
+    <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.parafaPrijeti?.parafa}" class="${field.errorClass} disabled shortW" disabled="disabled">
+  #{/else}
+*{
   #{select "${field.name}", value:"${bioMaterial?.parafaPrijeti?.id}", id:"${field.name}"}
   	#{option }&{'selectBox.option.none'}#{/option}
     #{list users}
       #{option "${_.id}"}${_.parafa}#{/option}
     #{/list}
   #{/select}
+}*
   <span class="error">#{error 'bioMaterial.parafaPrijeti' /} </span>
 </p>
 #{/}
@@ -93,12 +102,21 @@
 #{field 'bioMaterial.parafaIzolace.id'}
 <p>
   <label>&{field.name} </label>
+  #{ifnot bioMaterial?.id}
+    <input type="hidden" name="${field.name}" value="${connected?.id}">
+    <input type="text" id="${field.id}_label" name="${field.name}_label" value="${connected.parafa}" class="${field.errorClass} disabled shortW" disabled="disabled">
+  #{/ifnot}
+  #{else}
+    <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.parafaIzolace?.parafa}" class="${field.errorClass} disabled shortW" disabled="disabled">
+  #{/else}
+*{
   #{select "${field.name}", value:"${bioMaterial?.parafaIzolace?.id}", id:"${field.name}"}
   	#{option }&{'selectBox.option.none'}#{/option}
     #{list users}
       #{option "${_.id}"}${_.parafa}#{/option}
     #{/list}
   #{/select}
+}*
   <span class="error">#{error 'bioMaterial.parafaIzolace' /} </span>
 </p>
 #{/}
