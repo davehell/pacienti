@@ -17,6 +17,8 @@ public class Examination extends Model {
     @Lob
     public String popis;
 
+    public String vysvetlivka; // ((tučně))
+
     public int body;
 
     public boolean aktual;

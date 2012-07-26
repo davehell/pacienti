@@ -157,9 +157,12 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
     #{/if} 
   #{/list}
 </table>
+#{if zprava.vysetreni.vysvetlivka}
 <p style="font-size: 10pt; margin: 0;">
- Vysvětlivky: <strong>wt</strong> – &bdquo;wild type&rdquo; = &bdquo;ne-mutantní&rdquo; alela, <strong>mut</strong>. – &bdquo;mutantní&rdquo; alela
+ Vysvětlivky: ${zprava.vysetreni.vysvetlivka.replace("((", "<strong>").replace("))", "</strong>").raw()}
 </p>
+#{/if}
+
 
 <h3>Závěr:</h3>
 #{if zprava.zavZprava}
@@ -178,7 +181,8 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
 <table class="tab" style="width: auto; position: absolute; bottom: 0;">
   <tr>
     <td>Analýzu provedl:</td>
-    <td>#{if zprava.parafaVysetreni}<span class="noItal">${zprava.parafaVysetreni?.jmeno} </span>, ${zprava.parafaVysetreni?.pozice}#{/if} #{if zprava.analyzuProvedl}, ${zprava.analyzuProvedl}#{/if}</td>
+    <!-- <td>#{if zprava.parafaVysetreni}<span class="noItal">${zprava.parafaVysetreni?.jmeno} </span>, ${zprava.parafaVysetreni?.pozice}#{/if} #{if zprava.analyzuProvedl}<span class="noItal">, ${zprava.analyzuProvedl}</span>#{/if}</td> -->
+    <td><span class="noItal">#{if zprava.parafaVysetreni}${zprava.parafaVysetreni?.jmeno}, ${zprava.parafaVysetreni?.pozice}#{/if}#{if zprava.analyzuProvedl}, ${zprava.analyzuProvedl}#{/if} </span></td>
   </tr>
   <tr>
     <td>Analýzu uvolnil:</td>
