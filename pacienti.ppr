@@ -104,7 +104,7 @@ pacienti
 Main=
 Selected=public\stylesheets\main.css
 [conf\routes]
-TopLine=43
+TopLine=25
 Caret=17,30
 [app\views\main.html]
 TopLine=44
@@ -114,5 +114,5 @@ Mark1=2,126
 TopLine=64
 Caret=19,85
 [public\stylesheets\main.css]
-TopLine=113
+TopLine=92
 Caret=2,144

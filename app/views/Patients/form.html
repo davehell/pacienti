@@ -137,7 +137,7 @@
 #{field 'pacient.diagnoza'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.diagnoza}" class="${field.errorClass} shortW">
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.diagnoza}" class="${field.errorClass} longW">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
