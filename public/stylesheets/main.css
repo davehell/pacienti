@@ -137,7 +137,7 @@ span.delete{
 .longerW {width: 22em;}
 .vLongW {width: 30em;}
 
-input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly], .disabled {
 cursor: not-allowed;
 background-color: #EEE;
 border-color: #DDD;
