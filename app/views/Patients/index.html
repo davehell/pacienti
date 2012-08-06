@@ -3,10 +3,16 @@
 
 
 #{if pacienti}
+<ul id="skupiny">
+  <li><a href="?skupina=KO 000">KO 000</a></li>
+  <li><a href="?skupina=KO 3000">KO 3000</a></li>
+</ul>
+
   <table class="display" id="pacTable">
     <thead>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
+      <!-- <th>&nbsp;</th> -->
       <th>Evidenční číslo</th>
       <th>Jméno</th>
       <th>Rodné číslo</th>
@@ -17,6 +23,7 @@
     <tr>
       <td>${_.evCislo} </td>
       <td>${_.evRok} </td>
+      <!-- <td>${_.getSkupina()} </td> -->
       <td>#{a @Patients.detail(_.id), title:"Zobrazit detail tohoto pacienta"}${_.getKod()}#{/a} </td>
       <td>${_.toString()} </td>
       <td>${_.getRodneCislo()} </td>
@@ -26,6 +33,14 @@
   </table>
 
 <script type="text/javascript">
+
+/*  filtrovani podle skupiny
+function fnFilterColumn ( text )
+{
+    $('#pacTable').dataTable().fnFilter(text, 2); //skupina je ve druhem sloupci
+}
+*/
+
 $(document).ready(function() {
     oTable = $('#pacTable').dataTable({
         "bJQueryUI": true,
@@ -33,7 +48,7 @@ $(document).ready(function() {
         "bStateSave": false,
         "aaSorting": [[ 1, "desc" ],[ 0, "desc" ]],
         "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "Vše"]],
-        "iDisplayLength":25,
+        "iDisplayLength":50,
         "aoColumnDefs": [
             { "bVisible": false, "aTargets": [ 0, 1 ] },
             { "bSearchable": false, "aTargets": [ 0, 1 ] }
@@ -56,6 +71,11 @@ $(document).ready(function() {
           }
         }
     });
+    /* filtrovani podle skupiny
+    $("#skupiny li").click(  function() {
+      fnFilterColumn( $(this).text() );
+    } );
+    */
 
 /*
     $('#pacTable tbody tr').live('click', function () {

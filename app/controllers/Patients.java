@@ -19,8 +19,21 @@ import org.allcolor.yahp.converter.IHtmlToPdfTransformer;
 @With(Secure.class)
 public class Patients extends Application  {
 
-  public static void index() {
-    List<Patient> pacienti = Patient.getLastPatients(connected.modul, 100);
+  public static void index(String skupina) {
+    int min = 0;
+    int max = 999;
+    if(skupina != null) {
+      if(skupina.equals("KO 000")) {
+        min = 0;
+        max = 999;
+      }
+      else if(skupina.equals("KO 3000")) {
+        min = 3000;
+        max = 4000;
+      }
+    }
+
+    List<Patient> pacienti = Patient.getLastPatients(connected.modul, 100, min, max);
     render(pacienti);
   }
 

@@ -111,8 +111,8 @@ public class Patient extends Model {
         
     }
 
-    public static List<Patient> getLastPatients(AppModul modul, int count) {
-        return Patient.find("modul = ? order by evRok desc, evCislo desc", modul).fetch(count);
+    public static List<Patient> getLastPatients(AppModul modul, int count, int minCislo, int maxCislo) {
+        return Patient.find("modul = ? and evCislo >= ? and evCislo <= ? order by evRok desc, evCislo desc", modul, minCislo, maxCislo).fetch(count);
     }
 
     public String getCDokladu() {
@@ -136,7 +136,11 @@ public class Patient extends Model {
 
     public String toString() {
         return  prijmeni + " " + jmeno + (titul.length() > 0 ? ", " + titul : "");
+    }
 
+    public String getSkupina() {
+        if(evCislo >= 3000) return modul.kod + "3000";
+        else return modul.kod + "000";
     }
 
     //kod = KO-111/12
