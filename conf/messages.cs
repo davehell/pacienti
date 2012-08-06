@@ -27,6 +27,7 @@ casPrijeti = čas přijetí
 
 zprava.bioMaterial.id = biologický materiál
 zprava.vysetreni.id = vyšetření
+zprava.datumZpravy = datum a čas uvolnění zprávy
 zprava.datumVysetreni = datum vyšetření
 zprava.parafaVysetreni.id = parafa provedení
 zprava.analyzuProvedl = analýzu provedl

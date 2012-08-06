@@ -193,8 +193,8 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
     <td class="noItal">${zprava.vedouciLekar} </td>
   </tr>
   <tr>
-    <td>Datum a čas</td>
-    <td class="noItal">${new Date().format('dd.MM.yyyy HH:mm')} </td>
+    <td>Datum a čas:</td>
+    <td class="noItal">${zprava.datumZpravy?.format('dd.MM.yyyy HH:mm')} </td>
   </tr>
 #{if zprava.vysetreni.certif}
   <tr>

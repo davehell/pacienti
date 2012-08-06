@@ -64,7 +64,7 @@
 #{else}
   #{field 'zprava.vysetreni.id'}
   <p>
-    <label class="required"l>&{field.name} </label>
+    <label class="required">&{field.name} </label>
     #{select "${field.name}", value:"${zprava?.vysetreni?.id}", id:"${field.name}", class:"vLongW"}
     	#{option "0"}&{'selectBox.option.select'}#{/option}
       #{list vysetreni}
@@ -75,6 +75,16 @@
   </p>
   #{/}
 #{/else}
+
+#{field 'zprava.datumZpravy'}
+<p>
+  <label>&{field.name} </label>
+  <input type="text" id="${field.id}" name="${field.name}" value="#{if zprava?.id}${zprava?.datumZpravy?.format('dd.MM.yyyy HH:mm')}#{/if}#{else}${new Date().format('dd.MM.yyyy HH:mm')}#{/else}" class="${field.errorClass} datumW">
+
+
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+</p>
+#{/}
 
 #{field 'zprava.datumVysetreni'}
 <p>

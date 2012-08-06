@@ -32,6 +32,9 @@ public class Report extends Model {
     @As("dd.MM.yyyy")
     public Date datumVysetreni;
 
+    @As("dd.MM.yyyy HH:mm")
+    public Date datumZpravy; //datum vytvoření závěrečné zprávy
+
     @OneToOne
     public User parafaVysetreni;
 
