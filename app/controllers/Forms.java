@@ -89,8 +89,20 @@ public class Forms extends Application {
   }
 
   @Check("doctor")
-  public static void stitky(String evCisla) {
-    List<Patient> pacienti = Patient.getLastPatients(connected.modul, 100);
+  public static void stitky(String evCisla, String skupina) {
+    int min = 0;
+    int max = 999;
+    if(skupina != null) {
+      if(skupina.equals("KO 000")) {
+        min = 0;
+        max = 999;
+      }
+      else if(skupina.equals("KO 3000")) {
+        min = 3000;
+        max = 4000;
+      }
+    }
+    List<Patient> pacienti = Patient.getLastPatients(connected.modul, 100, min, max);
     if(evCisla == null) {
       render(pacienti);
     }
