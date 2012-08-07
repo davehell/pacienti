@@ -124,7 +124,7 @@ public class Forms extends Application {
   }
 
   @Check("doctor")
-  public static void vyslImport(File file) {
+  public static void vyslImport(File file, boolean test) {
     if(file != null) {
       List strOk = new ArrayList();
       List strErr = new ArrayList();
@@ -170,17 +170,17 @@ public class Forms extends Application {
         vysl = vysl.trim();
         pacient = Patient.getByKod(pacKod);
 
-        upraveno = Report.setVysl(pacKod, marker, vysl);
+        upraveno = Report.setVysl(pacKod, marker, vysl, test);
         if(upraveno) strOk.add(pacKod + "," + marker + "," + origVysl + "," + vysl);
         else         strErr.add(pacKod + "," + marker + "," + origVysl + "," + vysl);
         //System.out.println(pacKod + " - " + marker + " - " + vysl);
       }
 
       String fileName = file.getName();
-      render(fileName, strOk, strErr);
+      render(fileName, test, strOk, strErr);
     }
     else {
-      render();
+      render(test);
     }
   }//vyslImport
   

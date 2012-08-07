@@ -10,18 +10,28 @@
     <input type="file" id="file" name="file" />
   </p>
   <p>
+    <label>Pouze test</label>
+    <input type="checkbox" id="test" name="test" checked="checked" />
+  </p>
+  <p>
      <input type="submit" value="Odeslat" />
   </p>
 </fieldset>
 </form>
 #{/ifnot}
 #{else}
-<p>
- Soubor s daty: ${fileName}
-</p> 
+  <p>
+   Soubor s daty: ${fileName}
+  </p>
+
+#{if test}
+  <p class="info">
+    Pouze test!
+  </p>
+#{/if}
 
 <div class="span-12">
-<h3 class="success">Import proběhl v pořádku:</h3>
+<h3 class="success">#{if test}Test#{/if}#{else}Import#{/else} proběhl v pořádku:</h3>
 <table>
   <thead>
     <tr>
@@ -45,7 +55,7 @@
 </div>
 
 <div class="span-12 last">
-<h3 class="error">Import se nepodařil:</h3>
+<h3 class="error">#{if test}Test#{/if}#{else}Import#{/else} se nepodařil:</h3>
 <table>
   <thead>
     <tr>

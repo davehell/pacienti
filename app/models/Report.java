@@ -86,7 +86,7 @@ public class Report extends Model {
     }
 
 
-    public static boolean setVysl(String pacKod, String marker, String vysl) {
+    public static boolean setVysl(String pacKod, String marker, String vysl, boolean jenTest) {
       Patient pacient = Patient.getByKod(pacKod);
       if(pacient == null) return false;
 
@@ -109,6 +109,8 @@ public class Report extends Model {
 
 //       Result vysledek = Result.find("zavZprava = ? and genotyp = ?", zprava, genotyp).first();
 //       if(vysledek == null) return false;
+
+      if(jenTest) return true;
 
       String vyslStr = "";
       String[] splitVysl = zprava.vysledek.split("\\$", -1);
