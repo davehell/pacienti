@@ -1,13 +1,29 @@
 #{extends 'main.html' /}
-#{set title: pacient.getKod() /}
+#{set title: pacient.getKod() + " - účtování vyšetření" /}
 
+<dl>
+  <dt>Kód vzorku</dt>
+  <dd>${pacient.getKod()} </dd>
+<!--
+  <dt>Datum a čas přijetí</dt>
+  <dd></dd>
+  <dt>Číslo dokladu</dt>
+  <dd>${} </dd>
+-->
+  <dt>IČZ</dt>
+  <dd>${pacient.lekar?.icz} </dd>
+  <dt>Odbornost</dt>
+  <dd>${pacient.lekar?.odbornost} </dd>
 
+</dl>
+
+<!-- <table style="width: 100%;"> -->
 <table>
   <thead>
     <tr>
-      <th>Datum</th>
-      <th>Kód výkonu</th>
-      <th>Účtovaný počet</th>
+      <th style="padding-right: 4em; text-align: left;">Datum</th>
+      <th style="padding-right: 4em; text-align: left;">Kód výkonu</th>
+      <th style="text-align: left;">Účtovaný počet</th>
     </tr>
   </thead>
   <tbody>
