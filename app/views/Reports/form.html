@@ -80,8 +80,7 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="#{if zprava?.id}${zprava?.datumZpravy?.format('dd.MM.yyyy HH:mm')}#{/if}#{else}${new Date().format('dd.MM.yyyy HH:mm')}#{/else}" class="${field.errorClass} datumW">
-
-
+  <span class="small">dd.mm.rrrr hh:mm</span>
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
@@ -106,7 +105,7 @@
     #{select "${field.name}", value:"${zprava?.parafaVysetreni?.id}", id:"${field.name}", class:"disabled"}
     	#{option }&{'selectBox.option.none'}#{/option}
       #{list users}
-        #{option "${_.id}"}${_.jmeno}#{/option}
+        #{option "${_.id}"}${_.parafa}#{/option}
       #{/list}
     #{/select}
   #{/else}
