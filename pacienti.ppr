@@ -100,9 +100,12 @@ pacienti
 1=app\views\main.html
 2=conf\messages.cs
 3=public\stylesheets\main.css
+4=app\views\Patients\score.html
+5=app\views\Reports\report.html
+6=app\controllers\Patients.java
 [Selected Project Files]
 Main=
-Selected=public\stylesheets\main.css
+Selected=app\views\Patients\score.html
 [conf\routes]
 TopLine=25
 Caret=60,51
@@ -114,5 +117,14 @@ Mark1=2,126
 TopLine=18
 Caret=47,24
 [public\stylesheets\main.css]
-TopLine=92
-Caret=2,144
+TopLine=1
+Caret=1,53
+[app\views\Patients\score.html]
+TopLine=1
+Caret=56,2
+[app\views\Reports\report.html]
+TopLine=97
+Caret=5,124
+[app\controllers\Patients.java]
+TopLine=75
+Caret=23,112

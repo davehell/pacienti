@@ -207,7 +207,7 @@ public class Patients extends Application  {
         flash.error("Pacienta %s se nepodařilo odebrat.",pacient.getKod());
         detail(pacient.id);
     }
-    index();
+    index("");
   }
 
 
