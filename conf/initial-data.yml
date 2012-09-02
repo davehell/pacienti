@@ -19,44 +19,28 @@ User(david):
     pozice:         odborný pracovník
     modul:          ov
     isAdmin:        true
+    isDoctor:       true
 
 User(brno):
     username:       brno
     passwordHash:   fbf703d4d52699ed28824f56571fe2bea443246a
     jmeno:          Laboratoř forenzní genetiky
+    parafa:         BR
+    pozice:         odborný pracovník
     modul:          br
     isAdmin:        true
+    isDoctor:       true
 
-User(jf):
-    username:       jf
-    passwordHash:   002e23b9512c2b19a361d0fa9d7207e91c14c61a
-    jmeno:          RNDr. Jiří Fišer
-    parafa:         JF
-    pozice:         odborný pracovník
+User(ostrava):
+    username:       ostrava
+    passwordHash:   fbf703d4d52699ed28824f56571fe2bea443246a
+    jmeno:          Laboratoř forenzní genetiky
     modul:          ov
-    isAdmin:        false
+    isAdmin:        true
+    isDoctor:       true
 
-User(lh):
-    username:       lh
-    passwordHash:   9808e069e91407c2841870851647ea0d23600d21
-    jmeno:          Mgr. Lenka Hrdá
-    parafa:         LH
-    pozice:         laborantka
-    modul:          ov
-    isAdmin:        false
-
-User(hk):
-    username:       hk
-    passwordHash:   4fe0d24231b6309c90a78eeb8dc6ff2ca2d4cb85
-    jmeno:          RNDr. Hana Kolaříková
-    parafa:         HK
-    pozice:         odborný pracovník
-    modul:          ov
-    isAdmin:        false
-
-User(demo):
-    username:       demo
-    passwordHash:   89e495e7941cf9e40e6980d14a16bf023ccd4c91
-    jmeno:          demo
-    modul:          br
-    isAdmin:        false
+InsuranceCompany(vzp):
+    modul:       br
+    cislo:       111
+    nazev:       Všeobecná zdravotní pojišťovna
+    aktual:      true

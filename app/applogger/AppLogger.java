@@ -6,6 +6,7 @@ import java.text.*;
 import play.libs.*;
 import java.io.*;
 
+
 public class AppLogger {
 
     private String user;
@@ -22,7 +23,8 @@ public class AppLogger {
       List<String> lines = null;
 
       try {
-        File file = new File("logs/" + filename + ".txt");
+        //File file = new File("logs/" + filename + ".txt");
+        File file = new File(play.Play.configuration.getProperty("AppLogger.PATH", "") + filename + ".txt");
         lines = IO.readLines(file);
       }
       catch (Exception e) {
@@ -40,14 +42,15 @@ public class AppLogger {
 
       try
       { //ulozeni do logu
-        FileWriter out = new FileWriter("logs/" + filename + ".txt", true);
+        //FileWriter out = new FileWriter("logs/" + filename + ".txt", true);
+        FileWriter out = new FileWriter(play.Play.configuration.getProperty("AppLogger.PATH", "") + filename + ".txt", true);
         BufferedWriter writer = new BufferedWriter(out);
         writer.write(time + ";" + modul + ";" + user + ";" + model + ";" + id.toString() + ";" + action + "\r\n");
         writer.close();
 
       }
       catch(Exception e) {
-        
+
       }
 
     }
