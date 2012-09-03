@@ -50,6 +50,7 @@ public class Doctors extends Application {
         newLekar.icz = lekar.icz;
         newLekar.jmeno = lekar.jmeno;
         newLekar.pracoviste = lekar.pracoviste;
+        newLekar.odbornost = lekar.odbornost;
         newLekar.save();
       }
 
