@@ -148,7 +148,7 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
     <tr>
     #{/if}
     <td class="gtyp">${marker.replace("->", "&rarr;").raw()} </td>
-    <td class="gres">${vyslMap.get(marker).replace("mut", "<strong>mut</strong>").replace("4G", "<strong>4G</strong>").replace("pozitivní", "<strong>pozitivní</strong>").raw()} </td>
+    <td class="gres">${vyslMap.get(marker).replace("mut", "<strong>mut</strong>").replace("4G", "<strong>4G</strong>").replace("pozitivní", "<strong>pozitivní</strong>").replace("POZITIVNÍ", "<strong>POZITIVNÍ</strong>").raw()} </td>
     #{if marker_index % zprava.vysetreni.sloupce == 0}
     </tr>
     #{ifnot marker_isLast}
