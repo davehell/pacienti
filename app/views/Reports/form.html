@@ -76,6 +76,16 @@
   #{/}
 #{/else}
 
+#{if zprava?.vysetreni?.certif}
+  #{field 'neniCertif'}
+  <p>
+    <label>&{field.name} </label>
+    <input type="checkbox" id="${field.id}" name="${field.name}" ${zprava?.neniCertif ? 'checked' : ''} }" class="${field.errorClass}">
+    #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+  </p>
+  #{/}
+#{/if}
+
 #{field 'zprava.datumZpravy'}
 <p>
   <label>&{field.name} </label>
@@ -148,10 +158,10 @@
 </p>
 #{/}
 
-#{field 'zprava.pozitivni'}
+#{field 'pozitivni'}
 <p>
   <label>&{field.name} </label>
-  <input type="checkbox" id="${field.id}" name="${field.name}" #{if zprava?.pozitivni} checked="checked" #{/if} class="${field.errorClass}">
+  <input type="checkbox" id="${field.id}" name="${field.name}" ${zprava?.pozitivni ? 'checked' : ''} class="${field.errorClass}">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}

@@ -48,7 +48,7 @@
   </p>
 </div>
 
-#{if zprava.vysetreni.certif}
+#{if zprava.vysetreni.certif && !zprava.neniCertif}
 <div id="certif">
   <img src="@{'/public/images/cert_m8141.gif'}" height="60px" width="60px">
 </div>
@@ -108,7 +108,14 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
   </tr>
 </table>
 
-<h2>${zprava.vysetreni.popis} </h2>
+<h2>
+#{if zprava.neniCertif}
+  ${zprava.vysetreni.popis.replace("*", "")}
+#{/if}
+#{else}
+  ${zprava.vysetreni.popis}
+#{/else}
+</h2>
 
 <table class="tab">
   <tr>
@@ -196,7 +203,7 @@ Pracoviště: <strong>Laboratoř forenzní genetiky</strong>, spol. s r.o.<br>
     <td>Datum a čas:</td>
     <td class="noItal">${zprava.datumZpravy?.format('dd.MM.yyyy HH:mm')} </td>
   </tr>
-#{if zprava.vysetreni.certif}
+#{if zprava.vysetreni.certif && !zprava.neniCertif}
   <tr>
     <td>Vysvětlivky:</td>
     <td><strong>* na výsledkové zprávě označuje akreditované vyšetření</strong></td>

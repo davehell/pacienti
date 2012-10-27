@@ -52,6 +52,8 @@ public class Report extends Model {
 
     public boolean pozitivni;
 
+    public boolean neniCertif; //toto konkrétní vyšetření není certifikované
+
     @As("dd.MM.yyyy")
     public Date datumPCR1;
 

@@ -34,7 +34,6 @@ zprava.analyzuProvedl = analýzu provedl
 zprava.analyzuUvolnil = analýzu uvolnil
 zprava.vedouciLekar = vedoucí lékař
 zprava.zavZprava = závěrečná zpráva
-zprava.pozitivni  = pozitivní
 zprava.datumPCR1  = 1. PCR
 zprava.datumPCR2  = 2. PCR
 zprava.datumElForezy = elektroforéza v agarórovém gelu
@@ -42,6 +41,8 @@ zprava.datumRevHybrid = reverzní hybridizace
 zprava.datumFragmentAn = fragmentační analýza
 zprava.datumRTAn = RT analýza
 zprava.datumSekv = sekvenace
+neniCertif = není certifikováno
+pozitivni  = pozitivní
 
 secure.username=uživatelské jméno:
 secure.password=heslo:
