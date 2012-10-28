@@ -75,15 +75,15 @@
     <input type="text" id="${field.id}_label" name="${field.name}_label" value="${connected.parafa}" class="${field.errorClass} disabled shortW" disabled="disabled">
   #{/ifnot}
   #{else}
-    *{
     <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.parafaPrijeti?.parafa}" class="${field.errorClass} disabled shortW" disabled="disabled">
-    }*
+    *{
     #{select "${field.name}", value:"${bioMaterial?.parafaPrijeti?.id}", id:"${field.name}", class:"disabled"}
     	#{option }&{'selectBox.option.none'}#{/option}
       #{list users}
         #{option "${_.id}"}${_.parafa}#{/option}
       #{/list}
     #{/select}
+    }*
   #{/else}
   <span class="error">#{error 'bioMaterial.parafaPrijeti' /} </span>
 </p>
@@ -107,15 +107,15 @@
     <input type="text" id="${field.id}_label" name="${field.name}_label" value="${connected.parafa}" class="${field.errorClass} disabled shortW" disabled="disabled">
   #{/ifnot}
   #{else}
-    *{
     <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.parafaIzolace?.parafa}" class="${field.errorClass} disabled shortW" disabled="disabled">
-    }*
+    *{
     #{select "${field.name}", value:"${bioMaterial?.parafaIzolace?.id}", id:"${field.name}", class:"disabled"}
     	#{option }&{'selectBox.option.none'}#{/option}
       #{list users}
         #{option "${_.id}"}${_.parafa}#{/option}
       #{/list}
     #{/select}
+    }*
   #{/else}
 
   <span class="error">#{error 'bioMaterial.parafaIzolace' /} </span>

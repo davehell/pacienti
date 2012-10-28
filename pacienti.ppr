@@ -39,7 +39,7 @@ pacienti
 			app\models\Result.java
 			app\models\Score.java
 			app\models\User.java
-		-views
+		+views
 			+Forms
 				app\views\Forms\index.html
 				app\views\Forms\log.html
