@@ -20,6 +20,9 @@ font-family: Arial,sans-serif;
   font-size: 22px;
   line-height: 30px;
 }
+#header h1 span#version{
+  font-size: 12px;
+}
 #header p {
   float: right;
   text-align: right;

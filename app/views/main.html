@@ -28,7 +28,7 @@
   <body>
     <div class="noprint" id="header">
       <div class="inside">
-      <h1>Evidence pacientů</h1>
+      <h1>Evidence pacientů <span id="version">${appVersion} </span></h1>
 #{if connected}
       <p>
         <a href="@{AppModuls.uziv()}" title="úprava profilu">${connected?.jmeno}</a>,

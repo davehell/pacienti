@@ -39,7 +39,7 @@ pacienti
 			app\models\Result.java
 			app\models\Score.java
 			app\models\User.java
-		+views
+		-views
 			+Forms
 				app\views\Forms\index.html
 				app\views\Forms\log.html
@@ -108,12 +108,12 @@ Selected=public\stylesheets\main.css
 TopLine=1
 Caret=29,17
 [app\views\main.html]
-TopLine=110
-Caret=1,127
+TopLine=6
+Caret=47,31
 Mark1=2,126
 [conf\messages.cs]
 TopLine=25
 Caret=1,44
 [public\stylesheets\main.css]
-TopLine=106
-Caret=1,146
+TopLine=9
+Caret=19,24

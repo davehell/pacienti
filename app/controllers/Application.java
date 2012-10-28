@@ -16,6 +16,7 @@ public class Application extends CRUD {
 
   static User connected = null;
   static AppLogger appLog = null;
+  static String appVersion = "";
 
 
   @Before
@@ -24,6 +25,9 @@ public class Application extends CRUD {
       renderArgs.put("connected", connected);
 
       appLog = new AppLogger(connected);
+
+      appVersion = play.Play.configuration.getProperty("application.version", "");
+      renderArgs.put("appVersion", appVersion);
   }
 
   public static void start() {
