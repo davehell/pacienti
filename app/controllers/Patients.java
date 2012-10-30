@@ -56,6 +56,7 @@ public class Patients extends Application  {
     df.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
     Calendar c = Calendar.getInstance();
     Date datum = null;
+    Date pristiJednouDenne = null;
     String[] svatky = {"01.01","01.05","08.05","05.07","06.07","28.09","28.10","17.11","24.12","25.12","26.12"}; //TODO: chybi velikonocni pondeli
     int blbec = 0;
     int pocetDni = 0;
@@ -66,12 +67,17 @@ public class Patients extends Application  {
       for(Score ohodnoceni : zprava.vysetreni.score) {
         pocetDni = (ohodnoceni.vykon.jednouDenne ? ohodnoceni.pocet : 1);   //do kolika dni se ma vykon rozepsat
         
-        if(ohodnoceni.vykon.kod.equals("94119")) {
+        if(ohodnoceni.vykon.kod.equals("94119")) {  //94119 = izolace dna
           datum = zprava.bioMaterial.datumIzolace;
           if(datum == null) datum = zprava.datumVysetreni;
         }
         else {
           datum = zprava.datumVysetreni;
+        }
+
+        //pokud jsou dve vysetreni, budou polozky "jednou denne" z druheho vysetreni zacinat az po posledni polozce "jednou denne" z prvniho vysetreni
+        if(ohodnoceni.vykon.jednouDenne && pristiJednouDenne != null) {
+          datum = pristiJednouDenne;
         }
         
         for(int i = 0; i < pocetDni; i++) {
@@ -83,9 +89,9 @@ public class Patients extends Application  {
           //retezec jdouci na vystup
           str.add(df.format(datum) + ";" + ohodnoceni.vykon.kod + ";" + (ohodnoceni.vykon.jednouDenne ? 1 : ohodnoceni.pocet) );
 
-          if(ohodnoceni.vykon.jednouDenne) {
+          if(ohodnoceni.vykon.jednouDenne) { //posunuti datumu o jeden pracovni den vpred
             blbec = 0;
-            while(blbec < 100) {
+            while(blbec < 100) { 
               blbec++;
 
               c.setTime(datum);
@@ -98,6 +104,7 @@ public class Patients extends Application  {
 
               break;
             }
+            pristiJednouDenne = datum;
           }
         } //for pocetDni
     	} //for zprava.vysetreni.score
