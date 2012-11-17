@@ -136,7 +136,7 @@ public class Report extends Model {
       return true;
     }
 
-    public static Long getPocetRok(Integer rok, String pohlavi) {
+    public static Long statPocet(Integer rok, String pohlavi) {
       Calendar cal = new GregorianCalendar();
       cal.set(Calendar.YEAR, rok);
       cal.set(Calendar.DAY_OF_YEAR, 1);
@@ -160,8 +160,7 @@ public class Report extends Model {
       return (Long) q.getSingleResult();
     }
 
-    public static Long getPocetRCRok(Integer rok, String pohlavi) {
-
+    public static Long statPocetDleRc(Integer rok, String pohlavi) {
       Query q = null;
       if(pohlavi.equals("M")) {
         q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.evRok = :rok AND SUBSTR(p.rcZac, 3, 1)<>'5' AND SUBSTR(p.rcZac, 3, 1)<>'6'");
@@ -174,6 +173,31 @@ public class Report extends Model {
       }
 
       q.setParameter ("rok", rok);
+      return (Long) q.getSingleResult();
+    }
+
+    //počet patologických vyšetření za rok (pozitivni == true)
+    //věk - započítat pouze pacienty mladších než tento věk
+    //pro rok 2012 a věk 19: pacienti s datem narození <= 21.12.1993)
+    public static Long statPocetPatolog(Integer rok, Integer vek) {
+      Calendar cal = new GregorianCalendar();
+      cal.set(Calendar.YEAR, rok);
+      cal.set(Calendar.DAY_OF_YEAR, 1);
+      Date startDate = cal.getTime();
+      cal.set(Calendar.DAY_OF_YEAR, 366); // for leap years
+      Date endDate = cal.getTime();
+
+      Query q = null;
+      if(vek > 0) {
+        //q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE SUBSTR(p.rcZac, 0, 2)='93' AND r.pozitivni=true AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
+        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r WHERE r.pozitivni=true AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
+      }
+      else {
+        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r WHERE r.pozitivni=true AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
+      }
+
+      q.setParameter ("startDate", startDate);
+      q.setParameter ("endDate", endDate);
       return (Long) q.getSingleResult();
     }
 
