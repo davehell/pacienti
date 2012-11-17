@@ -136,7 +136,7 @@ public class Report extends Model {
       return true;
     }
 
-    public static Long getPocetRok(Integer rok) {
+    public static Long getPocetRok(Integer rok, String pohlavi) {
       Calendar cal = new GregorianCalendar();
       cal.set(Calendar.YEAR, rok);
       cal.set(Calendar.DAY_OF_YEAR, 1);
@@ -144,14 +144,35 @@ public class Report extends Model {
       cal.set(Calendar.DAY_OF_YEAR, 366); // for leap years
       Date endDate = cal.getTime();
 
-      Query q = JPA.em().createQuery ("SELECT COUNT(id) FROM Report r WHERE r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
+      Query q = null;
+      if(pohlavi.equals("M")) {
+        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE r.pacient.id = p.id AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate AND SUBSTR(p.rcZac, 3, 1)<>'5' AND SUBSTR(p.rcZac, 3, 1)<>'6'");
+      }
+      else if(pohlavi.equals("F")) {
+        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE r.pacient.id = p.id AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate AND (SUBSTR(p.rcZac, 3, 1)='5' OR SUBSTR(p.rcZac, 3, 1)='6')");
+      }
+      else {
+        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r WHERE r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
+      }
+
       q.setParameter ("startDate", startDate);
       q.setParameter ("endDate", endDate);
       return (Long) q.getSingleResult();
     }
 
-    public static Long getPocetRCRok(Integer rok) {
-      Query q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.evRok = :rok");
+    public static Long getPocetRCRok(Integer rok, String pohlavi) {
+
+      Query q = null;
+      if(pohlavi.equals("M")) {
+        q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.evRok = :rok AND SUBSTR(p.rcZac, 3, 1)<>'5' AND SUBSTR(p.rcZac, 3, 1)<>'6'");
+      }
+      else if(pohlavi.equals("F")) {
+        q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.evRok = :rok AND (SUBSTR(p.rcZac, 3, 1)='5' OR SUBSTR(p.rcZac, 3, 1)='6')");
+      }
+      else {
+        q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.evRok = :rok");
+      }
+
       q.setParameter ("rok", rok);
       return (Long) q.getSingleResult();
     }
