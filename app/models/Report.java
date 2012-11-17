@@ -136,6 +136,20 @@ public class Report extends Model {
       return true;
     }
 
+    public static Long getPocetRok(Integer rok) {
+      Calendar cal = new GregorianCalendar();
+      cal.set(Calendar.YEAR, rok);
+      cal.set(Calendar.DAY_OF_YEAR, 1);
+      Date startDate = cal.getTime();
+      cal.set(Calendar.DAY_OF_YEAR, 366); // for leap years
+      Date endDate = cal.getTime();
+
+      Query q = JPA.em().createQuery ("SELECT COUNT(id) FROM Report r WHERE r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
+      q.setParameter ("startDate", startDate);
+      q.setParameter ("endDate", endDate);
+      return (Long) q.getSingleResult();
+    }
+
     public static List<Report> getNeprovedena(Date datumOd, Date datumDo, AppModul modul) {
         //List<Report> result = Report.findAll();
         List<Report> result = Report.find("pacient.modul = ? and datumVysetreni is null and bioMaterial.datumPrijeti >= ? and bioMaterial.datumPrijeti <= ?order by vysetreni.id asc, pacient.evCislo asc", modul, datumOd, datumDo).fetch();
@@ -152,14 +166,7 @@ Logger.info(updated.toString());
         "select new map(sum(r.vysetreni.body) as body, r.vysetreni.nazev as vyset) from Report r group by r.vysetreni.id having (select r2.pacient from Report r2)"
     ).fetch();
 */
-/*
-SELECT tbPacienti.jmeno, tbTypyVysetreni.nazev, tbTypyVysetreni.body
-FROM
-WHERE (((tbBioMaterialy.datum_prijeti)>[datum_prijeti_od] And (tbBioMaterialy.datum_prijeti)<[datum_prijeti_do]))
-GROUP BY tbPacienti.jmeno, tbTypyVysetreni.nazev, tbTypyVysetreni.body
-HAVING (((tbPacienti.rok)>=2010) AND ((tbVysetreni.datum_vysetreni) Is Null))
-ORDER BY tbPacienti.rok DESC , tbPacienti.evidencni_cislo DESC;
-*/
+
         return result;
     }
 }

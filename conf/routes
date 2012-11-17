@@ -49,6 +49,8 @@ GET		/sestavy/{typ}								          Forms.index
 GET		/sestavy/tisk/neizolovana-dna			  		Forms.neizolovana
 GET		/sestavy/tisk/neprovedena-vysetreni/od/{datumOd}/do/{datumDo}			  Forms.neprovedena
 GET		/sestavy/tisk/pocty-vzorku/od/{datumOd}/do/{datumDo}			          Forms.poctyvzorku
+GET		/sestavy/tisk/pocty-vysetreni/{rok}			Forms.poctyvysetreni
+GET		/sestavy/tisk/pocty-vysetreni/			Forms.poctyvysetreni
 
 POST  /import-vysledku                        Forms.vyslImport
 GET   /import-vysledku                        Forms.vyslImport
