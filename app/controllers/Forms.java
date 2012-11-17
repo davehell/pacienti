@@ -69,7 +69,9 @@ public class Forms extends Application {
       if(rok == null) rok = Calendar.getInstance().get(Calendar.YEAR);
 
       Long pocetVysetreni = Report.getPocetRok(rok);
-      render(pocetVysetreni);
+      Long pocetRC = Report.getPocetRCRok(rok);
+      
+      render(pocetVysetreni, pocetRC);
   }
   
   public static void poctyVzorku(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {

@@ -150,6 +150,12 @@ public class Report extends Model {
       return (Long) q.getSingleResult();
     }
 
+    public static Long getPocetRCRok(Integer rok) {
+      Query q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.evRok = :rok");
+      q.setParameter ("rok", rok);
+      return (Long) q.getSingleResult();
+    }
+
     public static List<Report> getNeprovedena(Date datumOd, Date datumDo, AppModul modul) {
         //List<Report> result = Report.findAll();
         List<Report> result = Report.find("pacient.modul = ? and datumVysetreni is null and bioMaterial.datumPrijeti >= ? and bioMaterial.datumPrijeti <= ?order by vysetreni.id asc, pacient.evCislo asc", modul, datumOd, datumDo).fetch();
