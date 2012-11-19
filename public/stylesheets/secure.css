@@ -35,6 +35,16 @@ input#signin {
   box-shadow: rgba(200, 200, 200, 0.7) 0 4px 10px -1px;
   -webkit-border-radius:3px;border-radius:3px;border-width:1px;border-style:solid;
   text-align: left;
+  position: relative;
+}
+
+span#version{
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  bottom: -25px;
+  padding: 0px;
+  color: #777;
 }
 
 .login form .input {
