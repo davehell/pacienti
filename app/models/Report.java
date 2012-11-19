@@ -136,7 +136,7 @@ public class Report extends Model {
       return true;
     }
 
-    public static Long statPocet(Integer rok, String pohlavi) {
+    public static Long getPocet(Integer rok, String pohlavi) {
       Calendar cal = new GregorianCalendar();
       cal.set(Calendar.YEAR, rok);
       cal.set(Calendar.DAY_OF_YEAR, 1);
@@ -160,26 +160,12 @@ public class Report extends Model {
       return (Long) q.getSingleResult();
     }
 
-    public static Long statPocetDleRc(Integer rok, String pohlavi) {
-      Query q = null;
-      if(pohlavi.equals("M")) {
-        q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.evRok = :rok AND SUBSTR(p.rcZac, 3, 1)<>'5' AND SUBSTR(p.rcZac, 3, 1)<>'6'");
-      }
-      else if(pohlavi.equals("F")) {
-        q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.evRok = :rok AND (SUBSTR(p.rcZac, 3, 1)='5' OR SUBSTR(p.rcZac, 3, 1)='6')");
-      }
-      else {
-        q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.evRok = :rok");
-      }
 
-      q.setParameter ("rok", rok);
-      return (Long) q.getSingleResult();
-    }
 
     //počet patologických vyšetření za rok (pozitivni == true)
     //věk - započítat pouze pacienty mladších než tento věk
     //pro rok 2012 a věk 19: pacienti s datem narození <= 21.12.1993)
-    public static Long statPocetPatolog(Integer rok, Integer vek) {
+    public static Long pocetPatolog(Integer rok, Integer vek) {
       Calendar cal = new GregorianCalendar();
       cal.set(Calendar.YEAR, rok);
       cal.set(Calendar.DAY_OF_YEAR, 1);

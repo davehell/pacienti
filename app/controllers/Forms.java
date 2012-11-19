@@ -68,18 +68,18 @@ public class Forms extends Application {
   public static void poctyVysetreni(Integer rok) {
       if(rok == null) rok = Calendar.getInstance().get(Calendar.YEAR);
 
-      Long pocetVysetreni = Report.statPocet(rok, "");
-      Long pocetVysetreniM = Report.statPocet(rok, "M");
-      Long pocetVysetreniF = Report.statPocet(rok, "F");
+      Long pocetVysetreni = Report.getPocet(rok, "");
+      Long pocetVysetreniM = Report.getPocet(rok, "M");
+      Long pocetVysetreniF = Report.getPocet(rok, "F");
 
-      Long pocetRc = Report.statPocetDleRc(rok, "");
-      Long pocetRcM = Report.statPocetDleRc(rok, "M");
-      Long pocetRcF = Report.statPocetDleRc(rok, "F");
+      Long pocetPacientu = Patient.getPocet(rok, "");
+      Long pocetPacientuM = Patient.getPocet(rok, "M");
+      Long pocetPacientuF = Patient.getPocet(rok, "F");
       
-      Long pocetPatolog = Report.statPocetPatolog(rok, 0);
-      Long pocetPatologMladi = Report.statPocetPatolog(rok, 19);
+      Long pocetPatolog = Report.pocetPatolog(rok, 0);
+      Long pocetPatologMladi = Report.pocetPatolog(rok, 19);
 
-      render(pocetVysetreni, pocetVysetreniM, pocetVysetreniF, pocetRc, pocetRcM, pocetRcF, pocetPatolog, pocetPatologMladi);
+      render(pocetVysetreni, pocetVysetreniM, pocetVysetreniF, pocetPacientu, pocetPacientuM, pocetPacientuF, pocetPatolog, pocetPatologMladi);
   }
   
   public static void poctyVzorku(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {
