@@ -1,5 +1,25 @@
 #{extends 'main.html' /}
 #{set title:'Počty vyšetření' /}
+
+<fieldset class="noprint">
+  <legend>Výběr období</legend>
+
+  <ul>
+%{
+  i = 2008;
+  while(++i <= aktRok) {
+}%
+    <li><a href="@{Forms.poctyVysetreni(i)}">${i}</a></li>
+%{
+  }
+}%
+  </ul>
+</fieldset>
+
+
+
+
+<h2>Rok ${rok}</h2>
 <p>
   Počet vyšetření: ${pocetVysetreni}<br />
   muži: ${pocetVysetreniM}<br />

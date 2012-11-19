@@ -66,7 +66,8 @@ public class Forms extends Application {
   }
 
   public static void poctyVysetreni(Integer rok) {
-      if(rok == null) rok = Calendar.getInstance().get(Calendar.YEAR);
+      Integer aktRok = Calendar.getInstance().get(Calendar.YEAR);
+      if(rok == null) rok = aktRok;
 
       Long pocetVysetreni = Report.getPocet(rok, "");
       Long pocetVysetreniM = Report.getPocet(rok, "M");
@@ -79,7 +80,7 @@ public class Forms extends Application {
       Long pocetPatolog = Report.pocetPatolog(rok, 0);
       Long pocetPatologMladi = Report.pocetPatolog(rok, 19);
 
-      render(pocetVysetreni, pocetVysetreniM, pocetVysetreniF, pocetPacientu, pocetPacientuM, pocetPacientuF, pocetPatolog, pocetPatologMladi);
+      render(aktRok, rok, pocetVysetreni, pocetVysetreniM, pocetVysetreniF, pocetPacientu, pocetPacientuM, pocetPacientuF, pocetPatolog, pocetPatologMladi);
   }
   
   public static void poctyVzorku(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {
