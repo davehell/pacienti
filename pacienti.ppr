@@ -101,12 +101,9 @@ pacienti
 1=app\views\main.html
 2=conf\messages.cs
 3=public\stylesheets\main.css
-4=app\views\Forms\poctyVysetreni.html
-5=app\controllers\Forms.java
-6=app\models\Report.java
 [Selected Project Files]
 Main=
-Selected=app\views\Forms\poctyVysetreni.html
+Selected=public\stylesheets\main.css
 [conf\routes]
 TopLine=27
 Caret=36,53
@@ -121,12 +118,3 @@ Caret=1,44
 [public\stylesheets\main.css]
 TopLine=1
 Caret=13,17
-[app\views\Forms\poctyVysetreni.html]
-TopLine=1
-Caret=18,4
-[app\controllers\Forms.java]
-TopLine=60
-Caret=22,83
-[app\models\Report.java]
-TopLine=149
-Caret=36,168
