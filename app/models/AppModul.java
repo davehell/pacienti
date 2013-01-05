@@ -16,6 +16,8 @@ public class AppModul extends Model {
     public String kod;
 
     @MaxSize(200)
+    public String adresa;
+    @MaxSize(200)
     public String vedouciLekari;
     @MaxSize(200)
     public String uvolnujiAnalyzu;
