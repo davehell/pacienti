@@ -3,19 +3,22 @@
 
 
 #{if pacienti}
+
+  #{if connected.modul.kod == "KO"}
   <ul id="skupiny">
     <li><a href="?skupina=KO 000">KO 000</a></li>
     <li><a href="?skupina=KO 3000">KO 3000</a></li>
   </ul>
+  #{/if}
 
   <table class="display" id="pacTable">
     <thead>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <!-- <th>&nbsp;</th> -->
-      <th>Evidenční číslo</th>
-      <th>Jméno</th>
-      <th>Rodné číslo</th>
+      <th>&{'pacient.evCislo'}</th>
+      <th>&{'pacient.jmeno'}</th>
+      <th>&{'pacient.rcZac'}</th>
     </thead>
     <tbody>
 
@@ -87,7 +90,7 @@ $(document).ready(function() {
 } );
 </script>
 
- #{/if}
+#{/if}
 #{else}
     <div class="empty">
         &{'noRecords'}
