@@ -1,7 +1,7 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
-pacient.evCislo = evidenční číslo
+pacient.evCislo = kód vzorku
 pacient.evRok = rok
 pacient.rcZac = rodné číslo
 pacient.titul = titul
@@ -9,8 +9,8 @@ pacient.jmeno = jméno
 pacient.prijmeni = příjmení
 pacient.pojistovna.id = pojišťovna
 pacient.lekar.id = lékař
-pacient.infSouhlas = informovaný souhlas
-pacient.diagnoza = diagnóza
+pacient.infSouhlas = souhlas s uložením vzorku
+pacient.diagnoza = základní diagnóza
 pacient.koncDna = koncentrace DNA
 pacient.pozn = interní poznámka
 pacient.verejnaPozn = veřejná poznámka
@@ -29,7 +29,7 @@ zprava.bioMaterial.id = biologický materiál
 zprava.vysetreni.id = vyšetření
 zprava.datumZpravy = datum a čas uvolnění zprávy
 zprava.datumVysetreni = datum vyšetření
-zprava.parafaVysetreni.id = parafa provedení
+zprava.parafaVysetreni.id = analýzu vyhodnotil
 zprava.analyzuProvedl = analýzu provedl
 zprava.analyzuUvolnil = analýzu uvolnil
 zprava.vedouciLekar = vedoucí lékař
