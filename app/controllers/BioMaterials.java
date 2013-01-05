@@ -43,15 +43,14 @@ public class BioMaterials extends Application {
       typyMaterialu = connected.modul.typyMaterialu.split(",");
     }
 
-
     DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
     df.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
     DateFormat dtf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
     dtf.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
 
-    if(bioMaterial.datumOdberu != null && casOdberu != null) {
+    if(bioMaterial.datumOdberu != null) {
       try {
-        bioMaterial.datumOdberu = dtf.parse(df.format(bioMaterial.datumOdberu) + " " + casOdberu);
+        bioMaterial.datumOdberu = dtf.parse(df.format(bioMaterial.datumOdberu) + upravCas(casOdberu));
       } catch (ParseException e) {
         e.printStackTrace();
       }
@@ -59,7 +58,7 @@ public class BioMaterials extends Application {
 
     if(bioMaterial.datumPrijeti != null && casPrijeti != null) {
       try {
-        bioMaterial.datumPrijeti = dtf.parse(df.format(bioMaterial.datumPrijeti) + " " + casPrijeti);
+        bioMaterial.datumPrijeti = dtf.parse(df.format(bioMaterial.datumPrijeti) + upravCas(casPrijeti));
       } catch (ParseException e) {
         e.printStackTrace();
       }
@@ -104,8 +103,8 @@ public class BioMaterials extends Application {
 
     flash.success("biologický materiál %s uložen.", bioMaterial.typ);
 
-    Patients.detail(pacientId);
-    
+    //Patients.detail(pacientId);
+    form(bioMatId, pacientId);
   }
 
   public static void myDelete(Long id) {
@@ -124,5 +123,28 @@ public class BioMaterials extends Application {
       Patients.detail(pacient.id);
   }
 
+  /*
+   * Pokud je čas zadán pouze čísly (bez dvojtečky) doplní ho na formát hh:mm
+   * U hodin doplní úvodní nulu.
+   * Na začátku je mezera - čas se totiž přidává za datumu. Vznikne tak formát dd.MM.yyyy HH:mm
+   */
+  private static String upravCas(String cas) {
+    if(cas.isEmpty()) return " 00:00";
+
+    //735 -> 0735
+    if(cas.length() == 3 && !cas.contains(":")) cas = "0" + cas;
+    //7:35 -> 07:35
+    if(cas.length() == 4 && cas.contains(":")) cas = "0" + cas;
+    //0735 -> 07:35
+    if(cas.length() == 4 && !cas.contains(":")) cas = cas.substring(0, 2) + ":" + cas.substring(2);
+
+    //pokud neni hh:mm, tak chyba
+    if(cas.length() != 5 || !cas.contains(":")) {
+      flash.error("Poozor - chybný formát času: " + cas);
+      return " 00:00";
+    }
+
+    return " " + cas;
+  }
 
 }
