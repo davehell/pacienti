@@ -66,6 +66,8 @@ public class Patient extends Model {
 
     public String diagnoza; //základní diagnóza
 
+    public String ostatniDiagnozy; //ostatní diagnózy
+
     public String koncDna;  //koncentrace DNA
 
     @MaxSize(300)

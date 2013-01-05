@@ -152,6 +152,14 @@
 </p>
 #{/}
 
+#{field 'pacient.ostatniDiagnozy'}
+<p>
+  <label>&{field.name} </label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.ostatniDiagnozy}" class="${field.errorClass} longW">
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+</p>
+#{/}
+
 #{field 'pacient.koncDna'}
 <p>
   <label>&{field.name} </label>

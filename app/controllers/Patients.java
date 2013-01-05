@@ -179,6 +179,7 @@ public class Patients extends Application  {
       _pacient.infSouhlas = pacient.infSouhlas;
       _pacient.infSouhlasVyuziti = pacient.infSouhlasVyuziti;
       _pacient.diagnoza = pacient.diagnoza;
+      _pacient.ostatniDiagnozy = pacient.ostatniDiagnozy;
       _pacient.koncDna = pacient.koncDna;
       _pacient.pozn = pacient.pozn;
       _pacient.verejnaPozn = pacient.verejnaPozn;
