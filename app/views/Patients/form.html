@@ -126,10 +126,20 @@
 </p>
 #{/}
 
-#{field 'pacient.infSouhlas'}
+#{field 'souhlasUlozeni'}
 <p>
   <label>&{field.name} </label>
-  <input type="checkbox" id="${field.id}" name="${field.name}" #{if pacient?.infSouhlas} checked="checked" #{/if} class="${field.errorClass}">
+  <!-- <input type="checkbox" id="${field.id}" name="${field.name}" #{if pacient?.infSouhlas} checked="checked" #{/if} class="${field.errorClass}"> -->
+  <input type="checkbox" id="${field.id}" name="${field.name}" ${pacient?.infSouhlas ? 'checked' : ''} }" class="${field.errorClass}">
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+</p>
+#{/}
+
+#{field 'souhlasVyuziti'}
+<p>
+  <label>&{field.name} </label>
+<!--   <input type="checkbox" id="${field.id}" name="${field.name}" #{if pacient?.infSouhlasVyuziti} checked="checked" #{/if} class="${field.errorClass}"> -->
+  <input type="checkbox" id="${field.id}" name="${field.name}" ${pacient?.infSouhlasVyuziti ? 'checked' : ''} }" class="${field.errorClass}">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}

@@ -60,17 +60,19 @@ public class Patient extends Model {
     @ManyToOne()
     public Doctor lekar;
     
-    public boolean infSouhlas;
+    public boolean infSouhlas; //informovaný souhlas s uložením vzorku pro další analýzu
 
-    public String diagnoza;
+    public boolean infSouhlasVyuziti; //informovaný souhlas s anonymním využitím DNA k lékařskému výzkumu
 
-    public String koncDna;
+    public String diagnoza; //základní diagnóza
+
+    public String koncDna;  //koncentrace DNA
 
     @MaxSize(300)
-    public String pozn;
+    public String pozn; //interní poznámka
 
     @MaxSize(300)
-    public String verejnaPozn;
+    public String verejnaPozn;  //veřejná poznámka
 
     @OneToMany(mappedBy="pacient", cascade=CascadeType.ALL)
     public List<BioMaterial> bioMaterialy;

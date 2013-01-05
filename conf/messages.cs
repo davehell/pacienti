@@ -9,11 +9,12 @@ pacient.jmeno = jméno
 pacient.prijmeni = příjmení
 pacient.pojistovna.id = pojišťovna
 pacient.lekar.id = lékař
-pacient.infSouhlas = souhlas s uložením vzorku
 pacient.diagnoza = základní diagnóza
 pacient.koncDna = koncentrace DNA
 pacient.pozn = interní poznámka
 pacient.verejnaPozn = veřejná poznámka
+souhlasUlozeni = souhlas s uložením vzorku
+souhlasVyuziti = souhlas s využitím DNA
 
 
 bioMaterial.typ = typ

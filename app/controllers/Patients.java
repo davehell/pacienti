@@ -140,7 +140,7 @@ public class Patients extends Application  {
   }
 
 
-  public static void mySave(Long id, Patient pacient) {
+  public static void mySave(Long id, Patient pacient, Boolean souhlasUlozeni, Boolean souhlasVyuziti) {
     List<InsuranceCompany> pojistovny = InsuranceCompany.find("byModul", connected.modul).fetch();
     List<Doctor> lekari = Doctor.find("byModul", connected.modul).fetch();
 
@@ -148,6 +148,9 @@ public class Patients extends Application  {
     if(validation.hasErrors()) {
       render("@form", pacient, lekari, pojistovny);
     }
+
+    pacient.infSouhlas = (souhlasUlozeni == null) ? false : true;
+    pacient.infSouhlasVyuziti = (souhlasVyuziti == null) ? false : true;
 
     if(id == null) {
         pacient.modul = connected.modul;
@@ -174,6 +177,7 @@ public class Patients extends Application  {
       _pacient.pojistovna = pacient.pojistovna;
       _pacient.lekar = pacient.lekar;
       _pacient.infSouhlas = pacient.infSouhlas;
+      _pacient.infSouhlasVyuziti = pacient.infSouhlasVyuziti;
       _pacient.diagnoza = pacient.diagnoza;
       _pacient.koncDna = pacient.koncDna;
       _pacient.pozn = pacient.pozn;
