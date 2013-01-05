@@ -26,6 +26,7 @@
 <p>
   <label class="required">&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.typ}" class="${field.errorClass} longW">
+  <a href="@{AppModuls.form}" title="&{'modul.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 <p>

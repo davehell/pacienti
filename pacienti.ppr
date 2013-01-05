@@ -103,18 +103,18 @@ pacienti
 3=public\stylesheets\main.css
 [Selected Project Files]
 Main=
-Selected=conf\messages.cs
+Selected=public\stylesheets\main.css
 [conf\routes]
-TopLine=27
-Caret=36,53
+TopLine=21
+Caret=61,60
 [app\views\main.html]
-TopLine=45
-Caret=46,85
+TopLine=9
+Caret=66,35
 Mark1=60,31
 Mark2=31,135
 [conf\messages.cs]
-TopLine=1
-Caret=14,8
+TopLine=62
+Caret=35,80
 [public\stylesheets\main.css]
-TopLine=1
-Caret=5,7
+TopLine=111
+Caret=19,142

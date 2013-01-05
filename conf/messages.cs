@@ -77,6 +77,7 @@ modul.vedouciLekari = vedoucí lékaři
 modul.uvolnujiAnalyzu = uvolňují analýzy
 modul.provadiAnalyzu = provádí analýzy
 modul.typyMaterialu = typy primárních vzorků
+modul.nastaveni = nastavení modulu
 
 selectBox.option.select = vyberte
 selectBox.option.none = nezadáno

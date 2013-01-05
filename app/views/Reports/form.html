@@ -133,10 +133,11 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.analyzuProvedl}" class="${field.errorClass} vLongW">
+  <a href="@{AppModuls.form}" title="&{'modul.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 <p>
- <span class="small">${provadiAnalyzu?.join(', ') } </span>
+  <span class="small">${provadiAnalyzu?.join(', ') } </span>
 </p>
 #{/}
 
@@ -144,22 +145,23 @@
 <p>
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.analyzuUvolnil}" class="${field.errorClass} vLongW">
+  <a href="@{AppModuls.form}" title="&{'modul.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 <p>
- <span class="small">${uvolnujiAnalyzu?.join(', ') } </span>
+  <span class="small">${uvolnujiAnalyzu?.join(', ') } </span>
 </p>
 #{/}
 
 #{field 'zprava.vedouciLekar'}
 <p>
   <label>&{field.name} </label>
-  
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.vedouciLekar}" class="${field.errorClass} longW">
+  <a href="@{AppModuls.form}" title="&{'modul.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 <p>
- <span class="small">${vedouciLekari?.join(', ') } </span>
+  <span class="small">${vedouciLekari?.join(', ') } </span>
 </p>
 #{/}
 

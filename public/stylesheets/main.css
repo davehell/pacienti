@@ -92,6 +92,7 @@ textarea {
 	-o-transition-timing-function: ease;
 }
 textarea:focus {height: 180px;}
+textarea.noResize {height: 100px;}
 
 
 h1,h2,h3 {color: #1D5987; border-bottom: 1px solid #1D5987;}
@@ -138,7 +139,7 @@ span.delete{
 .shortW {width: 5em;}
 .longW {width: 15em;}
 .longerW {width: 22em;}
-.vLongW {width: 30em;}
+.vLongW {width: 29em;}
 
 input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly], .disabled {
 cursor: not-allowed;
@@ -159,3 +160,5 @@ border-color: #DDD;
 .dl-horizontal dd {
   margin-left: 130px;
 }
+
+.modulSettings {display: inline-block !important;}
