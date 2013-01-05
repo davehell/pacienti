@@ -66,6 +66,15 @@
 <p class="clear">
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.titul}" class="${field.errorClass} shortW">
+*{
+  #{select "${field.name}", value:"${pacient?.titul}", id:"${field.name}", class:"shortW"}
+    #{option "Bc."}Bc.#{/option}
+    #{option "Ing."}Ing.#{/option}
+    #{option "Mgr."}Mgr.#{/option}
+    #{option "MUDr."}MUDr.#{/option}
+    #{option "RNDr."}RNDr.#{/option}
+  #{/select}
+}*
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
@@ -364,5 +373,10 @@ $(document).ready(function() {
 		$( '#pacient\\.lekar\\.id' ).combobox();
     $( '#pacient\\.pojistovna\\.id' ).combobox();
 	});
-  } );
+
+  $( '#pacient_rcZac' ).on('keyup', function(event){
+    if($( this ).val().length == 6 && event.keyCode >= 96 && event.keyCode <= 105) $( '#pacient_rcKon' ).focus();
+  });
+
+  } ); //document ready
 </script>
