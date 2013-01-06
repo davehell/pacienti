@@ -110,6 +110,7 @@
   	#{option }&{'selectBox.option.none'}#{/option}
     #{option "${connected.id}"}${connected.parafa}#{/option}
   #{/select}
+  <a href="@{AppModuls.uziv()}" title="&{'profil.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
 *{
   #{ifnot zprava?.id}
     <input type="hidden" name="${field.name}" value="${connected?.id}">

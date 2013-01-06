@@ -79,6 +79,8 @@ modul.provadiAnalyzu = provádí analýzy
 modul.typyMaterialu = typy primárních vzorků
 modul.nastaveni = nastavení modulu
 
+profil.nastaveni = nastavení profilu
+
 selectBox.option.select = vyberte
 selectBox.option.none = nezadáno
 neuvedeno = neuvedeno

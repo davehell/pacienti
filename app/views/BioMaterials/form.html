@@ -75,6 +75,7 @@
   	#{option }&{'selectBox.option.none'}#{/option}
     #{option "${connected.id}"}${connected.parafa}#{/option}
   #{/select}
+  <a href="@{AppModuls.uziv()}" title="&{'profil.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
   <span class="error">#{error 'bioMaterial.parafaPrijeti' /} </span>
 *{
   #{ifnot bioMaterial?.id}
@@ -111,6 +112,7 @@
   	#{option }&{'selectBox.option.none'}#{/option}
     #{option "${connected.id}"}${connected.parafa}#{/option}
   #{/select}
+  <a href="@{AppModuls.uziv()}" title="&{'profil.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
 *{
   #{ifnot bioMaterial?.id}
     <input type="hidden" name="${field.name}" value="${connected?.id}">

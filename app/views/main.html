@@ -31,7 +31,7 @@
       <h1>Evidence pacientů <span id="version">${appVersion} </span></h1>
 #{if connected}
       <p>
-        <a href="@{AppModuls.uziv()}" title="úprava profilu">${connected?.jmeno}</a>,
+        <a href="@{AppModuls.uziv()}" title="&{'profil.nastaveni'}">${connected?.jmeno}</a>,
         <a href="@{AppModuls.form()}" title="&{'modul.nastaveni'}">${connected?.modul}</a>
         <span><a href="@{Secure.logout()}">Odhlášení</a></span>
       </p>
