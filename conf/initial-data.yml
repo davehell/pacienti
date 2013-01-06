@@ -9,7 +9,9 @@ AppModul(ov):
 
 AppModul(br):
   nazev: Brno
-  kod: BR
+  kod: K
+  formNeprovVys: IF-71.0
+  cDokladu: 5
 
 User(david):
     username:       davehell
