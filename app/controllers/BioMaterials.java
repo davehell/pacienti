@@ -103,8 +103,7 @@ public class BioMaterials extends Application {
 
     flash.success("biologický materiál %s uložen.", bioMaterial.typ);
 
-    //Patients.detail(pacientId);
-    form(bioMatId, pacientId);
+    Patients.detail(pacientId);
   }
 
   public static void myDelete(Long id) {
