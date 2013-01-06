@@ -22,7 +22,7 @@ public class Score extends Model {
 
 
     public String toString()  {
-        return vysetreni.nazev + " - " + vykon.kod;
+        return vysetreni.nazev + " - " + vykon.kod + " - " + pocet;
     }
 
 
