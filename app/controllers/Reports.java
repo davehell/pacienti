@@ -61,7 +61,7 @@ public class Reports extends Application {
       render(zprava, vyslMap, pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu);
     }
 
-    render(pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu);
+    render(pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu);
   }
 
 
