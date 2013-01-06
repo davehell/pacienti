@@ -50,15 +50,13 @@ public class Patients extends Application  {
     Patient pacient = Patient.getByModulAndId(connected.modul, id);
     notFoundIfNull(pacient);
 
-    List str = new ArrayList();
-    Map<Long, String> vzorky = new HashMap<Long, String>(); //kombinace "id bio materialu" a "kodu vykonu"
     DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
     df.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
-    Calendar c = Calendar.getInstance();
+    List str = new ArrayList();
+    Map<Long, String> vzorky = new HashMap<Long, String>(); //kombinace "id bio materialu" a "kodu vykonu"
     Date datum = null;
     Date pristiJednouDenne = null;
-    String[] svatky = {"01.01","01.05","08.05","05.07","06.07","28.09","28.10","17.11","24.12","25.12","26.12"}; //TODO: chybi velikonocni pondeli
-    int blbec = 0;
+    Date pristiNeStejnyDen = null;
     int pocetDni = 0;
 
 
@@ -75,9 +73,16 @@ public class Patients extends Application  {
           datum = zprava.datumVysetreni;
         }
 
+
         //pokud jsou dve vysetreni, budou polozky "jednou denne" z druheho vysetreni zacinat az po posledni polozce "jednou denne" z prvniho vysetreni
         if(ohodnoceni.vykon.jednouDenne && pristiJednouDenne != null) {
           datum = pristiJednouDenne;
+        }
+
+        //94123 (velká pcr) a 94127 (elektroforéza na paag) nelze účtovat ve stejný den
+        if((ohodnoceni.vykon.kod.equals("94123") || ohodnoceni.vykon.kod.equals("94127")) && pristiNeStejnyDen != null) {
+          datum = pristiNeStejnyDen;
+          pristiNeStejnyDen = null;
         }
         
         for(int i = 0; i < pocetDni; i++) {
@@ -90,21 +95,12 @@ public class Patients extends Application  {
           str.add(df.format(datum) + ";" + ohodnoceni.vykon.kod + ";" + (ohodnoceni.vykon.jednouDenne ? 1 : ohodnoceni.pocet) );
 
           if(ohodnoceni.vykon.jednouDenne) { //posunuti datumu o jeden pracovni den vpred
-            blbec = 0;
-            while(blbec < 100) { 
-              blbec++;
-
-              c.setTime(datum);
-              c.add(Calendar.DATE, 1);
-              datum = c.getTime();
-
-              if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) continue;
-              if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) continue;
-              if(Arrays.asList(svatky).contains( df.format(datum).substring(0,5))) continue;
-
-              break;
-            }
+            datum = nextWorkingDay(datum);
             pristiJednouDenne = datum;
+          }
+
+          if((ohodnoceni.vykon.kod.equals("94123") || ohodnoceni.vykon.kod.equals("94127")) && pristiNeStejnyDen == null) {
+            pristiNeStejnyDen = nextWorkingDay(datum);
           }
         } //for pocetDni
     	} //for zprava.vysetreni.score
@@ -119,6 +115,31 @@ public class Patients extends Application  {
     render(pacient, str);
     //renderPDF(pacient, str, options);
     
+  }
+
+  private static Date nextWorkingDay(Date date) {
+    Date nextDay = date;
+    int blbec = 0;
+    String[] holidays = {"01.01","01.05","08.05","05.07","06.07","28.09","28.10","17.11","24.12","25.12","26.12"}; //TODO: chybi velikonocni pondeli
+    Calendar c = Calendar.getInstance();
+    DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+    df.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
+
+    while(blbec < 100) {
+      blbec++;
+
+      c.setTime(nextDay);
+      c.add(Calendar.DATE, 1);
+      nextDay = c.getTime();
+
+      if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) continue;
+      if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) continue;
+      if(Arrays.asList(holidays).contains( df.format(nextDay).substring(0,5))) continue;
+
+      break;
+    }
+
+    return nextDay;
   }
 
   public static void form(Long id) {
