@@ -23,7 +23,6 @@
     <thead>
       <th>Vyšetření</th>
       <th>Ev. číslo</th>
-      <th>Jméno</th>
       <th>Konc. DNA</th>
       <th>Body</th>
     </thead>
@@ -46,7 +45,6 @@
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
-      <td>&nbsp;</td>
       <td class="sum">${sum.format("###,###")}</td>
     </tr>
 %{
@@ -57,7 +55,6 @@
     <tr>
       <td>#{if _.vysetreni.id != vysId}${_.vysetreni.nazev}#{/if} </td>
       <td>${_.pacient.getKod()} </td>
-      <td>${_.pacient.toString()} </td>
       <td>${_.pacient.getKonc().raw()} </td>
       <td>&nbsp;</td>
     </tr>
@@ -67,11 +64,9 @@
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
-      <td>&nbsp;</td>
       <td class="sum">${sum.format("###,###")}</td>
     </tr>
     <tr>
-      <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>

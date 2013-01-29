@@ -130,7 +130,7 @@ public class Patient extends Model {
     }
 
     public String getKonc() {
-        if(koncDna == null) return "";
+        if(koncDna == null || koncDna == "") return "";
         return koncDna + " ng/&micro;l";
     }
 
