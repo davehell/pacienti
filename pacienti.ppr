@@ -106,7 +106,7 @@ Main=
 Selected=conf\routes
 [conf\routes]
 TopLine=1
-Caret=61,60
+Caret=15,17
 [app\views\main.html]
 TopLine=11
 Caret=67,34

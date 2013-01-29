@@ -43,12 +43,18 @@
   #{field 'zprava.bioMaterial.id'}
   <p>
     <label class="required">&{field.name} </label>
-    #{select "${field.name}", value:"${zprava?.bioMaterial?.id}", id:"${field.name}", class:"vLongW"}
-    	#{option "0"}&{'selectBox.option.select'}#{/option}
-      #{list bioMaterialy}
-        #{option "${_.id}"}${_.typ}  ${ _.datumOdberu?.yesno(' - ', '') }  ${_.datumOdberu?.format()}#{/option}
-      #{/list}
-    #{/select}
+    #{if bioMaterialy.size() == 1}
+      <input type="hidden" name="${field.name}" value="${bioMaterialy[0].id}">
+      <span class="infoInput">${bioMaterialy[0].typ}  ${ bioMaterialy[0].datumOdberu?.yesno(' - ', '') }  ${bioMaterialy[0].datumOdberu?.format()} </span>
+    #{/if}
+    #{else}
+      #{select "${field.name}", value:"${zprava?.bioMaterial?.id}", id:"${field.name}", class:"vLongW"}
+      	#{option "0"}&{'selectBox.option.select'}#{/option}
+        #{list bioMaterialy}
+          #{option "${_.id}"}${_.typ}  ${ _.datumOdberu?.yesno(' - ', '') }  ${_.datumOdberu?.format()}#{/option}
+        #{/list}
+      #{/select}
+    #{/else}
     <span class="error">#{error 'zprava.bioMaterial.id' /} </span>
   </p>
   #{/}
