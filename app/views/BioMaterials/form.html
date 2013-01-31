@@ -34,14 +34,6 @@
 </p>
 #{/}
 
-#{field 'koncDna'}
-<p>
-  <label>&{'pacient.koncDna'} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.koncDna}" class="${field.errorClass} shortW"><span>&nbsp;&nbsp;ng/&micro;l</span>
-  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
-</p>
-#{/}
-
 #{field 'bioMaterial.datumOdberu'}
 <p>
   <label>&{field.name} </label>
@@ -112,6 +104,13 @@
 </p>
 #{/}
 
+#{field 'koncDna'}
+<p>
+  <label>&{'pacient.koncDna'} </label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.koncDna}" class="${field.errorClass} shortW"><span>&nbsp;&nbsp;ng/&micro;l</span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+</p>
+#{/}
 
 #{field 'bioMaterial.parafaIzolace.id'}
 <p>

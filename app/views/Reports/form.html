@@ -92,14 +92,6 @@
   #{/}
 #{/if}
 
-#{field 'zprava.datumZpravy'}
-<p>
-  <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="#{if zprava?.id}${zprava?.datumZpravy?.format('dd.MM.yyyy HH:mm')}#{/if}#{else}${new Date().format('dd.MM.yyyy HH:mm')}#{/else}" class="${field.errorClass} datumW">
-  <span class="small">dd.mm.rrrr hh:mm</span>
-  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
-</p>
-#{/}
 
 #{field 'zprava.datumVysetreni'}
 <p>
@@ -108,6 +100,20 @@
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
+
+
+#{field 'zprava.analyzuProvedl'}
+<p>
+  <label>&{field.name} </label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.analyzuProvedl}" class="${field.errorClass} vLongW">
+  <a href="@{AppModuls.form}" title="&{'modul.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+</p>
+<p>
+  <span class="small">${provadiAnalyzu?.join(', ') } </span>
+</p>
+#{/}
+
 
 #{field 'zprava.parafaVysetreni.id'}
 <p>
@@ -136,17 +142,6 @@
 </p>
 #{/}
 
-#{field 'zprava.analyzuProvedl'}
-<p>
-  <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.analyzuProvedl}" class="${field.errorClass} vLongW">
-  <a href="@{AppModuls.form}" title="&{'modul.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
-  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
-</p>
-<p>
-  <span class="small">${provadiAnalyzu?.join(', ') } </span>
-</p>
-#{/}
 
 #{field 'zprava.analyzuUvolnil'}
 <p>
@@ -192,6 +187,14 @@
 </p>
 #{/}
 
+#{field 'zprava.datumZpravy'}
+<p>
+  <label>&{field.name} </label>
+  <input type="text" id="${field.id}" name="${field.name}" value="#{if zprava?.id}${zprava?.datumZpravy?.format('dd.MM.yyyy HH:mm')}#{/if}#{else}${new Date().format('dd.MM.yyyy HH:mm')}#{/else}" class="${field.errorClass} datumW">
+  <span class="small">dd.mm.rrrr hh:mm</span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+</p>
+#{/}
 
 <fieldset>
   <legend>Datum</legend>
