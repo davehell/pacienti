@@ -34,7 +34,7 @@ public class BioMaterials extends Application {
   }
 
 
-  public static void mySave(Long bioMatId, BioMaterial bioMaterial, Long pacientId, String casOdberu, String casPrijeti) {
+  public static void mySave(Long bioMatId, BioMaterial bioMaterial, Long pacientId, String casOdberu, String casPrijeti, String koncDna) {
     List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
@@ -70,9 +70,12 @@ public class BioMaterials extends Application {
         render("@form", bioMaterial, pacient, users, typyMaterialu);
     }
 
+    pacient.koncDna = koncDna;
+
     if(bioMatId == null) {
         bioMaterial.pacient = pacient;
         try {
+          pacient.save();
           bioMaterial.create();
           appLog.add("biologický materiál", "create", bioMaterial.id);
         }
@@ -91,6 +94,7 @@ public class BioMaterials extends Application {
       newBioMat.parafaIzolace = bioMaterial.parafaIzolace;
 
       try {
+        pacient.save();
         newBioMat.save();
         appLog.add("biologický materiál", "update", bioMatId);
       }
