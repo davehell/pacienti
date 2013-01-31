@@ -98,6 +98,7 @@
   <label>&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.datumVysetreni?.format()}" class="${field.errorClass} datumW">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+  <span class="small">dd.mm.rrrr</span>
 </p>
 #{/}
 

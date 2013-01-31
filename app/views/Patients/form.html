@@ -378,5 +378,26 @@ $(document).ready(function() {
     if($( this ).val().length == 6 && event.keyCode >= 96 && event.keyCode <= 105) $( '#pacient_rcKon' ).focus();
   });
 
+  $( '#pacient_jmeno' ).on('change', function(event){
+    $(this).val(capitaliseFirstLetter($(this).val()));
+  });
+
+  $( '#pacient_prijmeni' ).on('change', function(event){
+    $(this).val(capitaliseFirstLetter($(this).val()));
+  });
+
+  $( '#pacient_diagnoza' ).on('change', function(event){
+    $(this).val(capitaliseFirstLetter($(this).val()));
+  });
+
+  $( '#pacient_ostatniDiagnozy' ).on('change', function(event){
+    $(this).val(capitaliseFirstLetter($(this).val()));
+  });
+
+  function capitaliseFirstLetter(string)
+  {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   } ); //document ready
 </script>
