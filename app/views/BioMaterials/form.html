@@ -211,5 +211,25 @@ $(document).ready(function() {
         //$("#bioMaterial_datumOdberu" ).val($("#bioMaterial_datumOdberu" ).val() + " " + $("#bioMaterial_casOdberu").val());
         //$("#bioMaterial_datumPrijeti" ).val($("#bioMaterial_datumPrijeti" ).val() + " " + $("#bioMaterial_casPrijeti").val());
       } );
+
+
+      $( '#casOdberu' ).on('change', function(event){
+        $(this).val(upravCas($(this).val()));
+      });
+
+      $( '#casPrijeti' ).on('change', function(event){
+        $(this).val(upravCas($(this).val()));
+      });
+
+      function upravCas(cas)
+      {
+        //735 -> 0735
+        if(cas.length == 3 && cas.indexOf(":") == -1) cas = "0" + cas;
+        //7:35 -> 07:35
+        if(cas.length == 4 && cas.indexOf(":") != -1) cas = "0" + cas;
+        //0735 -> 07:35
+        if(cas.length == 4 && cas.indexOf(":") == -1) cas = cas.substring(0, 2) + ":" + cas.substring(2);
+        return cas;
+      }
   } );
 </script>
