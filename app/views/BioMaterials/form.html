@@ -26,7 +26,7 @@
 <p>
   <label class="required">&{field.name} </label>
   <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.typ}" class="${field.errorClass} longW">
-  <a href="@{AppModuls.form}" title="&{'modul.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
+  <a href="@{AppModuls.form}" target="_blank" title="&{'modul.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 <p>
@@ -75,7 +75,7 @@
   	#{option }&{'selectBox.option.none'}#{/option}
     #{option "${connected.id}"}${connected.parafa}#{/option}
   #{/select}
-  <a href="@{AppModuls.uziv()}" title="&{'profil.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
+  <a href="@{AppModuls.uziv()}" target="_blank" title="&{'profil.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
   <span class="error">#{error 'bioMaterial.parafaPrijeti' /} </span>
 *{
   #{ifnot bioMaterial?.id}
@@ -119,7 +119,7 @@
   	#{option }&{'selectBox.option.none'}#{/option}
     #{option "${connected.id}"}${connected.parafa}#{/option}
   #{/select}
-  <a href="@{AppModuls.uziv()}" title="&{'profil.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
+  <a href="@{AppModuls.uziv()}" target="_blank" title="&{'profil.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
 *{
   #{ifnot bioMaterial?.id}
     <input type="hidden" name="${field.name}" value="${connected?.id}">
