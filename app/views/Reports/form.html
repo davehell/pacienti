@@ -68,20 +68,20 @@
   </p>  
 #{/if}
 #{else}
-  #{field 'zprava.vysetreni.id'}
+<input type="hidden" name="zprava.vysetreni.id" value="">
   <p>
-    <label class="required">&{field.name} </label>
-    #{select "${field.name}", value:"${zprava?.vysetreni?.id}", id:"${field.name}", class:"vLongW"}
+    <label>&{'zprava.vysetreni.id'} </label>
+    #{select "novaVysetreni", class:"vLongW"}
     	#{option "0"}&{'selectBox.option.select'}#{/option}
       #{list vysetreni}
         #{option "${_.id}"}${_.nazev}#{/option}
       #{/list}
     #{/select}
-    <span class="error">#{error 'vysetreni.id' /} </span>
   </p>
-  #{/}
+
 #{/else}
 
+#{if zprava?.id}
 #{if zprava?.vysetreni?.certif}
   #{field 'neniCertif'}
   <p>
@@ -270,7 +270,7 @@
 #{/}
 </div> <!-- datumy -->
 </fieldset> <!-- datum -->
-
+#{/if} *{ if zprava?.id }*
 <input type="hidden" name="pacientId" id="pacientId" value="${pacient?.id}">
 <input type="hidden" name="zprava.id" value="${zprava?.id}">
 <input type="hidden" name="zprava.vysledek" value="${zprava?.vysledek}">
@@ -315,9 +315,7 @@
       } );
   } );
   </script>  
-#{/if}
 
-#{if zprava?.id}
 <div class="span-9 last">
 <fieldset class="genotyp">
   <legend>Zjištěný genotyp</legend>
@@ -341,6 +339,8 @@
 
 #{/form}
 
+
+#{if zprava?.id}
 <script type="text/javascript">
   $(document).ready(function() {
 		$( "#zprava_datumVysetreni" ).datepicker(calSetup);
@@ -372,7 +372,7 @@
 			source: uvolnujiAnalyzu,
       change : uvolnujiChangeHandler
 		});
-    $("#zprava_analyzuUvolnil").data("autocomplete")._trigger("change")
+    //$("#zprava_analyzuUvolnil").data("autocomplete")._trigger("change")
 
 		var provadiAnalyzu = [
       #{list provadiAnalyzu}
@@ -413,3 +413,5 @@
 
   } ); //document.ready
 </script>
+#{/if}
+

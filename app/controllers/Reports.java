@@ -65,7 +65,7 @@ public class Reports extends Application {
   }
 
 
-  public static void mySave(Long zpravaId, Report zprava, Long pacientId, String[] vysledky, String[] markery, Boolean neniCertif, Boolean pozitivni) {
+  public static void mySave(Long zpravaId, Report zprava, Examination[] novaVysetreni, Long pacientId, String[] vysledky, String[] markery, Boolean neniCertif, Boolean pozitivni) {
     Patient pacient = Patient.getByModulAndId(connected.modul, pacientId);
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.findAll();
@@ -91,12 +91,20 @@ public class Reports extends Application {
     zprava.vysledek = vysledek;
     vyslMap = zprava.getVysl();
 
-    validation.valid(zprava);
-    if(validation.hasErrors()) {
-        render("@form", zprava, vyslMap, pacient, bioMaterialy, vysetreni, users);
-    }
 
     if(zpravaId == null) {
+System.out.println("-----------------");
+        for (int j = 0; j < novaVysetreni.length; j++) {
+          System.out.println(novaVysetreni[j]);
+          if(novaVysetreni[j] == null) continue;
+          System.out.println(j + " - " + novaVysetreni[j].id);
+          //zprava = new Report();
+          zprava.pacient = pacient;
+          zprava.vysetreni = novaVysetreni[j];
+
+        
+
+
         List<Genotype> genotypes = Genotype.find("byVysetreni", zprava.vysetreni).fetch();
         int k = 1;
         for(Iterator<Genotype> i = genotypes.iterator(); i.hasNext(); ) {
@@ -114,7 +122,13 @@ public class Reports extends Application {
           flash.error("Vyšetření se nepodařilo vytvořit.");
           Patients.detail(pacientId);
         }
+      } //for
     } else {
+      validation.valid(zprava);
+      if(validation.hasErrors()) {
+          render("@form", zprava, vyslMap, pacient, bioMaterialy, vysetreni, users);
+      }
+
       Report newZprava = Report.findById(zpravaId);
 
       newZprava.vysledek = vysledek;
@@ -146,9 +160,10 @@ public class Reports extends Application {
       }
     }
 
-    flash.success("Vyšetření %s uloženo.", zprava.vysetreni.nazev);
+    //flash.success("Vyšetření %s uloženo.", zprava.vysetreni.nazev);
+    flash.success("Vyšetření uloženo.");
 
-    Patients.detail(pacientId);
+//     Patients.detail(pacientId);
 
   }
 
