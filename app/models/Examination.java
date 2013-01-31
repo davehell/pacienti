@@ -17,6 +17,9 @@ public class Examination extends Model {
     @Lob
     public String popis;
 
+    @MaxSize(10)
+    public String zkratka;
+
     public String vysvetlivka; // ((tučně))
 
     public int body;

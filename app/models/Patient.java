@@ -183,4 +183,13 @@ public class Patient extends Model {
       q.setParameter ("rok", rok);
       return (Long) q.getSingleResult();
     }
+
+    public BioMaterial getFirstBioMaterial() {
+        return BioMaterial.find("pacient.id = ? order by id asc", this.id).first();
+    }
+
+    public Report getFirstReport() {
+        return Report.find("pacient.id = ? order by id asc", this.id).first();
+    }
+
 }

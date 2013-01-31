@@ -91,6 +91,8 @@ examination.score = Účtování vyšetření
 
 vyslImport.neznamy = neznámý
 
+hotovo = hotovo
+
 crud.search = Hledat
 crud.pagination.previous = Předchozí
 crud.pagination.first = První

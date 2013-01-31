@@ -87,6 +87,9 @@ public class Report extends Model {
         return map;
     }
 
+    public boolean jeHotovo() {
+      return (this.analyzuUvolnil == "") ? false : true;
+    }
 
     public static boolean setVysl(String pacKod, String marker, String vysl, boolean jenTest) {
       Patient pacient = Patient.getByKod(pacKod);

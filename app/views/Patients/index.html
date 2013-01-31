@@ -13,12 +13,16 @@
 
   <table class="display" id="pacTable">
     <thead>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <!-- <th>&nbsp;</th> -->
-      <th>&{'pacient.evCislo'}</th>
-      <th>&{'pacient.jmeno'}</th>
-      <th>&{'pacient.rcZac'}</th>
+      <tr>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&{'pacient.evCislo'}</th>
+        <th>&{'bioMaterial.datumPrijeti'}</th>
+        <th>&{'pacient.jmeno'}</th>
+        <th>&{'pacient.rcZac'}</th>
+        <th>&{'zprava.vysetreni.id'}</th>
+        <th>&{'hotovo'}</th>
+      </tr>
     </thead>
     <tbody>
 
@@ -26,10 +30,13 @@
     <tr>
       <td>${_.evCislo} </td>
       <td>${_.evRok} </td>
-      <!-- <td>${_.getSkupina()} </td> -->
       <td>#{a @Patients.detail(_.id), title:"Zobrazit detail tohoto pacienta"}${_.getKod()}#{/a} </td>
+      <td>${_.getFirstBioMaterial()?.datumPrijeti?.format()} </td>
       <td>${_.toString()} </td>
       <td>${_.getRodneCislo()} </td>
+      <td>${_.getFirstReport()?.vysetreni?.zkratka} </td>
+      <td>#{if _.getFirstReport()?.jeHotovo() ? 'checked' : ''}<span class="ui-icon ui-icon-check"></span> #{/if} </td>
+      
     </tr>
     #{/list}
     </tbody>
