@@ -103,7 +103,7 @@ pacienti
 3=public\stylesheets\main.css
 [Selected Project Files]
 Main=
-Selected=public\stylesheets\main.css
+Selected=app\views\main.html
 [conf\routes]
 TopLine=1
 Caret=22,11
