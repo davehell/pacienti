@@ -1,17 +1,16 @@
 AppModul(ov):
     nazev: Ostrava
     kod: KO
-    vedouciLekari: MUDr. Ditta Leznarová,MUDr. Jana Zvolská
-    uvolnujiAnalyzu: RNDr. Hana Kolaříková,MUDr. Jana Zvolská
-    typyMaterialu: krev nesrážlivá EDTA,izolovaná DNA,FTA karta krev,FTA karta plodová voda
+    vedouciLekari: MUDr. Ditta Leznarová;MUDr. Jana Zvolská
+    uvolnujiAnalyzu: RNDr. Hana Kolaříková;MUDr. Jana Zvolská
+    typyMaterialu: krev nesrážlivá EDTA;izolovaná DNA;FTA karta krev;FTA karta plodová voda
     formNeprovVys: IF-71.0
     cDokladu: 5
 
 AppModul(br):
   nazev: Brno
   kod: K
-  formNeprovVys: IF-71.0
-  cDokladu: 5
+    typyMaterialu: krev nesrážlivá EDTA;izolovaná DNA;FTA karta krev;FTA karta plodová voda
 
 User(david):
     username:       davehell
@@ -40,6 +39,12 @@ User(ostrava):
     modul:          ov
     isAdmin:        true
     isDoctor:       true
+
+InsuranceCompany(vzp):
+    modul:       ov
+    cislo:       111
+    nazev:       Všeobecná zdravotní pojišťovna
+    aktual:      true
 
 InsuranceCompany(vzp):
     modul:       br
