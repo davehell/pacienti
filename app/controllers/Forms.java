@@ -16,12 +16,13 @@ import org.allcolor.yahp.converter.IHtmlToPdfTransformer;
 @With(Secure.class)
 public class Forms extends Application {
 
-  public static void index(String typ, @As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {
+  public static void index(String typ, @As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo, Long vysetreni) {
     notFoundIfNull(typ);
+    List<Examination> seznamVysetreni = Examination.getActual();
     if(datumOd == null && datumDo == null) {
       datumOd = new Date();
       datumDo = new Date();
-      render(typ, datumOd,datumDo);
+      render(typ, datumOd,datumDo, seznamVysetreni);
     }
     else {
       if(datumOd == null) datumOd = new Date();
@@ -29,7 +30,7 @@ public class Forms extends Application {
     }
 
     if(typ.equals("neprovedena-vysetreni")) {
-      neprovedena(datumOd, datumDo);
+      neprovedena(datumOd, datumDo, vysetreni);
     }
     else if(typ.equals("pocty-vzorku")) {
       poctyVzorku(datumOd, datumDo);
@@ -49,20 +50,22 @@ public class Forms extends Application {
 
 
   @Check("doctor")
-  public static void neprovedena(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {
+  public static void neprovedena(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo, Long vysetreniId) {
       if(datumOd == null) datumOd = new Date();
       if(datumDo == null) datumDo = new Date();
+      List<Examination> seznamVysetreni = Examination.getActual();
+      Examination vysetreni = Examination.find("byId", vysetreniId).first();
 
       AppModul modul = connected.modul;
-      List<Report> vysetreni = Report.getNeprovedena(datumOd, datumDo, modul);
+      List<Report> neprovVysetreni = Report.getNeprovedena(datumOd, datumDo, modul, vysetreniId);
 
       Options options = new Options();
       options.FOOTER = modul.formNeprovVys;
       IHtmlToPdfTransformer.PageSize ps = new IHtmlToPdfTransformer.PageSize(21.0, 29.7, 1.9, 1.9, 1.5, 1.5);
       options.pageSize = ps;
 
-      //render(vysetreni, datumOd, datumDo, modul);
-      renderPDF(vysetreni, datumOd, datumDo, modul, options);
+      //render(neprovVysetreni, datumOd, datumDo, modul);
+      renderPDF(neprovVysetreni, vysetreni, datumOd, datumDo, modul, options);
   }
 
   public static void poctyVysetreni(Integer rok) {

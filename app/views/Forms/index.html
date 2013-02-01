@@ -37,6 +37,20 @@
   </p>
   #{/}
 
+  #{if typ == "neprovedena-vysetreni"}
+    #{field 'vysetreni'}
+    <p>
+      <label>&{field.name} </label>
+      #{select "${field.name}", class:"vLongW"}
+      	#{option "0"}&{'selectBox.option.all'}#{/option}
+        #{list seznamVysetreni}
+          #{option "${_.id}"}${_.nazev}#{/option}
+        #{/list}
+      #{/select}
+    </p>
+    #{/}
+  #{/if}
+
     <p>
         <input type="submit" value="Zobrazit" />
     </p>

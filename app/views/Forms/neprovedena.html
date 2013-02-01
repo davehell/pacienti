@@ -14,11 +14,15 @@
   <body>
 
 <h1>Neprovedená vyšetření</h1>
+
 <p>
  Období: ${datumOd.format()} - ${datumDo.format()}
+  #{if vysetreni}
+  <br />Vyšetření: ${vysetreni.nazev}
+  #{/if}
 </p>
 
-#{if vysetreni}
+#{if neprovVysetreni}
   <table>
     <thead>
       <th>vyšetření</th>
@@ -35,7 +39,7 @@
   i = 0;
 }%
 
-    #{list vysetreni}
+    #{list neprovVysetreni}
 %{
   i++;
   vysSum += _.vysetreni.body;

@@ -29,6 +29,7 @@ casPrijeti = čas přijetí
 
 zprava.bioMaterial.id = biologický materiál
 zprava.vysetreni.id = vyšetření
+vysetreni = vyšetření
 zprava.datumZpravy = datum a čas uvolnění zprávy
 zprava.datumVysetreni = datum vyšetření
 zprava.parafaVysetreni.id = analýzu vyhodnotil
@@ -83,6 +84,7 @@ profil.nastaveni = nastavení profilu
 
 selectBox.option.select = vyberte
 selectBox.option.none = nezadáno
+selectBox.option.all = vše
 neuvedeno = neuvedeno
 
 noRecords = Nejsou uloženy žádné záznamy.

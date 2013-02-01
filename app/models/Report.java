@@ -197,9 +197,12 @@ public class Report extends Model {
       return (Long) q.getSingleResult();
     }
 
-    public static List<Report> getNeprovedena(Date datumOd, Date datumDo, AppModul modul) {
-        //List<Report> result = Report.findAll();
-        List<Report> result = Report.find("pacient.modul = ? and datumVysetreni is null and bioMaterial.datumPrijeti >= ? and bioMaterial.datumPrijeti <= ?order by vysetreni.id asc, pacient.evCislo asc", modul, datumOd, datumDo).fetch();
+    public static List<Report> getNeprovedena(Date datumOd, Date datumDo, AppModul modul, Long vysetreniId) {
+        List<Report> result = null;
+        if(vysetreniId == null || vysetreniId == 0) result = Report.find("pacient.modul = ? and datumVysetreni is null and bioMaterial.datumPrijeti >= ? and bioMaterial.datumPrijeti <= ?order by vysetreni.id asc, pacient.evCislo asc", modul, datumOd, datumDo).fetch();
+        else result = Report.find("pacient.modul = ? and vysetreni.id = ? and datumVysetreni is null and bioMaterial.datumPrijeti >= ? and bioMaterial.datumPrijeti <= ?order by vysetreni.id asc, pacient.evCislo asc", modul, vysetreniId, datumOd, datumDo).fetch();
+
+
 /*
 Query q = JPA.em().createQuery ("UPDATE Doctor d SET d.jmeno = :jmeno ");
 q.setParameter ("jmeno", "pok");
