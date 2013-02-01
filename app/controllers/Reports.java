@@ -65,11 +65,11 @@ public class Reports extends Application {
   }
 
 
-  public static void mySave(Long zpravaId, Report zprava, Examination[] novaVysetreni, Long pacientId, String[] vysledky, String[] markery, Boolean neniCertif, Boolean pozitivni) {
+  public static void mySave(Long zpravaId, Report zprava, Long[] novaVysetreni, Long pacientId, String[] vysledky, String[] markery, Boolean neniCertif, Boolean pozitivni) {
     Patient pacient = Patient.getByModulAndId(connected.modul, pacientId);
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.findAll();
-    List<Examination> vysetreni = Examination.getActual();
+    List<Examination> seznamVysetreni = Examination.getActual();
     List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
     String vysledek = "";
     Genotype genotyp = null;
@@ -93,20 +93,23 @@ public class Reports extends Application {
 
 
     if(zpravaId == null) {
-System.out.println("-----------------");
-        for (int j = 0; j < novaVysetreni.length; j++) {
-          System.out.println(novaVysetreni[j]);
-          if(novaVysetreni[j] == null) continue;
-          System.out.println(j + " - " + novaVysetreni[j].id);
-          //zprava = new Report();
-          zprava.pacient = pacient;
-          zprava.vysetreni = novaVysetreni[j];
+      int pocetPridanych = 0;
+      for (int j = 0; j < novaVysetreni.length; j++) {
+        if(novaVysetreni[j] == 0) continue; // 0 znamená položku "vyberte"
 
+        Examination vysetreni = Examination.find("byId", novaVysetreni[j]).first();
+        BioMaterial bioMaterial = zprava.bioMaterial;
         
+        if(bioMaterial == null || vysetreni == null) {
+          flash.error("Vyšetření se nepodařilo vytvořit.");
+          Patients.detail(pacientId);
+        }
 
+        zprava = new Report(pacient, bioMaterial, vysetreni);
 
         List<Genotype> genotypes = Genotype.find("byVysetreni", zprava.vysetreni).fetch();
         int k = 1;
+        vysledek = "";
         for(Iterator<Genotype> i = genotypes.iterator(); i.hasNext(); ) {
           genotyp = i.next();
           vysledek += (genotyp.nazev + "$" + genotyp.vychozi);
@@ -115,7 +118,8 @@ System.out.println("-----------------");
         zprava.vysledek = vysledek;
 
         try {
-          zprava.create();
+          zprava.save();
+          pocetPridanych++;
           appLog.add("vyšetření", "create", zprava.id);
         }
         catch (Exception e) {
@@ -123,10 +127,14 @@ System.out.println("-----------------");
           Patients.detail(pacientId);
         }
       } //for
+      if(pocetPridanych == 0) {
+        flash.error("Nebylo zvoleno žádné vyšetření.");
+        Patients.detail(pacientId);
+      }
     } else {
       validation.valid(zprava);
       if(validation.hasErrors()) {
-          render("@form", zprava, vyslMap, pacient, bioMaterialy, vysetreni, users);
+          render("@form", zprava, vyslMap, pacient, bioMaterialy, seznamVysetreni, users);
       }
 
       Report newZprava = Report.findById(zpravaId);
@@ -163,7 +171,7 @@ System.out.println("-----------------");
     //flash.success("Vyšetření %s uloženo.", zprava.vysetreni.nazev);
     flash.success("Vyšetření uloženo.");
 
-//     Patients.detail(pacientId);
+     Patients.detail(pacientId);
 
   }
 

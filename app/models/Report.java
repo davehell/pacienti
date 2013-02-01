@@ -76,6 +76,13 @@ public class Report extends Model {
     public Date datumSekv;
 
 
+    public Report(Patient pacient, BioMaterial bioMaterial, Examination vysetreni) {
+        this.pacient = pacient;
+        this.bioMaterial = bioMaterial;
+        this.vysetreni = vysetreni;
+    }
+
+
     public LinkedHashMap<String,String> getVysl() {
         if(this.vysledek == null) return null;
         String[] splitVysl = this.vysledek.split("\\$", -1);

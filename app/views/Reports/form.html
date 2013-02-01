@@ -68,7 +68,33 @@
   </p>  
 #{/if}
 #{else}
-<input type="hidden" name="zprava.vysetreni.id" value="">
+  <p>
+    <label>&{'zprava.vysetreni.id'} </label>
+    #{select "novaVysetreni", class:"vLongW"}
+    	#{option "0"}&{'selectBox.option.select'}#{/option}
+      #{list vysetreni}
+        #{option "${_.id}"}${_.nazev}#{/option}
+      #{/list}
+    #{/select}
+  </p>
+  <p>
+    <label>&{'zprava.vysetreni.id'} </label>
+    #{select "novaVysetreni", class:"vLongW"}
+    	#{option "0"}&{'selectBox.option.select'}#{/option}
+      #{list vysetreni}
+        #{option "${_.id}"}${_.nazev}#{/option}
+      #{/list}
+    #{/select}
+  </p>
+  <p>
+    <label>&{'zprava.vysetreni.id'} </label>
+    #{select "novaVysetreni", class:"vLongW"}
+    	#{option "0"}&{'selectBox.option.select'}#{/option}
+      #{list vysetreni}
+        #{option "${_.id}"}${_.nazev}#{/option}
+      #{/list}
+    #{/select}
+  </p>
   <p>
     <label>&{'zprava.vysetreni.id'} </label>
     #{select "novaVysetreni", class:"vLongW"}
