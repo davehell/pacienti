@@ -170,6 +170,21 @@ public class Report extends Model {
       return (Long) q.getSingleResult();
     }
 
+    public static List<Report> getPocetDleTypu(Integer rok) {
+      Calendar cal = new GregorianCalendar();
+      cal.set(Calendar.YEAR, rok);
+      cal.set(Calendar.DAY_OF_YEAR, 1);
+      Date startDate = cal.getTime();
+      cal.set(Calendar.DAY_OF_YEAR, 366); // for leap years
+      Date endDate = cal.getTime();
+
+      List<Report> result = Report.find(
+          "select new map(count(r.id) as pocet, r.vysetreni.nazev as nazev) from Report r WHERE r.datumVysetreni >= ? AND r.datumVysetreni <= ? group by r.vysetreni.id", startDate, endDate
+      ).fetch();
+
+      return result;
+    }
+
 
 
     //počet patologických vyšetření za rok (pozitivni == true)

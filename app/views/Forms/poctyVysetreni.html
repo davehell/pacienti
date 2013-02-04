@@ -26,6 +26,14 @@
   ženy: ${pocetVysetreniF}
 </p>
 <p>
+  Počet vyšetření dle typu:
+</p>
+<ul>
+    #{list pocetDleTypu}
+      <li>${_.nazev} - ${_.pocet} </li>
+    #{/list}
+</ul>
+<p>
   Počet pacientů: ${pocetPacientu}<br />
   muži: ${pocetPacientuM}<br />
   ženy: ${pocetPacientuF}
@@ -34,4 +42,5 @@
  Počet pacientů s patologickým nálezem: ${pocetPatolog}<br />
  <!-- Z toho mladší 19 let: ${pocetPatologMladi} -->
 </p>
+
 
