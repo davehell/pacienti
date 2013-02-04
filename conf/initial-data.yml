@@ -5,8 +5,8 @@ AppModul(ov):
     uvolnujiAnalyzu: RNDr. Hana Kolaříková;MUDr. Jana Zvolská
     typyMaterialu: krev nesrážlivá EDTA;izolovaná DNA;FTA karta krev;FTA karta plodová voda
     formNeprovVys: IF-71.0
-    cDokladu: 5
     adresa: Ostrava
+    cDokladu: 5
 
 AppModul(br):
   nazev: Brno
@@ -42,13 +42,13 @@ User(ostrava):
     isAdmin:        true
     isDoctor:       true
 
-InsuranceCompany(vzp):
+InsuranceCompany(vzp1):
     modul:       ov
     cislo:       111
     nazev:       Všeobecná zdravotní pojišťovna
     aktual:      true
 
-InsuranceCompany(vzp):
+InsuranceCompany(vzp2):
     modul:       br
     cislo:       111
     nazev:       Všeobecná zdravotní pojišťovna
