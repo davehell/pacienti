@@ -146,7 +146,7 @@ public class Report extends Model {
       return true;
     }
 
-    public static Long getPocet(Integer rok, String pohlavi) {
+    public static Long getPocet(Integer rok, String pohlavi, AppModul modul) {
       Calendar cal = new GregorianCalendar();
       cal.set(Calendar.YEAR, rok);
       cal.set(Calendar.DAY_OF_YEAR, 1);
@@ -156,21 +156,22 @@ public class Report extends Model {
 
       Query q = null;
       if(pohlavi.equals("M")) {
-        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE r.pacient.id = p.id AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate AND SUBSTR(p.rcZac, 3, 1)<>'5' AND SUBSTR(p.rcZac, 3, 1)<>'6'");
+        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE r.pacient.id = p.id AND p.modul = :modul AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate AND SUBSTR(p.rcZac, 3, 1)<>'5' AND SUBSTR(p.rcZac, 3, 1)<>'6'");
       }
       else if(pohlavi.equals("F")) {
-        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE r.pacient.id = p.id AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate AND (SUBSTR(p.rcZac, 3, 1)='5' OR SUBSTR(p.rcZac, 3, 1)='6')");
+        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE r.pacient.id = p.id AND p.modul = :modul AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate AND (SUBSTR(p.rcZac, 3, 1)='5' OR SUBSTR(p.rcZac, 3, 1)='6')");
       }
       else {
-        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r WHERE r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
+        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE r.pacient.id = p.id AND p.modul = :modul AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
       }
 
       q.setParameter ("startDate", startDate);
       q.setParameter ("endDate", endDate);
+      q.setParameter ("modul", modul);
       return (Long) q.getSingleResult();
     }
 
-    public static List<Report> getPocetDleTypu(Integer rok) {
+    public static List<Report> getPocetDleTypu(Integer rok, AppModul modul) {
       Calendar cal = new GregorianCalendar();
       cal.set(Calendar.YEAR, rok);
       cal.set(Calendar.DAY_OF_YEAR, 1);
@@ -179,7 +180,7 @@ public class Report extends Model {
       Date endDate = cal.getTime();
 
       List<Report> result = Report.find(
-          "select new map(count(r.id) as pocet, r.vysetreni.nazev as nazev) from Report r WHERE r.datumVysetreni >= ? AND r.datumVysetreni <= ? group by r.vysetreni.id", startDate, endDate
+          "select new map(count(r.id) as pocet, r.vysetreni.nazev as nazev) from Report r, Patient p WHERE r.pacient.id = p.id AND p.modul = ? AND r.datumVysetreni >= ? AND r.datumVysetreni <= ? GROUP BY r.vysetreni.id ORDER BY nazev ASC", modul, startDate, endDate
       ).fetch();
 
       return result;
@@ -190,7 +191,7 @@ public class Report extends Model {
     //počet patologických vyšetření za rok (pozitivni == true)
     //věk - započítat pouze pacienty mladších než tento věk
     //pro rok 2012 a věk 19: pacienti s datem narození <= 21.12.1993)
-    public static Long pocetPatolog(Integer rok, Integer vek) {
+    public static Long pocetPatolog(Integer rok, Integer vek, AppModul modul) {
       Calendar cal = new GregorianCalendar();
       cal.set(Calendar.YEAR, rok);
       cal.set(Calendar.DAY_OF_YEAR, 1);
@@ -201,14 +202,15 @@ public class Report extends Model {
       Query q = null;
       if(vek > 0) {
         //q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE SUBSTR(p.rcZac, 0, 2)='93' AND r.pozitivni=true AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
-        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r WHERE r.pozitivni=true AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
+        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE r.pozitivni=true AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate AND r.pacient.id = p.id AND p.modul = :modul ");
       }
       else {
-        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r WHERE r.pozitivni=true AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
+        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE r.pozitivni=true AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate AND r.pacient.id = p.id AND p.modul = :modul ");
       }
 
       q.setParameter ("startDate", startDate);
       q.setParameter ("endDate", endDate);
+      q.setParameter ("modul", modul);
       return (Long) q.getSingleResult();
     }
 

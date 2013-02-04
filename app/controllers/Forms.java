@@ -72,18 +72,18 @@ public class Forms extends Application {
       Integer aktRok = Calendar.getInstance().get(Calendar.YEAR);
       if(rok == null) rok = aktRok;
 
-      Long pocetVysetreni = Report.getPocet(rok, "");
-      Long pocetVysetreniM = Report.getPocet(rok, "M");
-      Long pocetVysetreniF = Report.getPocet(rok, "F");
+      Long pocetVysetreni = Report.getPocet(rok, "", connected.modul);
+      Long pocetVysetreniM = Report.getPocet(rok, "M", connected.modul);
+      Long pocetVysetreniF = Report.getPocet(rok, "F", connected.modul);
 
-      Long pocetPacientu = Patient.getPocet(rok, "");
-      Long pocetPacientuM = Patient.getPocet(rok, "M");
-      Long pocetPacientuF = Patient.getPocet(rok, "F");
+      Long pocetPacientu = Patient.getPocet(rok, "", connected.modul);
+      Long pocetPacientuM = Patient.getPocet(rok, "M", connected.modul);
+      Long pocetPacientuF = Patient.getPocet(rok, "F", connected.modul);
       
-      Long pocetPatolog = Report.pocetPatolog(rok, 0);
-      Long pocetPatologMladi = Report.pocetPatolog(rok, 19);
+      Long pocetPatolog = Report.pocetPatolog(rok, 0, connected.modul);
+      Long pocetPatologMladi = Report.pocetPatolog(rok, 19, connected.modul);
 
-      List<Report> pocetDleTypu = Report.getPocetDleTypu(rok);
+      List<Report> pocetDleTypu = Report.getPocetDleTypu(rok, connected.modul);
 
       render(aktRok, rok, pocetVysetreni, pocetVysetreniM, pocetVysetreniF, pocetPacientu, pocetPacientuM, pocetPacientuF, pocetPatolog, pocetPatologMladi, pocetDleTypu);
   }

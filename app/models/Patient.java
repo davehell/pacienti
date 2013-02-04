@@ -173,19 +173,20 @@ public class Patient extends Model {
         return pacienti;
     }
 
-    public static Long getPocet(Integer rok, String pohlavi) {
+    public static Long getPocet(Integer rok, String pohlavi, AppModul modul) {
       Query q = null;
       if(pohlavi.equals("M")) {
-        q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.evRok = :rok AND SUBSTR(p.rcZac, 3, 1)<>'5' AND SUBSTR(p.rcZac, 3, 1)<>'6'");
+        q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.modul = :modul AND p.evRok = :rok AND SUBSTR(p.rcZac, 3, 1)<>'5' AND SUBSTR(p.rcZac, 3, 1)<>'6'");
       }
       else if(pohlavi.equals("F")) {
-        q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.evRok = :rok AND (SUBSTR(p.rcZac, 3, 1)='5' OR SUBSTR(p.rcZac, 3, 1)='6')");
+        q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.modul = :modul AND p.evRok = :rok AND (SUBSTR(p.rcZac, 3, 1)='5' OR SUBSTR(p.rcZac, 3, 1)='6')");
       }
       else {
-        q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.evRok = :rok");
+        q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.modul = :modul AND p.evRok = :rok");
       }
 
       q.setParameter ("rok", rok);
+      q.setParameter ("modul", modul);
       return (Long) q.getSingleResult();
     }
 
