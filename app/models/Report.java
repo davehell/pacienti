@@ -174,7 +174,7 @@ public class Report extends Model {
       return (Long) q.getSingleResult();
     }
 
-    public static List<Report> getPocetDleTypu(Integer rok, AppModul modul) {
+    public static List<Report> getPocetDleTypu(Integer rok, String pohlavi, AppModul modul) {
       Calendar cal = new GregorianCalendar();
       cal.set(Calendar.YEAR, rok);
       cal.set(Calendar.DAY_OF_YEAR, 1);
@@ -185,9 +185,24 @@ public class Report extends Model {
       cal.set(Calendar.DAY_OF_MONTH, 31); // new years eve
       Date endDate = cal.getTime();
 
-      List<Report> result = Report.find(
-          "select new map(count(r.id) as pocet, r.vysetreni.nazev as nazev) from Report r, Patient p WHERE r.pacient.id = p.id AND p.modul = ? AND r.datumVysetreni >= ? AND r.datumVysetreni <= ? GROUP BY r.vysetreni.id ORDER BY nazev ASC", modul, startDate, endDate
-      ).fetch();
+      List<Report> result = null;
+
+      if(pohlavi.equals("M")) {
+        result = Report.find(
+            "select new map(count(r.id) as pocet, r.vysetreni.nazev as nazev) from Report r, Patient p WHERE r.pacient.id = p.id AND p.modul = ? AND r.datumVysetreni >= ? AND r.datumVysetreni <= ? AND SUBSTR(p.rcZac, 3, 1)<>'5' AND SUBSTR(p.rcZac, 3, 1)<>'6' GROUP BY r.vysetreni.id ORDER BY nazev ASC", modul, startDate, endDate
+        ).fetch();
+      }
+      else if(pohlavi.equals("F")) {
+        result = Report.find(
+            "select new map(count(r.id) as pocet, r.vysetreni.nazev as nazev) from Report r, Patient p WHERE r.pacient.id = p.id AND p.modul = ? AND r.datumVysetreni >= ? AND r.datumVysetreni <= ? AND (SUBSTR(p.rcZac, 3, 1)='5' OR SUBSTR(p.rcZac, 3, 1)='6') GROUP BY r.vysetreni.id ORDER BY nazev ASC", modul, startDate, endDate
+        ).fetch();
+      }
+      else {
+        result = Report.find(
+            "select new map(count(r.id) as pocet, r.vysetreni.nazev as nazev) from Report r, Patient p WHERE r.pacient.id = p.id AND p.modul = ? AND r.datumVysetreni >= ? AND r.datumVysetreni <= ? GROUP BY r.vysetreni.id ORDER BY nazev ASC", modul, startDate, endDate
+        ).fetch();
+        
+      }
 
       return result;
     }

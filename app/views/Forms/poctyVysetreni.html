@@ -21,25 +21,46 @@
 
 <h2>Rok ${rok}</h2>
 <p>
-  Počet vyšetření: ${pocetVysetreni}<br />
+  <strong>Počet vyšetření</strong>: ${pocetVysetreni}<br />
   muži: ${pocetVysetreniM}<br />
   ženy: ${pocetVysetreniF}
 </p>
+
+
 <p>
-  Počet vyšetření dle typu:
+  <strong>Počet vyšetření dle typu</strong>:
 </p>
 <ul>
     #{list pocetDleTypu}
       <li>${_.nazev} - ${_.pocet} </li>
     #{/list}
 </ul>
+
 <p>
-  Počet pacientů: ${pocetPacientu}<br />
+  <strong>Počet vyšetření dle typu - muži</strong>:
+</p>
+<ul>
+    #{list pocetDleTypuM}
+      <li>${_.nazev} - ${_.pocet} </li>
+    #{/list}
+</ul>
+
+<p>
+  <strong>Počet vyšetření dle typu - ženy</strong>:
+</p>
+<ul>
+    #{list pocetDleTypuF}
+      <li>${_.nazev} - ${_.pocet} </li>
+    #{/list}
+</ul>
+
+<p>
+  <strong>Počet pacientů</strong>: ${pocetPacientu}<br />
   muži: ${pocetPacientuM}<br />
   ženy: ${pocetPacientuF}
 </p>
 <p>
- Počet pacientů s patologickým nálezem: ${pocetPatolog}<br />
+ <strong>Počet pacientů s patologickým nálezem</strong>: ${pocetPatolog}<br />
  Z toho mladší 19 let: ${pocetPatologMladi}
 </p>
 
