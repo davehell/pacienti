@@ -1,0 +1,113 @@
+#{extends 'main.html' /}
+#{set title:'Neprovedená vyšetření' /}
+
+
+<style type="text/css">
+.totalSum {border-top: 1px solid black;}
+.totalSum, .sum {text-align: right; padding-right: 1em;}
+</style>
+
+#{form @neprovedena()}
+<p>
+ 
+</p>
+  #{field 'datumOd'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${datumOd.format('dd.MM.yyyy')}" class="${field.errorClass}">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+  #{field 'datumDo'}
+  <p>
+    <label>&{field.name}</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${datumDo.format('dd.MM.yyyy')}" class="${field.errorClass}">
+    <span class="error">${field.error}</span>
+  </p>
+  #{/}
+
+    <p>
+        <input type="submit" value="Zobrazit" />
+    </p>
+#{/form}
+
+
+#{if vysetreni}
+  <table>
+    <thead>
+      <th>Vyšetření</th>
+      <th>Evidenční číslo</th>
+      <th>Jméno</th>
+      <th>Koncentrace DNA</th>
+      <th>Počet bodů</th>
+    </thead>
+    <tbody>
+
+%{
+  vysId = 0;
+  vysSum = 0;
+  sum = 0;
+  i = 0;
+}%
+ 
+    #{list vysetreni}
+%{
+  i++;
+  vysSum += _.vysetreni.body;
+  if(i > 1 && _.vysetreni.id != vysId ) {
+}%
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td class="sum">${sum.format("###,###")}</td>
+    </tr>
+%{
+    sum = 0;
+ }
+ sum += _.vysetreni.body;
+}%
+    <tr>
+      <td>#{if _.vysetreni.id != vysId}${_.vysetreni.nazev}#{/if} </td>
+      <td>${_.pacient.getKod()} </td>
+      <td>${_.pacient.jmeno} </td>
+      <td>${_.pacient.getKonc().raw()} </td>
+      <td>&nbsp;</td>
+    </tr>
+
+#{if _isLast}
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td class="sum">${sum.format("###,###")}</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td class="totalSum">${vysSum.format("###,###")} </td>
+    </tr>
+#{/if}
+%{
+vysId = (int)_.vysetreni.id;
+}%
+
+    #{/list}
+
+    </tbody>
+  </table>
+
+<p>
+ ${modul.formNeprovVys}
+</p>
+#{/if}
+#{else}
+    <div class="empty">
+        There is currently nothing to read here.
+    </div>
+#{/else}
