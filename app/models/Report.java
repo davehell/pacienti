@@ -151,7 +151,10 @@ public class Report extends Model {
       cal.set(Calendar.YEAR, rok);
       cal.set(Calendar.DAY_OF_YEAR, 1);
       Date startDate = cal.getTime();
-      cal.set(Calendar.DAY_OF_YEAR, 366); // for leap years
+
+      cal.set(Calendar.YEAR, rok);
+      cal.set(Calendar.MONTH, 11); // 11 = december
+      cal.set(Calendar.DAY_OF_MONTH, 31); // new years eve
       Date endDate = cal.getTime();
 
       Query q = null;
@@ -176,7 +179,10 @@ public class Report extends Model {
       cal.set(Calendar.YEAR, rok);
       cal.set(Calendar.DAY_OF_YEAR, 1);
       Date startDate = cal.getTime();
-      cal.set(Calendar.DAY_OF_YEAR, 366); // for leap years
+
+      cal.set(Calendar.YEAR, rok);
+      cal.set(Calendar.MONTH, 11); // 11 = december
+      cal.set(Calendar.DAY_OF_MONTH, 31); // new years eve
       Date endDate = cal.getTime();
 
       List<Report> result = Report.find(
@@ -186,8 +192,6 @@ public class Report extends Model {
       return result;
     }
 
-
-
     //počet patologických vyšetření za rok (pozitivni == true)
     //věk - započítat pouze pacienty mladších než tento věk
     //pro rok 2012 a věk 19: pacienti s datem narození > 21.12.1993 (tzn. 1.1.1994 a dál)
@@ -196,7 +200,10 @@ public class Report extends Model {
       cal.set(Calendar.YEAR, rok);
       cal.set(Calendar.DAY_OF_YEAR, 1);
       Date startDate = cal.getTime();
-      cal.set(Calendar.DAY_OF_YEAR, 366); // for leap years
+
+      cal.set(Calendar.YEAR, rok);
+      cal.set(Calendar.MONTH, 11); // 11 = december
+      cal.set(Calendar.DAY_OF_MONTH, 31); // new years eve
       Date endDate = cal.getTime();
       
       Query q = null;
