@@ -235,18 +235,10 @@ $(document).ready(function() {
 </script>
 #{/if}
 #{else}
+  *{ nový pacient }*
   <script type="text/javascript">
   $(document).ready(function() {
       $('#pacient_evCislo').focus();
-
-      $('#pacForm').submit(function () {
-        var zac = $("#pacient_rcZac" ).val();
-        var kon = $("#pacient_rcKon" ).val();
-        var check = parseInt(zac + kon) % 11;
-        if(check != 0) {
-          alert("Zadané rodné číslo může být chybné.");
-        }
-      } );
   } );
   </script>
 #{/else}
@@ -363,6 +355,29 @@ $(document).ready(function() {
 			}
 		});
 	})( jQuery );
+
+  //Kontrola RČ
+  $('#pacForm').submit(function () {
+    var zac = $("#pacient_rcZac" ).val();
+    var kon = $("#pacient_rcKon" ).val();
+    var rok = parseInt(zac.substring(0, 2), 10);
+    var mes = parseInt(zac.substring(2, 4), 10);
+    var den = parseInt(zac.substring(4, 6), 10);
+    
+    if(rok < 0 || rok > 99) alert("RČ - chybné první dvojčíslí: " + rok);
+    if(mes < 1 || (mes > 12 && mes < 51) || mes > 62) alert("RČ - chybné druhé dvojčíslí: " + mes);
+
+    if(mes >= 51 && mes <= 62) mes = mes - 50;
+    if(den < 1) alert("RČ - chybné třetí dvojčíslí: " + den);
+    else if(den > 31 && (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12)) alert("RČ - chybné třetí dvojčíslí: " + den);
+    else if(den > 30 && (mes == 4 || mes == 6 || mes == 9 || mes == 11)) alert("RČ - chybné třetí dvojčíslí: " + den);
+    else if(den > 29 && mes == 2) alert("RČ - chybné třetí dvojčíslí: " + den);
+
+    var delit11 = parseInt(zac + kon, 10) % 11;
+    if(delit11 != 0) {
+      alert("Zadané rodné číslo může být chybné.");
+    }
+  } );
 
 	$(function() {
 		$( "#pacient_titul" ).autocomplete({
