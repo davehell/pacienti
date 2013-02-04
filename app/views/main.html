@@ -131,9 +131,6 @@
 	$(function() {
 	  var sel = 0;
 
-%{
-System.out.println(request.path );
-}%
     #{if request.action.equals("Forms.vyslImport")} sel = 2;#{/if}
     #{elseif request.action.equals("Forms.log")} sel = 3;#{/elseif}
     #{elseif request.action.equals("Forms.poctyVzorku") || request.path.contains("pocty-vzorku")} sel = 4;#{/elseif}
@@ -142,7 +139,6 @@ System.out.println(request.path );
     #{elseif request.controller.equals("Doctors")} sel = 3;#{/elseif}
     #{elseif request.controller.equals("InsuranceCompanies")} sel = 3;#{/elseif}
 
-	  
 		$( "#menu" ).tabs({selected: sel});
 
     //$( "#menu" ).tabs({select: function(event, ui) {}});
