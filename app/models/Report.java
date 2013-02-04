@@ -190,7 +190,7 @@ public class Report extends Model {
 
     //počet patologických vyšetření za rok (pozitivni == true)
     //věk - započítat pouze pacienty mladších než tento věk
-    //pro rok 2012 a věk 19: pacienti s datem narození <= 21.12.1993)
+    //pro rok 2012 a věk 19: pacienti s datem narození > 21.12.1993 (tzn. 1.1.1994 a dál)
     public static Long pocetPatolog(Integer rok, Integer vek, AppModul modul) {
       Calendar cal = new GregorianCalendar();
       cal.set(Calendar.YEAR, rok);
@@ -198,11 +198,12 @@ public class Report extends Model {
       Date startDate = cal.getTime();
       cal.set(Calendar.DAY_OF_YEAR, 366); // for leap years
       Date endDate = cal.getTime();
-
+      
       Query q = null;
       if(vek > 0) {
-        //q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE SUBSTR(p.rcZac, 0, 2)='93' AND r.pozitivni=true AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
-        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE r.pozitivni=true AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate AND r.pacient.id = p.id AND p.modul = :modul ");
+        String limitRok = new Integer(rok - vek).toString().substring(2,4);
+        q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE SUBSTR(p.rcZac, 0, 2) > :limit AND r.pozitivni=true AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate AND r.pacient.id = p.id AND p.modul = :modul ");
+        q.setParameter ("limit", limitRok);
       }
       else {
         q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE r.pozitivni=true AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate AND r.pacient.id = p.id AND p.modul = :modul ");
@@ -211,6 +212,7 @@ public class Report extends Model {
       q.setParameter ("startDate", startDate);
       q.setParameter ("endDate", endDate);
       q.setParameter ("modul", modul);
+      
       return (Long) q.getSingleResult();
     }
 
