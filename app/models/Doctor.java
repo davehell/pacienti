@@ -6,6 +6,10 @@ import javax.persistence.*;
 import java.util.*;
 import play.data.binding.*;
 
+@Table(
+    uniqueConstraints=@UniqueConstraint(columnNames={"modul_id", "icz", "jmeno", "pracoviste"})
+)
+
 @Entity
 public class Doctor extends Model {
 

@@ -6,11 +6,13 @@ AppModul(ov):
     typyMaterialu: krev nesrážlivá EDTA;izolovaná DNA;FTA karta krev;FTA karta plodová voda
     formNeprovVys: IF-71.0
     cDokladu: 5
+    adresa: Ostrava
 
 AppModul(br):
   nazev: Brno
   kod: K
-    typyMaterialu: krev nesrážlivá EDTA;izolovaná DNA;FTA karta krev;FTA karta plodová voda
+  typyMaterialu: krev nesrážlivá EDTA;izolovaná DNA;FTA karta krev;FTA karta plodová voda
+  adresa: Brno
 
 User(david):
     username:       davehell

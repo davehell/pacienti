@@ -44,14 +44,24 @@ public class Doctors extends Application {
       }
       if(id == null) {
         lekar.modul = connected.modul;
-        lekar.create();
+        try {
+          lekar.create();
+        }catch(Exception e) {
+          flash.error("Lékař se stejným IČP a pracovištěm už existuje.");
+          index();
+        }
       } else {
         Doctor newLekar = Doctor.findById(id);
         newLekar.icz = lekar.icz;
         newLekar.jmeno = lekar.jmeno;
         newLekar.pracoviste = lekar.pracoviste;
         newLekar.odbornost = lekar.odbornost;
-        newLekar.save();
+        try {
+          newLekar.save();
+        }catch(Exception e) {
+          flash.error("Lékař se stejným IČP a pracovištěm už existuje.");
+          form(id);
+        }
       }
 
       flash.success("Lékař %s uložen.", lekar.toString());
