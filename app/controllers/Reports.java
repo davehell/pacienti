@@ -193,4 +193,13 @@ public class Reports extends Application {
       Patients.detail(pacient.id);
   }
 
+  public static void neprovedena(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {
+      if(datumOd == null) datumOd = new Date();
+      if(datumDo == null) datumDo = new Date();
+    
+      AppModul modul = connected.modul;
+      List<Report> vysetreni = Report.getNeprovedena(datumOd, datumDo, modul);
+
+      render(vysetreni, datumOd, datumDo, modul);
+  }
 }
