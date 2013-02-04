@@ -147,15 +147,20 @@ public class Patient extends Model {
         else return modul.kod + "000";
     }
 
-    //kod = KO-111/12
+    //kod = KO 111/12 nebo KO 3000/12 nebo K 111/12
     public static Patient getByKod(String kod) {
-        if(kod.isEmpty() || kod.length() != "KO-111/12".length()) return null;
-        String modulKod = kod.substring(0, 2);
-        Integer pacCislo = Integer.parseInt(kod.substring(3, 6));
-        Integer pacRok = 2000 + Integer.parseInt(kod.substring(7, 9));
+        if(kod.isEmpty() || kod.length() < "K 111/12".length() || kod.length() > "KO 3111/12".length()) return null;
+        int mezera = kod.indexOf(" ");
+        if(mezera == -1) mezera = kod.indexOf("-");
+        int lomeno = kod.indexOf("/");
+
+        String modulKod = kod.substring(0, mezera);
+        Integer pacCislo = Integer.parseInt(kod.substring(mezera+1, lomeno));
+        Integer pacRok = 2000 + Integer.parseInt(kod.substring(lomeno+1));
 
         Patient pacient = Patient.find("modul.kod = ? and evCislo = ? and evRok = ?", modulKod, pacCislo, pacRok).first();
         return pacient;
+
     }
 
     public static Patient getByModulAndId(AppModul modul, Long id) {
