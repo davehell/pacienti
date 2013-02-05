@@ -95,7 +95,7 @@ public class Report extends Model {
     }
 
     public boolean jeHotovo() {
-      return (this.analyzuUvolnil == "") ? false : true;
+      return (this.analyzuUvolnil == null || this.analyzuUvolnil == "") ? false : true;
     }
 
     public static boolean setVysl(String pacKod, String marker, String vysl, boolean jenTest) {
