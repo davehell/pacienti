@@ -48,6 +48,7 @@ pacienti
 				app\views\Forms\poctyVzorku.html
 				app\views\Forms\stitky.html
 				app\views\Forms\vyslImport.html
+				app\views\Forms\poctyVysetreni.html
 			+Doctors
 				app\views\Doctors\form.html
 				app\views\Doctors\index.html
@@ -101,20 +102,25 @@ pacienti
 1=app\views\main.html
 2=conf\messages.cs
 3=public\stylesheets\main.css
+4=conf\application.conf
 [Selected Project Files]
 Main=
-Selected=conf\messages.cs
+Selected=conf\application.conf
 [conf\routes]
-TopLine=17
-Caret=1,46
+TopLine=23
+Caret=53,52
+Mark1=20,51
 [app\views\main.html]
-TopLine=1
-Caret=38,29
+TopLine=117
+Caret=68,138
 Mark1=60,31
-Mark2=31,135
+Mark2=31,133
 [conf\messages.cs]
 TopLine=11
 Caret=22,32
 [public\stylesheets\main.css]
-TopLine=92
-Caret=1,115
+TopLine=1
+Caret=1,1
+[conf\application.conf]
+TopLine=1
+Caret=26,4
