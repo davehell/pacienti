@@ -28,10 +28,12 @@
   #{extends 'main.html' /}
   #{set title:'Štítky' /}
 
+  #{if connected.modul.kod == "KO"}
   <ul id="skupiny">
     <li><a href="?skupina=KO 000">KO 000</a></li>
     <li><a href="?skupina=KO 3000">KO 3000</a></li>
   </ul>
+  #{/if}
 
   <div class="span-18">
     <table class="display" id="pacTable">

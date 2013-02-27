@@ -102,13 +102,9 @@ pacienti
 1=app\views\main.html
 2=conf\messages.cs
 3=public\stylesheets\main.css
-4=app\models\Report.java
-5=app\controllers\Patients.java
-6=app\views\Patients\index.html
-7=app\models\Patient.java
 [Selected Project Files]
 Main=
-Selected=app\views\Patients\index.html
+Selected=public\stylesheets\main.css
 [conf\routes]
 TopLine=23
 Caret=53,52
@@ -124,15 +120,3 @@ Caret=22,32
 [public\stylesheets\main.css]
 TopLine=1
 Caret=1,1
-[app\models\Report.java]
-TopLine=82
-Caret=71,98
-[app\controllers\Patients.java]
-TopLine=69
-Caret=5,63
-[app\views\Patients\index.html]
-TopLine=9
-Caret=32,36
-[app\models\Patient.java]
-TopLine=187
-Caret=35,215
