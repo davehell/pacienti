@@ -34,7 +34,7 @@
       <td>${_.getFirstBioMaterial()?.datumPrijeti?.format()} </td>
       <td>${_.toString()} </td>
       <td>${_.getRodneCislo()} </td>
-      <td>${_.getFirstReport()?.vysetreni?.zkratka} </td>
+      <td>${_.getZkratkyVysetreni()} </td>
       <td>#{if _.getFirstReport()?.jeHotovo() ? 'checked' : ''}<span class="ui-icon ui-icon-check"></span> #{/if} </td>
       
     </tr>

@@ -198,4 +198,19 @@ public class Patient extends Model {
         return Report.find("pacient.id = ? order by id asc", this.id).first();
     }
 
+    public String getZkratkyVysetreni() {
+        List<Report> zpravy = Report.find("pacient.id = ? order by id asc", this.id).fetch();
+        String zkratky = "";
+        String zkratka = "";
+        String sep = "";
+        for(Report zprava : zpravy) {
+          zkratka = zprava.vysetreni.zkratka;
+          if(zkratka == null || zkratka == "") continue;
+          zkratky += (sep + zkratka);
+          sep = ", ";
+        }
+return zkratky;
+
+    }
+
 }
