@@ -108,7 +108,7 @@ pacienti
 7=app\models\Patient.java
 [Selected Project Files]
 Main=
-Selected=app\models\Patient.java
+Selected=app\views\Patients\index.html
 [conf\routes]
 TopLine=23
 Caret=53,52
@@ -128,11 +128,11 @@ Caret=1,1
 TopLine=82
 Caret=71,98
 [app\controllers\Patients.java]
-TopLine=41
+TopLine=69
 Caret=5,63
 [app\views\Patients\index.html]
 TopLine=9
-Caret=36,37
+Caret=32,36
 [app\models\Patient.java]
-TopLine=173
-Caret=1,200
+TopLine=187
+Caret=35,215

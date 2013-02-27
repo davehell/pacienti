@@ -35,7 +35,7 @@
       <td>${_.toString()} </td>
       <td>${_.getRodneCislo()} </td>
       <td>${_.getZkratkyVysetreni()} </td>
-      <td>#{if _.getFirstReport()?.jeHotovo() ? 'checked' : ''}<span class="ui-icon ui-icon-check"></span> #{/if} </td>
+      <td>#{if _.vysetreniHotova() ? 'checked' : ''}<span class="ui-icon ui-icon-check"></span> #{/if} </td>
       
     </tr>
     #{/list}

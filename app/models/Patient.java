@@ -209,8 +209,17 @@ public class Patient extends Model {
           zkratky += (sep + zkratka);
           sep = ", ";
         }
-return zkratky;
+        return zkratky;
+    }
 
+    public Boolean vysetreniHotova() {
+        List<Report> zpravy = Report.find("pacient.id = ? order by id asc", this.id).fetch();
+        Boolean hotovo = null;
+        for(Report zprava : zpravy) {
+          if(zprava.jeHotovo()) hotovo = true;
+          else return false;
+        }
+        return hotovo;
     }
 
 }
