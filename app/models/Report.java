@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.*;
 import play.data.binding.*;
 import java.sql.Clob;
+import utils.*;
 
 @Entity
 public class Report extends Model {
@@ -239,9 +240,12 @@ public class Report extends Model {
     }
 
     public static List<Report> getNeprovedena(Date datumOd, Date datumDo, AppModul modul, Long vysetreniId) {
+        datumDo = Utils.getEndOfDay(datumDo);
         List<Report> result = null;
         if(vysetreniId == null || vysetreniId == 0) result = Report.find("pacient.modul = ? and datumVysetreni is null and bioMaterial.datumPrijeti >= ? and bioMaterial.datumPrijeti <= ?order by vysetreni.id asc, pacient.evCislo asc", modul, datumOd, datumDo).fetch();
         else result = Report.find("pacient.modul = ? and vysetreni.id = ? and datumVysetreni is null and bioMaterial.datumPrijeti >= ? and bioMaterial.datumPrijeti <= ?order by vysetreni.id asc, pacient.evCislo asc", modul, vysetreniId, datumOd, datumDo).fetch();
+        return result;
+    }
 
 
 /*
@@ -257,7 +261,4 @@ Logger.info(updated.toString());
         "select new map(sum(r.vysetreni.body) as body, r.vysetreni.nazev as vyset) from Report r group by r.vysetreni.id having (select r2.pacient from Report r2)"
     ).fetch();
 */
-
-        return result;
-    }
 }

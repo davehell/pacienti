@@ -10,6 +10,7 @@ import java.io.File;
 import play.libs.IO;
 import java.text.*;
 
+
 import static play.modules.pdf.PDF.*;
 import org.allcolor.yahp.converter.IHtmlToPdfTransformer;
 
@@ -19,9 +20,11 @@ public class Forms extends Application {
   public static void index(String typ, @As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo, Long vysetreni) {
     notFoundIfNull(typ);
     List<Examination> seznamVysetreni = Examination.getActual();
-    if(datumOd == null && datumDo == null) {
+
+    //datumy nezadány - zobrauí se formuláø s kolonkami datum od, do a typem vyšetøení
+    if(datumOd == null && datumDo == null) { 
       datumOd = new Date();
-      datumDo = new Date();
+      datumDo = new Date(); //zde se pouze vkládá datum do kalendáøe, proto se nemusí nastavovat èas na 23:59:59
       render(typ, datumOd,datumDo, seznamVysetreni);
     }
     else {
@@ -51,8 +54,6 @@ public class Forms extends Application {
 
   @Check("doctor")
   public static void neprovedena(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo, Long vysetreniId) {
-      if(datumOd == null) datumOd = new Date();
-      if(datumDo == null) datumDo = new Date();
       List<Examination> seznamVysetreni = Examination.getActual();
       Examination vysetreni = Examination.find("byId", vysetreniId).first();
 
@@ -91,9 +92,6 @@ public class Forms extends Application {
   }
   
   public static void poctyVzorku(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {
-      if(datumOd == null) datumOd = new Date();
-      if(datumDo == null) datumDo = new Date();
-
       List<Doctor> lekari = Doctor.getPocetVzorku(datumOd, datumDo, connected.modul);
 
       Options options = new Options();

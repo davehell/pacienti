@@ -5,6 +5,7 @@ import play.data.validation.*;
 import javax.persistence.*;
 import java.util.*;
 import play.data.binding.*;
+import utils.*;
 
 @Table(
     uniqueConstraints=@UniqueConstraint(columnNames={"modul_id", "icz", "jmeno", "pracoviste"})
@@ -45,6 +46,7 @@ public class Doctor extends Model {
     }
 
     public static List<Doctor> getPocetVzorku(Date datumOd, Date datumDo, AppModul modul) {
+      datumDo = Utils.getEndOfDay(datumDo);
       List<Doctor> result = Doctor.find(
           "SELECT new map(count(m.id) as pocet, m.pacient.lekar as lekar) FROM BioMaterial m WHERE m.pacient.lekar.modul = ? AND m.datumPrijeti >= ? and m.datumPrijeti <= ? GROUP BY m.pacient.lekar.id", modul, datumOd, datumDo
       ).fetch();
@@ -53,6 +55,7 @@ public class Doctor extends Model {
     }
 
     public static List<Doctor> getPocetVzorku(Date datumOd, Date datumDo, AppModul modul, Long lekar) {
+      datumDo = Utils.getEndOfDay(datumDo);
       List<Doctor> result = Doctor.find(
           "SELECT new map(count(m.id) as pocet, m.pacient.lekar as lekar) FROM BioMaterial m WHERE m.pacient.lekar.modul = ? AND m.pacient.lekar.id = ? and m.datumPrijeti >= ? and m.datumPrijeti <= ? GROUP BY m.pacient.lekar.id", modul, lekar, datumOd, datumDo
       ).fetch();
