@@ -74,6 +74,10 @@
   #{select "${field.name}", value:"${bioMaterial?.parafaPrijeti?.id}", id:"${field.name}"}
   	#{option }&{'selectBox.option.none'}#{/option}
     #{option "${connected.id}"}${connected.parafa}#{/option}
+    *{ parafa je zadána a nepatří právě přihlášenému uživateli }*
+    #{if bioMaterial?.parafaPrijeti?.id && connected.id != bioMaterial?.parafaPrijeti?.id}
+      #{option "${bioMaterial?.parafaPrijeti?.id}"}${bioMaterial?.parafaPrijeti?.parafa}#{/option}
+    #{/if}
   #{/select}
   <a href="@{AppModuls.uziv()}" target="_blank" title="&{'profil.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
   <span class="error">#{error 'bioMaterial.parafaPrijeti' /} </span>
@@ -118,6 +122,9 @@
   #{select "${field.name}", value:"${bioMaterial?.parafaIzolace?.id}", id:"${field.name}"}
   	#{option }&{'selectBox.option.none'}#{/option}
     #{option "${connected.id}"}${connected.parafa}#{/option}
+    #{if bioMaterial?.parafaIzolace?.id && connected.id != bioMaterial?.parafaIzolace?.id}
+      #{option "${bioMaterial?.parafaIzolace?.id}"}${bioMaterial?.parafaIzolace?.parafa}#{/option}
+    #{/if}
   #{/select}
   <a href="@{AppModuls.uziv()}" target="_blank" title="&{'profil.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
 *{

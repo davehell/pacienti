@@ -148,6 +148,9 @@
   #{select "${field.name}", value:"${zprava?.parafaVysetreni?.id}", id:"${field.name}"}
   	#{option }&{'selectBox.option.none'}#{/option}
     #{option "${connected.id}"}${connected.parafa}#{/option}
+    #{if zprava?.parafaVysetreni?.id && connected.id != zprava?.parafaVysetreni?.id}
+      #{option "${zprava?.parafaVysetreni?.id}"}${zprava?.parafaVysetreni?.parafa}#{/option}
+    #{/if}
   #{/select}
   <a href="@{AppModuls.uziv()}" target="_blank" title="&{'profil.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
 *{
