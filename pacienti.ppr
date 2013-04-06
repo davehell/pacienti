@@ -77,6 +77,8 @@ pacienti
 			+Secure
 				app\views\Secure\layout.html
 				app\views\Secure\login.html
+			-Examinations
+				app\views\Examinations\list.html
 			app\views\main.html
 			app\views\admin.html
 		app\Bootstrap.java
@@ -102,10 +104,9 @@ pacienti
 1=app\views\main.html
 2=conf\messages.cs
 3=public\stylesheets\main.css
-4=app\views\Reports\report.html
 [Selected Project Files]
 Main=
-Selected=app\views\Reports\report.html
+Selected=public\stylesheets\main.css
 [conf\routes]
 TopLine=23
 Caret=53,52
@@ -121,6 +122,3 @@ Caret=22,32
 [public\stylesheets\main.css]
 TopLine=1
 Caret=1,1
-[app\views\Reports\report.html]
-TopLine=36
-Caret=7,87
