@@ -154,7 +154,7 @@ Provozovna: ${zprava.pacient.modul.adresa}
     <tr>
     #{/if}
     <td class="gtyp">${marker.replace("->", "&rarr;").raw()} </td>
-    <td class="gres">${vyslMap.get(marker).replace("mut", "<strong>mut</strong>").replace("4G", "<strong>4G</strong>").replace("pozitivní", "<strong>pozitivní</strong>").replace("POZITIVNÍ", "<strong>POZITIVNÍ</strong>").raw()} </td>
+    <td class="gres">${vyslMap.get(marker).replace("mut", "<strong>mut</strong>").replace("del", "<strong>del</strong>").replace("1b", "<strong>1b</strong>").replace("E4", "<strong>E4</strong>").replace("4G", "<strong>4G</strong>").replace("pozitivní", "<strong>pozitivní</strong>").replace("POZITIVNÍ", "<strong>POZITIVNÍ</strong>").raw()} </td>
     #{if marker_index % zprava.vysetreni.sloupce == 0}
     </tr>
     #{ifnot marker_isLast}
