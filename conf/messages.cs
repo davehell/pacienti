@@ -44,7 +44,7 @@ zprava.datumRevHybrid = reverzní hybridizace
 zprava.datumFragmentAn = fragmentační analýza
 zprava.datumRTAn = RT analýza
 zprava.datumSekv = sekvenace
-neniCertif = není certifikováno
+neniCertif = není akreditováno
 pozitivni  = pozitivní
 
 secure.username=uživatelské jméno:
