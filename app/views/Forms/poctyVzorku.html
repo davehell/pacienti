@@ -5,7 +5,9 @@
     <title>Počty vzorků od lékaře </title>
     <meta charset="${_response_encoding}">
     <style media="print">
-     body {font-family: "Times New Roman", sans-serif;}
+      body {font-family: "Times New Roman", sans-serif;}
+      .nowrap {white-space:nowrap;}
+      td {border-bottom: 1px solid black; vertical-align: top;}
     </style>
   </head>
   <body>
@@ -27,8 +29,8 @@
     #{list lekari}
     <tr>
       <td>${_.pocet} </td>
-      <td>${_.lekar.icz} </td>
-      <td>${_.lekar.jmeno} </td>
+      <td class="nowrap">${_.lekar.icz} </td>
+      <td class="nowrap">${_.lekar.jmeno} </td>
       <td>${_.lekar.pracoviste} </td>
     </tr>
     #{/list}
