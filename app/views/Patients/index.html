@@ -20,6 +20,7 @@
         <th>&{'bioMaterial.datumPrijeti'}</th>
         <th>&{'pacient.jmeno'}</th>
         <th>&{'pacient.rcZac'}</th>
+        <th>&{'pacient.lekar.id'}</th>
         <th>&{'zprava.vysetreni.id'}</th>
         <th>&{'hotovo'}</th>
       </tr>
@@ -34,6 +35,7 @@
       <td>${_.getFirstBioMaterial()?.datumPrijeti?.format()} </td>
       <td>${_.toString()} </td>
       <td>${_.getRodneCislo()} </td>
+      <td>${_.lekar.jmeno} </td>
       <td>${_.getZkratkyVysetreni()} </td>
       <td>#{if _.vysetreniHotova() ? 'checked' : ''}<span class="ui-icon ui-icon-check"></span> #{/if} </td>
       
