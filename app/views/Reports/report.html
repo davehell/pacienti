@@ -109,10 +109,10 @@ Provozovna: ${zprava.pacient.modul.adresa}
 
 <h2>
 #{if zprava.neniCertif}
-  ${zprava.vysetreni.popis.replace("*", "")}
+  ${zprava.vysetreni.popis.replace("*", "").raw()}
 #{/if}
 #{else}
-  ${zprava.vysetreni.popis}
+  ${zprava.vysetreni.popis.raw()}
 #{/else}
 </h2>
 
