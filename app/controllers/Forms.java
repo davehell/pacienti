@@ -178,6 +178,7 @@ public class Forms extends Application {
             if(origVysl.equals("4G")) vysl = "4G/4G";
             else if(origVysl.equals("5G")) vysl = "5G/5G";
             else if(origVysl.equals("Both")) vysl = "4G/5G";
+            else vysl = origVysl.substring(4);
           }
           else {
             if(origVysl.equals("Both")) vysl = "mut/wt";
