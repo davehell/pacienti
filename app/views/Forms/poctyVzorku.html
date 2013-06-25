@@ -23,7 +23,12 @@
       <th>Počet vzorků</th>
       <th>IČZ</th>
       <th>Lékař</th>
-      <th>Pracoviště</th>
+      #{if lekarId == 0}
+        <th>Pracoviště </th>
+      #{/if}
+      #{else}
+        <th>Vyšetření </th>
+      #{/else}
     </thead>
     <tbody>
     #{list lekari}
@@ -31,7 +36,12 @@
       <td>${_.pocet} </td>
       <td class="nowrap">${_.lekar.icz} </td>
       <td class="nowrap">${_.lekar.jmeno} </td>
-      <td>${_.lekar.pracoviste} </td>
+      #{if lekarId == 0}
+        <td>${_.lekar.pracoviste} </td>
+      #{/if}
+      #{else}
+        <td>${_.vysetreni} </td>
+      #{/else}
     </tr>
     #{/list}
     </tbody>

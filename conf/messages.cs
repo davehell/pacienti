@@ -62,6 +62,7 @@ pojistovna.cislo = číslo
 pojistovna.nazev = název
 pojistovna.aktual = aktuální
 
+lekar = lékař
 lekar.icz = IČP
 lekar.jmeno = titul, jméno, příjmení
 lekar.pracoviste = pracoviště

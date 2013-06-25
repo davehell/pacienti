@@ -51,6 +51,20 @@
     #{/}
   #{/if}
 
+  #{if typ == "pocty-vzorku"}
+    #{field 'lekar'}
+    <p>
+      <label>&{'lekar'} </label>
+      #{select "${field.name}", class:"vLongW"}
+      	#{option "0"}&{'selectBox.option.all'}#{/option}
+        #{list seznamLekaru}
+          #{option "${_.id}"}${_.toString()}#{/option}
+        #{/list}
+      #{/select}
+    </p>
+    #{/}
+  #{/if}
+
     <p>
         <input type="submit" value="Zobrazit" />
     </p>

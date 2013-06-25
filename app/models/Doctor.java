@@ -54,10 +54,10 @@ public class Doctor extends Model {
       return result;
     }
 
-    public static List<Doctor> getPocetVzorku(Date datumOd, Date datumDo, AppModul modul, Long lekar) {
+    public static List<Doctor> getPocetVzorku(Date datumOd, Date datumDo, Doctor lekar) {
       datumDo = Utils.getEndOfDay(datumDo);
       List<Doctor> result = Doctor.find(
-          "SELECT new map(count(m.id) as pocet, m.pacient.lekar as lekar) FROM BioMaterial m WHERE m.pacient.lekar.modul = ? AND m.pacient.lekar.id = ? and m.datumPrijeti >= ? and m.datumPrijeti <= ? GROUP BY m.pacient.lekar.id", modul, lekar, datumOd, datumDo
+          "SELECT new map(count(r.vysetreni.id) as pocet,  m.pacient.lekar as lekar, r.vysetreni.nazev as vysetreni) FROM BioMaterial m, Report r WHERE m.pacient.lekar = ? AND r.bioMaterial.id = m.id AND m.datumPrijeti >= ? and m.datumPrijeti <= ? GROUP BY r.vysetreni.id ORDER BY r.vysetreni.nazev", lekar, datumOd, datumDo
       ).fetch();
 
       return result;
