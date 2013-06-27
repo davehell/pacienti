@@ -1,5 +1,9 @@
 #{extends 'main.html' /}
 
+#{set 'moreScripts'}
+    #{script 'combobox.js'/}
+#{/set}
+
 #{if typ == "neprovedena-vysetreni"}
   #{set title:'Neprovedená vyšetření' /}
 #{/if}
@@ -55,9 +59,10 @@
     #{field 'lekar'}
     <p>
       <label>&{'lekar'} </label>
-      #{select "${field.name}", class:"vLongW"}
+      #{select "${field.name}", id:"${field.name}", class:"vLongW"}
+        #{option "0"}&{'selectBox.option.select'}#{/option}
         #{list seznamLekaru}
-          #{option "${_.id}"}${_.toString()}#{/option}
+          #{option "${_.id}"}${_.icz} - ${_.jmeno}#{/option}
         #{/list}
       #{/select}
     </p>
@@ -70,9 +75,16 @@
 </fieldset>
 #{/form}
 
+<style type="text/css">
+	.ui-button { margin-left: -1px; }
+	.ui-button-icon-only .ui-button-text { padding: 0.25em; }
+	.ui-autocomplete-input { margin: 0; padding: 0.3em 0 0.3em 0.45em; }
+</style>
+
 <script type="text/javascript">
   $(document).ready(function() {
 		$( "#datumOd" ).datepicker();
 		$( "#datumDo" ).datepicker();
+    $( '#lekar' ).combobox();
   } );
 </script>
