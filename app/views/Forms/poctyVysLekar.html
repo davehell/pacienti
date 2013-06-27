@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>Počty vzorků od lékaře </title>
+    <title>Počty vyšetření od lékaře </title>
     <meta charset="${_response_encoding}">
     <style media="print">
       body {font-family: "Times New Roman", sans-serif;}
@@ -12,26 +12,25 @@
   </head>
   <body>
 
-<h1>Počty vzorků od lékaře</h1>
+<h1>Počty vyšetření od lékaře</h1>
 <p>
  Období: ${datumOd.format()} - ${datumDo.format()}
 </p>
+<p>
+ Lékař: ${lekar}
+</p>
 
-#{if lekari}
+#{if poctyVys}
   <table style="width: 100%;">
     <thead>
-      <th>Počet vzorků</th>
-      <th>IČZ</th>
-      <th>Lékař</th>
-      <th>Pracoviště </th>
+      <th>Počet</th>
+      <th>Vyšetření</th>
     </thead>
     <tbody>
-    #{list lekari}
+    #{list poctyVys}
     <tr>
       <td>${_.pocet} </td>
-      <td class="nowrap">${_.lekar.icz} </td>
-      <td class="nowrap">${_.lekar.jmeno} </td>
-      <td>${_.lekar.pracoviste} </td>
+      <td>${_.vysetreni} </td>
     </tr>
     #{/list}
     </tbody>

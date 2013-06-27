@@ -129,11 +129,11 @@ Caret=6,65
 TopLine=1
 Caret=21,28
 [app\views\Forms\poctyVzorku.html]
-TopLine=1
-Caret=13,20
+TopLine=4
+Caret=9,27
 [app\controllers\Forms.java]
 TopLine=75
-Caret=22,99
+Caret=50,112
 Mark1=27,95
 Mark2=30,20
 [app\models\Doctor.java]

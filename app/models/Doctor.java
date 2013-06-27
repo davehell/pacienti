@@ -54,7 +54,7 @@ public class Doctor extends Model {
       return result;
     }
 
-    public static List<Doctor> getPocetVzorku(Date datumOd, Date datumDo, Doctor lekar) {
+    public static List<Doctor> getVysetreni(Date datumOd, Date datumDo, Doctor lekar) {
       datumDo = Utils.getEndOfDay(datumDo);
       List<Doctor> result = Doctor.find(
           "SELECT new map(count(r.vysetreni.id) as pocet,  m.pacient.lekar as lekar, r.vysetreni.nazev as vysetreni) FROM BioMaterial m, Report r WHERE m.pacient.lekar = ? AND r.bioMaterial.id = m.id AND m.datumPrijeti >= ? and m.datumPrijeti <= ? GROUP BY r.vysetreni.id ORDER BY r.vysetreni.nazev", lekar, datumOd, datumDo

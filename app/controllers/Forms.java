@@ -27,6 +27,7 @@ public class Forms extends Application {
       datumOd = new Date();
       datumDo = new Date(); //zde se pouze vkládá datum do kalendáøe, proto se nemusí nastavovat èas na 23:59:59
       render(typ, datumOd,datumDo, seznamVysetreni, seznamLekaru);
+      //konec funkce index
     }
     else {
       if(datumOd == null) datumOd = new Date();
@@ -37,7 +38,10 @@ public class Forms extends Application {
       neprovedena(datumOd, datumDo, vysetreni);
     }
     else if(typ.equals("pocty-vzorku")) {
-      poctyVzorku(datumOd, datumDo, lekar);
+      poctyVzorku(datumOd, datumDo);
+    }
+    else if(typ.equals("pocty-vysetreni-lekar")) {
+      poctyVysLekar(datumOd, datumDo, lekar);
     }
     else if(typ.equals("neizolovana-dna")) {
       neizolovana();
@@ -92,25 +96,33 @@ public class Forms extends Application {
       render(aktRok, rok, pocetVysetreni, pocetVysetreniM, pocetVysetreniF, pocetPacientu, pocetPacientuM, pocetPacientuF, pocetPatolog, pocetPatologMladi, pocetDleTypu, pocetDleTypuM, pocetDleTypuF);
   }
   
-  public static void poctyVzorku(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo, Long lekarId) {
-      List<Doctor> lekari = null;
-
-      if(lekarId == 0) {
-        lekari = Doctor.getPocetVzorku(datumOd, datumDo, connected.modul);
-      }
-      else {
-        Doctor lekar = Doctor.findById(lekarId);
-        lekari = Doctor.getPocetVzorku(datumOd, datumDo, lekar);
-      }
+  public static void poctyVzorku(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {
+      List<Doctor> lekari = Doctor.getPocetVzorku(datumOd, datumDo, connected.modul);
 
       Options options = new Options();
       //options.FOOTER = "";
       IHtmlToPdfTransformer.PageSize ps = new IHtmlToPdfTransformer.PageSize(21.0, 29.7, 1.9, 1.9, 1.5, 1.5);
       options.pageSize = ps;
 
-      //render(lekari, datumOd, datumDo, lekarId);
-      renderPDF(lekari, datumOd, datumDo, lekarId, options);
+      //render(lekari, datumOd, datumDo);
+      renderPDF(lekari, datumOd, datumDo, options);
   }
+
+
+  public static void poctyVysLekar(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo, Long lekarId) {
+      Doctor lekar = Doctor.find("modul = ? AND id = ?", connected.modul, lekarId).first();
+      notFoundIfNull(lekar);
+      List<Doctor> poctyVys = Doctor.getVysetreni(datumOd, datumDo, lekar);
+
+      Options options = new Options();
+      //options.FOOTER = "";
+      IHtmlToPdfTransformer.PageSize ps = new IHtmlToPdfTransformer.PageSize(21.0, 29.7, 1.9, 1.9, 1.5, 1.5);
+      options.pageSize = ps;
+
+      //render(poctyVys, datumOd, datumDo, lekar);
+      renderPDF(poctyVys, datumOd, datumDo, lekar, options);
+  }
+
 
   @Check("doctor")
   public static void neizolovana() {

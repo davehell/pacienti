@@ -51,12 +51,11 @@
     #{/}
   #{/if}
 
-  #{if typ == "pocty-vzorku"}
+  #{if typ == "pocty-vysetreni-lekar"}
     #{field 'lekar'}
     <p>
       <label>&{'lekar'} </label>
       #{select "${field.name}", class:"vLongW"}
-      	#{option "0"}&{'selectBox.option.all'}#{/option}
         #{list seznamLekaru}
           #{option "${_.id}"}${_.toString()}#{/option}
         #{/list}
