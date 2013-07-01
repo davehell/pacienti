@@ -45,10 +45,11 @@ pacienti
 				app\views\Forms\log.html
 				app\views\Forms\neizolovana.html
 				app\views\Forms\neprovedena.html
+				app\views\Forms\poctyVysetreni.html
+				app\views\Forms\poctyVysLekar.html
 				app\views\Forms\poctyVzorku.html
 				app\views\Forms\stitky.html
 				app\views\Forms\vyslImport.html
-				app\views\Forms\poctyVysetreni.html
 			+Doctors
 				app\views\Doctors\form.html
 				app\views\Doctors\index.html
@@ -104,47 +105,21 @@ pacienti
 1=app\views\main.html
 2=conf\messages.cs
 3=public\stylesheets\main.css
-4=app\views\Forms\poctyVzorku.html
-5=app\controllers\Forms.java
-6=app\models\Doctor.java
-7=app\models\BioMaterial.java
-8=app\models\Report.java
-9=app\views\Forms\index.html
 [Selected Project Files]
 Main=
-Selected=app\controllers\Forms.java
+Selected=public\stylesheets\main.css
 [conf\routes]
 TopLine=27
-Caret=1,46
+Caret=115,52
 Mark1=20,51
 [app\views\main.html]
-TopLine=114
-Caret=68,138
+TopLine=1
+Caret=12,5
 Mark1=60,31
-Mark2=31,133
+Mark2=31,134
 [conf\messages.cs]
 TopLine=53
 Caret=6,65
 [public\stylesheets\main.css]
 TopLine=1
-Caret=21,28
-[app\views\Forms\poctyVzorku.html]
-TopLine=4
-Caret=9,27
-[app\controllers\Forms.java]
-TopLine=75
-Caret=50,112
-Mark1=27,95
-Mark2=30,20
-[app\models\Doctor.java]
-TopLine=15
-Caret=168,60
-[app\models\BioMaterial.java]
-TopLine=1
-Caret=1,1
-[app\models\Report.java]
-TopLine=1
-Caret=35,20
-[app\views\Forms\index.html]
-TopLine=27
-Caret=22,57
+Caret=21,21
