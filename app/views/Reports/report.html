@@ -173,14 +173,14 @@ Provozovna: ${zprava.pacient.modul.adresa}
 <h3>Závěr:</h3>
 #{if zprava.zavZprava}
 <p>
- ${zprava.zavZprava.replace("((", "<strong>").replace("))", "</strong>").raw()}
+ ${zprava.zavZprava.replace("((", "<strong>").replace("))", "</strong>").replace("beta", "&beta;").replace("-->", "&rarr;").raw()}
 </p>
 #{/if}
 
 #{if zprava.pacient.verejnaPozn}
 <h3>Poznámka:</h3>
 <p>
- ${zprava.pacient.verejnaPozn.replace("((", "<strong>").replace("))", "</strong>").raw()}
+ ${zprava.pacient.verejnaPozn.replace("((", "<strong>").replace("))", "</strong>").replace("beta", "&beta;").replace("-->", "&rarr;").raw()}
 </p>
 #{/if}
 
