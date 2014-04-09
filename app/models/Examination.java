@@ -28,6 +28,8 @@ public class Examination extends Model {
 
     public boolean certif;
 
+    public boolean genomac;
+
     public int sloupce;
 
     @OneToMany(mappedBy="vysetreni", cascade=CascadeType.ALL)
