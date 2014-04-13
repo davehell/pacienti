@@ -20,6 +20,10 @@ public class Genotype extends Model {
     @MaxSize(10)
     public String vychozi;
 
+    public Integer poradi;
+
+    public String autocompl;
+
     public String toString()  {
         return nazev;
     }

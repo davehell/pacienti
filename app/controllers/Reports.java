@@ -35,13 +35,14 @@ public class Reports extends Application {
     Patient pacient = Patient.getByModulAndId(connected.modul, pacientId);
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.find("byPacient", pacient).fetch();
-    List<Examination> vysetreni = Examination.getActual();
+    List<Examination> seznamVysetreni = Examination.getActual();
     List<User> users = User.getDoctors(connected.modul);
 
     String[] vedouciLekari = {};
     String[] uvolnujiAnalyzu = {};
     String[] provadiAnalyzu = {};
     LinkedHashMap<String,String> vyslMap = new LinkedHashMap<String,String>();
+    HashMap<String,String> autoComplMap = new HashMap<String,String>();
 
     if(connected.modul.vedouciLekari != null) {
       vedouciLekari = connected.modul.vedouciLekari.split(";");
@@ -58,10 +59,12 @@ public class Reports extends Application {
       Report zprava = Report.findById(id);
       notFoundIfNull(zprava);
       vyslMap = zprava.getVysl();
-      render(zprava, vyslMap, pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu);
+      Examination vysetreni = zprava.vysetreni;
+      autoComplMap = vysetreni.getAutoCompletes();
+      render(zprava, vyslMap, pacient, bioMaterialy, seznamVysetreni, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu, autoComplMap);
     }
 
-    render(pacient, bioMaterialy, vysetreni, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu);
+    render(pacient, bioMaterialy, seznamVysetreni, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu);
   }
 
 

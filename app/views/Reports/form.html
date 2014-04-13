@@ -350,14 +350,12 @@
   <legend>Zjištěný genotyp</legend>
 
   #{list items:vyslMap?.keySet(), as:'marker'}
-
     <p>
       <label>${marker.replace("->", "&rarr;").raw()} </label>
       <input type="hidden" name="markery[]" value="${marker}">
-      <input type="text" name="vysledky[]" value="${vyslMap.get(marker)}" class="shortW vyslAutoCompl">
+      <input type="text" name="vysledky[]" value="${vyslMap.get(marker)}" data-autocompl="${autoComplMap.get(marker)}" class="shortW vyslAutoCompl">
     </p>
   #{/list}
-
 
     <p>
         <input type="submit" value="Uložit" />
@@ -415,14 +413,17 @@
       delay: 0
 		});
 
-    var vysledkyAutoCompl = ['wt','wt/wt','del','mut/wt','mut/mut','4G/4G','4G/5G','5G/5G'];
+    var vysledkyDefaultAutoCompl = ['wt','wt/wt','del','mut/wt','mut/mut','4G/4G','4G/5G','5G/5G'];
     $( ".vyslAutoCompl" ).autocomplete({
-      source: vysledkyAutoCompl,
+      source: vysledkyDefaultAutoCompl,
       delay: 0,
       minLength: 0,
       position: { my : "left top", at: "right top" }
     });
     $( ".vyslAutoCompl" ).focus(function (){
+      if($( this ).data("autocompl")) {
+        $( this ).autocomplete( "option", "source", $( this ).data("autocompl").split(","));
+      }
       $( this ).autocomplete( "search", "" );
     });
 

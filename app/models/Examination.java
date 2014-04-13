@@ -52,4 +52,15 @@ public class Examination extends Model {
         Genotype gtyp = Genotype.find("nazev = ?", genotyp).first();
         return (gtyp == null) ? null : gtyp.vysetreni;
     }
+
+    public HashMap<String,String> getAutoCompletes() {
+      HashMap<String,String> map = new HashMap<String,String>();
+      Iterator<Genotype> iterator = this.genotypy.iterator();
+      Genotype genotyp = null;
+      while (iterator.hasNext()) {
+        genotyp = iterator.next();
+        map.put( genotyp.nazev, genotyp.autocompl );
+      }
+      return map;
+    }
 }
