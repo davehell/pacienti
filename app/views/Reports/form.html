@@ -414,9 +414,15 @@
 		});
 
     var vysledkyAutoCompl = ['wt','wt/wt','del','mut/wt','mut/mut','4G/4G','4G/5G','5G/5G'];
-		$( ".vyslAutoCompl" ).autocomplete({
-			source: vysledkyAutoCompl
-		});
+    $( ".vyslAutoCompl" ).autocomplete({
+      source: vysledkyAutoCompl,
+      delay: 0,
+      minLength: 0,
+      position: { my : "left top", at: "right top" }
+    });
+    $( ".vyslAutoCompl" ).focus(function (){
+      $( this ).autocomplete( "search", "" );
+    });
 
     $('#datumyOdkazy span').click(function () {
       var index = $('#datumyOdkazy span').index(this) + 1;
