@@ -176,40 +176,70 @@ public class Forms extends Application {
       String[] columns = null;
       String pacKod = "";
       String marker = "";
+      String origMarker = "";
       String vysl = "";
       String origVysl = "";
       Patient pacient = null;
       Examination vysetreni = null;
       boolean upraveno = false;
+      boolean oblastVysledku = false;
 
       Iterator<String> iterator = lines.iterator();
       while (iterator.hasNext()) {
         line = iterator.next();
-        columns = line.split(",");
-        if(columns.length < 8) continue;
-        if(!columns[1].substring(0,2).equals(connected.modul.kod)) continue;
 
-        pacKod = columns[1];
-        marker = columns[2];
-        origVysl = columns[7];
-        vysl = "";
+        if(connected.modul.kod.equals("KO")) {
+          columns = line.split(",");
+          if(columns.length < 8) continue;
+          if(!columns[1].substring(0,2).equals(connected.modul.kod)) continue;
 
-        try {
-          if(marker.substring(0,3).equals("PAI")) {
-            if(origVysl.equals("4G")) vysl = "4G/4G";
-            else if(origVysl.equals("5G")) vysl = "5G/5G";
-            else if(origVysl.equals("Both")) vysl = "4G/5G";
-            else vysl = origVysl.substring(4);
+          pacKod = columns[1];
+          marker = columns[2];
+          origVysl = columns[7];
+          vysl = "";
+
+          try {
+            if(marker.substring(0,3).equals("PAI")) {
+              if(origVysl.equals("4G")) vysl = "4G/4G";
+              else if(origVysl.equals("5G")) vysl = "5G/5G";
+              else if(origVysl.equals("Both")) vysl = "4G/5G";
+              else vysl = origVysl.substring(4);
+            }
+            else {
+              if(origVysl.equals("Both")) vysl = "mut/wt";
+              else if(origVysl.equals("Undetermined")) vysl = "";
+              else vysl = origVysl.substring(4);
+            }
           }
-          else {
-            if(origVysl.equals("Both")) vysl = "mut/wt";
-            else if(origVysl.equals("Undetermined")) vysl = "";
-            else vysl = origVysl.substring(4);
+          catch (Exception e) {
+              vysl = "";
           }
-        }
-        catch (Exception e) {
-            vysl = "";
-        }
+        } //ostrava
+        else if(connected.modul.kod.equals("K")) {
+          if(line.equals("[Results]")) oblastVysledku = true;
+          if(line.equals("[Raw Data]")) break;
+          if(!oblastVysledku) continue;
+
+          columns = line.split("	");
+          if(columns.length < 10) continue;
+
+          if(columns[1].length() < 7) continue; // pozn: "k001/14".length() == 7
+          if(!columns[1].substring(0,1).equalsIgnoreCase("k")) continue;
+
+          pacKod = columns[1];
+          origMarker = columns[2];
+          origVysl = columns[8];
+          if(origMarker.equals("Leiden")) marker = "Factor V Leiden (G1691A)*";
+          else if(origMarker.equals("MTHFR A/C")) marker = "MTHFR (A1298C)*";
+          else if(origMarker.equals("MTHFR C/T")) marker = "MTHFR (C677T)*";
+          else if(origMarker.equals("Factor II")) marker = "Factor II (G20210A)*";
+          else marker = origMarker;
+
+          if(origVysl.equals("Homozygous 1/1")) vysl = "wt/wt";
+          else if(origVysl.equals("Homozygous 2/2")) vysl = "mut/mut";
+          else if(origVysl.equals("Heterozygous 1/2")) vysl = "mut/wt";
+          else vysl = origVysl;
+        } //brno
 
         vysl = vysl.trim();
         pacient = Patient.getByKod(pacKod);
@@ -218,7 +248,7 @@ public class Forms extends Application {
         if(upraveno) strOk.add(pacKod + "," + marker + "," + origVysl + "," + vysl);
         else         strErr.add(pacKod + "," + marker + "," + origVysl + "," + vysl);
         //System.out.println(pacKod + " - " + marker + " - " + vysl);
-      }
+      } //while iterator
 
       String fileName = file.getName();
       render(fileName, test, strOk, strErr);

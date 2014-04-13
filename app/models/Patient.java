@@ -147,14 +147,18 @@ public class Patient extends Model {
         else return modul.kod + "000";
     }
 
-    //kod = KO 111/12 nebo KO 3000/12 nebo K 111/12
+    //kod = KO 111/12 nebo KO 3000/12 nebo K 111/12 nebo k111/12
     public static Patient getByKod(String kod) {
-        if(kod.isEmpty() || kod.length() < "K 111/12".length() || kod.length() > "KO 3111/12".length()) return null;
+        if(kod.isEmpty() || kod.length() < "K111/12".length() || kod.length() > "KO 3111/12".length()) return null;
         int mezera = kod.indexOf(" ");
         if(mezera == -1) mezera = kod.indexOf("-");
+        if(mezera == -1 && kod.length() == "K111/12".length()) {
+          kod = "K " + kod.substring(1);
+          mezera = kod.indexOf(" ");
+        }
         int lomeno = kod.indexOf("/");
 
-        String modulKod = kod.substring(0, mezera);
+        String modulKod = kod.substring(0, mezera).toUpperCase();
         Integer pacCislo = Integer.parseInt(kod.substring(mezera+1, lomeno));
         Integer pacRok = 2000 + Integer.parseInt(kod.substring(lomeno+1));
 
