@@ -1,0 +1,70 @@
+#{extends 'main.html' /}
+#{set title:"Archiv pacientů" /}
+
+<div id="crudListSearch">
+  Vyhledávání dle kódu vzorku nebo jména pacienta:
+  #{crud.search /}
+</div>
+
+<div id="data"></div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+  $('#data').html( '<table class="display" id="pacTable"></table>' );
+  $('#pacTable').dataTable( {
+      "bJQueryUI": true,
+      "sPaginationType": "full_numbers",
+      "bStateSave": false,
+      "aaSorting": [[ 1, "desc" ],[ 0, "desc" ]],
+      "aLengthMenu": [[100, 200, 500], [100, 200, 500]],
+      "iDisplayLength":100,
+      "aoColumnDefs": [
+          { "bVisible": false, "aTargets": [ 0, 1 ] },
+          { "bSearchable": false, "aTargets": [ 0, 1 ] }
+      ],
+      "oLanguage": {
+        "sProcessing":   "Provádím...",
+        "sLengthMenu":   "Zobraz záznamů _MENU_",
+        "sZeroRecords":  "Žádné záznamy nebyly nalezeny",
+        "sInfo":         "Zobrazuji _START_ až _END_ z celkem _TOTAL_ záznamů",
+        "sInfoEmpty":    "Zobrazuji 0 až 0 z 0 záznamů",
+        "sInfoFiltered": "(filtrováno z celkem _MAX_ záznamů)",
+        "sInfoPostFix":  "",
+        "sSearch":       "Hledat:",
+        "sUrl":          "",
+        "oPaginate": {
+           "sFirst":    "První",
+           "sPrevious": "Předchozí",
+           "sNext":     "Další",
+           "sLast":     "Poslední"
+        }
+      },
+      "aaData": [
+        #{list pacienti} [ "${_.evCislo}",
+          "${_.evRok}",
+          "${_.getKod()}",
+          "${_.getFirstBioMaterial()?.datumPrijeti?.format()}",
+          "${_.toString()}",
+          "${_.getRodneCislo()}",
+          "${_.lekar?.jmeno}",
+          "${_.getZkratkyVysetreni()}"
+        ],
+        #{/list}
+      ],
+      "aoColumns": [
+          { "sTitle": "&nbsp;" },
+          { "sTitle": "&nbsp;" },
+          { "sTitle": "&{'pacient.evCislo'}" },
+          { "sTitle": "&{'bioMaterial.datumPrijeti'}" },
+          { "sTitle": "&{'pacient.jmeno'}" },
+          { "sTitle": "&{'pacient.rcZac'}" },
+          { "sTitle": "&{'pacient.lekar.id'}" },
+          { "sTitle": "&{'zprava.vysetreni.id'}" }
+      ]
+  } );
+
+});
+
+</script>

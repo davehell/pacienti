@@ -13,7 +13,7 @@ POST  /pacient/{id}/ulozit                      Patients.mySave
 POST  /pacient/ulozit                           Patients.mySave
 GET   /pacient/{id}/detail                      Patients.detail
 GET   /pacient/{id}/smazat                      Patients.myDelete
-GET   /pacienti/archiv                          Patients.list
+GET   /pacienti/archiv                          Patients.archiv
 GET   /pacient/{id}/uctovani                    Patients.score
 
 GET   /pacient/{pacientId}/biomaterial/{id}/upravit BioMaterials.form

@@ -37,6 +37,11 @@ public class Patients extends Application  {
     render(pacienti);
   }
 
+  public static void archiv(Long id) {
+    List<Patient> pacienti = Patient.getLastPatients(connected.modul, 0, 0, 9999);
+    render(pacienti);
+  }
+
   public static void detail(Long id) {
     Patient pacient = Patient.getByModulAndId(connected.modul, id);
     notFoundIfNull(pacient);

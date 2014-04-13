@@ -116,7 +116,10 @@ public class Patient extends Model {
     }
 
     public static List<Patient> getLastPatients(AppModul modul, int count, int minCislo, int maxCislo) {
-        return Patient.find("modul = ? and evCislo >= ? and evCislo <= ? order by evRok desc, evCislo desc", modul, minCislo, maxCislo).fetch(count);
+        if(count > 0)
+          return Patient.find("modul = ? and evCislo >= ? and evCislo <= ? order by evRok desc, evCislo desc", modul, minCislo, maxCislo).fetch(count);
+        else
+          return Patient.find("modul = ? and evCislo >= ? and evCislo <= ? and evRok >= 2013 order by evRok desc, evCislo desc", modul, minCislo, maxCislo).fetch();
     }
 
     public String getCDokladu() {
