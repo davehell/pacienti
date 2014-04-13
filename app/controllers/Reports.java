@@ -61,9 +61,11 @@ public class Reports extends Application {
       vyslMap = zprava.getVysl();
       Examination vysetreni = zprava.vysetreni;
       autoComplMap = vysetreni.getAutoCompletes();
-      render(zprava, vyslMap, pacient, bioMaterialy, seznamVysetreni, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu, autoComplMap);
+      //úprava existujícího vyšetření pacienta
+      render(zprava, vyslMap, pacient, bioMaterialy, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu, autoComplMap);
     }
 
+    //formulář pro přidání nového vyšetření k pacientovi
     render(pacient, bioMaterialy, seznamVysetreni, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu);
   }
 
