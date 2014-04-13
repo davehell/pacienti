@@ -388,7 +388,8 @@
     ];
 
 		$( "#zprava_vedouciLekar" ).autocomplete({
-			source: vedouciLekari
+			source: vedouciLekari,
+      delay: 0
 		});
 
 		var uvolnujiAnalyzu = [
@@ -399,9 +400,9 @@
 
 		$( "#zprava_analyzuUvolnil" ).autocomplete({
 			source: uvolnujiAnalyzu,
-      change : uvolnujiChangeHandler
+      change : uvolnujiChangeHandler,
+      delay: 0
 		});
-    //$("#zprava_analyzuUvolnil").data("autocomplete")._trigger("change")
 
 		var provadiAnalyzu = [
       #{list provadiAnalyzu}
@@ -410,7 +411,8 @@
     ];
 
 		$( "#zprava_analyzuProvedl" ).autocomplete({
-			source: provadiAnalyzu
+			source: provadiAnalyzu,
+      delay: 0
 		});
 
     var vysledkyAutoCompl = ['wt','wt/wt','del','mut/wt','mut/mut','4G/4G','4G/5G','5G/5G'];

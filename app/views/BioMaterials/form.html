@@ -211,14 +211,9 @@ $(document).ready(function() {
       ];
 
   		$( "#bioMaterial_typ" ).autocomplete({
-  			source: typyMaterialu
+  			source: typyMaterialu,
+        delay: 0
   		});
-
-      $('#bioMatForm').submit(function () {
-        //$("#bioMaterial_datumOdberu" ).val($("#bioMaterial_datumOdberu" ).val() + " " + $("#bioMaterial_casOdberu").val());
-        //$("#bioMaterial_datumPrijeti" ).val($("#bioMaterial_datumPrijeti" ).val() + " " + $("#bioMaterial_casPrijeti").val());
-      } );
-
 
       $( '#casOdberu' ).on('change', function(event){
         $(this).val(upravCas($(this).val()));
