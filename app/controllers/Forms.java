@@ -233,12 +233,44 @@ public class Forms extends Application {
           else if(origMarker.equals("MTHFR A/C")) marker = "MTHFR (A1298C)*";
           else if(origMarker.equals("MTHFR C/T")) marker = "MTHFR (C677T)*";
           else if(origMarker.equals("Factor II")) marker = "Factor II (G20210A)*";
+          else if(origMarker.equals("Factor XIII")) marker = "Factor XIII (V34L)*";
+          else if(origMarker.equals("Factor V R2")) marker = "Factor V R2 (H1299R)*";
+
+          else if(origMarker.equals("EPCR A/G")) marker = "EPCR (A4600G)*";
+          else if(origMarker.equals("EPCR G/C")) marker = "EPCR (G4678C)*";
+          
+          else if(origMarker.equals("PAI-1")) marker = "PAI-1 (4G/5G)*";
           else marker = origMarker;
 
-          if(origVysl.equals("Homozygous 1/1")) vysl = "wt/wt";
-          else if(origVysl.equals("Homozygous 2/2")) vysl = "mut/mut";
-          else if(origVysl.equals("Heterozygous 1/2")) vysl = "mut/wt";
-          else vysl = origVysl;
+          try {
+            vysl = origVysl;
+            if(vysl.equals("Both")) vysl = "mut/wt";
+            else if(vysl.equals("Undetermined")) vysl = "";
+
+            if(origMarker.substring(0,3).equals("PAI")) {
+              if(origVysl.equals("Homozygous 1/1")) vysl = "4G/4G";
+              else if(origVysl.equals("Homozygous 2/2")) vysl = "5G/5G";
+              else if(origVysl.equals("Heterozygous 1/2")) vysl = "4G/5G";
+            }
+            else if(origMarker.substring(0,6).equals("EPCR A")) {
+              if(origVysl.equals("Homozygous 1/1")) vysl = "A/A";
+              else if(origVysl.equals("Homozygous 2/2")) vysl = "G/G";
+              else if(origVysl.equals("Heterozygous 1/2")) vysl = "G/A";
+            }
+            else if(origMarker.substring(0,6).equals("EPCR G")) {
+              if(origVysl.equals("Homozygous 1/1")) vysl = "G/G";
+              else if(origVysl.equals("Homozygous 2/2")) vysl = "C/C";
+              else if(origVysl.equals("Heterozygous 1/2")) vysl = "C/G";
+            }
+            else {
+              if(origVysl.equals("Homozygous 1/1")) vysl = "wt/wt";
+              else if(origVysl.equals("Homozygous 2/2")) vysl = "mut/mut";
+              else if(origVysl.equals("Heterozygous 1/2")) vysl = "mut/wt";
+            }
+          }
+          catch (Exception e) {
+              vysl = "";
+          }
         } //brno
 
         vysl = vysl.trim();
