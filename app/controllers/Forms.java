@@ -248,8 +248,8 @@ public class Forms extends Application {
             else if(vysl.equals("Undetermined")) vysl = "";
 
             if(origMarker.substring(0,3).equals("PAI")) {
-              if(origVysl.equals("Homozygous 1/1")) vysl = "4G/4G";
-              else if(origVysl.equals("Homozygous 2/2")) vysl = "5G/5G";
+              if(origVysl.equals("Homozygous 1/1")) vysl = "5G/5G";
+              else if(origVysl.equals("Homozygous 2/2")) vysl = "4G/4G";
               else if(origVysl.equals("Heterozygous 1/2")) vysl = "4G/5G";
             }
             else if(origMarker.substring(0,6).equals("EPCR A")) {
