@@ -7,6 +7,7 @@ import java.math.*;
 
 import play.data.binding.*;
 import java.util.*;
+import java.text.*;
 
 
 @Table(
@@ -229,4 +230,29 @@ public class Patient extends Model {
         return hotovo;
     }
 
+
+    public Date nextWorkingDay(Date date) {
+        Date nextDay = date;
+        int blbec = 0;
+        String[] holidays = {"01.01","01.05","08.05","05.07","06.07","28.09","28.10","17.11","24.12","25.12","26.12"}; //TODO: chybi velikonocni pondeli
+        Calendar c = Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        df.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
+
+        while(blbec < 100) {
+            blbec++;
+
+            c.setTime(nextDay);
+            c.add(Calendar.DATE, 1);
+            nextDay = c.getTime();
+
+            if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) continue;
+            if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) continue;
+            if(Arrays.asList(holidays).contains( df.format(nextDay).substring(0,5))) continue;
+
+            break;
+        }
+
+        return nextDay;
+    }
 }

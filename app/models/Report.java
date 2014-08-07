@@ -7,6 +7,7 @@ import java.util.*;
 import play.data.binding.*;
 import java.sql.Clob;
 import utils.*;
+import java.text.*;
 
 @Entity
 public class Report extends Model {
@@ -83,6 +84,30 @@ public class Report extends Model {
         this.vysetreni = vysetreni;
     }
 
+    public String kontrolaTAT() {
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        df.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
+        Date limitTAT = null;
+        Date dnes = new Date();
+        int i = 0;
+
+        if(this.bioMaterial.datumPrijeti == null) return null;
+
+        limitTAT = this.bioMaterial.datumPrijeti;
+        while(i++ <= this.vysetreni.tat) {
+            limitTAT = this.pacient.nextWorkingDay(limitTAT);
+        }
+
+        if(this.jeHotovo() && datumVysetreni.after(limitTAT)) {
+            return "0;" + df.format(limitTAT);
+        }
+        else if(!this.jeHotovo() && dnes.after(limitTAT)) {
+            return "0;" + df.format(limitTAT);
+        }
+        else {
+            return "1;" + df.format(limitTAT);
+        }
+    }
 
     public LinkedHashMap<String,String> getVysl() {
         if(this.vysledek == null) return null;

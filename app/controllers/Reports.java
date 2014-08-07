@@ -61,8 +61,13 @@ public class Reports extends Application {
       vyslMap = zprava.getVysl();
       Examination vysetreni = zprava.vysetreni;
       autoComplMap = vysetreni.getAutoCompletes();
+
+      String[] TAT = zprava.kontrolaTAT().split(";");
+      String limitTAT = TAT[1];
+      boolean TATsplnen = TAT[0].equals("1") ? true : false;
+
       //úprava existujícího vyšetření pacienta
-      render(zprava, vyslMap, pacient, bioMaterialy, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu, autoComplMap);
+      render(zprava, vyslMap, pacient, bioMaterialy, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu, autoComplMap, limitTAT, TATsplnen);
     }
 
     //formulář pro přidání nového vyšetření k pacientovi

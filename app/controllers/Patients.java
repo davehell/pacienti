@@ -100,12 +100,12 @@ public class Patients extends Application  {
           str.add(df.format(datum) + ";" + ohodnoceni.vykon.kod + ";" + (ohodnoceni.vykon.jednouDenne ? 1 : ohodnoceni.pocet) );
 
           if(ohodnoceni.vykon.jednouDenne) { //posunuti datumu o jeden pracovni den vpred
-            datum = nextWorkingDay(datum);
+            datum = pacient.nextWorkingDay(datum);
             pristiJednouDenne = datum;
           }
 
           if((ohodnoceni.vykon.kod.equals("94123") || ohodnoceni.vykon.kod.equals("94127")) && pristiNeStejnyDen == null) {
-            pristiNeStejnyDen = nextWorkingDay(datum);
+            pristiNeStejnyDen = pacient.nextWorkingDay(datum);
           }
         } //for pocetDni
     	} //for zprava.vysetreni.score
@@ -122,30 +122,6 @@ public class Patients extends Application  {
     
   }
 
-  private static Date nextWorkingDay(Date date) {
-    Date nextDay = date;
-    int blbec = 0;
-    String[] holidays = {"01.01","01.05","08.05","05.07","06.07","28.09","28.10","17.11","24.12","25.12","26.12"}; //TODO: chybi velikonocni pondeli
-    Calendar c = Calendar.getInstance();
-    DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-    df.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
-
-    while(blbec < 100) {
-      blbec++;
-
-      c.setTime(nextDay);
-      c.add(Calendar.DATE, 1);
-      nextDay = c.getTime();
-
-      if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) continue;
-      if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) continue;
-      if(Arrays.asList(holidays).contains( df.format(nextDay).substring(0,5))) continue;
-
-      break;
-    }
-
-    return nextDay;
-  }
 
   public static void form(Long id) {
     List<InsuranceCompany> pojistovny = InsuranceCompany.getAktual(connected.modul);

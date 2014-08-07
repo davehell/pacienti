@@ -26,6 +26,12 @@
 <fieldset>
   <legend>Informace o vyšetření</legend>
 
+#{if limitTAT}
+  <p class="${ TATsplnen.yesno('success', 'alert') }">
+    TAT: limit ${ TATsplnen.yesno('bude', 'byl') } dne ${limitTAT}
+  </p>
+#{/if}
+
 <p>
   <label>pacient</label>
   <span class="infoInput">#{a @Patients.detail(pacient?.id), title:"Zobrazit detail pacienta"}${pacient?.getKod()}#{/a}, ${pacient?.toString()} </span>

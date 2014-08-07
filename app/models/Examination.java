@@ -32,6 +32,8 @@ public class Examination extends Model {
 
     public int sloupce;
 
+    public int tat; //TAT = doba odezvy. Počet dní, do kterých se musí vyšetření provést
+
     @OneToMany(mappedBy="vysetreni", cascade=CascadeType.ALL)
     public List<Genotype> genotypy;
 
