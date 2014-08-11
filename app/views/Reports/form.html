@@ -35,7 +35,7 @@
 
     #{if !TATsplnen && dnyTAT == null} , nebyl tedy dodržen #{/if}
     #{elseif TATsplnen && dnyTAT == null} a byl dodržen #{/elseif}
-    #{elseif !TATsplnen && dnyTAT > 0} , překročeno o dní: ${dnyTAT} #{/elseif}
+    #{elseif !TATsplnen && dnyTAT > 0} , překročeno o dny: ${dnyTAT} #{/elseif}
     #{elseif TATsplnen && dnyTAT <= 0} , zbývá dní: ${dnyTAT * -1} #{/elseif}
   </p>
 #{/if}

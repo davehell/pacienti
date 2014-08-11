@@ -8,6 +8,8 @@ import play.data.binding.*;
 import java.sql.Clob;
 import utils.*;
 import java.text.*;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 
 @Entity
 public class Report extends Model {
@@ -98,14 +100,19 @@ public class Report extends Model {
             limitTAT = this.pacient.nextWorkingDay(limitTAT);
         }
 
-        if(this.jeHotovo() && datumVysetreni != null && datumVysetreni.after(limitTAT)) {
+        if( (this.jeHotovo() && datumVysetreni == null) || (this.jeHotovo() && datumVysetreni.after(limitTAT)) ) {
             return "0;" + df.format(limitTAT) + ";-"; //limit byl dne d.m.Y, nebyl tedy splněn
         }
+        else if(!this.jeHotovo() && df.format(limitTAT).equals(df.format(dnes))) {
+            return "1;" + df.format(limitTAT) + ";0"; //limit bude dne d.m.Y, což je dnes
+        }
         else if(!this.jeHotovo() && dnes.after(limitTAT)) {
-            return "0;" + df.format(limitTAT) + ";5"; //limit byl dne d.m.Y, což je před x dny
+            int days = Days.daysBetween(new DateTime(limitTAT), new DateTime(dnes)).getDays();
+            return "0;" + df.format(limitTAT) + ";" + Integer.toString(days); //limit byl dne d.m.Y, což je před x dny
         }
         else if(!this.jeHotovo() && dnes.before(limitTAT)) {
-            return "1;" + df.format(limitTAT) + ";-3"; //limit bude dne d.m.Y, což je za x dny
+            int days = Days.daysBetween(new DateTime(limitTAT), new DateTime(dnes)).getDays();
+            return "1;" + df.format(limitTAT) + ";" + Integer.toString(days - 1); //limit bude dne d.m.Y, což je za x dny
         }
         else {
             return "1;" + df.format(limitTAT) + ";-"; //limit byl dne d.m.Y, byl tedy splněn
