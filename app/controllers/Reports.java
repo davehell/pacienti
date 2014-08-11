@@ -63,11 +63,12 @@ public class Reports extends Application {
       autoComplMap = vysetreni.getAutoCompletes();
 
       String[] TAT = zprava.kontrolaTAT().split(";");
-      String limitTAT = TAT[1];
+      String limitTAT = TAT[1]; //datum limitu
+      Integer dnyTAT = TAT[2].equals("-") ? null : Integer.parseInt(TAT[2]); //počet dní do limitu
       boolean TATsplnen = TAT[0].equals("1") ? true : false;
 
       //úprava existujícího vyšetření pacienta
-      render(zprava, vyslMap, pacient, bioMaterialy, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu, autoComplMap, limitTAT, TATsplnen);
+      render(zprava, vyslMap, pacient, bioMaterialy, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu, autoComplMap, limitTAT, TATsplnen, dnyTAT);
     }
 
     //formulář pro přidání nového vyšetření k pacientovi

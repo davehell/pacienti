@@ -94,18 +94,21 @@ public class Report extends Model {
         if(this.bioMaterial.datumPrijeti == null) return null;
 
         limitTAT = this.bioMaterial.datumPrijeti;
-        while(i++ <= this.vysetreni.tat) {
+        while(i++ < this.vysetreni.tat) {
             limitTAT = this.pacient.nextWorkingDay(limitTAT);
         }
 
-        if(this.jeHotovo() && datumVysetreni.after(limitTAT)) {
-            return "0;" + df.format(limitTAT);
+        if(this.jeHotovo() && datumVysetreni != null && datumVysetreni.after(limitTAT)) {
+            return "0;" + df.format(limitTAT) + ";-"; //limit byl dne d.m.Y, nebyl tedy splněn
         }
         else if(!this.jeHotovo() && dnes.after(limitTAT)) {
-            return "0;" + df.format(limitTAT);
+            return "0;" + df.format(limitTAT) + ";5"; //limit byl dne d.m.Y, což je před x dny
+        }
+        else if(!this.jeHotovo() && dnes.before(limitTAT)) {
+            return "1;" + df.format(limitTAT) + ";-3"; //limit bude dne d.m.Y, což je za x dny
         }
         else {
-            return "1;" + df.format(limitTAT);
+            return "1;" + df.format(limitTAT) + ";-"; //limit byl dne d.m.Y, byl tedy splněn
         }
     }
 
