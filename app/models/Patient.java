@@ -200,6 +200,13 @@ public class Patient extends Model {
       return (Long) q.getSingleResult();
     }
 
+    public static Long getPocetNeuplnychZadanek(Integer rok, AppModul modul) {
+      Query q = JPA.em().createQuery ("SELECT COUNT(id) FROM Patient p WHERE p.modul = :modul AND p.evRok = :rok AND p.neuplnaZadanka = true");
+      q.setParameter ("rok", rok);
+      q.setParameter ("modul", modul);
+      return (Long) q.getSingleResult();
+    }
+
     public BioMaterial getFirstBioMaterial() {
         return BioMaterial.find("pacient.id = ? order by id asc", this.id).first();
     }

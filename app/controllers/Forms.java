@@ -93,7 +93,13 @@ public class Forms extends Application {
       List<Report> pocetDleTypuM = Report.getPocetDleTypu(rok, "M", connected.modul);
       List<Report> pocetDleTypuF = Report.getPocetDleTypu(rok, "F", connected.modul);
 
-      render(aktRok, rok, pocetVysetreni, pocetVysetreniM, pocetVysetreniF, pocetPacientu, pocetPacientuM, pocetPacientuF, pocetPatolog, pocetPatologMladi, pocetDleTypu, pocetDleTypuM, pocetDleTypuF);
+      Long pocetNeuplnychZadanek = Patient.getPocetNeuplnychZadanek(rok, connected.modul);
+      Long pocetNevyhovVzorku = BioMaterial.getPocetNevyhovujicich(rok, connected.modul);
+      Long pocetVzorkuCelkem = BioMaterial.getPocet(rok, connected.modul);
+      Long pocetOpakovanychVysetreni = Report.getPocetOpakovanych(rok, connected.modul);
+
+      render(aktRok, rok, pocetVysetreni, pocetVysetreniM, pocetVysetreniF, pocetPacientu, pocetPacientuM, pocetPacientuF, pocetPatolog, pocetPatologMladi, pocetDleTypu, pocetDleTypuM, pocetDleTypuF,
+      pocetNeuplnychZadanek, pocetNevyhovVzorku, pocetVzorkuCelkem, pocetOpakovanychVysetreni);
   }
   
   public static void poctyVzorku(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {

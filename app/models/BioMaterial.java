@@ -41,4 +41,18 @@ public class BioMaterial extends Model {
         List<BioMaterial> result = BioMaterial.find("pacient.modul = ? AND typ <> ? and datumIzolace is null and pacient.evRok >= ?", modul, "izolovaná DNA", 2010).fetch();
         return result;
     }
+
+    public static Long getPocet(Integer rok, AppModul modul) {
+      Query q = JPA.em().createQuery ("SELECT COUNT(b.id) FROM BioMaterial b, Patient p WHERE p.id = b.pacient.id AND p.modul = :modul AND p.evRok = :rok");
+      q.setParameter ("rok", rok);
+      q.setParameter ("modul", modul);
+      return (Long) q.getSingleResult();
+    }
+
+    public static Long getPocetNevyhovujicich(Integer rok, AppModul modul) {
+      Query q = JPA.em().createQuery ("SELECT COUNT(b.id) FROM BioMaterial b, Patient p WHERE p.id = b.pacient.id AND p.modul = :modul AND p.evRok = :rok AND b.nevyhovujiciVzorek = true");
+      q.setParameter ("rok", rok);
+      q.setParameter ("modul", modul);
+      return (Long) q.getSingleResult();
+    }
 }

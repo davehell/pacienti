@@ -212,6 +212,25 @@ public class Report extends Model {
       return (Long) q.getSingleResult();
     }
 
+    public static Long getPocetOpakovanych(Integer rok, AppModul modul) {
+      Calendar cal = new GregorianCalendar();
+      cal.set(Calendar.YEAR, rok);
+      cal.set(Calendar.DAY_OF_YEAR, 1);
+      Date startDate = cal.getTime();
+
+      cal.set(Calendar.YEAR, rok);
+      cal.set(Calendar.MONTH, 11); // 11 = december
+      cal.set(Calendar.DAY_OF_MONTH, 31); // new years eve
+      Date endDate = cal.getTime();
+
+      Query q = JPA.em().createQuery ("SELECT COUNT(r.id) FROM Report r, Patient p WHERE r.pacient.id = p.id AND r.opakovaneVysetreni = true AND p.modul = :modul AND r.datumVysetreni >= :startDate AND r.datumVysetreni <= :endDate");
+
+      q.setParameter ("startDate", startDate);
+      q.setParameter ("endDate", endDate);
+      q.setParameter ("modul", modul);
+      return (Long) q.getSingleResult();
+    }
+
     public static List<Report> getPocetDleTypu(Integer rok, String pohlavi, AppModul modul) {
       Calendar cal = new GregorianCalendar();
       cal.set(Calendar.YEAR, rok);
