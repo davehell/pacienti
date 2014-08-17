@@ -62,10 +62,15 @@ public class Reports extends Application {
       Examination vysetreni = zprava.vysetreni;
       autoComplMap = vysetreni.getAutoCompletes();
 
+      String limitTAT = ""; //datum limitu
+      Integer dnyTAT = 0; //počet dní do limitu
+      boolean TATsplnen = true;
       String[] TAT = zprava.kontrolaTAT().split(";");
-      String limitTAT = TAT[1]; //datum limitu
-      Integer dnyTAT = TAT[2].equals("-") ? null : Integer.parseInt(TAT[2]); //počet dní do limitu
-      boolean TATsplnen = TAT[0].equals("1") ? true : false;
+      if(TAT.length == 3) {
+        limitTAT = TAT[1];
+        dnyTAT = TAT[2].equals("-") ? null : Integer.parseInt(TAT[2]);
+        TATsplnen = TAT[0].equals("1") ? true : false;
+      }
 
       //úprava existujícího vyšetření pacienta
       render(zprava, vyslMap, pacient, bioMaterialy, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu, autoComplMap, limitTAT, TATsplnen, dnyTAT);

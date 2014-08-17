@@ -95,7 +95,7 @@ public class Report extends Model {
         Date dnes = new Date();
         int i = 0;
 
-        if(this.bioMaterial.datumPrijeti == null) return null;
+        if(this.bioMaterial.datumPrijeti == null) return "";
 
         limitTAT = this.bioMaterial.datumPrijeti;
         while(i++ < this.vysetreni.tat) {
