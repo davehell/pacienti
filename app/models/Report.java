@@ -93,7 +93,7 @@ public class Report extends Model {
         df.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
         Date limitTAT = null;
         Date dnes = new Date();
-        int i = 0;
+        int i = 1;
 
         if(this.bioMaterial.datumPrijeti == null) return "";
 
@@ -109,12 +109,22 @@ public class Report extends Model {
             return "1;" + df.format(limitTAT) + ";0"; //limit bude dne d.m.Y, což je dnes
         }
         else if(!this.jeHotovo() && dnes.after(limitTAT)) {
-            int days = Days.daysBetween(new DateTime(limitTAT), new DateTime(dnes)).getDays();
-            return "0;" + df.format(limitTAT) + ";" + Integer.toString(days); //limit byl dne d.m.Y, což je před x dny
+            int days = 0;
+            Date tmp = limitTAT;
+            while(dnes.after(tmp)) {
+                tmp = this.pacient.nextWorkingDay(tmp);
+                days++;
+            }
+            return "0;" + df.format(limitTAT) + ";" + Integer.toString(days - 1); //limit byl dne d.m.Y, což je před x dny
         }
         else if(!this.jeHotovo() && dnes.before(limitTAT)) {
-            int days = Days.daysBetween(new DateTime(limitTAT), new DateTime(dnes)).getDays();
-            return "1;" + df.format(limitTAT) + ";" + Integer.toString(days - 1); //limit bude dne d.m.Y, což je za x dny
+            int days = 0;
+            Date tmp = dnes;
+            while(tmp.before(limitTAT)) {
+                tmp = this.pacient.nextWorkingDay(tmp);
+                days++;
+            }
+            return "1;" + df.format(limitTAT) + ";" + Integer.toString(days); //limit bude dne d.m.Y, což je za x dny
         }
         else {
             return "1;" + df.format(limitTAT) + ";-"; //limit byl dne d.m.Y, byl tedy splněn
