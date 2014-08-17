@@ -34,7 +34,7 @@ public class BioMaterials extends Application {
   }
 
 
-  public static void mySave(Long bioMatId, BioMaterial bioMaterial, Long pacientId, String casOdberu, String casPrijeti, String koncDna) {
+  public static void mySave(Long bioMatId, BioMaterial bioMaterial, Long pacientId, String casOdberu, String casPrijeti, String koncDna, boolean nevyhovujiciVzorek) {
     List<User> users = User.find("modul = ? AND isAdmin = ?", connected.modul, false).fetch();
     Patient pacient = Patient.findById(pacientId);
     notFoundIfNull(pacient);
@@ -92,6 +92,7 @@ public class BioMaterials extends Application {
       newBioMat.parafaPrijeti = bioMaterial.parafaPrijeti;
       newBioMat.datumIzolace = bioMaterial.datumIzolace;
       newBioMat.parafaIzolace = bioMaterial.parafaIzolace;
+      newBioMat.nevyhovujiciVzorek = bioMaterial.nevyhovujiciVzorek;
 
       try {
         pacient.save();

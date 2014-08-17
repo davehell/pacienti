@@ -146,6 +146,14 @@
 </p>
 #{/}
 
+#{field 'bioMaterial.nevyhovujiciVzorek'}
+<p>
+  <label>&{field.name} </label>
+  <input type="checkbox" id="${field.id}" name="${field.name}" ${bioMaterial?.nevyhovujiciVzorek ? 'checked' : ''} }" class="${field.errorClass}">
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+</p>
+#{/}
+
 <input type="hidden" name="pacientId" value="${pacient?.id}">
 <input type="hidden" name="bioMaterial.id" value="${bioMaterial?.id}">
 

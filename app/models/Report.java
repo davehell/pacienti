@@ -79,6 +79,8 @@ public class Report extends Model {
     @As("dd.MM.yyyy")
     public Date datumSekv;
 
+    public boolean opakovaneVysetreni; //statistika - počet opakovaných vyšetření
+
 
     public Report(Patient pacient, BioMaterial bioMaterial, Examination vysetreni) {
         this.pacient = pacient;

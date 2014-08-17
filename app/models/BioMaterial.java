@@ -31,6 +31,8 @@ public class BioMaterial extends Model {
     @OneToOne
     public User parafaIzolace;
 
+    public boolean nevyhovujiciVzorek; //statistika - počet nevyhovujících vzorků
+
     public String toString() {
         return typ;
     }

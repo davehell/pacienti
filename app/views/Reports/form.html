@@ -219,6 +219,13 @@
 </p>
 #{/}
 
+#{field 'opakovaneVysetreni'}
+<p>
+  <label>&{field.name} </label>
+  <input type="checkbox" id="${field.id}" name="${field.name}" ${zprava?.opakovaneVysetreni ? 'checked' : ''} }" class="${field.errorClass}">
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+</p>
+#{/}
 
 #{field 'zprava.zavZprava'}
 <p>

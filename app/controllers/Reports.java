@@ -76,7 +76,7 @@ public class Reports extends Application {
   }
 
 
-  public static void mySave(Long zpravaId, Report zprava, Long[] novaVysetreni, Long pacientId, String[] vysledky, String[] markery, Boolean neniCertif, Boolean pozitivni) {
+  public static void mySave(Long zpravaId, Report zprava, Long[] novaVysetreni, Long pacientId, String[] vysledky, String[] markery, Boolean neniCertif, Boolean pozitivni, Boolean opakovaneVysetreni) {
     Patient pacient = Patient.getByModulAndId(connected.modul, pacientId);
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.findAll();
@@ -98,6 +98,7 @@ public class Reports extends Application {
 
     zprava.neniCertif = (neniCertif == null) ? false : true;
     zprava.pozitivni = (pozitivni == null) ? false : true;
+    zprava.opakovaneVysetreni = (opakovaneVysetreni == null) ? false : true;
     zprava.pacient = pacient;
     zprava.vysledek = vysledek;
     vyslMap = zprava.getVysl();
@@ -158,6 +159,7 @@ public class Reports extends Application {
       newZprava.vedouciLekar = zprava.vedouciLekar;
       newZprava.zavZprava = zprava.zavZprava;
       newZprava.pozitivni = zprava.pozitivni;
+      newZprava.opakovaneVysetreni = zprava.opakovaneVysetreni;
       newZprava.datumPCR1 = zprava.datumPCR1;
       newZprava.datumPCR2 = zprava.datumPCR2;
       newZprava.datumElForezy = zprava.datumElForezy;

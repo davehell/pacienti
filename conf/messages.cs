@@ -16,6 +16,7 @@ pacient.pozn = interní poznámka
 pacient.verejnaPozn = veřejná poznámka
 souhlasUlozeni = souhlas s uložením vzorku
 souhlasVyuziti = souhlas s využitím DNA
+neuplnaZadanka = neúplná žádanka
 
 
 bioMaterial.typ = typ
@@ -24,6 +25,7 @@ bioMaterial.datumPrijeti = datum přijetí
 bioMaterial.parafaPrijeti.id  = vzorek přijal
 bioMaterial.datumIzolace  = datum izolace DNA
 bioMaterial.parafaIzolace.id = izolaci provedl
+bioMaterial.nevyhovujiciVzorek = nevyhovující vzorek
 casOdberu = čas odběru
 casPrijeti = čas přijetí
 
@@ -46,6 +48,7 @@ zprava.datumRTAn = RT analýza
 zprava.datumSekv = sekvenace
 neniCertif = není akreditováno
 pozitivni  = pozitivní
+opakovaneVysetreni = opakované vyšetření
 
 secure.username=uživatelské jméno:
 secure.password=heslo:

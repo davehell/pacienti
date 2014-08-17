@@ -77,6 +77,8 @@ public class Patient extends Model {
     @MaxSize(300)
     public String verejnaPozn;  //veřejná poznámka
 
+    public boolean neuplnaZadanka; //statistika - počet neúplných žádanek
+
     @OneToMany(mappedBy="pacient", cascade=CascadeType.ALL)
     public List<BioMaterial> bioMaterialy;
 

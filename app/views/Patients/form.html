@@ -172,6 +172,14 @@
 </p>
 #{/}
 
+#{field 'neuplnaZadanka'}
+<p>
+  <label>&{field.name} </label>
+  <input type="checkbox" id="${field.id}" name="${field.name}" ${pacient?.neuplnaZadanka ? 'checked' : ''} }" class="${field.errorClass}">
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+</p>
+#{/}
+
 #{field 'pacient.pozn'}
 <p>
   <label>&{field.name} </label>
