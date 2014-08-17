@@ -10,6 +10,6 @@ update examination set tat=20 where id=24;
 
 update user  set passwordhash='112f489f6b265cdf4e4892f7b952cd36fc0ecd5f' where username='jm';
 
-ALTER TABLE patient ADD neuplna_zadanka boolean default 0;
-ALTER TABLE biomaterial ADD nevyhovujici_vzorek boolean default 0;
-ALTER TABLE report ADD opakovane_vysetreni boolean default 0;
+ALTER TABLE patient ADD neuplnazadanka boolean default 0;
+ALTER TABLE biomaterial ADD nevyhovujicivzorek boolean default 0;
+ALTER TABLE report ADD opakovanevysetreni boolean default 0;
