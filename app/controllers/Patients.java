@@ -21,11 +21,11 @@ public class Patients extends Application  {
 
   public static void index(String skupina) {
     int min = 0;
-    int max = 9999;
+    int max = 2999;
     if(skupina != null) {
       if(skupina.equals("KO 000")) {
         min = 0;
-        max = 999;
+        max = 2999;
       }
       else if(skupina.equals("KO 3000")) {
         min = 3000;
