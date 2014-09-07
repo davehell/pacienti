@@ -74,7 +74,6 @@ public class AppModuls extends Application {
       } else {
         AppModul newModul = AppModul.findById(id);
         newModul.vedouciLekari = modul.vedouciLekari.replaceAll("\n", ";").replaceAll("\r", "");
-        newModul.uvolnujiAnalyzu = modul.uvolnujiAnalyzu.replaceAll("\n", ";").replaceAll("\r", "");
         newModul.provadiAnalyzu = modul.provadiAnalyzu.replaceAll("\n", ";").replaceAll("\r", "");
         newModul.typyMaterialu = modul.typyMaterialu.replaceAll("\n", ";").replaceAll("\r", "");
 

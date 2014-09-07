@@ -20,14 +20,6 @@
   </p>
   #{/}
 
-  #{field 'modul.uvolnujiAnalyzu'}
-  <p>
-    <label>&{field.name} </label>
-    <textarea id="${field.id}" name="${field.name}" class="${field.errorClass} noResize">${modul?.uvolnujiAnalyzu}</textarea>
-    #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
-  </p>
-  #{/}
-
   #{field 'modul.provadiAnalyzu'}
   <p>
     <label>&{field.name} </label>

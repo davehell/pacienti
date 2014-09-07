@@ -38,6 +38,8 @@ public class User extends Model {
 
     public boolean isAdmin;
     public boolean isDoctor;
+    @MaxSize(100)
+    public String uvolnuje;
    
     public User(String username, String password, String name) {
         this.username = username;

@@ -167,21 +167,6 @@
     #{/if}
   #{/select}
   <a href="@{AppModuls.uziv()}" target="_blank" title="&{'profil.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
-*{
-  #{ifnot zprava?.id}
-    <input type="hidden" name="${field.name}" value="${connected?.id}">
-    <input type="text" id="${field.id}_label" name="${field.name}_label" value="${connected.parafa}" class="${field.errorClass} disabled shortW" disabled="disabled">
-  #{/ifnot}
-  #{else}
-    <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.parafaVysetreni?.parafa}" class="${field.errorClass} disabled shortW" disabled="disabled">
-    #{select "${field.name}", value:"${zprava?.parafaVysetreni?.id}", id:"${field.name}", class:"disabled"}
-    	#{option }&{'selectBox.option.none'}#{/option}
-      #{list users}
-        #{option "${_.id}"}${_.parafa}#{/option}
-      #{/list}
-    #{/select}
-  #{/else}
-}*
   <span class="error">#{error 'zprava.parafaVysetreni ' /} </span>
 </p>
 #{/}
@@ -190,12 +175,16 @@
 #{field 'zprava.analyzuUvolnil'}
 <p>
   <label>&{field.name} </label>
-  <input type="text" id="${field.id}" name="${field.name}" value="${zprava?.analyzuUvolnil}" class="${field.errorClass} vLongW">
-  <a href="@{AppModuls.form}" target="_blank" title="&{'modul.nastaveni'}" class="ui-icon ui-icon-gear modulSettings"></a>
+  #{if !(connected.uvolnuje).equals("")}
+  #{select "${field.name}", value:"${zprava?.analyzuUvolnil}", id:"${field.name}"}
+    #{option }&{'selectBox.option.none'}#{/option}
+    #{option "${connected.jmeno}${connected.uvolnuje}"}${connected.jmeno}${connected.uvolnuje}#{/option}
+  #{/select}
+  #{/if}
+  #{else}
+    <span class="infoInput">${zprava?.analyzuUvolnil}</span>
+  #{/else}
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
-</p>
-<p>
-  <span class="small">${uvolnujiAnalyzu?.join(', ') } </span>
 </p>
 #{/}
 
@@ -408,18 +397,6 @@
 
 		$( "#zprava_vedouciLekar" ).autocomplete({
 			source: vedouciLekari,
-      delay: 0
-		});
-
-		var uvolnujiAnalyzu = [
-      #{list uvolnujiAnalyzu}
-        "${_.raw()}" ${_isLast ? '' : ','}
-      #{/list}
-    ];
-
-		$( "#zprava_analyzuUvolnil" ).autocomplete({
-			source: uvolnujiAnalyzu,
-      change : uvolnujiChangeHandler,
       delay: 0
 		});
 
