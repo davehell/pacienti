@@ -85,7 +85,7 @@ public class Forms extends Application {
       Long pocetPacientu = Patient.getPocet(rok, "", connected.modul);
       Long pocetPacientuM = Patient.getPocet(rok, "M", connected.modul);
       Long pocetPacientuF = Patient.getPocet(rok, "F", connected.modul);
-      
+
       Long pocetPatolog = Report.pocetPatolog(rok, 0, connected.modul);
       Long pocetPatologMladi = Report.pocetPatolog(rok, 19, connected.modul);
 
@@ -100,6 +100,13 @@ public class Forms extends Application {
 
       render(aktRok, rok, pocetVysetreni, pocetVysetreniM, pocetVysetreniF, pocetPacientu, pocetPacientuM, pocetPacientuF, pocetPatolog, pocetPatologMladi, pocetDleTypu, pocetDleTypuM, pocetDleTypuF,
       pocetNeuplnychZadanek, pocetNevyhovVzorku, pocetVzorkuCelkem, pocetOpakovanychVysetreni);
+  }
+
+  public static void poctyUlozenych(Integer rok) {
+      Integer aktRok = Calendar.getInstance().get(Calendar.YEAR);
+      if(rok == null) rok = aktRok;
+      List<Patient> souhlasy = Patient.getSouhlasySUlozenim(connected.modul, rok);
+      render(aktRok, rok, souhlasy);
   }
   
   public static void poctyVzorku(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {

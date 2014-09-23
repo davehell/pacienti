@@ -279,4 +279,10 @@ public class Patient extends Model {
 
         return nextDay;
     }
+
+    public static List<Patient> getSouhlasySUlozenim(AppModul modul, int rok) {
+        List<Patient> pacienti = Patient.find("modul = ? AND evRok = ? AND infSouhlas = true ORDER BY evCislo", modul, rok).fetch();
+        return pacienti;
+    }
+
 }

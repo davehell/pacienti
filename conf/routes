@@ -3,10 +3,10 @@
 # ~~~~
 
 # Home page
-GET		/															           Application.start
-#GET		/import												           Application.kod
+GET   /                                         Application.start
+#GET  /import                                   Application.kod
 
-GET		/pacienti 	  									           Patients.index
+GET   /pacienti                                 Patients.index
 GET   /pacient/{id}/upravit                     Patients.form
 GET   /pacient/novy                             Patients.form
 POST  /pacient/{id}/ulozit                      Patients.mySave
@@ -29,30 +29,31 @@ POST  /vysetreni/ulozit                           Reports.mySave
 GET   /vysetreni/{id}/smazat                      Reports.myDelete
 GET   /vysetreni/{id}/zaverecna-zprava            Reports.report
 
-GET		/pojistovny													         InsuranceCompanies.index
-GET   /pojistovna/{id}/upravit                     InsuranceCompanies.form
-GET   /pojistovna/novy                             InsuranceCompanies.form
-POST  /pojistovna/{id}/ulozit                      InsuranceCompanies.mySave
-POST  /pojistovna/ulozit                           InsuranceCompanies.mySave
-GET   /pojistovna/{id}/smazat                      InsuranceCompanies.myDelete
+GET   /pojistovny                             InsuranceCompanies.index
+GET   /pojistovna/{id}/upravit                InsuranceCompanies.form
+GET   /pojistovna/novy                        InsuranceCompanies.form
+POST  /pojistovna/{id}/ulozit                 InsuranceCompanies.mySave
+POST  /pojistovna/ulozit                      InsuranceCompanies.mySave
+GET   /pojistovna/{id}/smazat                 InsuranceCompanies.myDelete
 
-GET		/lekari   													    Doctors.index
+GET   /lekari                                 Doctors.index
 GET   /lekar/{id}/upravit                     Doctors.form
 GET   /lekar/novy                             Doctors.form
 POST  /lekar/{id}/ulozit                      Doctors.mySave
 POST  /lekar/ulozit                           Doctors.mySave
 GET   /lekar/{id}/smazat                      Doctors.myDelete
 
-GET		/sestavy/tisk/stitky/{evCisla}			    Forms.stitky
-GET		/sestavy/stitky								          Forms.stitky
-GET		/sestavy/{typ}								          Forms.index
-GET		/sestavy/tisk/neizolovana-dna			  		Forms.neizolovana
-GET		/sestavy/tisk/neprovedena-vysetreni/od/{datumOd}/do/{datumDo}			  Forms.neprovedena
-GET		/sestavy/tisk/pocty-vzorku/od/{datumOd}/do/{datumDo}			          Forms.poctyvzorku
-GET		/sestavy/tisk/pocty-vysetreni-lekar/od/{datumOd}/do/{datumDo}/lekar/{lekarId}			          Forms.poctyvyslekar
-
-GET		/sestavy/tisk/pocty-vysetreni/{rok}			Forms.poctyvysetreni
-GET		/sestavy/tisk/pocty-vysetreni/			Forms.poctyvysetreni
+GET   /sestavy/tisk/stitky/{evCisla}          Forms.stitky
+GET   /sestavy/stitky                         Forms.stitky
+GET   /sestavy/{typ}                          Forms.index
+GET   /sestavy/tisk/neizolovana-dna           Forms.neizolovana
+GET   /sestavy/tisk/neprovedena-vysetreni/od/{datumOd}/do/{datumDo}                   Forms.neprovedena
+GET   /sestavy/tisk/pocty-vzorku/od/{datumOd}/do/{datumDo}                            Forms.poctyvzorku
+GET   /sestavy/tisk/pocty-vysetreni-lekar/od/{datumOd}/do/{datumDo}/lekar/{lekarId}   Forms.poctyvyslekar
+GET   /sestavy/pocty-vysetreni/{rok}              Forms.poctyvysetreni
+GET   /sestavy/pocty-vysetreni/                   Forms.poctyvysetreni
+GET   /sestavy/pocty-souhlasu-s-ulozenim/{rok}    Forms.poctyulozenych
+GET   /sestavy/pocty-souhlasu-s-ulozenim/         Forms.poctyulozenych
 
 POST  /import-vysledku                        Forms.vyslImport
 GET   /import-vysledku                        Forms.vyslImport
@@ -63,10 +64,10 @@ GET   /modul                                  AppModuls.form
 
 
 
-*       /admin                                  module:crud
+*     /admin                                  module:crud
 
 # Import Secure routes
-*       /                                       module:secure
+*     /                                       module:secure
 
 
 # Ignore favicon requests

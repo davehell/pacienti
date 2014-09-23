@@ -84,6 +84,7 @@
          <li><a href="@{Forms.index("pocty-vzorku")}">Počty vzorků od lékařů</a></li>
          <li><a href="@{Forms.index("pocty-vysetreni-lekar")}">Počty vyšetření od lékaře</a></li>
          <li><a href="@{Forms.poctyVysetreni()}">Počty vyšetření</a></li>
+         <li><a href="@{Forms.poctyUlozenych()}">Počty uložených vzorku</a></li>
         </ul>
     	</div>
 #{/if}      	
@@ -136,6 +137,7 @@
     #{elseif request.action.equals("Forms.log")} sel = 3;#{/elseif}
     #{elseif request.action.equals("Forms.poctyVzorku") || request.path.contains("pocty-vzorku") || request.path.contains("pocty-vysetreni-lekar")} sel = 4;#{/elseif}
     #{elseif request.action.equals("Forms.poctyVysetreni")} sel = 4;#{/elseif}
+    #{elseif request.action.equals("Forms.poctyUlozenych")} sel = 4;#{/elseif}
     #{elseif request.controller.equals("Forms")} sel = 1;#{/elseif}
     #{elseif request.controller.equals("Doctors")} sel = 3;#{/elseif}
     #{elseif request.controller.equals("InsuranceCompanies")} sel = 3;#{/elseif}

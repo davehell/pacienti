@@ -1,0 +1,37 @@
+#{extends 'main.html' /}
+#{set title:'Počty uložených vzorku' /}
+
+<fieldset class="noprint">
+  <legend>Výběr období</legend>
+
+  <ul>
+%{
+  i = 2008;
+  while(++i <= aktRok) {
+}%
+    <li><a href="@{Forms.poctyUlozenych(i)}">${i}</a></li>
+%{
+  }
+}%
+  </ul>
+</fieldset>
+
+<h2>Rok ${rok}</h2>
+
+#{if souhlasy}
+  <p>
+    &{'souhlasUlozeni'} - celkem: ${souhlasy.size()}
+  </p>
+  <ul>
+  #{list souhlasy}
+    <li>
+      <a href="@{Patients.detail(_.id)}">${_.getKod()}</a>
+    </li>
+  #{/list}
+  </ul>
+#{/if}
+#{else}
+  <p>
+      &{'noRecords'}
+  </p>
+#{/else}
