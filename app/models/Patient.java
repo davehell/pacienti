@@ -240,6 +240,21 @@ public class Patient extends Model {
     }
 
 
+    public String limityTat() {
+        List<Report> zpravy = Report.find("pacient.id = ? order by id asc", this.id).fetch();
+        String TATy = "";
+        String vysl = "";
+        String[] array = null;
+        String sep = "";
+        for(Report zprava : zpravy) {
+          array = zprava.kontrolaTAT().split(";",-1);
+          TATy += (sep + (array[0].equals("1") && !array[2].equals("-") && !array[2].equals("0") ? "-" : "") + array[2]);
+          sep = ", ";
+        }
+        return TATy;
+    }
+
+
     public Date nextWorkingDay(Date date) {
         Date nextDay = date;
         int blbec = 0;

@@ -23,6 +23,7 @@
         <th>&{'pacient.lekar.id'}</th>
         <th>&{'zprava.vysetreni.id'}</th>
         <th>&{'hotovo'}</th>
+        <th>&{'TAT'}</th>
       </tr>
     </thead>
     <tbody>
@@ -38,7 +39,7 @@
       <td>${_.lekar?.jmeno} </td>
       <td>${_.getZkratkyVysetreni()} </td>
       <td>#{if _.vysetreniHotova() ? 'checked' : ''}<span class="ui-icon ui-icon-check"></span> #{/if} </td>
-      
+      <td>${_.limityTat()} </td>
     </tr>
     #{/list}
     </tbody>

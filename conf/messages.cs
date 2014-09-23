@@ -98,6 +98,7 @@ examination.score = Účtování vyšetření
 vyslImport.neznamy = neznámý
 
 hotovo = hotovo
+TAT = TAT
 
 crud.search = Hledat
 crud.pagination.previous = Předchozí
