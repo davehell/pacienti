@@ -176,7 +176,7 @@
 <p>
   <label>&{field.name} </label>
   #{if !(connected.uvolnuje).equals("")}
-  #{select "${field.name}", value:"${zprava?.analyzuUvolnil}", id:"${field.name}"}
+  #{select "${field.name}", value:"${zprava?.analyzuUvolnil}", id:"zprava_analyzuUvolnil"}
     #{option }&{'selectBox.option.none'}#{/option}
     #{option "${connected.jmeno}${connected.uvolnuje}"}${connected.jmeno}${connected.uvolnuje}#{/option}
   #{/select}
