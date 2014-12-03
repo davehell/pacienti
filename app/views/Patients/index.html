@@ -32,7 +32,7 @@
     <tr>
       <td>${_.evCislo} </td>
       <td>${_.evRok} </td>
-      <td>#{a @Patients.detail(_.id), title:"Zobrazit detail tohoto pacienta"}${_.getKod()}#{/a} </td>
+      <td>#{a @Patients.detail(_.id), title:"Zobrazit detail tohoto pacienta"}${_.getKod().replace(" ", "&nbsp;").raw()}#{/a} </td>
       <td>${_.getFirstBioMaterial()?.datumPrijeti?.format()} </td>
       <td>${_.toString()} </td>
       <td>${_.getRodneCislo()} </td>
