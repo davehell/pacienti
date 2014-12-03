@@ -147,7 +147,7 @@ public class Forms extends Application {
   @Check("doctor")
   public static void stitky(String evCisla, String skupina) {
     int min = 0;
-    int max = 999;
+    int max = 2999;
     if(skupina != null) {
       if(skupina.equals("KO 000")) {
         min = 0;
