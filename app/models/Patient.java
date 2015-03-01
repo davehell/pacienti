@@ -285,4 +285,19 @@ public class Patient extends Model {
         return pacienti;
     }
 
+    public static boolean setKonc(String pacKod, String konc, boolean jenTest) {
+      Patient pacient = Patient.getByKod(pacKod);
+      if(pacient == null) return false;
+
+      if(jenTest) return true;
+
+      try {
+        pacient.koncDna = konc;
+        pacient.save();
+      }
+      catch (Exception e) {
+        return false;
+      }
+      return true;
+    }
 }

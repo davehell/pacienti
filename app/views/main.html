@@ -69,6 +69,7 @@
     	<div id="tabs-3">
         <ul>
           <li><a href="@{Forms.vyslImport()}">Import výsledků</a></li>
+          <li><a href="@{Forms.koncImport()}">Import koncentrací</a></li>
         </ul>
     	</div>
     	<div id="tabs-4">
@@ -133,7 +134,7 @@
 	$(function() {
 	  var sel = 0;
 
-    #{if request.action.equals("Forms.vyslImport")} sel = 2;#{/if}
+    #{if request.action.equals("Forms.vyslImport") || request.action.equals("Forms.koncImport")} sel = 2;#{/if}
     #{elseif request.action.equals("Forms.log")} sel = 3;#{/elseif}
     #{elseif request.action.equals("Forms.poctyVzorku") || request.path.contains("pocty-vzorku") || request.path.contains("pocty-vysetreni-lekar")} sel = 4;#{/elseif}
     #{elseif request.action.equals("Forms.poctyVysetreni")} sel = 4;#{/elseif}

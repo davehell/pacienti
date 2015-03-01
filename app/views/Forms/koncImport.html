@@ -1,0 +1,73 @@
+#{extends 'main.html' /}
+#{set title:'Import koncentrací' /}
+
+#{ifnot fileName}
+<form action="@{koncImport()}" method="POST" enctype="multipart/form-data">
+<fieldset>
+  <legend>Koncentrace vzorků</legend>
+  <p>
+    <label>Soubor s daty</label>
+    <input type="file" id="file" name="file" />
+  </p>
+  <p>
+    <label>Pouze test</label>
+    <input type="checkbox" id="test" name="test" checked="checked" />
+  </p>
+  <p>
+     <input type="submit" value="Odeslat" />
+  </p>
+</fieldset>
+</form>
+#{/ifnot}
+#{else}
+  <p>
+   Soubor s daty: ${fileName}
+  </p>
+
+#{if test}
+  <p class="info">
+    Pouze test!
+  </p>
+#{/if}
+
+<div class="span-12">
+<h3 class="success">#{if test}Test#{/if}#{else}Import#{/else} proběhl v pořádku:</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Pacient</th>
+      <th>Koncentrace</th>
+    </tr>
+  </thead>
+  <tbody>
+#{list strOk}
+    <tr>
+      <td>${_.split(",", -1)[0]}</td>
+      <td>${_.split(",", -1)[1]}</td>
+    </tr>
+#{/list}
+  </tbody>
+</table>
+</div>
+
+<div class="span-12 last">
+<h3 class="error">#{if test}Test#{/if}#{else}Import#{/else} se nepodařil:</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Pacient</th>
+      <th>Koncentrace</th>
+    </tr>
+  </thead>
+  <tbody>
+#{list strErr}
+    <tr>
+      <td>${_.split(",", -1)[0]}</td>
+      <td>${_.split(",", -1)[1]}</td>
+    </tr>
+#{/list}
+  </tbody>
+</table>
+</div>
+#{/else}
+

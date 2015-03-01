@@ -57,6 +57,8 @@ GET   /sestavy/pocty-souhlasu-s-ulozenim/         Forms.poctyulozenych
 
 POST  /import-vysledku                        Forms.vyslImport
 GET   /import-vysledku                        Forms.vyslImport
+POST  /import-koncentraci                     Forms.koncImport
+GET   /import-koncentraci                     Forms.koncImport
 GET   /log                                    Forms.log
 
 GET   /profil                                 AppModuls.uziv

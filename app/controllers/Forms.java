@@ -180,6 +180,44 @@ public class Forms extends Application {
   }
 
   @Check("doctor")
+  public static void koncImport(File file, boolean test) {
+    if(file != null) {
+      List strOk = new ArrayList();
+      List strErr = new ArrayList();
+      List<String> lines = IO.readLines(file);
+      String line = "";
+      String[] columns = null;
+      String pacKod = "";
+      String konc = "";
+      boolean upraveno = false;
+
+      Iterator<String> iterator = lines.iterator();
+      while (iterator.hasNext()) {
+        line = iterator.next();
+
+        if(connected.modul.kod.equals("KO")) {
+          columns = line.split(",");
+          if(columns.length < 2) continue;
+
+          pacKod = columns[0];
+          konc = columns[1];
+          if(!pacKod.substring(0,2).equals(connected.modul.kod)) continue;
+        } //ostrava
+
+        upraveno = Patient.setKonc(pacKod, konc, test);
+        if(upraveno) strOk.add(pacKod + "," + konc);
+        else         strErr.add(pacKod + "," + konc);
+      } //while iterator
+
+      String fileName = file.getName();
+      render(fileName, test, strOk, strErr);
+    }
+    else {
+      render(test);
+    }
+  }
+
+  @Check("doctor")
   public static void vyslImport(File file, boolean test) {
     if(file != null) {
       List strOk = new ArrayList();
