@@ -246,11 +246,19 @@ public class Patient extends Model {
         String vysl = "";
         String[] array = null;
         String sep = "";
-        for(Report zprava : zpravy) {
-          array = zprava.kontrolaTAT().split(";",-1);
-          TATy += (sep + (array[0].equals("1") && !array[2].equals("-") && !array[2].equals("0") ? "-" : "") + array[2]);
-          sep = ", ";
+
+        try {
+          for(Report zprava : zpravy) {
+            array = zprava.kontrolaTAT().split(";",-1);
+            TATy += (sep + (array[0].equals("1") && !array[2].equals("-") && !array[2].equals("0") ? "-" : "") + array[2]);
+            sep = ", ";
+          }
         }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
         return TATy;
     }
 
