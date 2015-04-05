@@ -22,10 +22,10 @@ public class Forms extends Application {
     List<Examination> seznamVysetreni = Examination.getActual();
     List<Doctor> seznamLekaru = Doctor.find("modul = ? order by icz desc", connected.modul).fetch();
 
-    //datumy nezad·ny - zobrazÌ se formul·¯ s kolonkami datum od, do a typem vyöet¯enÌ
+    //datumy nezad√°ny - zobraz√≠ se formul√°≈ô s kolonkami datum od, do a typem vy≈°et≈ôen√≠
     if(datumOd == null && datumDo == null) { 
       datumOd = new Date();
-      datumDo = new Date(); //zde se pouze vkl·d· datum do kalend·¯e, proto se nemusÌ nastavovat Ëas na 23:59:59
+      datumDo = new Date(); //zde se pouze vkl√°d√° datum do kalend√°≈ôe, proto se nemus√≠ nastavovat ƒças na 23:59:59
       render(typ, datumOd,datumDo, seznamVysetreni, seznamLekaru);
       //konec funkce index
     }
@@ -189,6 +189,8 @@ public class Forms extends Application {
       String[] columns = null;
       String pacKod = "";
       String konc = "";
+      String tmp = "";
+      String[] array = null;
       boolean upraveno = false;
 
       Iterator<String> iterator = lines.iterator();
@@ -197,14 +199,31 @@ public class Forms extends Application {
 
         if(connected.modul.kod.equals("KO")) {
           columns = line.split(",");
-          if(columns.length < 2) continue;
+          if(columns.length < 6) continue;
+          //kod pacienta
+          try {
+            tmp = columns[2]; //""Sample_123-15""
+            tmp = tmp.replace("\"", ""); //Sample_123-15
+            if(!tmp.substring(0,6).equals("Sample")) continue;
+            tmp = tmp.substring(7); //123-15
+            array = tmp.split("-");
+            pacKod = "KO " + array[0] + "/" + array[1];
+          }
+          catch (Exception e) {
+            System.out.println("koncImport - pacKod: " + e.toString());
+          }
+          //koncentrace DNA:
+          try {
+            tmp = columns[6]; //""83.2""
+            tmp = tmp.replace("\"", ""); //83.2
+            konc = tmp;
+          }
+          catch (Exception e) {
+            System.out.println("koncImport - konc: " + e.toString());
+          }
+        } //if ostrava
 
-          pacKod = columns[0];
-          konc = columns[1];
-          if(!pacKod.substring(0,2).equals(connected.modul.kod)) continue;
-        } //ostrava
-
-        upraveno = Patient.setKonc(pacKod, konc, test);
+        upraveno = Patient.setKonc(pacKod, konc.replace(".", ","), test);
         if(upraveno) strOk.add(pacKod + "," + konc);
         else         strErr.add(pacKod + "," + konc);
       } //while iterator
