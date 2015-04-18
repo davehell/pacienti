@@ -172,6 +172,14 @@
 </p>
 #{/}
 
+#{field 'pacient.koncRna'}
+<p>
+  <label>&{field.name} </label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.koncRna}" class="${field.errorClass} shortW"><span>&nbsp;&nbsp;ng/&micro;l</span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+</p>
+#{/}
+
 #{field 'neuplnaZadanka'}
 <p>
   <label>&{field.name} </label>

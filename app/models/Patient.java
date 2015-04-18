@@ -71,6 +71,8 @@ public class Patient extends Model {
 
     public String koncDna;  //koncentrace DNA
 
+    public String koncRna;  //koncentrace RNA
+
     @MaxSize(300)
     public String pozn; //interní poznámka
 
@@ -85,7 +87,7 @@ public class Patient extends Model {
     @OneToMany(mappedBy="pacient", cascade=CascadeType.ALL)
     public List<Report> zpravy;
 
-    public Patient(AppModul modul, String evCislo, String evRok, String rcZac, String rcKon, String jmeno, String prijmeni, String pojistovna, String lekar, String infSouhlas, String diagnoza, String koncDna, String pozn, String verejnaPozn, String oldId) {
+    public Patient(AppModul modul, String evCislo, String evRok, String rcZac, String rcKon, String jmeno, String prijmeni, String pojistovna, String lekar, String infSouhlas, String diagnoza, String koncDna, String koncRna, String pozn, String verejnaPozn, String oldId) {
         this.modul = modul;
         this.evCislo = Integer.parseInt(evCislo);
         this.evRok = Integer.parseInt(evRok);
@@ -96,6 +98,7 @@ public class Patient extends Model {
         this.infSouhlas = (infSouhlas == "PRAVDA") ? true : false;
         this.diagnoza = diagnoza;
         this.koncDna = koncDna;
+        this.koncRna = koncRna;
         this.pozn = pozn;
         this.verejnaPozn = verejnaPozn;
         List<InsuranceCompany> pojistovny = InsuranceCompany.find("modul = ? and cislo = ?", modul, Integer.parseInt(pojistovna)).fetch();

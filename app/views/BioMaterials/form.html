@@ -116,6 +116,23 @@
 </p>
 #{/}
 
+#{field 'bioMaterial.datumIzolaceRNA'}
+<p>
+  <label>&{field.name} </label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${bioMaterial?.datumIzolaceRNA?.format('dd.MM.yyyy')}" class="${field.errorClass} datumW">
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+  <span class="small">dd.mm.rrrr</span>
+</p>
+#{/}
+
+#{field 'koncRna'}
+<p>
+  <label>&{'pacient.koncRna'} </label>
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.koncRna}" class="${field.errorClass} shortW"><span>&nbsp;&nbsp;ng/&micro;l</span>
+  #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
+</p>
+#{/}
+
 #{field 'bioMaterial.parafaIzolace.id'}
 <p>
   <label>&{field.name} </label>
@@ -211,6 +228,7 @@ $(document).ready(function() {
   		$( "#bioMaterial_datumOdberu" ).datepicker();
   		$( "#bioMaterial_datumPrijeti" ).datepicker();
   		$( "#bioMaterial_datumIzolace" ).datepicker();
+      $( "#bioMaterial_datumIzolaceRNA" ).datepicker();
 
   		var typyMaterialu = [
         #{list typyMaterialu}

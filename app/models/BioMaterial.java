@@ -26,7 +26,10 @@ public class BioMaterial extends Model {
     public User parafaPrijeti;
 
     @As("dd.MM.yyyy")
-    public Date datumIzolace;
+    public Date datumIzolace; //datum izolace DNA
+
+    @As("dd.MM.yyyy")
+    public Date datumIzolaceRNA;
 
     @OneToOne
     public User parafaIzolace;
@@ -38,7 +41,7 @@ public class BioMaterial extends Model {
     }
 
     public static List<BioMaterial> getNeizolovana(AppModul modul) {
-        List<BioMaterial> result = BioMaterial.find("pacient.modul = ? AND typ <> ? and datumIzolace is null and pacient.evRok >= ?", modul, "izolovaná DNA", 2010).fetch();
+        List<BioMaterial> result = BioMaterial.find("pacient.modul = ? AND typ <> ? and datumIzolace is null and datumIzolaceRNA is null and pacient.evRok >= ?", modul, "izolovaná DNA", 2010).fetch();
         return result;
     }
 

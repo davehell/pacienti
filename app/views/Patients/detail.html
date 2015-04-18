@@ -22,12 +22,13 @@
     <th rowspan="2">Typ</th>
     <th rowspan="2" class="datumW">Datum a čas odběru</th>
     <th colspan="2" style="text-align: center;">Příjem</th>
-    <th colspan="2" style="text-align: center;">Izolace DNA</th>
+    <th colspan="3" style="text-align: center;">Izolace DNA / RNA</th>
   </tr>
   <tr>
     <th class="datumCasW">Datum a čas</th>
     <th class="parafaW">Parafa</th>
-    <th class="datumCasW">Datum</th>
+    <th class="datumCasW">Datum DNA</th>
+    <th class="datumCasW">Datum RNA</th>
     <th class="parafaW">Parafa</th>
   </tr>
   </thead>
@@ -39,6 +40,7 @@
       <td>${_.datumPrijeti?.format('dd.MM.yyyy HH:mm')?.replace("00:00", "")} </td>
       <td>${_.parafaPrijeti?.parafa} </td>
       <td>${_.datumIzolace?.format()} </td>
+      <td>${_.datumIzolaceRNA?.format()} </td>
       <td>${_.parafaIzolace?.parafa} </td>
     </tr>
     #{/list}
