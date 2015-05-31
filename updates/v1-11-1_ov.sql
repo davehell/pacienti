@@ -1,5 +1,5 @@
 INSERT INTO PUBLIC.EXAMINATION(ID, AKTUAL, BODY, CERTIF, NAZEV, POPIS, SLOUPCE, VYSVETLIVKA, ZKRATKA, GENOMAC, TAT) VALUES
-(63, FALSE, 21138, FALSE, STRINGDECODE('Cystick\u00e1 fibr\u00f3za II - PCR a elektrofor\u00e9za'), STRINGDECODE('Stanoven\u00ed mutac\u00ed v CFTR genu metodou PCR a detekc\u00ed kapil\u00e1rn\u00ed elektrofor\u00e9zou<br>(SOPB \u010d. 2a)'), 4, STRINGDECODE('standardn\u00ed alela ... +, mutantn\u00ed alela ... -'), 'CF2', FALSE, 10);
+(63, FALSE, 21138, FALSE, STRINGDECODE('Cystick\u00e1 fibr\u00f3za II - PCR a elektrofor\u00e9za'), STRINGDECODE('Stanoven\u00ed mutac\u00ed v CFTR genu metodou PCR a detekc\u00ed kapil\u00e1rn\u00ed elektrofor\u00e9zou<br>(SOPB \u010d. 2a)'), 4, STRINGDECODE('((wt)) \u2013 &bdquo;wild type&rdquo; = &bdquo;ne-mutantn\u00ed&rdquo; alela, ((mut)) \u2013 &bdquo;mutantn\u00ed&rdquo; alela'), 'CF2', FALSE, 10);
 
 INSERT INTO PUBLIC.GENOTYPE(ID, NAZEV, VYCHOZI, VYSETRENI_ID, AUTOCOMPL, PORADI) VALUES
 (202, 'CFTRdele2,3 (21 kb)', 'wt/wt', 63, '', 1),
