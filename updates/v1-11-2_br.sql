@@ -1,0 +1,4 @@
+INSERT INTO PUBLIC.EXAMINATION(ID, AKTUAL, BODY, CERTIF, NAZEV, POPIS, SLOUPCE, VYSVETLIVKA, ZKRATKA, GENOMAC, TAT) VALUES
+(64, TRUE, 0, FALSE, STRINGDECODE('D\u011bdi\u010dn\u00e1 odpov\u011b\u010f organizmu na l\u00e9\u010dbu thiopurinov\u00fdmi l\u00e9\u010divy '), STRINGDECODE('D\u011bdi\u010dn\u00e1 odpov\u011b\u010f organizmu na l\u00e9\u010dbu thiopurinov\u00fdmi l\u00e9\u010divy metodou reverzn\u00ed hybridizace (metodika \u010d. 12)'), 1, STRINGDECODE('((wt)) \u2013 &bdquo;wild type&rdquo; = &bdquo;ne-mutantn\u00ed&rdquo; alela'), 'THI', FALSE, 10);
+
+update PUBLIC.EXAMINATION set popis=STRINGDECODE('Stanoven\u00ed d\u011bdi\u010dn\u011b podm\u00edn\u011bn\u00e9 odpov\u011bdi organizmu na l\u00e9\u010dbu warfarinem metodou reverzn\u00ed hybridizace (metodika \u010d. 19)') where id=5;
