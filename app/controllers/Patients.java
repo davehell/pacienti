@@ -67,6 +67,8 @@ public class Patients extends Application  {
 
     for(Report zprava : pacient.zpravy) {
       if(zprava.datumVysetreni == null) continue;
+
+      str.add(zprava.vysetreni.nazev + ";;");
       for(Score ohodnoceni : zprava.vysetreni.score) {
         pocetDni = (ohodnoceni.vykon.jednouDenne ? ohodnoceni.pocet : 1);   //do kolika dni se ma vykon rozepsat
         
@@ -109,7 +111,6 @@ public class Patients extends Application  {
           }
         } //for pocetDni
     	} //for zprava.vysetreni.score
-
   	} //for pacient.zpravy
 
 
