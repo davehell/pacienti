@@ -18,6 +18,7 @@ pacient.verejnaPozn = veřejná poznámka
 souhlasUlozeni = souhlas s uložením vzorku
 souhlasVyuziti = souhlas s využitím DNA
 neuplnaZadanka = neúplná žádanka
+pozn = pozn.
 
 
 bioMaterial.typ = typ
