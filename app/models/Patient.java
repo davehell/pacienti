@@ -243,6 +243,10 @@ public class Patient extends Model {
     }
 
 
+    /*
+     *  seznam TAT pro jednotlivá pacientova vyšetření
+     *  využití v tabulce na úvodní stránce
+     */
     public String limityTat() {
         List<Report> zpravy = Report.find("pacient.id = ? order by id asc", this.id).fetch();
         String TATy = "";
@@ -294,6 +298,28 @@ public class Patient extends Model {
     public static List<Patient> getSouhlasySUlozenim(AppModul modul, int rok) {
         List<Patient> pacienti = Patient.find("modul = ? AND evRok = ? AND infSouhlas = true ORDER BY evCislo", modul, rok).fetch();
         return pacienti;
+    }
+
+    public static List<Report> getPrekroceneTat(AppModul modul, int rok) {
+        List<Report> zpravy = null;
+        List<Report> prekroceno = new ArrayList();
+        String[] array = null;
+
+
+        zpravy = Report.find("pacient.modul = ? AND pacient.evRok = ? ORDER BY pacient.evCislo", modul, rok).fetch();
+        try {
+            for(Report zprava : zpravy) {
+                array = zprava.kontrolaTAT().split(";",-1);
+                if(array[0].equals("0") && array[2].equals("-")) {
+                    prekroceno.add(zprava);
+                }
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return prekroceno;
     }
 
     public static boolean setKonc(String pacKod, String konc, boolean jenTest) {

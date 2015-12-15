@@ -108,6 +108,13 @@ public class Forms extends Application {
       List<Patient> souhlasy = Patient.getSouhlasySUlozenim(connected.modul, rok);
       render(aktRok, rok, souhlasy);
   }
+
+  public static void poctyTat(Integer rok) {
+      Integer aktRok = Calendar.getInstance().get(Calendar.YEAR);
+      if(rok == null) rok = aktRok;
+      List<Report> zpravy = Patient.getPrekroceneTat(connected.modul, rok);
+      render(aktRok, rok, zpravy);
+  }
   
   public static void poctyVzorku(@As("dd.MM.yyyy") Date datumOd, @As("dd.MM.yyyy") Date datumDo) {
       List<Doctor> lekari = Doctor.getPocetVzorku(datumOd, datumDo, connected.modul);

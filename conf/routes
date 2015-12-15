@@ -54,6 +54,8 @@ GET   /sestavy/pocty-vysetreni/{rok}              Forms.poctyvysetreni
 GET   /sestavy/pocty-vysetreni/                   Forms.poctyvysetreni
 GET   /sestavy/pocty-souhlasu-s-ulozenim/{rok}    Forms.poctyulozenych
 GET   /sestavy/pocty-souhlasu-s-ulozenim/         Forms.poctyulozenych
+GET   /sestavy/pocty-prekrocenych-tat/{rok}       Forms.poctytat
+GET   /sestavy/pocty-prekrocenych-tat/            Forms.poctytat
 
 POST  /import-vysledku                        Forms.vyslImport
 GET   /import-vysledku                        Forms.vyslImport

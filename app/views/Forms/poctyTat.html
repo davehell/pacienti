@@ -1,0 +1,37 @@
+#{extends 'main.html' /}
+#{set title:'Počty překročených TAT' /}
+
+<fieldset class="noprint">
+  <legend>Výběr období</legend>
+
+  <ul>
+%{
+  i = 2008;
+  while(++i <= aktRok) {
+}%
+    <li><a href="@{Forms.poctyTat(i)}">${i}</a></li>
+%{
+  }
+}%
+  </ul>
+</fieldset>
+
+<h2>Rok ${rok}</h2>
+
+#{if zpravy}
+  <p>
+    celkem: ${zpravy.size()}
+  </p>
+  <ul>
+  #{list zpravy}
+    <li>
+      <a href="@{Patients.detail(_.pacient.id)}">${_.pacient.getKod()}</a> - ${_.vysetreni.nazev}
+    </li>
+  #{/list}
+  </ul>
+#{/if}
+#{else}
+  <p>
+      &{'noRecords'}
+  </p>
+#{/else}

@@ -124,7 +124,7 @@ public class Report extends Model {
                 tmp = this.pacient.nextWorkingDay(tmp);
                 days++;
             }
-            return "1;" + df.format(limitTAT) + ";" + Integer.toString(days); //limit bude dne d.m.Y, což je za x dny
+            return "1;" + df.format(limitTAT) + ";" + Integer.toString(days); //limit bude dne d.m.Y, což je za x dni
         }
         else {
             return "1;" + df.format(limitTAT) + ";-"; //limit byl dne d.m.Y, byl tedy splněn
