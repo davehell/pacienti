@@ -97,7 +97,14 @@ public class Report extends Model {
 
         if(this.bioMaterial.datumPrijeti == null) return "";
 
-        limitTAT = this.bioMaterial.datumPrijeti;
+        //TAT se počítá od data přijetí vzorku, čas se nastaví na začátek dne příjmu
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(this.bioMaterial.datumPrijeti);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        limitTAT = calendar.getTime();
+
+        //přičtení x dní k datu přijetí vzorku
         while(i++ < this.vysetreni.tat) {
             limitTAT = this.pacient.nextWorkingDay(limitTAT);
         }
