@@ -10,10 +10,10 @@
 -- 	- 6: 94123     6x
 -- 	- 7: 94127     6x
 
-delete from score where id = 56;
-delete from score where id = 8;
-delete from score where id = 61;
-delete from score where id = 63;
+delete from score where vysetreni_id = 56;
+delete from score where vysetreni_id = 8;
+delete from score where vysetreni_id = 61;
+delete from score where vysetreni_id = 63;
 
 INSERT INTO score(ID, pocet, vykon_id, vysetreni_id, BODY, JEDNOUDENNE, JEDNOUNAVZOREK) VALUES (113, 1, 1, 56, 0, FALSE, FALSE);
 
@@ -26,3 +26,8 @@ INSERT INTO score(ID, pocet, vykon_id, vysetreni_id, BODY, JEDNOUDENNE, JEDNOUNA
 
 INSERT INTO score(ID, pocet, vykon_id, vysetreni_id, BODY, JEDNOUDENNE, JEDNOUNAVZOREK) VALUES (118, 6, 6, 63, 0, FALSE, FALSE);
 INSERT INTO score(ID, pocet, vykon_id, vysetreni_id, BODY, JEDNOUDENNE, JEDNOUNAVZOREK) VALUES (119, 6, 7, 63, 0, FALSE, FALSE);
+
+-- oprava:
+-- TRUNCATE TABLE score;
+-- INSERT INTO score SELECT * FROM CSVREAD('C:/pacienti/db/v1-11-5-score.csv', null, 'charset=UTF-8');
+
