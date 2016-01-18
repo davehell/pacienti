@@ -3,7 +3,7 @@
 #
 pacient.evCislo = kód vzorku
 pacient.evRok = rok
-pacient.rcZac = rodné číslo
+pacient.rcZac = číslo pojištěnce
 pacient.titul = titul
 pacient.jmeno = jméno
 pacient.prijmeni = příjmení

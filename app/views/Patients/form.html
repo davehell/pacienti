@@ -61,7 +61,7 @@
 
 #{field 'pacient.rcKon'}
 <p class="left">
-  &nbsp;&nbsp;/&nbsp;&nbsp;<input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rcKon}" class="${field.errorClass} shortW" maxlength="4">
+  <input type="text" id="${field.id}" name="${field.name}" value="${pacient?.rcKon}" class="${field.errorClass} shortW" maxlength="4">
   #{ifError field.name}<span class="error">${field.error} </span>#{/ifError}
 </p>
 #{/}
@@ -259,6 +259,8 @@ $(document).ready(function() {
 	.ui-button { margin-left: -1px; }
 	.ui-button-icon-only .ui-button-text { padding: 0.25em; }
 	.ui-autocomplete-input { margin: 0; padding: 0.3em 0 0.3em 0.45em; }
+	#pacient_rcZac { border-right: none;}
+	#pacient_rcKon { border-left: none;}
 </style>
 
 <script type="text/javascript">

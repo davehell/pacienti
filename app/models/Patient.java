@@ -144,7 +144,7 @@ public class Patient extends Model {
     }
 
     public String getRodneCislo() {
-        return rcZac + "/" + rcKon;
+        return rcZac + rcKon;
     }
 
     public String toString() {
