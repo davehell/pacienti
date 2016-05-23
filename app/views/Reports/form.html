@@ -83,41 +83,49 @@
 #{/if}
 #{else}
   <p>
+    <input type="hidden" id="genotypy1" name="genotypyVysetreni">
     <label>&{'zprava.vysetreni.id'} </label>
-    #{select "novaVysetreni", class:"vLongW"}
+    #{select "novaVysetreni", class:"vLongW", id: "noveVysetreni1"}
     	#{option "0"}&{'selectBox.option.select'}#{/option}
       #{list seznamVysetreni}
         #{option "${_.id}"}${_.nazev}#{/option}
       #{/list}
     #{/select}
   </p>
+  <div id="genotypyVysetreni1"></div>
   <p>
+    <input type="hidden" id="genotypy2" name="genotypyVysetreni">
     <label>&{'zprava.vysetreni.id'} </label>
-    #{select "novaVysetreni", class:"vLongW"}
+    #{select "novaVysetreni", class:"vLongW", id: "noveVysetreni2"}
     	#{option "0"}&{'selectBox.option.select'}#{/option}
       #{list seznamVysetreni}
         #{option "${_.id}"}${_.nazev}#{/option}
       #{/list}
     #{/select}
   </p>
+  <div id="genotypyVysetreni2"></div>
   <p>
+    <input type="hidden" id="genotypy3" name="genotypyVysetreni">
     <label>&{'zprava.vysetreni.id'} </label>
-    #{select "novaVysetreni", class:"vLongW"}
+    #{select "novaVysetreni", class:"vLongW", id: "noveVysetreni3"}
     	#{option "0"}&{'selectBox.option.select'}#{/option}
       #{list seznamVysetreni}
         #{option "${_.id}"}${_.nazev}#{/option}
       #{/list}
     #{/select}
   </p>
+  <div id="genotypyVysetreni3"></div>
   <p>
+    <input type="hidden" id="genotypy4" name="genotypyVysetreni">
     <label>&{'zprava.vysetreni.id'} </label>
-    #{select "novaVysetreni", class:"vLongW"}
+    #{select "novaVysetreni", class:"vLongW", id: "noveVysetreni4"}
     	#{option "0"}&{'selectBox.option.select'}#{/option}
       #{list seznamVysetreni}
         #{option "${_.id}"}${_.nazev}#{/option}
       #{/list}
     #{/select}
   </p>
+  <div id="genotypyVysetreni4"></div>
 
 #{/else}
 
@@ -445,9 +453,56 @@
         $("#zprava_datumZpravy").val($.datepicker.formatDate('dd.mm.yy', dateTime) + " " + hod + ":" + min );
       }
     }
-
-
   } ); //document.ready
 </script>
 #{/if}
+#{else}
+<script type="text/javascript">
+  var genotypy = {
+  #{list genotypyProVysetreni}
+    "${_.getKey()}": "${_.getValue()}",
+  #{/list}
+    "": ""
+  };
 
+  $(document).ready(function() {
+    //do hidden pole vloží názvy vybraných genotypů
+    var aktualizujGenotypy = function(cVysetreni) {
+      var genotypy = new Array();
+      $( "#genotypyVysetreni" + cVysetreni + " :checkbox").each(function(event){
+        if($(this).is(":checked")) genotypy.push($("label[for='" + $(this).attr('id') + "']").text());
+      });
+      $( "#genotypy" + cVysetreni).val(genotypy.join("$"));
+    }
+
+    //zobrazí checkboxy s názvy dostupných genotypů pro dané vyšetření
+    var zobrazGenotypy = function(cVysetreni) {
+      $( "#genotypyVysetreni" + cVysetreni ).empty();
+      var id = $( "#noveVysetreni" + cVysetreni ).val();
+      if(!genotypy[id]) return; //pro vysetreni neni povoleno vybirat genotypy
+      var arr = genotypy[id].split("$");
+      for (var i = 0; i < arr.length; ++i) {
+        $("#genotypyVysetreni" + cVysetreni).append('<label for="genotypy' + cVysetreni + '_' + i + '">' + arr[i] + '</label><input type="checkbox" id="genotypy' + cVysetreni + '_' + i + '" name="genotypyVysetreni' + cVysetreni + '" checked="checked" /><br>');
+      }
+
+      aktualizujGenotypy(cVysetreni);
+      $( "#genotypyVysetreni" + cVysetreni + " :checkbox").on("change", function(event){
+        aktualizujGenotypy(cVysetreni);
+      });
+    }
+
+    $( "#noveVysetreni1" ).on("change", function(event){
+      zobrazGenotypy("1");
+    });
+    $( "#noveVysetreni2" ).on("change", function(event){
+      zobrazGenotypy("2");
+    });
+    $( "#noveVysetreni3" ).on("change", function(event){
+      zobrazGenotypy("3");
+    });
+    $( "#noveVysetreni4" ).on("change", function(event){
+      zobrazGenotypy("4");
+    });
+  } ); //document.ready
+</script>
+#{/else}

@@ -43,6 +43,7 @@ public class Reports extends Application {
     String[] provadiAnalyzu = {};
     LinkedHashMap<String,String> vyslMap = new LinkedHashMap<String,String>();
     HashMap<String,String> autoComplMap = new HashMap<String,String>();
+    LinkedHashMap<String,String> genotypyProVysetreni = new LinkedHashMap<String,String>(); // <id vysetreni, seznam genotypu>
 
     if(connected.modul.vedouciLekari != null) {
       vedouciLekari = connected.modul.vedouciLekari.split(";");
@@ -53,7 +54,8 @@ public class Reports extends Application {
     if(connected.modul.provadiAnalyzu != null) {
       provadiAnalyzu = connected.modul.provadiAnalyzu.split(";");
     }
-    
+
+    genotypyProVysetreni = Examination.getExaminationGenotypesMap();
 
     if(id != null) {
       Report zprava = Report.findById(id);
@@ -77,11 +79,11 @@ public class Reports extends Application {
     }
 
     //formulář pro přidání nového vyšetření k pacientovi
-    render(pacient, bioMaterialy, seznamVysetreni, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu);
+    render(pacient, bioMaterialy, seznamVysetreni, users, vedouciLekari, uvolnujiAnalyzu, provadiAnalyzu, genotypyProVysetreni);
   }
 
 
-  public static void mySave(Long zpravaId, Report zprava, Long[] novaVysetreni, Long pacientId, String[] vysledky, String[] markery, Boolean neniCertif, Boolean pozitivni, Boolean opakovaneVysetreni) {
+  public static void mySave(Long zpravaId, Report zprava, Long[] novaVysetreni, String[] genotypyVysetreni, Long pacientId, String[] vysledky, String[] markery, Boolean neniCertif, Boolean pozitivni, Boolean opakovaneVysetreni) {
     Patient pacient = Patient.getByModulAndId(connected.modul, pacientId);
     notFoundIfNull(pacient);
     List<BioMaterial> bioMaterialy = BioMaterial.findAll();
@@ -108,7 +110,6 @@ public class Reports extends Application {
     zprava.vysledek = vysledek;
     vyslMap = zprava.getVysl();
 
-
     if(zpravaId == null) {
       int pocetPridanych = 0;
       for (int j = 0; j < novaVysetreni.length; j++) {
@@ -116,7 +117,7 @@ public class Reports extends Application {
 
         Examination vysetreni = Examination.find("byId", novaVysetreni[j]).first();
         BioMaterial bioMaterial = zprava.bioMaterial;
-        
+
         if(bioMaterial == null || vysetreni == null) {
           flash.error("Vyšetření se nepodařilo vytvořit.");
           Patients.detail(pacientId);
@@ -129,6 +130,12 @@ public class Reports extends Application {
         vysledek = "";
         for(Iterator<Genotype> i = genotypes.iterator(); i.hasNext(); ) {
           genotyp = i.next();
+
+          //daný genotyp nebyl při vytváření zprávy zvolen a proto se de zprávy nepřidá
+          if(vysetreni.volitGenotypy && genotypyVysetreni[j].contains(genotyp.nazev) == false) {
+            continue;
+          }
+
           vysledek += (genotyp.nazev + "$" + genotyp.vychozi);
           if(k++ < genotypes.size()) vysledek += "$";
         }

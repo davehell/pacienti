@@ -160,3 +160,7 @@ border-color: #DDD;
 }
 
 .modulSettings {display: inline-block !important;}
+
+#genotypyVysetreni1,#genotypyVysetreni2,#genotypyVysetreni3,#genotypyVysetreni4 {
+  padding-left: 40px;
+}
