@@ -12,6 +12,7 @@ pacient.lekar.id = lékař
 pacient.diagnoza = základní diagnóza
 pacient.ostatniDiagnozy = ostatní diagnózy
 pacient.koncDna = koncentrace DNA
+pacient.koncDna2 = konc. DNA
 pacient.koncRna = koncentrace RNA
 pacient.pozn = interní poznámka
 pacient.verejnaPozn = veřejná poznámka

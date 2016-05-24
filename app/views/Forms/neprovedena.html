@@ -27,8 +27,9 @@
     <thead>
       <th>vyšetření</th>
       <th>&{'pacient.evCislo'}</th>
-      <th>&{'pacient.koncDna'}</th>
+      <th>&{'pacient.koncDna2'}</th>
       <th>&{'pozn'}</th>
+      <th>&nbsp;</th>
       <th>body</th>
     </thead>
     <tbody>
@@ -51,6 +52,7 @@
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
+      <td>&nbsp;</td>
       <td class="sum">${sum.format("###,###")}</td>
     </tr>
 %{
@@ -63,6 +65,14 @@
       <td>${_.pacient.getKod()} </td>
       <td>${_.pacient.getKonc().raw()} </td>
       <td>#{if _.pacient.pozn}*#{/if} </td>
+      <td>
+      *{
+        vyšetření u kterého se volí genotypy, které se mají testovat  &&  nejsou zvolené všechny genotypy
+      }*
+      #{if _.vysetreni.volitGenotypy && _.getVysl().keySet().size() != _.vysetreni.genotypy.size()}
+        ${_.getVysl().keySet()}
+      #{/if}
+      </td>
       <td>&nbsp;</td>
     </tr>
 
@@ -72,9 +82,11 @@
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
+      <td>&nbsp;</td>
       <td class="sum">${sum.format("###,###")}</td>
     </tr>
     <tr>
+      <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
