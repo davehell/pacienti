@@ -7,7 +7,8 @@
     <style media="print">
      body {font-family: "Times New Roman", sans-serif; font-size: 10pt;}
      .totalSum {border-top: 1px solid black;}
-     .totalSum, .sum {text-align: right; padding-right: 1em;}
+     .totalSum, .sum {text-align: right; padding-right: 1em;  white-space: nowrap;}
+     .minW {min-width: 100px;}
      table {width: 100%;}
     </style>
   </head>
@@ -26,8 +27,8 @@
   <table>
     <thead>
       <th>vyšetření</th>
-      <th>&{'pacient.evCislo'}</th>
-      <th>&{'pacient.koncDna2'}</th>
+      <th class="minW">&{'pacient.evCislo'}</th>
+      <th class="minW">&{'pacient.koncDna2'}</th>
       <th>&{'pozn'}</th>
       <th>&nbsp;</th>
       <th>body</th>
