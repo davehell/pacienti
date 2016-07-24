@@ -273,7 +273,7 @@ public class Patient extends Model {
     public Date nextWorkingDay(Date date) {
         Date nextDay = date;
         int blbec = 0;
-        String[] holidays = {"01.01","01.05","08.05","05.07","06.07","28.09","28.10","17.11","24.12","25.12","26.12"}; //TODO: chybi velikonocni pondeli
+        String[] holidays = {"01.01","01.05","08.05","05.07","06.07","28.09","28.10","17.11","24.12","25.12","26.12", "14.03","17.03"}; //Velikonoce 2017
         Calendar c = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         df.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
