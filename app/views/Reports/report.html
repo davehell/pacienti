@@ -24,6 +24,8 @@
       td.gres { width: 1.5cm;}
       #gtypTable td{ border: 1px solid black;  padding: 2px 3px;}
       .noItal {font-style: normal;}
+      h3 {page-break-after: avoid;}
+      .metodika p {text-align: justify; margin: 0;}
 @page {
    @bottom-center {
     content: counter(page) " / " counter(pages);
@@ -153,22 +155,46 @@ Pracoviště: ${zprava.pacient.modul.adresa}
   </tr>
 </table>
 
-<h3>Zjištěný genotyp:</h3>
-<table id="gtypTable">
+#{if zprava.vysetreni.zkratka == 'BRCA'}
+  <h3>Metodika:</h3>
+  <div class="metodika">
+  <p>Popis metody:</p>
+  <p>Vyhledávání mutací v kódujících sekvencích a přilehlých oblastech genů BRCA1/2  pomocí amplikonového masivního paralelního sekvenování pomocí Ion AmpliSeq™ BRCA1 and BRCA2 panelu je založeno na 100% pokrytí všech exonů a k nim přilehlých oblastí. Jedná se o tzv. scanningovou metodu určenou pro detekci bodových změn a menších inzercí, duplikací a delecí (cca 20bp). Na základě nastaveného prahu Base Phread Quality minimálně 20 (odpovídá 99% pravděpodobnosti, že báze je určena správně) a na základě předpokladu, že v průběhu analýzy dat nebude softwarem mutace zachycena s pravděpodobností 1 %, lze úspěšnost scannigové metody odhadnout na 98 % - 99 %. Referenční transkripty jsou pro BRCA1: NM_007300.3 a pro BRCA2: NM_000059.3. Koordináty jednotlivých amplikonů variant jsou vztaženy ke genomické sekvenci GRCh37 (hg19).</p>
+  <br>
+  <p>Postup vyhodnocení:</p>
+  <p>Vyhodnocení kvality pokrytí, Fastaq, BAM  dat a posouzení CNV proběhlo pomocí  Torrent Suite a Ion reporter. </p>
+  <p>Nalezené varianty byly posouzeny pomocí Ion reporter. </p>
+  <br>
+  <p>Klinický význam byl hodnocen pomocí celogenomových srovnávacích a shromažďovacích databází, které posuzují význam a dopad nalezených variant pro lidské zdraví. V případě BRCA genů se jedná minimálně o  ClinVar (http://www.ncbi.nlm.nih.gov) a LOVD  v příslušných genech.</p>
+  </div>
+
+  <h3>Nález:</h3>
   #{list items:vyslMap?.keySet(), as:'marker'}
-    #{if marker_isFirst}
-    <tr>
-    #{/if}
-    <td class="gtyp">${marker.replace("->", "&rarr;").raw()} </td>
-    <td class="gres">${vyslMap.get(marker).replace("mut", "<strong>mut</strong>").replace("del", "<strong>del</strong>").replace("b", "<strong>b</strong>").replace("E4", "<strong>E4</strong>").replace("4G", "<strong>4G</strong>").replace("pozitivní", "<strong>pozitivní</strong>").replace("POZITIVNÍ", "<strong>POZITIVNÍ</strong>").raw()} </td>
-    #{if marker_index % zprava.vysetreni.sloupce == 0}
-    </tr>
-    #{ifnot marker_isLast}
-    <tr>
-    #{/ifnot}
-    #{/if} 
+    <p>${vyslMap.get(marker)}</p>
   #{/list}
-</table>
+  <p>Nepatogenní, neznámé a klinicky netestované polymorfismy, které byly nalezeny jsou součástí  přílohy k této zprávě.</p>
+#{/if}
+#{else}
+  <h3>Zjištěný genotyp:</h3>
+
+  <table id="gtypTable">
+    #{list items:vyslMap?.keySet(), as:'marker'}
+      #{if marker_isFirst}
+      <tr>
+      #{/if}
+      <td class="gtyp">${marker.replace("->", "&rarr;").raw()} </td>
+      <td class="gres">${vyslMap.get(marker).replace("mut", "<strong>mut</strong>").replace("del", "<strong>del</strong>").replace("b", "<strong>b</strong>").replace("E4", "<strong>E4</strong>").replace("4G", "<strong>4G</strong>").replace("pozitivní", "<strong>pozitivní</strong>").replace("POZITIVNÍ", "<strong>POZITIVNÍ</strong>").raw()} </td>
+      #{if marker_index % zprava.vysetreni.sloupce == 0}
+      </tr>
+      #{ifnot marker_isLast}
+      <tr>
+      #{/ifnot}
+      #{/if} 
+    #{/list}
+  </table>
+#{/else}
+
+
 #{if zprava.vysetreni.vysvetlivka}
 <p style="font-size: 10pt; margin: 0;">
  Vysvětlivky: ${zprava.vysetreni.vysvetlivka.replace("((", "<strong>").replace("))", "</strong>").raw()}
@@ -190,7 +216,7 @@ Pracoviště: ${zprava.pacient.modul.adresa}
 </p>
 #{/if}
 
-<table class="tab" style="width: auto; position: absolute; bottom: 0;">
+<table class="tab" style="width: auto; #{if zprava.vysetreni.zkratka == 'BRCA'}#{/if} #{else}position: absolute; bottom: 0;#{/else} ">
   <tr>
     <td>Analýzu provedl:</td>
     <!-- <td>#{if zprava.parafaVysetreni}<span class="noItal">${zprava.parafaVysetreni?.jmeno} </span>, ${zprava.parafaVysetreni?.pozice}#{/if} #{if zprava.analyzuProvedl}<span class="noItal">, ${zprava.analyzuProvedl}</span>#{/if}</td> -->
